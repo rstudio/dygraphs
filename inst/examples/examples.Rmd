@@ -1,0 +1,15 @@
+---
+title: "Dygraph Presentation"
+output: slidy_presentation
+---
+
+## Important Discoveries
+
+```{r, echo=FALSE}
+library(dygraphs, quietly = TRUE)
+
+discoveries %>%
+  dygraph(ylabel = "Total / Year") %>%
+  rangeSelector()
+```
+
