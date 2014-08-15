@@ -39,9 +39,9 @@ dygraph <- function(data,
 }
 
 #' @export
-dyRangeSelector <- function(height = 40,  
-                            plotFillColor = "#A7B1C4", 
-                            plotStrokeColor = "#A7B1C4") {
+rangeSelector <- function(height = 40,  
+                          plotFillColor = "#A7B1C4", 
+                          plotStrokeColor = "#A7B1C4") {
   selector <- list()
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- plotFillColor
