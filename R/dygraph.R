@@ -20,7 +20,7 @@ dygraph <- function(data,
   
   # range selector
   if (isTRUE(rangeSelector)) 
-    rangeSelector <- dyRangeSelector();
+    rangeSelector <- rangeSelector();
   if (is.list(rangeSelector)) {
     options$showRangeSelector <- TRUE
     options$rangeSelectorHeight <- rangeSelector$height
