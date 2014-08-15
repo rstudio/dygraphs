@@ -16,22 +16,12 @@ HTMLWidgets.widget({
   renderValue: function(el, x, instance) {
     
     // transpose array
-    x.file = this.transposeArray(x.file);
+    x.file = HTMLWidgets.transposeArray2D(x.file);
     
     // update or create as required
     if (instance.dygraph)
       instance.dygraph.updateOptions(x);
     else
       instance.dygraph = new Dygraph(el, x.file, x);
-  },
-  
-  transposeArray: function(array) {
-    var newArray = array[0].map(function(col, i) { 
-      return array.map(function(row) { 
-        return row[i] 
-      })
-    });
-    return newArray;
-  }
-  
+  } 
 });
