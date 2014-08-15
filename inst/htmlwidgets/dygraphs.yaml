@@ -1,0 +1,5 @@
+dependencies:
+  - name: dygraphs
+    version: 1.0.1
+    src: "htmlwidgets/lib/dygraphs"
+    script: dygraph-combined.js
