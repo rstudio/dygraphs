@@ -1,6 +1,11 @@
 
 #' @export
-dygraph <- function(data, title = NULL, ylabel = NULL, width = NULL, height = NULL) {
+dygraph <- function(data, 
+                    title = NULL, 
+                    ylabel = NULL, 
+                    rangeSelector = FALSE,
+                    width = NULL, 
+                    height = NULL) {
   
   # verify that it's a time series
   if (!is.ts(data)) 
@@ -12,7 +17,17 @@ dygraph <- function(data, title = NULL, ylabel = NULL, width = NULL, height = NU
   options$labels <- c("time", "x")
   options$title <- title
   options$ylabel <- ylabel
-   
+  
+  # range selector
+  if (isTRUE(rangeSelector)) 
+    rangeSelector <- dyRangeSelector();
+  if (is.list(rangeSelector)) {
+    options$showRangeSelector <- TRUE
+    options$rangeSelectorHeight <- rangeSelector$height
+    options$rangeSelectorPlotFillColor <- rangeSelector$plotFillColor
+    options$rangeSelectorPlotStrokeColor <- rangeSelector$plotStrokeColor 
+  }
+  
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",
@@ -24,15 +39,14 @@ dygraph <- function(data, title = NULL, ylabel = NULL, width = NULL, height = NU
 }
 
 #' @export
-rangeSelector <- function(dygraph, 
-                          height = 40,  
-                          plotFillColor = "#A7B1C4", 
-                          plotStrokeColor = "#A7B1C4") {
-  dygraph$x$showRangeSelector <- TRUE
-  dygraph$x$rangeSelectorHeight <- height
-  dygraph$x$rangeSelectorPlotFillColor <- plotFillColor
-  dygraph$x$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  dygraph
+dyRangeSelector <- function(height = 40,  
+                            plotFillColor = "#A7B1C4", 
+                            plotStrokeColor = "#A7B1C4") {
+  selector <- list()
+  selector$rangeSelectorHeight <- height
+  selector$rangeSelectorPlotFillColor <- plotFillColor
+  selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
+  selector
 }
 
 

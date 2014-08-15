@@ -6,10 +6,8 @@ output: ioslides_presentation
 ## Important Discoveries
 
 ```{r, echo=FALSE}
-library(dygraphs, quietly = TRUE)
+library(dygraphs)
 
-discoveries %>%
-  dygraph(ylabel = "Total / Year") %>%
-  rangeSelector()
+dygraph(discoveries, ylabel = "Total / Year", rangeSelector = TRUE)
 ```
 
