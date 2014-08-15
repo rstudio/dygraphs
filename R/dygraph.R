@@ -34,7 +34,7 @@ dygraph <- function(data,
     x = options,
     width = width,
     height = height,
-    htmlwidgets::sizingPolicy(viewer.padding = 10)
+    htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE)
   )
 }
 
