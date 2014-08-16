@@ -8,8 +8,9 @@ output: ioslides_presentation
 ```{r, echo=FALSE}
 library(dygraphs)
 
-dygraph(discoveries, ylabel = "Total / Year", 
-        rangeSelector = dyRangeSelector(),
-        roll = dyRoll(5, showRoller = TRUE))
+dygraph(discoveries) %>%
+  dyRangeSelector() %>%
+  dyRoll(5, showRoller = TRUE) %>%
+  dyAxis("y", label = "Total / Year")
 ```
 

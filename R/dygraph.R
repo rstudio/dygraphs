@@ -1,12 +1,11 @@
 
+
+
+#' @importFrom magrittr %>%
+#' @export %>%
+#' 
 #' @export
-dygraph <- function(data, 
-                    title = NULL, 
-                    ylabel = NULL, 
-                    rangeSelector = FALSE,
-                    roll = NULL,
-                    width = NULL, 
-                    height = NULL) {
+dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   
   # verify that it's a time series
   if (!is.ts(data)) 
@@ -17,17 +16,6 @@ dygraph <- function(data,
   options$file <- list(time(data), c(data))
   options$labels <- c("time", "x")
   options$title <- title
-  options$ylabel <- ylabel
-  
-  # range selector
-  if (isTRUE(rangeSelector)) 
-    rangeSelector <- dyRangeSelector();
-  if (is.list(rangeSelector))
-    options <- append(options, rangeSelector)
-  
-  # roll
-  if (is.list(roll))
-    options <- append(options, roll)
   
   # create widget
   htmlwidgets::createWidget(
@@ -40,7 +28,8 @@ dygraph <- function(data,
 }
 
 #' @export
-dyRangeSelector <- function(height = 40,  
+dyRangeSelector <- function(dygraph,
+                            height = 40,  
                             plotFillColor = "#A7B1C4", 
                             plotStrokeColor = "#A7B1C4") {
   selector <- list()
@@ -48,16 +37,27 @@ dyRangeSelector <- function(height = 40,
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- plotFillColor
   selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  selector
+  dygraph$x <- append(dygraph$x, selector)
+  dygraph
 }
 
 #' @export
-dyRoll <- function(rollPeriod = 1, showRoller = FALSE) {
+dyRoll <- function(dygraph, rollPeriod = 1, showRoller = FALSE) {
   roll <- list()
   roll$rollPeriod = rollPeriod
   roll$showRoller = showRoller
-  roll
+  dygraph$x <- append(dygraph$x, roll)
+  dygraph
 }
+
+#' @export
+dyAxis <- function(dygraph, name, label) {
+  axis <- list()
+  axis[[sprintf("%slabel",name)]] <- label
+  dygraph$x <- append(dygraph$x, axis)
+  dygraph
+}
+
 
 #' @export
 dygraphOutput <- function(outputId, width = "100%", height = "400px") {
