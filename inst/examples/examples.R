@@ -1,8 +1,9 @@
 
 library(dygraphs)
 
-dygraph(discoveries, title = "Important Discoveries") %>%
-  dyRangeSelector() %>%
-  dyRoll(5, showRoller = TRUE) %>%
-  dyAxis("y", label = "Total / Year")
+dygraph(discoveries, title = "Important Discoveries",
+  yaxis = dyAxis(label = "Total / Year"),
+  interaction = dyInteraction(showRangeSelector = TRUE)
+)
+
 

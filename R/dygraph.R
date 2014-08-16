@@ -1,11 +1,13 @@
-
-
-
-#' @importFrom magrittr %>%
-#' @export %>%
-#' 
+ 
 #' @export
-dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
+dygraph <- function(data, 
+                    title = NULL, 
+                    xaxis = dyAxis(), 
+                    yaxis = dyAxis(),
+                    interaction = dyInteraction(), 
+                    theme = dyTheme(),
+                    width = NULL, 
+                    height = NULL) {
   
   # verify that it's a time series
   if (!is.ts(data)) 
@@ -16,6 +18,17 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   options$file <- list(time(data), c(data))
   options$labels <- c("time", "x")
   options$title <- title
+  
+  # merge axis
+  mergeAxis <- function(name, axis) {
+    options[[sprintf("%slabel", name)]] <<- axis$label 
+  }
+  mergeAxis("x", xaxis)
+  mergeAxis("y", yaxis)
+  
+  # merge various other options
+  options <- append(options, interaction)
+  options <- append(options, theme)
   
   # create widget
   htmlwidgets::createWidget(
@@ -28,36 +41,30 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
 }
 
 #' @export
-dyRangeSelector <- function(dygraph,
-                            height = 40,  
-                            plotFillColor = "#A7B1C4", 
-                            plotStrokeColor = "#A7B1C4") {
-  selector <- list()
-  selector$showRangeSelector <- TRUE
-  selector$rangeSelectorHeight <- height
-  selector$rangeSelectorPlotFillColor <- plotFillColor
-  selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  dygraph$x <- append(dygraph$x, selector)
-  dygraph
-}
-
-#' @export
-dyRoll <- function(dygraph, rollPeriod = 1, showRoller = FALSE) {
-  roll <- list()
-  roll$rollPeriod = rollPeriod
-  roll$showRoller = showRoller
-  dygraph$x <- append(dygraph$x, roll)
-  dygraph
-}
-
-#' @export
-dyAxis <- function(dygraph, name, label) {
+dyAxis <- function(label = NULL) {
   axis <- list()
-  axis[[sprintf("%slabel",name)]] <- label
-  dygraph$x <- append(dygraph$x, axis)
-  dygraph
+  axis$label <- label
+  axis
 }
 
+#' @export
+dyInteraction <- function(showRangeSelector = FALSE, 
+                          rangeSelectorHeight = 40) {
+  interaction <- list()
+  interaction$showRangeSelector <- showRangeSelector
+  if (showRangeSelector)
+    interaction$rangeSelectorHeight <- rangeSelectorHeight
+  interaction
+}
+
+#' @export
+dyTheme <- function(rangeSelectorPlotFillColor = "#A7B1C4",
+                    rangeSelectorPlotStrokeColor =  "#A7B1C4") {
+  theme <- list()
+  theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
+  theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
+  theme
+}
 
 #' @export
 dygraphOutput <- function(outputId, width = "100%", height = "400px") {
