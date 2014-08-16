@@ -4,6 +4,7 @@ dygraph <- function(data,
                     title = NULL, 
                     ylabel = NULL, 
                     rangeSelector = FALSE,
+                    roll = NULL,
                     width = NULL, 
                     height = NULL) {
   
@@ -20,13 +21,13 @@ dygraph <- function(data,
   
   # range selector
   if (isTRUE(rangeSelector)) 
-    rangeSelector <- rangeSelector();
-  if (is.list(rangeSelector)) {
-    options$showRangeSelector <- TRUE
-    options$rangeSelectorHeight <- rangeSelector$height
-    options$rangeSelectorPlotFillColor <- rangeSelector$plotFillColor
-    options$rangeSelectorPlotStrokeColor <- rangeSelector$plotStrokeColor 
-  }
+    rangeSelector <- dyRangeSelector();
+  if (is.list(rangeSelector))
+    options <- append(options, rangeSelector)
+  
+  # roll
+  if (is.list(roll))
+    options <- append(options, roll)
   
   # create widget
   htmlwidgets::createWidget(
@@ -39,16 +40,24 @@ dygraph <- function(data,
 }
 
 #' @export
-rangeSelector <- function(height = 40,  
-                          plotFillColor = "#A7B1C4", 
-                          plotStrokeColor = "#A7B1C4") {
+dyRangeSelector <- function(height = 40,  
+                            plotFillColor = "#A7B1C4", 
+                            plotStrokeColor = "#A7B1C4") {
   selector <- list()
+  selector$showRangeSelector <- TRUE
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- plotFillColor
   selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
   selector
 }
 
+#' @export
+dyRoll <- function(rollPeriod = 1, showRoller = FALSE) {
+  roll <- list()
+  roll$rollPeriod = rollPeriod
+  roll$showRoller = showRoller
+  roll
+}
 
 #' @export
 dygraphOutput <- function(outputId, width = "100%", height = "400px") {
