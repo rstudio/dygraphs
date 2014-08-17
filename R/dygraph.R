@@ -48,19 +48,18 @@ dyAxis <- function(label = NULL) {
 }
 
 #' @export
-dyInteraction <- function(showRangeSelector = FALSE, 
-                          rangeSelectorHeight = 40) {
+dyInteraction <- function(showRangeSelector = FALSE) {
   interaction <- list()
   interaction$showRangeSelector <- showRangeSelector
-  if (showRangeSelector)
-    interaction$rangeSelectorHeight <- rangeSelectorHeight
   interaction
 }
 
 #' @export
-dyTheme <- function(rangeSelectorPlotFillColor = "#A7B1C4",
+dyTheme <- function(rangeSelectorHeight = 40,
+                    rangeSelectorPlotFillColor = "#A7B1C4",
                     rangeSelectorPlotStrokeColor =  "#A7B1C4") {
   theme <- list()
+  theme$rangeSelectorHeight <- rangeSelectorHeight
   theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
   theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
   theme
