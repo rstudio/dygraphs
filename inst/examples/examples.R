@@ -3,7 +3,7 @@ library(dygraphs)
 
 dygraph(discoveries, title = "Important Discoveries",
         
-  xaxis = dyAxis(label = "Discoveries", legend = "Discoveries"),
+  xaxis = dyAxis(legend = "Discoveries"),
   yaxis = dyAxis(label = "Total / Year"),
   
   interaction = dyInteraction(legend = "onmouseover",
