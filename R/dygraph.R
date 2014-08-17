@@ -48,9 +48,13 @@ dyAxis <- function(label = NULL) {
 }
 
 #' @export
-dyInteraction <- function(showRangeSelector = FALSE) {
+dyInteraction <- function(showRangeSelector = FALSE,
+                          showLabelsOnHighlight = TRUE,
+                          showRoller = FALSE) {
   interaction <- list()
   interaction$showRangeSelector <- showRangeSelector
+  interaction$showLabelsOnHighlight <- showLabelsOnHighlight
+  interaction$showRoller <- showRoller
   interaction
 }
 
