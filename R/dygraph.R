@@ -67,6 +67,7 @@ dyInteraction <- function(legend = "onmouseover",
 dyTheme <- function(titleHeight = 24,
                     xLabelHeight = 18,
                     yLabelWidth = 18,
+                    drawGrid = TRUE,
                     rangeSelectorHeight = 40,
                     rangeSelectorPlotFillColor = "#A7B1C4",
                     rangeSelectorPlotStrokeColor =  "#A7B1C4") {
@@ -74,6 +75,7 @@ dyTheme <- function(titleHeight = 24,
   theme$titleHeight <- titleHeight
   theme$xLabelHeight <- xLabelHeight
   theme$yLabelWidth <- yLabelWidth
+  theme$drawGrid <- drawGrid
   theme$rangeSelectorHeight <- rangeSelectorHeight
   theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
   theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
