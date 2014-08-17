@@ -64,10 +64,16 @@ dyInteraction <- function(legend = "onmouseover",
 }
 
 #' @export
-dyTheme <- function(rangeSelectorHeight = 40,
+dyTheme <- function(titleHeight = 24,
+                    xLabelHeight = 18,
+                    yLabelWidth = 18,
+                    rangeSelectorHeight = 40,
                     rangeSelectorPlotFillColor = "#A7B1C4",
                     rangeSelectorPlotStrokeColor =  "#A7B1C4") {
   theme <- list()
+  theme$titleHeight <- titleHeight
+  theme$xLabelHeight <- xLabelHeight
+  theme$yLabelWidth <- yLabelWidth
   theme$rangeSelectorHeight <- rangeSelectorHeight
   theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
   theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
