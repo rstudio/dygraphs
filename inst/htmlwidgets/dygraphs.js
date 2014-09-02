@@ -15,6 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // convert time to js time
+    x.file[0] = x.file[0].map(function(value) { return new Date(value); })
+    
     // transpose array
     x.file = HTMLWidgets.transposeArray2D(x.file);
     

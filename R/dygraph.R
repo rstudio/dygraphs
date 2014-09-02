@@ -1,4 +1,6 @@
  
+#' @importFrom xts is.xts
+#' @importFrom xts as.xts
 #' @export
 dygraph <- function(data, 
                     title = NULL, 
@@ -9,13 +11,14 @@ dygraph <- function(data,
                     width = NULL, 
                     height = NULL) {
   
-  # verify that it's a time series
-  if (!is.ts(data)) 
-    stop("Must pass a time-series object as dygraph data argument")
-    
+  
+  # convert to xts
+  if (!is.xts(data)) 
+    data <- as.xts(data)
+  
   # convert to native dygraph json options format
   options <- list()
-  options$file <- list(time(data), c(data))
+  options$file <- list(format(index(data),"%Y/%m/%d"), coredata(data))
   options$labels <- c("time", "x")
   options$title <- title
   
