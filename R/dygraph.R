@@ -16,9 +16,7 @@ dygraph <- function(data,
   # convert to native dygraph json options format
   options <- list()
   options$file <- list(time(data), c(data))
-  axisLegend <- function(axis, default) 
-    ifelse(is.null(axis$legend), default, axis$legend)
-  options$labels <- c(axisLegend(yaxis,"time"), axisLegend(xaxis, "x"))
+  options$labels <- c("time", "x")
   options$title <- title
   
   # merge axis
@@ -43,10 +41,9 @@ dygraph <- function(data,
 }
 
 #' @export
-dyAxis <- function(label = NULL, legend = label) {
+dyAxis <- function(label = NULL) {
   axis <- list()
   axis$label <- label
-  axis$legend <- legend
   axis
 }
 

@@ -2,10 +2,8 @@
 library(dygraphs)
 
 dygraph(discoveries, title = "Important Discoveries",
-        
-  xaxis = dyAxis(legend = "Discoveries"),
   yaxis = dyAxis(label = "Total / Year"),
-  
+  xaxis = dyAxis(label = "Discoveries"),
   interaction = dyInteraction(legend = "onmouseover",
                               showRangeSelector = TRUE,
                               showLabelsOnHighlight = TRUE,
