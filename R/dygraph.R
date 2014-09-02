@@ -16,9 +16,12 @@ dygraph <- function(data,
   if (!is.xts(data)) 
     data <- as.xts(data)
   
+  # convert time string we can pass to javascript Date function
+  timeStr <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
+  
   # convert to native dygraph json options format
   options <- list()
-  options$file <- list(format(index(data),"%Y/%m/%d"), coredata(data))
+  options$file <- list(timeStr, coredata(data))
   options$labels <- c("time", "x")
   options$title <- title
   
