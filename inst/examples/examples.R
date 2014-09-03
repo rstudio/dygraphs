@@ -1,6 +1,13 @@
 
 library(dygraphs)
 
+# lung deaths
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+colnames(lungDeaths) <- c("All", "Male", "Female")
+
+dygraph(lungDeaths)
+
+
 dygraph(discoveries, title = "Important Discoveries",
   yaxis = dyAxis(label = "Total / Year"),
   xaxis = dyAxis(label = "Discoveries"),

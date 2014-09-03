@@ -21,13 +21,27 @@ dygraph <- function(data,
   # check periodicity and use that for the x-axis label
   xLabel <- xts::periodicity(data)$label
   
-  # convert time string we can pass to javascript Date function
+  # convert time string we can pass to javascript Date function and
+  # extract core data from xts object
   timeStr <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
+  data <- zoo::coredata(data)
+  
+  # calculate column names
+  colNames <- colnames(data)
+  if (is.null(colNames))
+    colNames <- paste("V", 1:ncol(data), sep="")
+  
+  # convert to data frame for recombination with time column
+  data <- as.data.frame(data)
+  time <- as.data.frame(timeStr, stringsAsFactors = FALSE)
+  data <- cbind(time, data)
+  data <- as.list(data)
+  names(data) <- NULL
   
   # convert to native dygraph json options format
   options <- list()
-  options$file <- list(timeStr, zoo::coredata(data))
-  options$labels <- c(xLabel, "x")
+  options$file <- data
+  options$labels <- c(xLabel, colNames)
   options$title <- title
   
   # merge axis
