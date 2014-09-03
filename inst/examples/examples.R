@@ -1,5 +1,6 @@
 
 library(dygraphs)
+library(datasets)
 
 # lung deaths
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
