@@ -46,10 +46,53 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
 }
 
 #' @export
-dyAxis <- function(dygraph, name, label = NULL) {
-  axis <- list()
-  axis[[sprintf("%slabel", name)]] <- label
-  dygraph$x <- append(dygraph$x, axis)
+dyAxis <- function(dygraph, name, label = NULL, pixelsPerLabel = NULL, drawGrid = TRUE) {
+  
+  # axis options
+  options <- list()
+  options[[sprintf("%slabel", name)]] <- label
+  options$axes[[name]]$pixelsPerLabel <- pixelsPerLabel
+  options$axes[[name]]$drawGrid <- drawGrid
+  
+  # merge with main options
+  dygraph$x <- mergeLists(dygraph$x, options)
+  dygraph
+}
+
+#' @export
+dySeries <- function(dygraph, 
+                     name = NULL, 
+                     label = NULL, 
+                     fillGraph = FALSE, 
+                     strokeWidth = 1.0, 
+                     drawPoints = FALSE, 
+                     pointSize = 1,
+                     highlightCircleSize = 3) {
+  
+  # we can deduce the name only if there is one series
+  if (is.null(name)) {
+    if (length(dygraph$x$labels) == 2)
+      name <- dygraph$x$labels[[2]]
+    else
+      stop("More than one series so must specify a series name")
+  } 
+  
+  # replace default label (this also becomes the name)
+  if (!is.null(label)) {
+    dygraph$x$labels[dygraph$x$labels == name] <- label
+    name <- label
+  }
+  
+  # per-series options
+  options <- list()
+  options$fillGraph <- fillGraph
+  options$strokeWidth <- strokeWidth
+  options$drawPoints <- drawPoints
+  options$pointSize <- pointSize
+  options$highlightCircleSize <- highlightCircleSize
+  dygraph$x$series[[name]] <- options
+  
+  # return modified dygraph
   dygraph
 }
 
@@ -63,13 +106,13 @@ dyRangeSelector <- function(dygraph,
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- plotFillColor
   selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  dygraph$x <- append(dygraph$x, selector)
+  dygraph$x <- mergeLists(dygraph$x, selector)
   dygraph
 }
 
 #' @export
 dyOptions <- function(dygraph, ...) {
-  dygraph$x <- append(dygraph$x, list(...))
+  dygraph$x <- mergeLists(dygraph$x, list(...))
   dygraph
 }
 
