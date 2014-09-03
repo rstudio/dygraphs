@@ -2,8 +2,8 @@
 
 export("%>%")
 export(dyAxis)
+export(dyOptions)
 export(dyRangeSelector)
-export(dyTheme)
 export(dygraph)
 export(dygraphOutput)
 export(renderDygraph)

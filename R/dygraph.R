@@ -48,7 +48,7 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
 #' @export
 dyAxis <- function(dygraph, name, label = NULL) {
   axis <- list()
-  axis[[sprintf("%slabel",name)]] <- label
+  axis[[sprintf("%slabel", name)]] <- label
   dygraph$x <- append(dygraph$x, axis)
   dygraph
 }
@@ -67,23 +67,9 @@ dyRangeSelector <- function(dygraph,
   dygraph
 }
 
-
 #' @export
-dyTheme <- function(dygraph,
-                    titleHeight = 24,
-                    xLabelHeight = 18,
-                    yLabelWidth = 18,
-                    drawGrid = TRUE,
-                    rangeSelectorPlotFillColor = "#A7B1C4",
-                    rangeSelectorPlotStrokeColor =  "#A7B1C4") {
-  theme <- list()
-  theme$titleHeight <- titleHeight
-  theme$xLabelHeight <- xLabelHeight
-  theme$yLabelWidth <- yLabelWidth
-  theme$drawGrid <- drawGrid
-  theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
-  theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
-  dygraph$x <- append(dygraph$x, theme)
+dyOptions <- function(dygraph, ...) {
+  dygraph$x <- append(dygraph$x, list(...))
   dygraph
 }
 
