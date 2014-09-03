@@ -6,10 +6,11 @@ library(datasets)
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
 colnames(lungDeaths) <- c("All", "Male", "Female")
 
+
 dygraph(lungDeaths) %>%
   dyRangeSelector() %>%
   dyRoll(10, showRoller = TRUE) %>%
-  dyLegend()
+  dyLegend(hideOnMouseOut = FALSE)
 
 
 dygraph(discoveries, title = "Important Discoveries") %>%
