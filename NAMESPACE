@@ -2,6 +2,7 @@
 
 export("%>%")
 export(dyAxis)
+export(dyLegend)
 export(dyOptions)
 export(dyRangeSelector)
 export(dySeries)

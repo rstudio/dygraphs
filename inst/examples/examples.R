@@ -7,6 +7,7 @@ lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
 colnames(lungDeaths) <- c("All", "Male", "Female")
 dygraph(lungDeaths) %>%
   dyRangeSelector()
+ 
 
 
 dygraph(discoveries, title = "Important Discoveries") %>%

@@ -34,6 +34,8 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   x$file <- data
   x$title <- title
   x$labels <- c(periodicity$label, colNames)
+  if (length(colNames) > 1)
+    x$legend <- "always"
   x$axes$x <- list()
   
   # side data we use in javascript
@@ -103,6 +105,22 @@ dySeries <- function(dygraph,
   dygraph$x$series[[name]] <- options
   
   # return modified dygraph
+  dygraph
+}
+
+#' @export
+dyLegend <- function(dygraph,
+                     legend = "always", 
+                     labelsDivWidth = 250,
+                     hideOverlayOnMouseOut = TRUE) {
+  # legend options
+  options <- list()
+  options$legend <- legend
+  options$labelsDivWidth <- labelsDivWidth
+  options$hideOverlayOnMouseOut <- hideOverlayOnMouseOut
+  
+  # merge with main options
+  dygraph$x <- mergeLists(dygraph$x, options)
   dygraph
 }
 
