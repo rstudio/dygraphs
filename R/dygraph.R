@@ -23,7 +23,7 @@ dygraph <- function(data,
   
   # convert time string we can pass to javascript Date function and
   # extract core data from xts object
-  timeStr <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
+  time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   data <- zoo::coredata(data)
   
   # calculate column names
@@ -31,11 +31,10 @@ dygraph <- function(data,
   if (is.null(colNames))
     colNames <- paste("V", 1:ncol(data), sep="")
   
-  # convert to data frame for recombination with time column
-  data <- as.data.frame(data)
-  time <- as.data.frame(timeStr, stringsAsFactors = FALSE)
-  data <- cbind(time, data)
-  data <- as.list(data)
+  # merge time into data then strip the metadata (so that the data is 
+  # marshalled as a 2d array into json)
+  data <- cbind(time, as.data.frame(data), stringsAsFactors = FALSE)
+  data <- unclass(data)
   names(data) <- NULL
   
   # convert to native dygraph json options format
