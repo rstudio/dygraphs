@@ -57,7 +57,7 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
 dyAxis <- function(dygraph, 
                    name, 
                    label = NULL, 
-                   drawGrid = TRUE,
+                   drawGrid = NULL,
                    pixelsPerLabel = NULL) {
   
   # axis options
@@ -75,11 +75,11 @@ dyAxis <- function(dygraph,
 dySeries <- function(dygraph, 
                      name = NULL, 
                      label = NULL, 
-                     fillGraph = FALSE, 
-                     strokeWidth = 1.0, 
-                     drawPoints = FALSE, 
-                     pointSize = 1,
-                     highlightCircleSize = 3) {
+                     fillGraph = NULL, 
+                     strokeWidth = NULL, 
+                     drawPoints = NULL, 
+                     pointSize = NULL,
+                     highlightCircleSize = NULL) {
   
   # we can deduce the name only if there is one series
   if (is.null(name)) {
@@ -109,15 +109,12 @@ dySeries <- function(dygraph,
 }
 
 #' @export
-dyLegend <- function(dygraph,
-                     legend = "always", 
-                     labelsDivWidth = 250,
-                     hideOverlayOnMouseOut = TRUE) {
+dyLegend <- function(dygraph, always = FALSE, hideOnMouseOut = TRUE) {
+  
   # legend options
   options <- list()
-  options$legend <- legend
-  options$labelsDivWidth <- labelsDivWidth
-  options$hideOverlayOnMouseOut <- hideOverlayOnMouseOut
+  options$legend <- ifelse(always, "always", "onmouseover")
+  options$hideOverlayOnMouseOut <- hideOnMouseOut
   
   # merge with main options
   dygraph$x <- mergeLists(dygraph$x, options)
@@ -134,7 +131,7 @@ dyRangeSelector <- function(dygraph,
   options$rangeSelectorHeight <- height
   options$rangeSelectorPlotFillColor <- plotFillColor
   options$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  options$x <- mergeLists(dygraph$x, options)
+  dygraph$x <- mergeLists(dygraph$x, options)
   dygraph
 }
 
