@@ -1,4 +1,11 @@
 
+# TODO: Overcome need for Depends on zoo and xts
+# TODO: group parameter for linked charts
+# TODO: special syntax for y2?
+# TODO: how is missing data handled?
+# TODO: anything else where the user needs special help 
+#   - js formatter functions?
+
 #' Interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
