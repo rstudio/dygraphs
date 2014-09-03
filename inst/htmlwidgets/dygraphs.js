@@ -21,14 +21,20 @@ HTMLWidgets.widget({
                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     if (x.axes.x.valueFormatter === undefined) {
       x.axes.x.valueFormatter = function(millis) {
-        if (scale == "yearly") {
-          return new Date(millis).getUTCFullYear();
-        } else if (scale == "monthly" || scale == "quarterly") {
-          var date = new Date(millis);
-          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
-        } else {
-          return new Date(millis).toUTCString();
-        }
+        var date = new Date(millis);
+        if (scale == "yearly")
+          return date.getUTCFullYear();
+        else if (scale == "monthly" || scale == "quarterly")
+          //return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
+          return monthNames[date.getUTCMonth()] + ' ' + 
+                           date.getUTCDate() + ' ' + 
+                           date.getUTCFullYear();
+        else if (scale == "daily" || scale == "weekly")
+          return monthNames[date.getUTCMonth()] + ' ' + 
+                           date.getUTCDate() + ' ' + 
+                           date.getUTCFullYear();
+        else
+          return date.toUTCString();
       };
     }
     
