@@ -6,10 +6,12 @@ output: ioslides_presentation
 ## Important Discoveries
 
 ```{r, echo=FALSE}
-library(dygraphs)
+suppressPackageStartupMessages(library(dygraphs))
 
-dygraph(discoveries) %>%
-  dyAxis("y", label = "Total / Year")  %>% 
-  dyRangeSelector()
+dygraph(discoveries,
+  axes = dyAxis("y", label = "Total / Year"),
+  options = list(
+    showRangeSelector = TRUE
+  )
+)
 ```
-

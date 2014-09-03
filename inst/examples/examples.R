@@ -30,4 +30,3 @@ dygraph(discoveries,
     showRoller = TRUE
   )
 )
-

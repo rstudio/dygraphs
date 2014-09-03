@@ -58,46 +58,52 @@ dygraph <- function(data,
   x$labels <- c(periodicity$label, colNames)
   if (length(colNames) > 1)
     x$legend <- "always"
+  x$axes$x <- list() 
    
   # add series
   if (inherits(series, "dygraph.series"))
     series <- list(series)
-  for (i in 1:length(series)) { 
-    # copy the series and validate it
-    s <- series[[i]]
-    if (!inherits(s, "dygraph.series"))
-      stop("You must pass only dySeries objects in the series parameter")
+  if (length(series) > 0) {
+    for (i in 1:length(series)) { 
+      # copy the series and validate it
+      s <- series[[i]]
+      if (!inherits(s, "dygraph.series"))
+        stop("You must pass only dySeries objects in the series parameter")
+        
+      # if this is a named series then find it's index
+      # and re-bind i to it
+      if (!is.null(s$name)) {
+        m <- match(s$name, x$labels)
+        if (!is.na(m))
+          i <- m - 1
+      }
       
-    # if this is a named series then find it's index
-    # and re-bind i to it
-    if (!is.null(s$name)) {
-      m <- match(s$name, x$labels)
-      if (!is.na(m))
-        i <- m - 1
+      # custom label if requested
+      if (!is.null(s$label))
+        x$labels[[i + 1]] <- s$label
+      
+      # set series options
+      name <- x$labels[[i + 1]]
+      x$series[[name]] <- s$options
     }
-    
-    # custom label if requested
-    if (!is.null(s$label))
-      x$labels[[i + 1]] <- s$label
-    
-    # set series options
-    name <- x$labels[[i + 1]]
-    x$series[[name]] <- s$options
   }
+  
   
   # add axes
   if (inherits(axes, "dygraph.axis"))
     axes <- list(axes)
-  for (i in 1:length(axes)) {
-    
-    # copy the axis and validate it
-    axis <- axes[[i]]
-    if (!inherits(axis, "dygraph.axis"))
-      stop("You must pass only dyAxis objects in the axes parameter")
-    
-    # set axis options
-    x[[sprintf("%slabel", axis$name)]] <- axis$label
-    x$axes[[axis$name]] <- axis$options  
+  if (length(axes) > 0) {
+    for (i in 1:length(axes)) {
+      
+      # copy the axis and validate it
+      axis <- axes[[i]]
+      if (!inherits(axis, "dygraph.axis"))
+        stop("You must pass only dyAxis objects in the axes parameter")
+      
+      # set axis options
+      x[[sprintf("%slabel", axis$name)]] <- axis$label
+      x$axes[[axis$name]] <- axis$options  
+    }
   }
   
   # merge generic options
