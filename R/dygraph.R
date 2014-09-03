@@ -10,8 +10,8 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   if (!is.xts(data))
     data <- as.xts(data)
   
-  # check periodicity and use that for the x-axis label
-  xLabel <- periodicity(data)$label
+  # check periodicity 
+  periodicity <- periodicity(data)
   
   # convert time string we can pass to javascript Date function and
   # extract core data from xts object
@@ -33,8 +33,14 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   x <- list()
   x$file <- data
   x$title <- title
-  x$labels <- c(xLabel, colNames)
- 
+  x$labels <- c(periodicity$label, colNames)
+  x$axes$x <- list()
+  
+  # side data we use in javascript
+  meta <- list()
+  meta$scale <- periodicity$scale
+  x$meta <- meta
+  
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",
@@ -46,7 +52,11 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
 }
 
 #' @export
-dyAxis <- function(dygraph, name, label = NULL, pixelsPerLabel = NULL, drawGrid = TRUE) {
+dyAxis <- function(dygraph, 
+                   name, 
+                   label = NULL, 
+                   drawGrid = TRUE,
+                   pixelsPerLabel = NULL) {
   
   # axis options
   options <- list()

@@ -15,6 +15,23 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // provide an automatic y value formatter if none is already specified
+    var scale = x.meta.scale;
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if (x.axes.x.valueFormatter === undefined) {
+      x.axes.x.valueFormatter = function(millis) {
+        if (scale == "yearly") {
+          return new Date(millis).getUTCFullYear();
+        } else if (scale == "monthly" || scale == "quarterly") {
+          var date = new Date(millis);
+          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
+        } else {
+          return new Date(millis).toUTCString();
+        }
+      };
+    }
+    
     // convert time to js time
     x.file[0] = x.file[0].map(function(value) { return new Date(value); })
     

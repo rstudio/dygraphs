@@ -4,10 +4,8 @@ library(datasets)
 
 # lung deaths
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+colnames(lungDeaths) <- c("All", "Male", "Female")
 dygraph(lungDeaths) %>%
-  dySeries("ldeaths", label = "All") %>%
-  dySeries("mdeaths", label = "Male") %>%
-  dySeries("fdeaths", label = "Female") %>%
   dyRangeSelector()
 
 
@@ -16,5 +14,5 @@ dygraph(discoveries, title = "Important Discoveries") %>%
   dyAxis("y", label = "Discoveries") %>%
   dySeries(label = "Discoveries", fillGraph = TRUE) %>%
   dyRangeSelector() %>%
-  dyOptions(drawGrid = TRUE, showRangeSelector = TRUE)
+  dyOptions(drawGrid = TRUE)
 
