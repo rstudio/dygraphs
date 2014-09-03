@@ -1,7 +1,5 @@
  
-#' @importFrom xts is.xts
-#' @importFrom xts try.xts
-#' @importFrom zoo coredata
+
 #' @export
 dygraph <- function(data, 
                     title = NULL, 
@@ -12,22 +10,24 @@ dygraph <- function(data,
                     width = NULL, 
                     height = NULL) {
   
-  
   # convert to xts
-  if (!is.xts(data)) {
-    data <- try.xts(data, error = FALSE)
-    if (!is.xts(data))
+  if (!xts::is.xts(data)) {
+    data <- xts::try.xts(data, error = FALSE)
+    if (!xts::is.xts(data))
       stop("Data is not a time series object. Please pass an xts time series ",
            "or another time series dataset that is convertible to xts.")
   }
+  
+  # check periodicity and use that for the x-axis label
+  xLabel <- xts::periodicity(data)$label
   
   # convert time string we can pass to javascript Date function
   timeStr <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   
   # convert to native dygraph json options format
   options <- list()
-  options$file <- list(timeStr, coredata(data))
-  options$labels <- c("time", "x")
+  options$file <- list(timeStr, zoo::coredata(data))
+  options$labels <- c(xLabel, "x")
   options$title <- title
   
   # merge axis
