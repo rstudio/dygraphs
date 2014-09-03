@@ -1,7 +1,16 @@
- 
 
-#' @importFrom magrittr %>%
-#' @export %>%
+#' Interactive plot for time series data
+#' 
+#' R interface to interactive time series plotting using the 
+#' \href{http://dygraphs.com}{dygraphs} JavaScript library.
+#' 
+#' @param data Time series data (must be an \link[xts]{xts} object or 
+#'   object which is covertible to \code{xts}).
+#' @param title Main plot title (optional)
+#' @param width Width in pixels (optional, defaults to automatic sizing)
+#' @param height Height in pixels (optional, defaults to automatic sizing)
+#'   
+#' @return Interactive dygraph plot
 #' 
 #' @export
 dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
@@ -53,12 +62,33 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   )
 }
 
+#' @importFrom magrittr %>%
+#' @export %>%
+NULL
+
+
+#' dygraph axis options
+#' 
+#' Add per-axis options to a dygraph plot.
+#' 
+#' @param dygraph Plot to add options to
+#' @param name Name of axis ('x', 'y', or 'y2')
+#' @param label Label to display for axis (defaults to none)
+#' @param drawGrid Whether to display gridlines in the chart for this axis 
+#'   (uses the global default if not specified).
+#' 
+#' @return Interactive dygraph plot
+#'   
 #' @export
 dyAxis <- function(dygraph, 
                    name, 
                    label = NULL, 
                    drawGrid = NULL,
                    pixelsPerLabel = NULL) {
+  
+  # validate name
+  if (!name %in% c("x", "y", "y2"))
+    stop("Invalid axis name (must be 'x', 'y', or 'y2')")
   
   # axis options
   options <- list()
@@ -71,6 +101,18 @@ dyAxis <- function(dygraph,
   dygraph
 }
 
+#' dygraph data series options
+#' 
+#' Add per-series options to a dygraph plot.
+#' 
+#' @param dygraph Plot to add options to
+#' @param name Name of series (this can be excluded if there is only one series)
+#' @param label Label to display for series (default to name)
+#' @param fillGraph Should the area underneath the graph be filled? (uses the
+#'   global default if not specified).
+#'
+#' @return Interactive dygraph plot
+#'   
 #' @export
 dySeries <- function(dygraph, 
                      name = NULL, 
@@ -145,9 +187,36 @@ dyRoll <- function(dygraph, rollPeriod = 1, showRoller = FALSE) {
 }
 
 
+#' dygraph options
+#' 
+#' Add options to a dygraph plot
+#' 
+#' @param drawGrid Whether to display gridlines in the chart. This may also be
+#'   set on a \link[=dyAxis]{per-axis basis}.
+#' @param fillGraph Should the area underneath the graph be filled? This may
+#'   also be set on a \link[=dySeries]{per-series basis}
+#' @param ... Additional options to pass directly to dygraphs (see the 
+#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   additional details).
+#'   
+#' @return Interactive dygraph plot
+#'   
 #' @export
-dyOptions <- function(dygraph, ...) {
-  dygraph$x <- mergeLists(dygraph$x, list(...))
+dyOptions <- function(dygraph, 
+                      drawGrid = TRUE, 
+                      fillGraph = FALSE, 
+                      ...) {
+  
+  # build options list
+  options <- list()
+  options$drawGrid = drawGrid
+  options$fillGraph = fillGraph
+  
+  # add any extra parameters
+  options <- mergeLists(options, list(...))
+  
+  # merge and return
+  dygraph$x <- mergeLists(dygraph$x, options)
   dygraph
 }
 
