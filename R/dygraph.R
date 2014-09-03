@@ -4,16 +4,30 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
-#' @param data Time series data (must be an \link[xts]{xts} object or 
-#'   object which is covertible to \code{xts}).
+#' @param data Time series data (must be an \link[xts]{xts} object or object 
+#'   which is covertible to \code{xts}).
 #' @param title Main plot title (optional)
+#' @param series Series definition (or list of series definitions) created using
+#'   the \code{\link{dySeries}} function. Series can be bound positionally or 
+#'   explicity using the \code{name} parameter of \code{dySeries}.
+#' @param axes Axis definition (or list of axis definitions) created using the 
+#'   the \code{\link{dyAxis}} function.
+#' @param options Additional options to pass directly to dygraphs (see the 
+#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   additional details).
 #' @param width Width in pixels (optional, defaults to automatic sizing)
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
 #' @return Interactive dygraph plot
-#' 
+#'   
 #' @export
-dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
+dygraph <- function(data, 
+                    title = NULL, 
+                    series = list(),
+                    axes = list(),
+                    options = list(),
+                    width = NULL, 
+                    height = NULL) {
   
   # convert to xts
   if (!is.xts(data))
@@ -38,19 +52,64 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   data <- unclass(data)
   names(data) <- NULL
   
-  # convert to native dygraph json options format
+  # create native dygraph options object
   x <- list()
-  x$file <- data
   x$title <- title
   x$labels <- c(periodicity$label, colNames)
   if (length(colNames) > 1)
     x$legend <- "always"
-  x$axes$x <- list()
+   
+  # add series
+  if (inherits(series, "dygraph.series"))
+    series <- list(series)
+  for (i in 1:length(series)) { 
+    # copy the series and validate it
+    s <- series[[i]]
+    if (!inherits(s, "dygraph.series"))
+      stop("You must pass only dySeries objects in the series parameter")
+      
+    # if this is a named series then find it's index
+    # and re-bind i to it
+    if (!is.null(s$name)) {
+      m <- match(s$name, x$labels)
+      if (!is.na(m))
+        i <- m - 1
+    }
+    
+    # custom label if requested
+    if (!is.null(s$label))
+      x$labels[[i + 1]] <- s$label
+    
+    # set series options
+    name <- x$labels[[i + 1]]
+    x$series[[name]] <- s$options
+  }
+  
+  # add axes
+  if (inherits(axes, "dygraph.axis"))
+    axes <- list(axes)
+  for (i in 1:length(axes)) {
+    
+    # copy the axis and validate it
+    axis <- axes[[i]]
+    if (!inherits(axis, "dygraph.axis"))
+      stop("You must pass only dyAxis objects in the axes parameter")
+    
+    # set axis options
+    x[[sprintf("%slabel", axis$name)]] <- axis$label
+    x$axes[[axis$name]] <- axis$options  
+  }
+  
+  # merge generic options
+  x <- mergeLists(x, options)
   
   # side data we use in javascript
   meta <- list()
   meta$scale <- periodicity$scale
   x$meta <- meta
+  
+  # add time series data
+  x$file <- data
   
   # create widget
   htmlwidgets::createWidget(
@@ -62,166 +121,51 @@ dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   )
 }
 
-#' @importFrom magrittr %>%
-#' @export %>%
-NULL
-
-
 #' dygraph axis options
 #' 
-#' Add per-axis options to a dygraph plot.
+#' Define options for an axis on a dygraph plot.
 #' 
-#' @param dygraph Plot to add options to
-#' @param name Name of axis ('x', 'y', or 'y2')
+#' @param name Axis name ('x', 'y', or 'y2')
 #' @param label Label to display for axis (defaults to none)
-#' @param drawGrid Whether to display gridlines in the chart for this axis (uses
-#'   the global default if not specified).
-#' @param ... Additional per-axis options to pass directly to dygraphs (see the 
+#' @param ... Per-axis options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #'   
-#' @return Interactive dygraph plot
+#' @return Axis options
 #'   
 #' @export
-dyAxis <- function(dygraph, 
-                   name, 
-                   label = NULL, 
-                   drawGrid = NULL,
-                   ...) {
+dyAxis <- function(name, label = NULL, ...) {
   
-  # validate name
   if (!name %in% c("x", "y", "y2"))
-    stop("Invalid axis name (must be 'x', 'y', or 'y2')")
+    stop("Axis name must be 'x', 'y', or 'y2'")
   
-  # axis options
-  options <- list()
-  options[[sprintf("%slabel", name)]] <- label
-  options$axes[[name]]$drawGrid <- drawGrid
-  
-  # add var args
-  options$axes[[name]] <- mergeLists(options$axes[[name]], list(...))
-  
-  # merge with main options
-  dygraph$x <- mergeLists(dygraph$x, options)
-  dygraph
+  axis <- list()
+  axis$name <- name
+  axis$label <- label
+  axis$options <- list(...)
+  structure(axis, class = "dygraph.axis")
 }
 
 #' dygraph data series options
 #' 
 #' Add per-series options to a dygraph plot.
 #' 
-#' @param dygraph Plot to add options to
-#' @param name Name of series (this can be excluded if there is only one series)
-#' @param label Label to display for series (default to name)
-#' @param fillGraph Should the area underneath the graph be filled? (uses the
-#'   global default if not specified).
-#' @param ... Additional per-series options to pass directly to dygraphs (see the 
+#' @param name Name of series within dataset (unamed series can be bound 
+#'  by order or using the convention V1, V2, etc.).
+#' @param label Label to display for series (defaults to name)
+#' @param ... Per-series options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #'   
-#' @return Interactive dygraph plot
+#' @return Series options
 #'   
 #' @export
-dySeries <- function(dygraph, 
-                     name = NULL, 
-                     label = NULL, 
-                     fillGraph = NULL,
-                     ...) {
-  
-  # we can deduce the name only if there is one series
-  if (is.null(name)) {
-    if (length(dygraph$x$labels) == 2)
-      name <- dygraph$x$labels[[2]]
-    else
-      stop("More than one series so must specify a series name")
-  } 
-  
-  # replace default label (this also becomes the name)
-  if (!is.null(label)) {
-    dygraph$x$labels[dygraph$x$labels == name] <- label
-    name <- label
-  }
-  
-  # per-series options
-  options <- list()
-  options$fillGraph <- fillGraph
-  
-  # add varargs
-  options <- mergeLists(options, list(...))
-  
-  # set and return
-  dygraph$x$series[[name]] <- options
-  dygraph
-}
-
-#' @export
-dyLegend <- function(dygraph, always = FALSE, hideOnMouseOut = TRUE) {
-  
-  # legend options
-  options <- list()
-  options$legend <- ifelse(always, "always", "onmouseover")
-  options$hideOverlayOnMouseOut <- hideOnMouseOut
-  
-  # merge with main options
-  dygraph$x <- mergeLists(dygraph$x, options)
-  dygraph
-}
-
-#' @export
-dyRangeSelector <- function(dygraph,
-                            height = 40,  
-                            plotFillColor = "#A7B1C4", 
-                            plotStrokeColor = "#A7B1C4") {
-  options <- list()
-  options$showRangeSelector <- TRUE
-  options$rangeSelectorHeight <- height
-  options$rangeSelectorPlotFillColor <- plotFillColor
-  options$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  dygraph$x <- mergeLists(dygraph$x, options)
-  dygraph
-}
-
-#' @export
-dyRoll <- function(dygraph, rollPeriod = 1, showRoller = FALSE) {
-  options <- list()
-  options$rollPeriod = rollPeriod
-  options$showRoller = showRoller
-  dygraph$x <- mergeLists(dygraph$x, options)
-  dygraph
-}
-
-
-#' dygraph options
-#' 
-#' Add options to a dygraph plot
-#' 
-#' @param drawGrid Whether to display gridlines in the chart. This may also be
-#'   set on a \link[=dyAxis]{per-axis basis}.
-#' @param fillGraph Should the area underneath the graph be filled? This may
-#'   also be set on a \link[=dySeries]{per-series basis}
-#' @param ... Additional options to pass directly to dygraphs (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
-#'   additional details).
-#'   
-#' @return Interactive dygraph plot
-#'   
-#' @export
-dyOptions <- function(dygraph, 
-                      drawGrid = TRUE, 
-                      fillGraph = FALSE, 
-                      ...) {
-  
-  # build options list
-  options <- list()
-  options$drawGrid = drawGrid
-  options$fillGraph = fillGraph
-  
-  # add any extra parameters
-  options <- mergeLists(options, list(...))
-  
-  # merge and return
-  dygraph$x <- mergeLists(dygraph$x, options)
-  dygraph
+dySeries <- function(name = NULL, label = name, ...) {
+  series <- list()
+  series$name <- name
+  series$label <- label
+  series$options <- list(...)
+  structure(series, class = "dygraph.series")
 }
 
 #' @export

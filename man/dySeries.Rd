@@ -3,24 +3,20 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(dygraph, name = NULL, label = NULL, fillGraph = NULL, ...)
+dySeries(name = NULL, label = name, ...)
 }
 \arguments{
-\item{dygraph}{Plot to add options to}
+\item{name}{Name of series within dataset (unamed series can be bound
+by order or using the convention V1, V2, etc.).}
 
-\item{name}{Name of series (this can be excluded if there is only one series)}
+\item{label}{Label to display for series (defaults to name)}
 
-\item{label}{Label to display for series (default to name)}
-
-\item{fillGraph}{Should the area underneath the graph be filled? (uses the
-global default if not specified).}
-
-\item{...}{Additional per-series options to pass directly to dygraphs (see the
+\item{...}{Per-series options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
   additional details).}
 }
 \value{
-Interactive dygraph plot
+Series options
 }
 \description{
 Add per-series options to a dygraph plot.

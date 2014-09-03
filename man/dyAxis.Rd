@@ -3,26 +3,21 @@
 \alias{dyAxis}
 \title{dygraph axis options}
 \usage{
-dyAxis(dygraph, name, label = NULL, drawGrid = NULL, ...)
+dyAxis(name, label = NULL, ...)
 }
 \arguments{
-\item{dygraph}{Plot to add options to}
-
-\item{name}{Name of axis ('x', 'y', or 'y2')}
+\item{name}{Axis name ('x', 'y', or 'y2')}
 
 \item{label}{Label to display for axis (defaults to none)}
 
-\item{drawGrid}{Whether to display gridlines in the chart for this axis (uses
-the global default if not specified).}
-
-\item{...}{Additional per-axis options to pass directly to dygraphs (see the
+\item{...}{Per-axis options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
   additional details).}
 }
 \value{
-Interactive dygraph plot
+Axis options
 }
 \description{
-Add per-axis options to a dygraph plot.
+Define options for an axis on a dygraph plot.
 }
 

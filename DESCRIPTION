@@ -11,5 +11,4 @@ Depends:
     zoo,
     xts
 Imports:
-    magrittr,
     htmlwidgets
