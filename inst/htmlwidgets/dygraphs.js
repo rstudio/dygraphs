@@ -25,10 +25,7 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return date.getUTCFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          //return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
-          return monthNames[date.getUTCMonth()] + ' ' + 
-                           date.getUTCDate() + ' ' + 
-                           date.getUTCFullYear();
+          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
         else if (scale == "daily" || scale == "weekly")
           return monthNames[date.getUTCMonth()] + ' ' + 
                            date.getUTCDate() + ' ' + 
