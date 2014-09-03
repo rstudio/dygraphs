@@ -129,14 +129,24 @@ dyRangeSelector <- function(dygraph,
                             height = 40,  
                             plotFillColor = "#A7B1C4", 
                             plotStrokeColor = "#A7B1C4") {
-  selector <- list()
-  selector$showRangeSelector <- TRUE
-  selector$rangeSelectorHeight <- height
-  selector$rangeSelectorPlotFillColor <- plotFillColor
-  selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
-  dygraph$x <- mergeLists(dygraph$x, selector)
+  options <- list()
+  options$showRangeSelector <- TRUE
+  options$rangeSelectorHeight <- height
+  options$rangeSelectorPlotFillColor <- plotFillColor
+  options$rangeSelectorPlotStrokeColor <- plotStrokeColor
+  options$x <- mergeLists(dygraph$x, options)
   dygraph
 }
+
+#' @export
+dyRoll <- function(dygraph, rollPeriod = 1, showRoller = FALSE) {
+  options <- list()
+  options$rollPeriod = rollPeriod
+  options$showRoller = showRoller
+  dygraph$x <- mergeLists(dygraph$x, options)
+  dygraph
+}
+
 
 #' @export
 dyOptions <- function(dygraph, ...) {
