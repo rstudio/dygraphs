@@ -1,30 +1,22 @@
  
 
+#' @importFrom magrittr %>%
+#' @export %>%
+#' 
 #' @export
-dygraph <- function(data, 
-                    title = NULL, 
-                    xaxis = dyAxis(), 
-                    yaxis = dyAxis(),
-                    interaction = dyInteraction(), 
-                    theme = dyTheme(),
-                    width = NULL, 
-                    height = NULL) {
+dygraph <- function(data, title = NULL, width = NULL, height = NULL) {
   
   # convert to xts
-  if (!xts::is.xts(data)) {
-    data <- xts::try.xts(data, error = FALSE)
-    if (!xts::is.xts(data))
-      stop("Data is not a time series object. Please pass an xts time series ",
-           "or another time series dataset that is convertible to xts.")
-  }
+  if (!is.xts(data))
+    data <- as.xts(data)
   
   # check periodicity and use that for the x-axis label
-  xLabel <- xts::periodicity(data)$label
+  xLabel <- periodicity(data)$label
   
   # convert time string we can pass to javascript Date function and
   # extract core data from xts object
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
-  data <- zoo::coredata(data)
+  data <- coredata(data)
   
   # calculate column names
   colNames <- colnames(data)
@@ -38,26 +30,15 @@ dygraph <- function(data,
   names(data) <- NULL
   
   # convert to native dygraph json options format
-  options <- list()
-  options$file <- data
-  options$labels <- c(xLabel, colNames)
-  options$title <- title
-  
-  # merge axis
-  mergeAxis <- function(name, axis) {
-    options[[sprintf("%slabel", name)]] <<- axis$label 
-  }
-  mergeAxis("x", xaxis)
-  mergeAxis("y", yaxis)
-  
-  # merge various other options
-  options <- append(options, interaction)
-  options <- append(options, theme)
-  
+  x <- list()
+  x$file <- data
+  x$title <- title
+  x$labels <- c(xLabel, colNames)
+ 
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",
-    x = options,
+    x = x,
     width = width,
     height = height,
     htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE)
@@ -65,31 +46,34 @@ dygraph <- function(data,
 }
 
 #' @export
-dyAxis <- function(label = NULL) {
+dyAxis <- function(dygraph, name, label = NULL) {
   axis <- list()
-  axis$label <- label
-  axis
+  axis[[sprintf("%slabel",name)]] <- label
+  dygraph$x <- append(dygraph$x, axis)
+  dygraph
 }
 
 #' @export
-dyInteraction <- function(legend = "onmouseover",
-                          showRangeSelector = FALSE,
-                          showLabelsOnHighlight = TRUE,
-                          showRoller = FALSE) {
-  interaction <- list()
-  interaction$legend <- legend
-  interaction$showRangeSelector <- showRangeSelector
-  interaction$showLabelsOnHighlight <- showLabelsOnHighlight
-  interaction$showRoller <- showRoller
-  interaction
+dyRangeSelector <- function(dygraph,
+                            height = 40,  
+                            plotFillColor = "#A7B1C4", 
+                            plotStrokeColor = "#A7B1C4") {
+  selector <- list()
+  selector$showRangeSelector <- TRUE
+  selector$rangeSelectorHeight <- height
+  selector$rangeSelectorPlotFillColor <- plotFillColor
+  selector$rangeSelectorPlotStrokeColor <- plotStrokeColor
+  dygraph$x <- append(dygraph$x, selector)
+  dygraph
 }
 
+
 #' @export
-dyTheme <- function(titleHeight = 24,
+dyTheme <- function(dygraph,
+                    titleHeight = 24,
                     xLabelHeight = 18,
                     yLabelWidth = 18,
                     drawGrid = TRUE,
-                    rangeSelectorHeight = 40,
                     rangeSelectorPlotFillColor = "#A7B1C4",
                     rangeSelectorPlotStrokeColor =  "#A7B1C4") {
   theme <- list()
@@ -97,10 +81,10 @@ dyTheme <- function(titleHeight = 24,
   theme$xLabelHeight <- xLabelHeight
   theme$yLabelWidth <- yLabelWidth
   theme$drawGrid <- drawGrid
-  theme$rangeSelectorHeight <- rangeSelectorHeight
   theme$rangeSelectorPlotFillColor <- rangeSelectorPlotFillColor
   theme$rangeSelectorPlotStrokeColor <- rangeSelectorPlotStrokeColor
-  theme
+  dygraph$x <- append(dygraph$x, theme)
+  dygraph
 }
 
 #' @export
