@@ -7,7 +7,7 @@ dygraph(data, title = NULL, series = list(), axes = list(),
   options = list(), width = NULL, height = NULL)
 }
 \arguments{
-\item{data}{Time series data (must be an \link[xts]{xts} object or object
+\item{data}{Time series data (must be an \link[xts]{xts} object or an object
 which is covertible to \code{xts}).}
 
 \item{title}{Main plot title (optional)}

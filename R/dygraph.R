@@ -11,7 +11,7 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
-#' @param data Time series data (must be an \link[xts]{xts} object or object 
+#' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
 #' @param title Main plot title (optional)
 #' @param series Series definition (or list of series definitions) created using
