@@ -1,6 +1,7 @@
  
 #' @importFrom xts is.xts
-#' @importFrom xts as.xts
+#' @importFrom xts try.xts
+#' @importFrom zoo coredata
 #' @export
 dygraph <- function(data, 
                     title = NULL, 
@@ -13,8 +14,12 @@ dygraph <- function(data,
   
   
   # convert to xts
-  if (!is.xts(data)) 
-    data <- as.xts(data)
+  if (!is.xts(data)) {
+    data <- try.xts(data, error = FALSE)
+    if (!is.xts(data))
+      stop("Data is not a time series object. Please pass an xts time series ",
+           "or another time series dataset that is convertible to xts.")
+  }
   
   # convert time string we can pass to javascript Date function
   timeStr <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
