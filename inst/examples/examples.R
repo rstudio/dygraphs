@@ -15,8 +15,7 @@ dygraph(lungDeaths) %>%
 
 dygraph(discoveries, title = "Important Discoveries") %>%
   dyAxis("x", label = "Total / Year", pixelsPerLabel = 40) %>%
-  dyAxis("y", label = "Discoveries") %>%
-  dySeries(label = "Discoveries") %>%
+  dySeries("V1", label = "Discoveries", strokeWidth = 1) %>%
   dyRangeSelector() %>%
   dyOptions(drawGrid = TRUE, strokeWidth = 2, fillGraph = TRUE)
 

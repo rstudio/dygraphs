@@ -74,9 +74,12 @@ NULL
 #' @param dygraph Plot to add options to
 #' @param name Name of axis ('x', 'y', or 'y2')
 #' @param label Label to display for axis (defaults to none)
-#' @param drawGrid Whether to display gridlines in the chart for this axis 
-#'   (uses the global default if not specified).
-#' 
+#' @param drawGrid Whether to display gridlines in the chart for this axis (uses
+#'   the global default if not specified).
+#' @param ... Additional per-axis options to pass directly to dygraphs (see the 
+#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   additional details).
+#'   
 #' @return Interactive dygraph plot
 #'   
 #' @export
@@ -84,7 +87,7 @@ dyAxis <- function(dygraph,
                    name, 
                    label = NULL, 
                    drawGrid = NULL,
-                   pixelsPerLabel = NULL) {
+                   ...) {
   
   # validate name
   if (!name %in% c("x", "y", "y2"))
@@ -93,8 +96,10 @@ dyAxis <- function(dygraph,
   # axis options
   options <- list()
   options[[sprintf("%slabel", name)]] <- label
-  options$axes[[name]]$pixelsPerLabel <- pixelsPerLabel
   options$axes[[name]]$drawGrid <- drawGrid
+  
+  # add var args
+  options$axes[[name]] <- mergeLists(options$axes[[name]], list(...))
   
   # merge with main options
   dygraph$x <- mergeLists(dygraph$x, options)
@@ -110,18 +115,18 @@ dyAxis <- function(dygraph,
 #' @param label Label to display for series (default to name)
 #' @param fillGraph Should the area underneath the graph be filled? (uses the
 #'   global default if not specified).
-#'
+#' @param ... Additional per-series options to pass directly to dygraphs (see the 
+#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   additional details).
+#'   
 #' @return Interactive dygraph plot
 #'   
 #' @export
 dySeries <- function(dygraph, 
                      name = NULL, 
                      label = NULL, 
-                     fillGraph = NULL, 
-                     strokeWidth = NULL, 
-                     drawPoints = NULL, 
-                     pointSize = NULL,
-                     highlightCircleSize = NULL) {
+                     fillGraph = NULL,
+                     ...) {
   
   # we can deduce the name only if there is one series
   if (is.null(name)) {
@@ -140,13 +145,12 @@ dySeries <- function(dygraph,
   # per-series options
   options <- list()
   options$fillGraph <- fillGraph
-  options$strokeWidth <- strokeWidth
-  options$drawPoints <- drawPoints
-  options$pointSize <- pointSize
-  options$highlightCircleSize <- highlightCircleSize
-  dygraph$x$series[[name]] <- options
   
-  # return modified dygraph
+  # add varargs
+  options <- mergeLists(options, list(...))
+  
+  # set and return
+  dygraph$x$series[[name]] <- options
   dygraph
 }
 

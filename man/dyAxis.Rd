@@ -3,8 +3,7 @@
 \alias{dyAxis}
 \title{dygraph axis options}
 \usage{
-dyAxis(dygraph, name, label = NULL, drawGrid = NULL,
-  pixelsPerLabel = NULL)
+dyAxis(dygraph, name, label = NULL, drawGrid = NULL, ...)
 }
 \arguments{
 \item{dygraph}{Plot to add options to}
@@ -13,8 +12,12 @@ dyAxis(dygraph, name, label = NULL, drawGrid = NULL,
 
 \item{label}{Label to display for axis (defaults to none)}
 
-\item{drawGrid}{Whether to display gridlines in the chart for this axis
-  (uses the global default if not specified).}
+\item{drawGrid}{Whether to display gridlines in the chart for this axis (uses
+the global default if not specified).}
+
+\item{...}{Additional per-axis options to pass directly to dygraphs (see the
+  \href{http://dygraphs.com/options.html}{dygraphs documentation} for
+  additional details).}
 }
 \value{
 Interactive dygraph plot

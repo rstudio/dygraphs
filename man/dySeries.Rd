@@ -3,9 +3,7 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(dygraph, name = NULL, label = NULL, fillGraph = NULL,
-  strokeWidth = NULL, drawPoints = NULL, pointSize = NULL,
-  highlightCircleSize = NULL)
+dySeries(dygraph, name = NULL, label = NULL, fillGraph = NULL, ...)
 }
 \arguments{
 \item{dygraph}{Plot to add options to}
@@ -15,7 +13,11 @@ dySeries(dygraph, name = NULL, label = NULL, fillGraph = NULL,
 \item{label}{Label to display for series (default to name)}
 
 \item{fillGraph}{Should the area underneath the graph be filled? (uses the
-  global default if not specified).}
+global default if not specified).}
+
+\item{...}{Additional per-series options to pass directly to dygraphs (see the
+  \href{http://dygraphs.com/options.html}{dygraphs documentation} for
+  additional details).}
 }
 \value{
 Interactive dygraph plot
