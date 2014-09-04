@@ -71,12 +71,18 @@ dygraph <- function(data,
   if (inherits(series, "dygraph.series"))
     series <- list(series)
   if (length(series) > 0) {
+    colors = character(length(series))
     for (i in 1:length(series)) { 
+      
       # copy the series and validate it
       s <- series[[i]]
       if (!inherits(s, "dygraph.series"))
         stop("You must pass only dySeries objects in the series parameter")
-        
+      
+      # record color
+      if (!is.null(s$color))
+        colors[[i]] <- s$color
+      
       # if this is a named series then find it's index
       # and re-bind i to it
       if (!is.null(s$name)) {
@@ -93,8 +99,18 @@ dygraph <- function(data,
       name <- x$labels[[i + 1]]
       x$series[[name]] <- s$options
     }
+    
+    # resolve colors (if one specified then all must be specified)
+    colors <- colors[colors != ""]
+    if (length(colors) > 0) {
+      if (length(colors) == length(series)) {
+        x$colors <- colors
+      } else {
+        stop("If you specify one custom series color you must specify ",
+             "a color for all series")
+      }
+    }
   }
-  
   
   # add axes
   if (inherits(axes, "dygraph.axis"))
@@ -164,9 +180,13 @@ dyAxis <- function(name, label = NULL, ...) {
 #' 
 #' Add per-series options to a dygraph plot.
 #' 
-#' @param name Name of series within dataset (unamed series can be bound 
-#'  by order or using the convention V1, V2, etc.).
+#' @param name Name of series within dataset (unamed series can be bound by 
+#'   order or using the convention V1, V2, etc.).
 #' @param label Label to display for series (defaults to name)
+#' @param color Color for series. These can be of the form "#AABBCC" or 
+#'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom
+#'   color for one series then you must specify one for all series. If not
+#'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param ... Per-series options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
@@ -175,10 +195,14 @@ dyAxis <- function(name, label = NULL, ...) {
 #' @return Series options
 #'   
 #' @export
-dySeries <- function(name = NULL, label = name, axis = "y", ...) {
+dySeries <- function(name = NULL, 
+                     label = name,
+                     color = NULL,
+                     axis = "y", ...) {
   series <- list()
   series$name <- name
   series$label <- label
+  series$color <- color
   series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
   structure(series, class = "dygraph.series")

@@ -3,13 +3,18 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(name = NULL, label = name, axis = "y", ...)
+dySeries(name = NULL, label = name, color = NULL, axis = "y", ...)
 }
 \arguments{
-\item{name}{Name of series within dataset (unamed series can be bound
-by order or using the convention V1, V2, etc.).}
+\item{name}{Name of series within dataset (unamed series can be bound by
+order or using the convention V1, V2, etc.).}
 
 \item{label}{Label to display for series (defaults to name)}
+
+\item{color}{Color for series. These can be of the form "#AABBCC" or
+"rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom
+color for one series then you must specify one for all series. If not
+specified, equally-spaced points around a color wheel are used.}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
