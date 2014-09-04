@@ -46,18 +46,21 @@ dygraph <- function(data,
   # extract core data from xts object
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   data <- zoo::coredata(data)
-  
+      
+  # turn data into a data frame
+  data <- as.data.frame(data)
+   
   # calculate column names
   colNames <- colnames(data)
   if (is.null(colNames))
     colNames <- paste("V", 1:ncol(data), sep="")
   
-  # merge time into data then strip the metadata (so that the data is 
-  # marshalled as a 2d array into json)
-  data <- cbind(time, as.data.frame(data), stringsAsFactors = FALSE)
+  # merge time into data and strip the metadata (so we are marshalled as a 
+  # 2d array into json)
+  data <- cbind(time, data, stringsAsFactors = FALSE)
   data <- unclass(data)
   names(data) <- NULL
-  
+    
   # create native dygraph options object
   x <- list()
   x$title <- title
@@ -180,11 +183,15 @@ dyAxis <- function(name, label = NULL, ...) {
 #' Add per-series options to a dygraph plot.
 #' 
 #' @param name Name of series within dataset (unamed series can be bound by 
-#'   order or using the convention V1, V2, etc.).
+#'   order or using the convention V1, V2, etc.). This can also be a character
+#'   vector of length 3 that specifies a set of input series to use as the
+#'   lower, value, and upper values for a series with a shared bar drawn around
+#'   it. In this case the \code{label} parameter must also be specified to
+#'   provide a label for the aggregate series.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
-#'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom
-#'   color for one series then you must specify one for all series. If not
+#'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
+#'   color for one series then you must specify one for all series. If not 
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param ... Per-series options to pass directly to dygraphs (see the 
