@@ -1,7 +1,5 @@
 
 # TODO: group parameter for linked charts
-# TODO: special syntax for y2?
-# TODO: how is missing data handled?
 # TODO: anything else where the user needs special help 
 #   - js formatter functions?
 
@@ -165,6 +163,7 @@ dyAxis <- function(name, label = NULL, ...) {
 #' @param name Name of series within dataset (unamed series can be bound 
 #'  by order or using the convention V1, V2, etc.).
 #' @param label Label to display for series (defaults to name)
+#' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param ... Per-series options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -172,11 +171,12 @@ dyAxis <- function(name, label = NULL, ...) {
 #' @return Series options
 #'   
 #' @export
-dySeries <- function(name = NULL, label = name, ...) {
+dySeries <- function(name = NULL, label = name, axis = "y", ...) {
   series <- list()
   series$name <- name
   series$label <- label
   series$options <- list(...)
+  series$options$axis <- match.arg(axis, c("y", "y2"))
   structure(series, class = "dygraph.series")
 }
 

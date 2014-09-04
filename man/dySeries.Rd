@@ -3,13 +3,15 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(name = NULL, label = name, ...)
+dySeries(name = NULL, label = name, axis = "y", ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound
 by order or using the convention V1, V2, etc.).}
 
 \item{label}{Label to display for series (defaults to name)}
+
+\item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
 \item{...}{Per-series options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
