@@ -1,5 +1,4 @@
 
-# TODO: error bars
 # TODO: resolve all functions
 
 #' Interactive plot for time series data

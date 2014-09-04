@@ -103,6 +103,7 @@ haveCustomBars <- function(series) {
 
 resolveCustomBars <- function(data, series) {
   
+  seriesNames <- character()
   for (i in 1:length(series)) { 
     
     s <- series[[i]]
@@ -123,11 +124,24 @@ resolveCustomBars <- function(data, series) {
       # set multi-series (using the value column)
       s$name <- names[[2]]
       data[[s$name]] <- multiSeries
+      
+      # track series names
+      seriesNames <- c(seriesNames, s$name)
     }
     
     series[[i]] <- s
   }
   
+  # for dataset elements not named in a multi-series, provide
+  # three values so that they can still be displayed
+  columns <- names(data)
+  columns <- columns[!columns %in% seriesNames]
+  for (column in columns) {
+    values <- data[[column]]
+    data[[column]] <- toMultiSeries(values, values, values)
+  }
+  
+  # return resolved dataset and series
   list(data = data, series = series)
 }
 
