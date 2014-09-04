@@ -3,17 +3,14 @@
 \alias{dygraph}
 \title{Interactive plot for time series data}
 \usage{
-dygraph(data, title = NULL, group = NULL, series = list(),
-  axes = list(), options = list(), width = NULL, height = NULL)
+dygraph(data, title = NULL, series = list(), axes = list(),
+  options = list(), group = NULL, width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
 which is covertible to \code{xts}).}
 
 \item{title}{Main plot title (optional)}
-
-\item{group}{Group to associate this plot with. The x-axis zoom level of
-plots within a group is automatically synchronized.}
 
 \item{series}{Series definition (or list of series definitions) created using
 the \code{\link{dySeries}} function. Series can be bound positionally or
@@ -25,6 +22,9 @@ the \code{\link{dyAxis}} function.}
 \item{options}{Additional options to pass directly to dygraphs (see the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
+
+\item{group}{Group to associate this plot with. The x-axis zoom level of
+plots within a group is automatically synchronized.}
 
 \item{width}{Width in pixels (optional, defaults to automatic sizing)}
 

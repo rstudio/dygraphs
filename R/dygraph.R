@@ -1,6 +1,5 @@
 
 # TODO: error bars
-# TODO: series colors
 # TODO: resolve all functions
 
 #' Interactive plot for time series data
@@ -11,8 +10,6 @@
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
 #' @param title Main plot title (optional)
-#' @param group Group to associate this plot with. The x-axis zoom level of 
-#'   plots within a group is automatically synchronized.
 #' @param series Series definition (or list of series definitions) created using
 #'   the \code{\link{dySeries}} function. Series can be bound positionally or 
 #'   explicity using the \code{name} parameter of \code{dySeries}.
@@ -21,6 +18,8 @@
 #' @param options Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param group Group to associate this plot with. The x-axis zoom level of 
+#'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
@@ -29,10 +28,10 @@
 #' @export
 dygraph <- function(data, 
                     title = NULL,
-                    group = NULL,
                     series = list(),
                     axes = list(),
                     options = list(),
+                    group = NULL,
                     width = NULL, 
                     height = NULL) {
   
@@ -198,7 +197,8 @@ dyAxis <- function(name, label = NULL, ...) {
 dySeries <- function(name = NULL, 
                      label = name,
                      color = NULL,
-                     axis = "y", ...) {
+                     axis = "y", 
+                     ...) {
   series <- list()
   series$name <- name
   series$label <- label
