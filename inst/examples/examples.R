@@ -41,7 +41,7 @@ rainfall <- ts(
 weather <- cbind(rainfall, temperature)
 
 dygraph(weather,
-  series = dySeries('rainfall', axis = 'y2'),
+  series = dySeries('rainfall', label = "Rain", axis = 'y2'),
 )
 
 
