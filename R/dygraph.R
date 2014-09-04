@@ -4,6 +4,8 @@
 # TODO: support for css via attachments
 # TODO: explicit parameters for options
 
+# TODO: docs and examples
+
 #' Interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
