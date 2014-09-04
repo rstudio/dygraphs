@@ -15,25 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
-    // provide an automatic y value formatter if none is already specified
-    var scale = x.meta.scale;
-    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
-                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    if (x.axes.x.valueFormatter === undefined) {
-      x.axes.x.valueFormatter = function(millis) {
-        var date = new Date(millis);
-        if (scale == "yearly")
-          return date.getUTCFullYear();
-        else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
-        else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getUTCMonth()] + ' ' + 
-                           date.getUTCDate() + ' ' + 
-                           date.getUTCFullYear();
-        else
-          return date.toUTCString();
-      };
-    }
+    // provide an automatic x value formatter if none is already specified
+    if (x.axes.x.valueFormatter === undefined)
+      x.axes.x.valueFormatter = this.xValueFormatter(x.meta.scale);
     
     // convert time to js time
     x.file[0] = x.file[0].map(function(value) { return new Date(value); })
@@ -46,5 +30,25 @@ HTMLWidgets.widget({
       instance.dygraph.updateOptions(x);
     else
       instance.dygraph = new Dygraph(el, x.file, x);
-  } 
+  },
+  
+  xValueFormatter: function(scale) {
+    
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                      
+    return function(millis) {
+      var date = new Date(millis);
+        if (scale == "yearly")
+          return date.getUTCFullYear();
+        else if (scale == "monthly" || scale == "quarterly")
+          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
+        else if (scale == "daily" || scale == "weekly")
+          return monthNames[date.getUTCMonth()] + ' ' + 
+                           date.getUTCDate() + ' ' + 
+                           date.getUTCFullYear();
+        else
+          return date.toUTCString();
+    }
+  }
 });
