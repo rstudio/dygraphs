@@ -1,5 +1,4 @@
 
-# TODO: Overcome need for Depends on zoo and xts
 # TODO: group parameter for linked charts
 # TODO: special syntax for y2?
 # TODO: how is missing data handled?
@@ -46,7 +45,7 @@ dygraph <- function(data,
   # convert time string we can pass to javascript Date function and
   # extract core data from xts object
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
-  data <- coredata(data)
+  data <- zoo::coredata(data)
   
   # calculate column names
   colNames <- colnames(data)
