@@ -1,22 +1,13 @@
 ---
-title: "Dygraph Presentation"
+title: "Lung Cancer Deaths"
 output: html_document
 ---
 
-## Important Discoveries
-
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.width=8, fig.height=2.5}
 suppressPackageStartupMessages(library(dygraphs))
 
-dygraph(ldeaths, group = "lungs")
-dygraph(mdeaths, group = "lungs")
-dygraph(fdeaths, group = "lungs")
-
-
-dygraph(discoveries,
-  axes = dyAxis("y", label = "Total / Year"),
-  options = list(
-    showRangeSelector = TRUE
-  )
-)
+dygraph(ldeaths, title = "All Deaths")
+dygraph(mdeaths, title = "Male Deaths")
+dygraph(fdeaths, title = "Female Deaths", 
+        options = list(showRangeSelector = TRUE))
 ```
