@@ -1,7 +1,7 @@
 
 # TODO: group parameter for linked charts
-# TODO: anything else where the user needs special help 
-#   - js formatter functions?
+# TODO: error bars
+# TODO: resolve all functions
 
 #' Interactive plot for time series data
 #' 

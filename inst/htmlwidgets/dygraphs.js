@@ -15,6 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // resolve javascript functions
+    this.resolveFunctions(x);
+    
     // provide an automatic x value formatter if none is already specified
     if (x.axes.x.valueFormatter === undefined)
       x.axes.x.valueFormatter = this.xValueFormatter(x.meta.scale);
@@ -50,5 +53,30 @@ HTMLWidgets.widget({
         else
           return date.toUTCString();
     }
+  },
+  
+  resolveFunctions: function(x) {
+    if (this.memberExists(x, 'axisLabelFormatter'))
+      x.axisLabelFormatter = eval("(" + x.axisLabelFormatter + ")");
+    if (this.memberExists(x, 'axes.x.axisLabelFormatter'))
+      x.axes.x.axisLabelFormatter = eval("(" + x.axes.x.axisLabelFormatter + ")");
+    if (this.memberExists(x, 'axes.y.axisLabelFormatter'))
+      x.axes.y.axisLabelFormatter = eval("(" + x.axes.y.axisLabelFormatter + ")");
+  },
+  
+  memberExists: function(o, member) {
+    var parts = member.split('.');
+    for(var i = 0, l = parts.length; i < l; i++) {
+        var part = parts[i];
+        if(o !== null && typeof o === "object" && part in o) {
+            o = o[part];
+        }
+        else {
+            return false;
+        }
+    }
+    return true;
   }
+  
+  
 });
