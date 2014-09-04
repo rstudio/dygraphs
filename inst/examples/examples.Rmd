@@ -1,6 +1,6 @@
 ---
 title: "Dygraph Presentation"
-output: ioslides_presentation
+output: html_document
 ---
 
 ## Important Discoveries
