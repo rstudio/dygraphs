@@ -199,6 +199,19 @@ dySeries <- function(name = NULL,
                      color = NULL,
                      axis = "y", 
                      ...) {
+  
+  # ensure that name is either NULL or of length 1 or 3
+  if (!is.null(name) && length(name) != 1 && length(name)  != 3) {
+    stop("The name parameter must either be NULL, a single ",
+         "character value, or a character value of length 3")
+  }
+  
+  # if a multi-series was specified then ensure we have a label
+  if (length(name) == 3 && is.null(label)) {
+    stop("You must specify a label when merging 3 input series into ",
+         "a common display series")
+  }
+  
   series <- list()
   series$name <- name
   series$label <- label

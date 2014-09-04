@@ -7,7 +7,11 @@ dySeries(name = NULL, label = NULL, color = NULL, axis = "y", ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound by
-order or using the convention V1, V2, etc.).}
+order or using the convention V1, V2, etc.). This can also be a character
+vector of length 3 that specifies a set of input series to use as the
+lower, value, and upper values for a series with a shared bar drawn around
+it. In this case the \code{label} parameter must also be specified to
+provide a label for the aggregate series.}
 
 \item{label}{Label to display for series (uses name if no label defined)}
 
