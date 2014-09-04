@@ -118,9 +118,7 @@ resolveCustomBars <- function(data, series) {
                                    data[[names[[3]]]])
       
       # remove those columns from the named list
-      data[[names[[1]]]] <- NULL
-      data[[names[[2]]]] <- NULL
-      data[[names[[3]]]] <- NULL
+      data[names(data) %in% names] <- NULL
           
       # set multi-series (using the value column)
       s$name <- names[[2]]
