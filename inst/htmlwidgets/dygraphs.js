@@ -28,11 +28,18 @@ HTMLWidgets.widget({
     // transpose array
     x.file = HTMLWidgets.transposeArray2D(x.file);
     
+    // add drawCallback for group
+    if (x.meta.group != null)
+      this.addGroupDrawCallback(x);  
+    
     // update or create as required
-    if (instance.dygraph)
+    if (instance.dygraph) {
       instance.dygraph.updateOptions(x);
-    else
+    } else {
       instance.dygraph = new Dygraph(el, x.file, x);
+      if (x.meta.group != null)
+        this.groups[x.meta.group].push(instance.dygraph);
+    }
   },
   
   xValueFormatter: function(scale) {
@@ -53,6 +60,26 @@ HTMLWidgets.widget({
         else
           return date.toUTCString();
     }
+  },
+  
+  groups: {},
+  
+  addGroupDrawCallback: function(x) {
+    this.groups[x.meta.group] = this.groups[x.meta.group] || [];
+    var group = this.groups[x.meta.group];
+    var blockRedraw = false;
+    x.drawCallback = function(me, initial) {
+      if (blockRedraw || initial) return;
+      blockRedraw = true;
+      var range = me.xAxisRange();
+      for (var j = 0; j < group.length; j++) {
+        if (group[j] == me) continue;
+        group[j].updateOptions({
+          dateWindow: range
+        });
+      }
+      blockRedraw = false;
+    };
   },
   
   resolveFunctions: function(x) {

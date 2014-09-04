@@ -8,6 +8,11 @@ output: ioslides_presentation
 ```{r, echo=FALSE}
 suppressPackageStartupMessages(library(dygraphs))
 
+dygraph(ldeaths, group = "lungs")
+dygraph(mdeaths, group = "lungs")
+dygraph(fdeaths, group = "lungs")
+
+
 dygraph(discoveries,
   axes = dyAxis("y", label = "Total / Year"),
   options = list(
