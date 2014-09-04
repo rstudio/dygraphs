@@ -1,5 +1,7 @@
 
 # TODO: resolve all functions
+# TODO: support for annotations
+# TODO: support for css via attachments
 
 #' Interactive plot for time series data
 #' 
