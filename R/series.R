@@ -34,12 +34,6 @@ dySeries <- function(name = NULL,
          "character value, or a character value of length 3")
   }
   
-  # if a multi-series was specified then ensure we have a label
-  if (length(name) == 3 && is.null(label)) {
-    stop("You must specify a label when merging 3 input series into ",
-         "a common display series")
-  }
-  
   series <- list()
   series$name <- name
   series$label <- label
@@ -123,16 +117,14 @@ resolveCustomBars <- function(data, series) {
                                    data[[names[[2]]]],
                                    data[[names[[3]]]])
       
-      # add multi-series
-      data[[s$label]] <- multiSeries
-      
       # remove those columns from the named list
       data[[names[[1]]]] <- NULL
       data[[names[[2]]]] <- NULL
       data[[names[[3]]]] <- NULL
-      
-      # update series
-      s$name <- s$label
+          
+      # set multi-series (using the value column)
+      s$name <- names[[2]]
+      data[[s$name]] <- multiSeries
     }
     
     series[[i]] <- s
