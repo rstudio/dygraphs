@@ -51,10 +51,7 @@ dySeries <- function(name = NULL,
 
 
 addSeries <- function (x, series) {
-  
-  if (inherits(series, "dygraph.series"))
-    series <- list(series)
-  
+    
   if (length(series) > 0) {
     colors = character(length(series))
     for (i in 1:length(series)) { 
@@ -100,11 +97,66 @@ addSeries <- function (x, series) {
 }
 
 
-haveCustomSeries <- function(series) {
-  TRUE
+haveCustomBars <- function(series) {
+  if (!is.null(series) && length(series) > 0) {
+    for (i in 1:length(series))
+      if (length(series[[i]]$name) == 3)
+        return(TRUE)
+  }
+  FALSE
 }
 
 
-resolveCustomSeries <- function(data, series) {
-  data
+resolveCustomBars <- function(data, series) {
+  
+  for (i in 1:length(series)) { 
+    
+    s <- series[[i]]
+    
+    if (length(s$name) == 3) {
+      
+      # get the names
+      names <- s$name
+      
+      # compute the multi series
+      multiSeries <- toMultiSeries(data[[names[[1]]]], 
+                                   data[[names[[2]]]],
+                                   data[[names[[3]]]])
+      
+      # add multi-series
+      data[[s$label]] <- multiSeries
+      
+      # remove those columns from the named list
+      data[[names[[1]]]] <- NULL
+      data[[names[[2]]]] <- NULL
+      data[[names[[3]]]] <- NULL
+      
+      # update series
+      s$name <- s$label
+    }
+    
+    series[[i]] <- s
+  }
+  
+  list(data = data, series = series)
 }
+
+# return a list of three element arrays 
+toMultiSeries <- function(lower, value, upper) {  
+  series <- vector(mode = "list", length = length(value))
+  for (i in 1:length(series))
+    series[[i]] <- c(lower[[i]], value[[i]], upper[[i]])
+  series
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -26,8 +26,7 @@ dyAxis <- function(name, label = NULL, ...) {
 
 
 addAxes <- function (x, axes) {
-  if (inherits(axes, "dygraph.axis"))
-    axes <- list(axes)
+
   if (length(axes) > 0) {
     for (i in 1:length(axes)) {
       

@@ -2,6 +2,9 @@
 library(dygraphs)
 library(datasets)
 
+
+
+
 # lung deaths
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
 colnames(lungDeaths) <- c("All", "Male", "Female")
@@ -44,6 +47,23 @@ dygraph(weather,
   series = dySeries('rainfall', label = "Rain", axis = 'y2'),
 )
 
+library(quantmod)
+getSymbols(c("BCOV", "MSFT"), from = "2012-01-01")
+BCOV$BCOV.Open <- NULL
+BCOV$BCOV.Volume <- NULL
+BCOV$BCOV.Adjusted <- NULL
+MSFT$MSFT.Open <- NULL
+MSFT$MSFT.Volume <- NULL
+MSFT$MSFT.Adjusted <- NULL
+
+stocks <- cbind(BCOV, MSFT)
+
+dygraph(stocks,
+  series = list(
+    dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV"),
+    dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
+  )
+)
 
 
 

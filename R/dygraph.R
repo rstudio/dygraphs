@@ -35,7 +35,13 @@ dygraph <- function(data,
                     width = NULL, 
                     height = NULL) {
   
-  # convert to xts
+  # allow series and axes to be specified as single elements
+  if (inherits(series, "dygraph.series"))
+    series <- list(series)
+  if (inherits(axes, "dygraph.axis"))
+    axes <- list(axes)
+  
+  # convert data to xts
   if (!is.xts(data))
     data <- as.xts(data)
   
@@ -47,23 +53,27 @@ dygraph <- function(data,
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   data <- zoo::coredata(data)
       
-  # turn data into a data frame
-  data <- as.data.frame(data)
+  # convert to a named list
+  data <- unclass(as.data.frame(data))
    
   # resolve custom series (aggregates or smoothed versions of input series)
-  if (haveCustomSeries(series))
-    data <- resolveCustomSeries(data, series)
-   
+  customBars <- haveCustomBars(series)
+  if (customBars) {
+    resolved <- resolveCustomBars(data, series)
+    data <- resolved$data
+    series <- resolved$series
+  }
+  
   # get column names, merge time into data-frame, then strip the metadata 
   # (so we are marshalled as a 2d array into json)
-  colNames <- colnames(data)
-  data <- cbind(time, data, stringsAsFactors = FALSE)
-  data <- unclass(data)
+  colNames <- names(data)
+  data <- append(list(time), data)
   names(data) <- NULL
     
   # create native dygraph options object
   x <- list()
   x$title <- title
+  x$customBars <- customBars
   x$labels <- c(periodicity$label, colNames)
   if (length(colNames) > 1)
     x$legend <- "always"
