@@ -17,6 +17,8 @@
 #'   explicity using the \code{name} parameter of \code{dySeries}.
 #' @param axes Axis definition (or list of axis definitions) created using the 
 #'   the \code{\link{dyAxis}} function.
+#' @param annotations Annotation (or list of annotations) of specific x values 
+#'   on the graph created using the \code{\link{dyAnnotation}} function.
 #' @param options Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -32,16 +34,19 @@ dygraph <- function(data,
                     title = NULL,
                     series = list(),
                     axes = list(),
+                    annotations = list(),
                     options = list(),
                     group = NULL,
                     width = NULL, 
                     height = NULL) {
   
-  # allow series and axes to be specified as single elements
+  # allow series, axes, and annotations to be specified as single elements
   if (inherits(series, "dygraph.series"))
     series <- list(series)
   if (inherits(axes, "dygraph.axis"))
     axes <- list(axes)
+  if (inherits(annotations, "dygraph.annotation"))
+    annotations <- list(annotations)
   
   # convert data to xts
   if (!is.xts(data))
@@ -90,6 +95,7 @@ dygraph <- function(data,
   meta <- list()
   meta$scale <- periodicity$scale
   meta$group <- group
+  meta$annotations <- getAnnotations(annotations, colNames)
   x$meta <- meta
   
   # add time series data (we do this at the end so we don't pay the

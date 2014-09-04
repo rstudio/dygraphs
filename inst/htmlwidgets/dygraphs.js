@@ -40,6 +40,13 @@ HTMLWidgets.widget({
       if (x.meta.group != null)
         this.groups[x.meta.group].push(instance.dygraph);
     }
+    
+    // set annotations
+    if (x.meta.annotations != null) {
+      instance.dygraph.ready(function() {
+        instance.dygraph.setAnnotations(x.meta.annotations);
+      }); 
+    }
   },
   
   xValueFormatter: function(scale) {

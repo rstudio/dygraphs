@@ -4,7 +4,8 @@
 \title{Interactive plot for time series data}
 \usage{
 dygraph(data, title = NULL, series = list(), axes = list(),
-  options = list(), group = NULL, width = NULL, height = NULL)
+  annotations = list(), options = list(), group = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
@@ -18,6 +19,9 @@ explicity using the \code{name} parameter of \code{dySeries}.}
 
 \item{axes}{Axis definition (or list of axis definitions) created using the
 the \code{\link{dyAxis}} function.}
+
+\item{annotations}{Annotation (or list of annotations) of specific x values
+on the graph created using the \code{\link{dyAnnotation}} function.}
 
 \item{options}{Additional options to pass directly to dygraphs (see the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
