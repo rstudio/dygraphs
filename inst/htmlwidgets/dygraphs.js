@@ -99,34 +99,34 @@ HTMLWidgets.widget({
   },
   
   resolveFunctions: function(attrs) {
-    this.stringToFunction(attrs, 'annotationClickHandler');
-    this.stringToFunction(attrs, 'annotationDblClickHandler');
-    this.stringToFunction(attrs, 'annotationMouseOutHandler');
-    this.stringToFunction(attrs, 'annotationMouseOverHandler');
-    this.stringToFunction(attrs, 'axisLabelFormatter');
-    this.stringToFunction(attrs, 'axes.attrs.axisLabelFormatter');
-    this.stringToFunction(attrs, 'axes.y.axisLabelFormatter');
-    this.stringToFunction(attrs, 'axes.y2.axisLabelFormatter');
-    this.stringToFunction(attrs, 'axes.attrs.ticker');
-    this.stringToFunction(attrs, 'axes.y.ticker');
-    this.stringToFunction(attrs, 'axes.y2.ticker');
-    this.stringToFunction(attrs, 'xValueParser');
-    this.stringToFunction(attrs, 'clickCallback');
-    this.stringToFunction(attrs, 'drawCallback');
-    this.stringToFunction(attrs, 'highlightCallback');
-    this.stringToFunction(attrs, 'pointClickCallback');
-    this.stringToFunction(attrs, 'underlayCallback');
-    this.stringToFunction(attrs, 'unhighlightCallback');
-    this.stringToFunction(attrs, 'zoomCallback');
-    this.stringToFunction(attrs, 'drawHighlightPointCallback');
-    this.stringToFunction(attrs, 'drawPointCallback');
-    this.stringToFunction(attrs, 'valueFormatter');
-    this.stringToFunction(attrs, 'axes.attrs.valueFormatter');
-    this.stringToFunction(attrs, 'axes.y.valueFormatter');
-    this.stringToFunction(attrs, 'axes.y2.valueFormatter');
+    this.evaluateStringMember(attrs, 'annotationClickHandler');
+    this.evaluateStringMember(attrs, 'annotationDblClickHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOutHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOverHandler');
+    this.evaluateStringMember(attrs, 'axisLabelFormatter');
+    this.evaluateStringMember(attrs, 'axes.attrs.axisLabelFormatter');
+    this.evaluateStringMember(attrs, 'axes.y.axisLabelFormatter');
+    this.evaluateStringMember(attrs, 'axes.y2.axisLabelFormatter');
+    this.evaluateStringMember(attrs, 'axes.attrs.ticker');
+    this.evaluateStringMember(attrs, 'axes.y.ticker');
+    this.evaluateStringMember(attrs, 'axes.y2.ticker');
+    this.evaluateStringMember(attrs, 'xValueParser');
+    this.evaluateStringMember(attrs, 'clickCallback');
+    this.evaluateStringMember(attrs, 'drawCallback');
+    this.evaluateStringMember(attrs, 'highlightCallback');
+    this.evaluateStringMember(attrs, 'pointClickCallback');
+    this.evaluateStringMember(attrs, 'underlayCallback');
+    this.evaluateStringMember(attrs, 'unhighlightCallback');
+    this.evaluateStringMember(attrs, 'zoomCallback');
+    this.evaluateStringMember(attrs, 'drawHighlightPointCallback');
+    this.evaluateStringMember(attrs, 'drawPointCallback');
+    this.evaluateStringMember(attrs, 'valueFormatter');
+    this.evaluateStringMember(attrs, 'axes.attrs.valueFormatter');
+    this.evaluateStringMember(attrs, 'axes.y.valueFormatter');
+    this.evaluateStringMember(attrs, 'axes.y2.valueFormatter');
   },
   
-  stringToFunction: function(o, member) {
+  evaluateStringMember: function(o, member) {
     var parts = member.split('.');
     for(var i = 0, l = parts.length; i < l; i++) {
       var part = parts[i];
