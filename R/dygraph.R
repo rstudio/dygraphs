@@ -2,7 +2,9 @@
 # TODO: resolve all functions
 # TODO: support for annotations
 # TODO: support for css via attachments
+# TODO: add some padding
 # TODO: explicit parameters for options
+#   - Create dyTheme
 
 # TODO: docs and examples
 
