@@ -55,7 +55,8 @@ weather <- cbind(rainfall, temperature)
 dygraph(weather,
   series = dySeries('rainfall', label = "Rain", axis = 'y2'),
   axes = dyAxis('y2'),
-  options = dyOptions(drawGrid = TRUE)
+  options = dyOptions(drawGrid = TRUE, drawXAxis = TRUE, drawYAxis = TRUE, includeZero = TRUE,
+                      axisTickSize = 1)
 )
 
 library(quantmod)
