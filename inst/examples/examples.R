@@ -6,32 +6,40 @@ library(datasets)
 
 
 # lung deaths
-lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-colnames(lungDeaths) <- c("All", "Male", "Female")
+lungDeaths <- cbind(mdeaths, fdeaths)
+colnames(lungDeaths) <- c("Male", "Female")
 
 dygraph(lungDeaths, 
   series = list(
-    dySeries("All", label = "Everyone"),
     dySeries("Male"),
-    dySeries("Female", fillGraph = TRUE)
+    dySeries("Female")
   ),
   axes = list(
     dyAxis("x", label = "Month"),
     dyAxis("y", label = "Deaths", drawGrid = FALSE)
   ),
-  options = dyOptions(
-    showRangeSelector = TRUE
-  )
+  interaction = dyInteraction(highlightSeriesOpts = list(strokeWidth = 3)),
+  options = dyOptions()
 )
 
 dygraph(discoveries, 
+  
   title = "Important Discoveries",
-  series = dySeries("Discoveries", strokeWidth = 2, fillGraph = TRUE),
+  
+  series = dySeries("Discoveries"),
+  
   axes = dyAxis("x", label = "Total / Year", pixelsPerLabel = 40),
+  
+  interaction = dyInteraction(
+    showRangeSelector = TRUE,
+    dateWindow = c("1900/1/1", "1930/1/1"),
+    rollPeriod = 5,
+    showRoller = TRUE,    
+  ),
+  
   options = dyOptions(
-    rollPeriod = 10,
-    showRoller = TRUE,
-    fillGraph = FALSE
+    fillGraph = TRUE,
+    strokeWidth = 2
   )
 )
 
@@ -46,6 +54,8 @@ weather <- cbind(rainfall, temperature)
 
 dygraph(weather,
   series = dySeries('rainfall', label = "Rain", axis = 'y2'),
+  axes = dyAxis('y2'),
+  options = dyOptions(drawGrid = TRUE)
 )
 
 library(quantmod)

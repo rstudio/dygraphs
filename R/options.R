@@ -41,10 +41,24 @@
 #' @param colorSaturation If custom per-series colors are not specified, 
 #'   saturation of the automatically-generated data series colors (0.0-1.0, 
 #'   default 0.5).
+#' @param drawXAxis Whether to draw the x-axis. Setting this to false also 
+#'   prevents x-axis ticks from being drawn and reclaims the space for the chart
+#'   grid/lines.
+#' @param drawYAxis Whether to draw the y-axis. Setting this to false also 
+#'   prevents y-axis ticks from being drawn and reclaims the space for the chart
+#'   grid/lines.
+#' @param includeZero Usually, dygraphs will use the range of the data plus some
+#'   padding to set the range of the y-axis. If this option is set, the y-axis 
+#'   will always include zero, typically as the lowest value. This can be used 
+#'   to avoid exaggerating the variance in the data.
+#' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
+#'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
+#'   'rgb(0, 100, 255)'.
+#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines.
 #' @param drawGrid Whether to display gridlines in the chart. This may be set on
 #'   a per-axis basis to define the visibility of each axis' grid separately. 
 #'   Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.
-#' @param gridLineColor The color of the gridlines. This option can also be set
+#' @param gridLineColor The color of the gridlines. This option can also be set 
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
 #'   chart.This option can also be set on a per-series basis.
@@ -67,9 +81,14 @@ dyOptions <- function(stackedGraph = FALSE,
                       strokeBorderColor = "white",
                       colorValue = 0.5,
                       colorSaturation = 1.0,
+                      drawXAxis = TRUE,
+                      drawYAxis = TRUE,
+                      includeZero = FALSE,
+                      axisLineColor = "black",
+                      axisLineWidth = 0.3,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
-                      gridLineWidth = NULL,
+                      gridLineWidth = 0.3,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
@@ -84,6 +103,11 @@ dyOptions <- function(stackedGraph = FALSE,
   options$strokeBorderColor <- strokeBorderColor
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
+  options$drawXAxis <- drawXAxis
+  options$drawYAxis <- drawYAxis
+  options$includeZero <- includeZero
+  options$axisLineColor <- axisLineColor
+  options$axisLineWidth <- axisLineWidth
   options$drawGrid < drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
