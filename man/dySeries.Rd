@@ -4,7 +4,8 @@
 \title{dygraph data series options}
 \usage{
 dySeries(name = NULL, label = NULL, color = NULL, axis = "y",
-  fillGraph = NULL, drawPoints = NULL, pointSize = NULL, ...)
+  stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
+  pointSize = NULL, ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound by
@@ -22,6 +23,9 @@ color for one series then you must specify one for all series. If not
 specified, equally-spaced points around a color wheel are used.}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
+
+\item{stepPlot}{When set, display the graph as a step plot instead of a line
+plot. If no option is specified then the global default is utilized.}
 
 \item{fillGraph}{Should the area underneath the graph be filled? This option
 is not compatible with error bars. If no option is specified then the

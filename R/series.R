@@ -17,6 +17,8 @@
 #'   color for one series then you must specify one for all series. If not 
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
+#' @param stepPlot When set, display the graph as a step plot instead of a line 
+#'   plot. If no option is specified then the global default is utilized.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
 #'   is not compatible with error bars. If no option is specified then the 
 #'   global default is utilized.
@@ -36,6 +38,7 @@ dySeries <- function(name = NULL,
                      label = NULL,
                      color = NULL,
                      axis = "y", 
+                     stepPlot = NULL,
                      fillGraph = NULL,
                      drawPoints = NULL,
                      pointSize = NULL,
@@ -53,6 +56,7 @@ dySeries <- function(name = NULL,
   series$color <- color
   series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
+  series$options$stepPlot <- stepPlot
   series$options$fillGraph <- fillGraph
   series$options$drawPoints <- drawPoints
   series$options$pointSize <- pointSize

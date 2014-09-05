@@ -3,9 +3,12 @@
 #' 
 #' Add options to a dygraph plot.
 #' 
-#' @param stackedGraph If set, stack series on top of one another rather than
-#'   drawing them independently. The first series specified in the input data
+#' @param stackedGraph If set, stack series on top of one another rather than 
+#'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
+#' @param stepPlot When set, display the graph as a step plot instead of a line 
+#'   plot. This option can also be set on a per-series basis via 
+#'   \code{\link{dySeries}}.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
 #'   is not compatible with error bars. This option can also be set on a 
 #'   per-series basis via \code{\link{dySeries}}.
@@ -25,12 +28,14 @@
 #'   
 #' @export
 dyOptions <- function(stackedGraph = FALSE,
+                      stepPlot = FALSE,
                       fillGraph = FALSE,
                       drawPoints = FALSE,
                       pointSize = 1,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
+  options$stepPlot <- stepPlot
   options$fillGraph <- fillGraph
   options$drawPoints <- drawPoints
   options$pointSize <- pointSize
