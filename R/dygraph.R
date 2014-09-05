@@ -1,5 +1,8 @@
 
 # TODO: resolve all functions
+# TODO: support for annotations
+# TODO: support for css via attachments
+# TODO: explicit parameters for options
 
 # TODO: docs and examples
 
