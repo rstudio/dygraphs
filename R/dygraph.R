@@ -104,6 +104,9 @@ dygraph <- function(data,
   x$scale <- periodicity$scale
   x$group <- group
   
+  # hoist css into side data
+  x$css <- attrs$css
+  
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",

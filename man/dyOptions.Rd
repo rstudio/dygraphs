@@ -9,7 +9,7 @@ dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
   strokeBorderColor = "white", colorValue = 0.5, colorSaturation = 1,
   drawXAxis = TRUE, drawYAxis = TRUE, includeZero = FALSE,
   axisLineColor = "black", axisLineWidth = 0.3, drawGrid = TRUE,
-  gridLineColor = NULL, gridLineWidth = 0.3, ...)
+  gridLineColor = NULL, gridLineWidth = 0.3, css = NULL, ...)
 }
 \arguments{
 \item{stackedGraph}{If set, stack series on top of one another rather than
@@ -90,6 +90,12 @@ on a per-series basis.}
 
 \item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
 chart.This option can also be set on a per-series basis.}
+
+\item{css}{Path to css file to be used for styling textual elements of the
+graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
+the dygraphs website for additional details on which styles are available.
+Note that CSS styles are global so will affect all dycharts on a given
+web page.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for

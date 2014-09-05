@@ -35,10 +35,24 @@ HTMLWidgets.widget({
     if (x.group != null)
       this.addGroupDrawCallback(x);  
     
-    // update or create as required
-    if (instance.dygraph) {
+    if (instance.dygraph) { // update exisigng instance
+       
       instance.dygraph.updateOptions(attrs);
-    } else {
+    
+    } else {  // create new instance
+      
+      // inject css if necessary
+      if (x.css != null) {
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        if (style.styleSheet) 
+          style.styleSheet.cssText = x.css;
+        else 
+          style.appendChild(document.createTextNode(x.css));
+        document.getElementsByTagName("head")[0].appendChild(style);
+      }
+      
+      // create the instance and add it to it's group (if any)
       instance.dygraph = new Dygraph(el, attrs.file, attrs);
       if (x.group != null)
         this.groups[x.group].push(instance.dygraph);

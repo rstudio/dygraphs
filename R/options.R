@@ -62,6 +62,11 @@
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
 #'   chart.This option can also be set on a per-series basis.
+#' @param css Path to css file to be used for styling textual elements of the
+#'   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
+#'   the dygraphs website for additional details on which styles are available.
+#'   Note that CSS styles are global so will affect all dycharts on a given
+#'   web page.
 #' @param ... Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -89,6 +94,7 @@ dyOptions <- function(stackedGraph = FALSE,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
+                      css = NULL,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
@@ -111,6 +117,8 @@ dyOptions <- function(stackedGraph = FALSE,
   options$drawGrid < drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
+  if (!is.null(css))
+    options$css <- paste(readLines(css, warn = FALSE), collapse = "\n")
   options <- append(options, list(...))
   structure(options, class = "dygraph.options")
 }
