@@ -95,7 +95,9 @@ chart.This option can also be set on a per-series basis.}
 graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
 the dygraphs website for additional details on which styles are available.
 Note that CSS styles are global so will affect all dycharts on a given
-web page.}
+web page. This also implies that for a page with multiple plots you
+only need to specify styles for the first one (alternatively you can
+just add them directly to the page by other means).}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for

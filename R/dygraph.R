@@ -1,7 +1,6 @@
 
 # TODO: support for annotations
 # TODO: add some padding (pending)
-# TODO: support for CSS
 
 # TODO: docs and examples
 
