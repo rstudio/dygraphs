@@ -1,9 +1,7 @@
 
 # TODO: support for annotations
-
 # TODO: add some padding (pending)
-# TODO: explicit parameters for options
-#   - Create dyTheme (support for css via attachments)
+# TODO: support for CSS
 
 # TODO: docs and examples
 
