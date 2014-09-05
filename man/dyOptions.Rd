@@ -6,7 +6,8 @@
 dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
   fillAlpha = 0.15, drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
   strokePattern = NULL, strokeBorderWidth = NULL,
-  strokeBorderColor = "white", colorValue = 0.5, colorSaturation = 1, ...)
+  strokeBorderColor = "white", colorValue = 0.5, colorSaturation = 1,
+  drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = NULL, ...)
 }
 \arguments{
 \item{stackedGraph}{If set, stack series on top of one another rather than
@@ -58,6 +59,16 @@ data series colors, as in hue/saturation/value (0.0-1.0, default 0.5).}
 \item{colorSaturation}{If custom per-series colors are not specified,
 saturation of the automatically-generated data series colors (0.0-1.0,
 default 0.5).}
+
+\item{drawGrid}{Whether to display gridlines in the chart. This may be set on
+a per-axis basis to define the visibility of each axis' grid separately.
+Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.}
+
+\item{gridLineColor}{The color of the gridlines. This option can also be set
+on a per-series basis.}
+
+\item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
+chart.This option can also be set on a per-series basis.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for

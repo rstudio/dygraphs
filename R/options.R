@@ -41,6 +41,13 @@
 #' @param colorSaturation If custom per-series colors are not specified, 
 #'   saturation of the automatically-generated data series colors (0.0-1.0, 
 #'   default 0.5).
+#' @param drawGrid Whether to display gridlines in the chart. This may be set on
+#'   a per-axis basis to define the visibility of each axis' grid separately. 
+#'   Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.
+#' @param gridLineColor The color of the gridlines. This option can also be set
+#'   on a per-series basis.
+#' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
+#'   chart.This option can also be set on a per-series basis.
 #' @param ... Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -60,6 +67,9 @@ dyOptions <- function(stackedGraph = FALSE,
                       strokeBorderColor = "white",
                       colorValue = 0.5,
                       colorSaturation = 1.0,
+                      drawGrid = TRUE,
+                      gridLineColor = NULL,
+                      gridLineWidth = NULL,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
@@ -74,6 +84,9 @@ dyOptions <- function(stackedGraph = FALSE,
   options$strokeBorderColor <- strokeBorderColor
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
+  options$drawGrid < drawGrid
+  options$gridLineColor <- gridLineColor
+  options$gridLineWidth <- gridLineWidth
   options <- append(options, list(...))
   structure(options, class = "dygraph.options")
 }

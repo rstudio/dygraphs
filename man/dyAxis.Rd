@@ -3,14 +3,31 @@
 \alias{dyAxis}
 \title{dygraph axis options}
 \usage{
-dyAxis(name, label = NULL, ...)
+dyAxis(name, label = NULL, drawGrid = NULL, gridLineColor = NULL,
+  gridLineWidth = NULL, independentTicks = NULL, ...)
 }
 \arguments{
 \item{name}{Axis name ('x', 'y', or 'y2')}
 
 \item{label}{Label to display for axis (defaults to none)}
 
-\item{...}{Per-axis options to pass directly to dygraphs (see the
+\item{drawGrid}{Whether to display gridlines in the chart.}
+
+\item{gridLineColor}{The color of the gridlines.}
+
+\item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
+chart.=}
+
+\item{independentTicks}{Only valid for y and y2, has no effect on x: This
+option defines whether the y axes should align their ticks or if they
+should be independent. Possible combinations: 1.) y=true, y2=false
+(default): y is the primary axis and the y2 ticks are aligned to the the
+ones of y. (only 1 grid) 2.) y=false, y2=true: y2 is the primary axis and
+the y ticks are aligned to the the ones of y2. (only 1 grid) 3.) y=true,
+y2=true: Both axis are independent and have their own ticks. (2 grids) 4.)
+y=false, y2=false: Invalid configuration causes an error.}
+
+\item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
   additional details).}
 }
@@ -18,6 +35,8 @@ dyAxis(name, label = NULL, ...)
 Axis options
 }
 \description{
-Define options for an axis on a dygraph plot.
+Define options for an axis on a dygraph plot. Note that options will use the
+default global setting (as determined by \code{\link{dyOptions}}) when not
+specified explicitly.
 }
 
