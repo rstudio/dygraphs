@@ -7,19 +7,32 @@
 #'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
-#'   plot. This option can also be set on a per-series basis via 
-#'   \code{\link{dySeries}}.
+#'   plot. This option can also be set on a per-series basis.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
 #'   is not compatible with error bars. This option can also be set on a 
-#'   per-series basis via \code{\link{dySeries}}.
+#'   per-series basis.
 #' @param drawPoints Draw a small dot at each point, in addition to a line going
 #'   through the point. This makes the individual data points easier to see, but
 #'   can increase visual clutter in the chart. This option can also be set on a 
-#'   per-series basis via \code{\link{dySeries}}.
+#'   per-series basis.
 #' @param pointSize The size of the dot to draw on each point in pixels. A dot 
 #'   is always drawn when a point is "isolated", i.e. there is a missing point 
 #'   on either side of it. This also controls the size of those dots. This 
-#'   option can also be set on a per-series basis via \code{\link{dySeries}}.
+#'   option can also be set on a per-series basis.
+#' @param strokeWidth The width of the lines connecting data points. This can be
+#'   used to increase the contrast or some graphs. This option can also be set
+#'   on a per-series basis.
+#' @param strokePattern A custom pattern array where the even index is a draw 
+#'   and odd is a space in pixels. If null then it draws a solid line. The array
+#'   should have a even length as any odd lengthed array could be expressed as a
+#'   smaller even length array. This is used to create dashed lines. This option
+#'   can also be set on a per-series basis.
+#' @param strokeBorderWidth Draw a border around graph lines to make crossing 
+#'   lines more easily distinguishable. Useful for graphs with many lines. This 
+#'   option can also be set on a per-series basis.
+#' @param strokeBorderColor Color for the line border used if 
+#'   \code{strokeBorderWidth} is set. This option can also be set on a
+#'   per-series basis.
 #' @param ... Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -31,7 +44,11 @@ dyOptions <- function(stackedGraph = FALSE,
                       stepPlot = FALSE,
                       fillGraph = FALSE,
                       drawPoints = FALSE,
-                      pointSize = 1,
+                      pointSize = 1.0,
+                      strokeWidth = 1.0,
+                      strokePattern = NULL,
+                      strokeBorderWidth = NULL,
+                      strokeBorderColor = "white",
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
@@ -39,6 +56,10 @@ dyOptions <- function(stackedGraph = FALSE,
   options$fillGraph <- fillGraph
   options$drawPoints <- drawPoints
   options$pointSize <- pointSize
+  options$strokeWidth <- strokeWidth
+  options$strokePattern <- strokePattern
+  options$strokeBorderWidth <- strokeBorderWidth
+  options$strokeBorderColor <- strokeBorderColor
   options <- append(options, list(...))
   structure(options, class = "dygraph.options")
 }

@@ -4,7 +4,9 @@
 \title{dygraph options}
 \usage{
 dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
-  drawPoints = FALSE, pointSize = 1, ...)
+  drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
+  strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = "white", ...)
 }
 \arguments{
 \item{stackedGraph}{If set, stack series on top of one another rather than
@@ -12,22 +14,39 @@ drawing them independently. The first series specified in the input data
 will wind up on top of the chart and the last will be on bottom.}
 
 \item{stepPlot}{When set, display the graph as a step plot instead of a line
-plot. This option can also be set on a per-series basis via
-\code{\link{dySeries}}.}
+plot. This option can also be set on a per-series basis.}
 
 \item{fillGraph}{Should the area underneath the graph be filled? This option
 is not compatible with error bars. This option can also be set on a
-per-series basis via \code{\link{dySeries}}.}
+per-series basis.}
 
 \item{drawPoints}{Draw a small dot at each point, in addition to a line going
 through the point. This makes the individual data points easier to see, but
 can increase visual clutter in the chart. This option can also be set on a
-per-series basis via \code{\link{dySeries}}.}
+per-series basis.}
 
 \item{pointSize}{The size of the dot to draw on each point in pixels. A dot
 is always drawn when a point is "isolated", i.e. there is a missing point
 on either side of it. This also controls the size of those dots. This
-option can also be set on a per-series basis via \code{\link{dySeries}}.}
+option can also be set on a per-series basis.}
+
+\item{strokeWidth}{The width of the lines connecting data points. This can be
+used to increase the contrast or some graphs. This option can also be set
+on a per-series basis.}
+
+\item{strokePattern}{A custom pattern array where the even index is a draw
+and odd is a space in pixels. If null then it draws a solid line. The array
+should have a even length as any odd lengthed array could be expressed as a
+smaller even length array. This is used to create dashed lines. This option
+can also be set on a per-series basis.}
+
+\item{strokeBorderWidth}{Draw a border around graph lines to make crossing
+lines more easily distinguishable. Useful for graphs with many lines. This
+option can also be set on a per-series basis.}
+
+\item{strokeBorderColor}{Color for the line border used if
+\code{strokeBorderWidth} is set. This option can also be set on a
+per-series basis.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for

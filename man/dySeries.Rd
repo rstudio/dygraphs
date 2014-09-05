@@ -5,7 +5,8 @@
 \usage{
 dySeries(name = NULL, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, ...)
+  pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
+  strokeBorderWidth = NULL, strokeBorderColor = NULL, ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound by
@@ -25,21 +26,32 @@ specified, equally-spaced points around a color wheel are used.}
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
 \item{stepPlot}{When set, display the graph as a step plot instead of a line
-plot. If no option is specified then the global default is utilized.}
+plot.}
 
 \item{fillGraph}{Should the area underneath the graph be filled? This option
-is not compatible with error bars. If no option is specified then the
-global default is utilized.}
+is not compatible with error bars.}
 
 \item{drawPoints}{Draw a small dot at each point, in addition to a line going
 through the point. This makes the individual data points easier to see, but
-can increase visual clutter in the chart. If no option is specified then
-the global default is utilized.}
+can increase visual clutter in the chart.}
 
 \item{pointSize}{The size of the dot to draw on each point in pixels. A dot
-  is always drawn when a point is "isolated", i.e. there is a missing point
-  on either side of it. This also controls the size of those dots. If no
-  option is specified then the global default is utilized.}
+is always drawn when a point is "isolated", i.e. there is a missing point
+on either side of it. This also controls the size of those dots.}
+
+\item{strokeWidth}{The width of the lines connecting data points. This can be
+used to increase the contrast or some graphs.}
+
+\item{strokePattern}{A custom pattern array where the even index is a draw
+and odd is a space in pixels. If null then it draws a solid line. The array
+should have a even length as any odd lengthed array could be expressed as a
+smaller even length array. This is used to create dashed lines.}
+
+\item{strokeBorderWidth}{Draw a border around graph lines to make crossing
+lines more easily distinguishable. Useful for graphs with many lines.}
+
+\item{strokeBorderColor}{Color for the line border used if
+  \code{strokeBorderWidth} is set.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
@@ -49,6 +61,8 @@ the global default is utilized.}
 Series options
 }
 \description{
-Add per-series options to a dygraph plot.
+Add per-series options to a dygraph plot. Note that options will use the
+default global setting (as determined by \code{\link{dyOptions}}) when not
+specified explicitly.
 }
 

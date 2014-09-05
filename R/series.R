@@ -1,7 +1,9 @@
 
 #' dygraph data series options
 #' 
-#' Add per-series options to a dygraph plot.
+#' Add per-series options to a dygraph plot. Note that options will use the
+#' default global setting (as determined by \code{\link{dyOptions}}) when not
+#' specified explicitly.
 #' 
 #' @inheritParams dyOptions
 #'   
@@ -18,18 +20,25 @@
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
-#'   plot. If no option is specified then the global default is utilized.
+#'   plot.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
-#'   is not compatible with error bars. If no option is specified then the 
-#'   global default is utilized.
+#'   is not compatible with error bars.
 #' @param drawPoints Draw a small dot at each point, in addition to a line going
 #'   through the point. This makes the individual data points easier to see, but
-#'   can increase visual clutter in the chart. If no option is specified then
-#'   the global default is utilized.
+#'   can increase visual clutter in the chart.
 #' @param pointSize The size of the dot to draw on each point in pixels. A dot 
 #'   is always drawn when a point is "isolated", i.e. there is a missing point 
-#'   on either side of it. This also controls the size of those dots. If no
-#'   option is specified then the global default is utilized.
+#'   on either side of it. This also controls the size of those dots.
+#' @param strokeWidth The width of the lines connecting data points. This can be
+#'   used to increase the contrast or some graphs.
+#' @param strokePattern A custom pattern array where the even index is a draw 
+#'   and odd is a space in pixels. If null then it draws a solid line. The array
+#'   should have a even length as any odd lengthed array could be expressed as a
+#'   smaller even length array. This is used to create dashed lines.
+#' @param strokeBorderWidth Draw a border around graph lines to make crossing 
+#'   lines more easily distinguishable. Useful for graphs with many lines.
+#' @param strokeBorderColor Color for the line border used if 
+#'   \code{strokeBorderWidth} is set.
 #'   
 #' @return Series options
 #'   
@@ -42,6 +51,10 @@ dySeries <- function(name = NULL,
                      fillGraph = NULL,
                      drawPoints = NULL,
                      pointSize = NULL,
+                     strokeWidth = NULL,
+                     strokePattern = NULL,
+                     strokeBorderWidth = NULL,
+                     strokeBorderColor = NULL,
                      ...) {
   
   # ensure that name is either NULL or of length 1 or 3
@@ -60,6 +73,10 @@ dySeries <- function(name = NULL,
   series$options$fillGraph <- fillGraph
   series$options$drawPoints <- drawPoints
   series$options$pointSize <- pointSize
+  series$options$strokeWidth <- strokeWidth
+  series$options$strokePattern <- strokePattern
+  series$options$strokeBorderWidth <- strokeBorderWidth
+  series$options$strokeBorderColor <- strokeBorderColor
   structure(series, class = "dygraph.series")
 }
 
