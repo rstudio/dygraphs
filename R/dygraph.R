@@ -20,9 +20,8 @@
 #'   explicity using the \code{name} parameter of \code{dySeries}.
 #' @param axes Axis definition (or list of axis definitions) created using the 
 #'   the \code{\link{dyAxis}} function.
-#' @param options Additional options to pass directly to dygraphs (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
-#'   additional details).
+#' @param options Options (or list of options) created using the
+#'   \code{\link{dyOptions}} function.
 #' @param group Group to associate this plot with. The x-axis zoom level of 
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
@@ -40,11 +39,13 @@ dygraph <- function(data,
                     width = NULL, 
                     height = NULL) {
   
-  # allow series and axes to be specified as single elements
+  # allow series, axes, and options to be specified as single elements
   if (inherits(series, "dygraph.series"))
     series <- list(series)
   if (inherits(axes, "dygraph.axis"))
     axes <- list(axes)
+  if (inherits(options, "dygraph.options"))
+    options <- list(options)
   
   # convert data to xts
   if (!is.xts(data))
@@ -87,7 +88,7 @@ dygraph <- function(data,
   # add series, axes, and options
   attrs <- addSeries(attrs, series)
   attrs <- addAxes(attrs, axes)
-  attrs <- mergeLists(attrs, options)
+  attrs <- addOptions(attrs, options)
   
   # add time series data (we do this at the end so we don't pay the
   # price of copying it as we mutate 'attrs' above)

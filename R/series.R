@@ -3,11 +3,13 @@
 #' 
 #' Add per-series options to a dygraph plot.
 #' 
+#' @inheritParams dyOptions
+#'   
 #' @param name Name of series within dataset (unamed series can be bound by 
-#'   order or using the convention V1, V2, etc.). This can also be a character
-#'   vector of length 3 that specifies a set of input series to use as the
-#'   lower, value, and upper values for a series with a shared bar drawn around
-#'   it. In this case the \code{label} parameter must also be specified to
+#'   order or using the convention V1, V2, etc.). This can also be a character 
+#'   vector of length 3 that specifies a set of input series to use as the 
+#'   lower, value, and upper values for a series with a shared bar drawn around 
+#'   it. In this case the \code{label} parameter must also be specified to 
 #'   provide a label for the aggregate series.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
@@ -15,9 +17,8 @@
 #'   color for one series then you must specify one for all series. If not 
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
-#' @param ... Per-series options to pass directly to dygraphs (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
-#'   additional details).
+#' @param fillGraph Should the area underneath the graph be filled? This option 
+#'   is not compatible with error bars.
 #'   
 #' @return Series options
 #'   
@@ -26,6 +27,7 @@ dySeries <- function(name = NULL,
                      label = NULL,
                      color = NULL,
                      axis = "y", 
+                     fillGraph = FALSE,
                      ...) {
   
   # ensure that name is either NULL or of length 1 or 3
@@ -40,11 +42,12 @@ dySeries <- function(name = NULL,
   series$color <- color
   series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
+  series$options$fillGraph <- fillGraph
   structure(series, class = "dygraph.series")
 }
 
 
-addSeries <- function (x, series) {
+addSeries <- function (attrs, series) {
     
   if (length(series) > 0) {
     colors = character(length(series))
@@ -62,32 +65,32 @@ addSeries <- function (x, series) {
       # if this is a named series then find it's index
       # and re-bind i to it
       if (!is.null(s$name)) {
-        m <- match(s$name, x$labels)
+        m <- match(s$name, attrs$labels)
         if (!is.na(m))
           i <- m - 1
       }
       
       # custom label if requested
       if (!is.null(s$label))
-        x$labels[[i + 1]] <- s$label
+        attrs$labels[[i + 1]] <- s$label
       
       # set series options
-      name <- x$labels[[i + 1]]
-      x$series[[name]] <- s$options
+      name <- attrs$labels[[i + 1]]
+      attrs$series[[name]] <- s$options
     }
     
     # resolve colors (if one specified then all must be specified)
     colors <- colors[colors != ""]
     if (length(colors) > 0) {
       if (length(colors) == length(series)) {
-        x$colors <- colors
+        attrs$colors <- colors
       } else {
         stop("If you specify one custom series color you must specify ",
              "a color for all series")
       }
     }
   }
-  x
+  attrs
 }
 
 

@@ -19,18 +19,19 @@ dygraph(lungDeaths,
     dyAxis("x", label = "Month"),
     dyAxis("y", label = "Deaths", drawGrid = FALSE)
   ),
-  options = list(
+  options = dyOptions(
     showRangeSelector = TRUE
   )
 )
 
 dygraph(discoveries, 
   title = "Important Discoveries",
-  series = dySeries("Discoveries", strokeWidth = 2),
+  series = dySeries("Discoveries", strokeWidth = 2, fillGraph = TRUE),
   axes = dyAxis("x", label = "Total / Year", pixelsPerLabel = 40),
-  options = list(
+  options = dyOptions(
     rollPeriod = 10,
-    showRoller = TRUE
+    showRoller = TRUE,
+    fillGraph = FALSE
   )
 )
 
@@ -48,13 +49,13 @@ dygraph(weather,
 )
 
 library(quantmod)
-getSymbols(c("BCOV", "MSFT"), from = "2012-01-01")
-BCOV$BCOV.Open <- NULL
-BCOV$BCOV.Volume <- NULL
-BCOV$BCOV.Adjusted <- NULL
-MSFT$MSFT.Open <- NULL
-MSFT$MSFT.Volume <- NULL
-MSFT$MSFT.Adjusted <- NULL
+# getSymbols(c("BCOV", "MSFT"), from = "2012-01-01")
+# BCOV$BCOV.Open <- NULL
+# BCOV$BCOV.Volume <- NULL
+# BCOV$BCOV.Adjusted <- NULL
+# MSFT$MSFT.Open <- NULL
+# MSFT$MSFT.Volume <- NULL
+# MSFT$MSFT.Adjusted <- NULL
 
 stocks <- cbind(BCOV, MSFT)
 

@@ -3,11 +3,21 @@ title: "Lung Cancer Deaths"
 output: html_document
 ---
 
-```{r, echo=FALSE, fig.width=8, fig.height=2.5}
-suppressPackageStartupMessages(library(dygraphs))
+Here are all the deaths:
 
-dygraph(ldeaths, title = "All Deaths")
-dygraph(mdeaths, title = "Male Deaths")
-dygraph(fdeaths, title = "Female Deaths", 
-        options = list(showRangeSelector = TRUE))
+```{r, echo=FALSE, message=FALSE, fig.width=8, fig.height=2}
+library(dygraphs)
+dygraph(ldeaths, group = "lungs")
 ```
+
+As you can see there were a lot of deaths.
+
+Here are the male and female deaths:
+
+```{r, echo=FALSE, message=FALSE, fig.width=8, fig.height=2}
+dygraph(mdeaths, group = "lungs")
+dygraph(fdeaths, group = "lungs")
+```
+
+As you can see there is some contrast between the genders.
+

@@ -25,7 +25,7 @@ dyAxis <- function(name, label = NULL, ...) {
 }
 
 
-addAxes <- function (x, axes) {
+addAxes <- function (attrs, axes) {
 
   if (length(axes) > 0) {
     for (i in 1:length(axes)) {
@@ -36,9 +36,9 @@ addAxes <- function (x, axes) {
         stop("You must pass only dyAxis objects in the axes parameter")
       
       # set axis options
-      x[[sprintf("%slabel", axis$name)]] <- axis$label
-      x$axes[[axis$name]] <- axis$options  
+      attrs[[sprintf("%slabel", axis$name)]] <- axis$label
+      attrs$axes[[axis$name]] <- axis$options  
     }
   }
-  x
+  attrs
 }

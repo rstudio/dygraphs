@@ -19,9 +19,8 @@ explicity using the \code{name} parameter of \code{dySeries}.}
 \item{axes}{Axis definition (or list of axis definitions) created using the
 the \code{\link{dyAxis}} function.}
 
-\item{options}{Additional options to pass directly to dygraphs (see the
-\href{http://dygraphs.com/options.html}{dygraphs documentation} for
-additional details).}
+\item{options}{Options (or list of options) created using the
+\code{\link{dyOptions}} function.}
 
 \item{group}{Group to associate this plot with. The x-axis zoom level of
 plots within a group is automatically synchronized.}
