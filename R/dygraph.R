@@ -1,9 +1,9 @@
 
 # TODO: support for annotations
-# TODO: support for css via attachments
-# TODO: add some padding
+
+# TODO: add some padding (pending)
 # TODO: explicit parameters for options
-#   - Create dyTheme
+#   - Create dyTheme (support for css via attachments)
 
 # TODO: docs and examples
 
@@ -75,29 +75,29 @@ dygraph <- function(data,
   data <- append(list(time), data)
   names(data) <- NULL
     
-  # create native dygraph options object
-  x <- list()
-  x$title <- title
-  x$customBars <- customBars
-  x$labels <- c(periodicity$label, colNames)
+  # create native dygraph attrs object
+  attrs <- list()
+  attrs$title <- title
+  attrs$customBars <- customBars
+  attrs$labels <- c(periodicity$label, colNames)
   if (length(colNames) > 1)
-    x$legend <- "always"
-  x$axes$x <- list() 
+    attrs$legend <- "always"
+  attrs$axes$x <- list() 
    
   # add series, axes, and options
-  x <- addSeries(x, series)
-  x <- addAxes(x, axes)
-  x <- mergeLists(x, options)
-  
-  # side data we use in javascript
-  meta <- list()
-  meta$scale <- periodicity$scale
-  meta$group <- group
-  x$meta <- meta
+  attrs <- addSeries(attrs, series)
+  attrs <- addAxes(attrs, axes)
+  attrs <- mergeLists(attrs, options)
   
   # add time series data (we do this at the end so we don't pay the
-  # price of copying it as we mutate 'x' above)
-  x$file <- data
+  # price of copying it as we mutate 'attrs' above)
+  attrs$file <- data
+  
+  # create x (dychart attrs + some side data)
+  x <- list()
+  x$attrs <- attrs
+  x$scale <- periodicity$scale
+  x$group <- group
   
   # create widget
   htmlwidgets::createWidget(

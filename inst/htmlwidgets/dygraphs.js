@@ -15,30 +15,33 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // get dygraph attrs
+    var attrs = x.attrs;
+    
     // resolve javascript functions
-    this.resolveFunctions(x);
+    this.resolveFunctions(x.attrs);
     
     // provide an automatic x value formatter if none is already specified
-    if (x.axes.x.valueFormatter === undefined)
-      x.axes.x.valueFormatter = this.xValueFormatter(x.meta.scale);
+    if (attrs.axes.x.valueFormatter === undefined)
+      attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
-    x.file[0] = x.file[0].map(function(value) { return new Date(value); })
+    attrs.file[0] = attrs.file[0].map(function(value) { return new Date(value); })
     
     // transpose array
-    x.file = HTMLWidgets.transposeArray2D(x.file);
+    attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
     
     // add drawCallback for group
-    if (x.meta.group != null)
+    if (x.group != null)
       this.addGroupDrawCallback(x);  
     
     // update or create as required
     if (instance.dygraph) {
-      instance.dygraph.updateOptions(x);
+      instance.dygraph.updateOptions(attrs);
     } else {
-      instance.dygraph = new Dygraph(el, x.file, x);
-      if (x.meta.group != null)
-        this.groups[x.meta.group].push(instance.dygraph);
+      instance.dygraph = new Dygraph(el, attrs.file, attrs);
+      if (x.group != null)
+        this.groups[x.group].push(instance.dygraph);
     }
   },
   
@@ -66,13 +69,16 @@ HTMLWidgets.widget({
   
   addGroupDrawCallback: function(x) {
     
-    // check for an existing drawCallback
-    var prevDrawCallback = x["drawCallback"];
+    // get attrs
+    var attrs = x.attrs;
     
-    this.groups[x.meta.group] = this.groups[x.meta.group] || [];
-    var group = this.groups[x.meta.group];
+    // check for an existing drawCallback
+    var prevDrawCallback = attrs["drawCallback"];
+    
+    this.groups[x.group] = this.groups[x.group] || [];
+    var group = this.groups[x.group];
     var blockRedraw = false;
-    x.drawCallback = function(me, initial) {
+    attrs.drawCallback = function(me, initial) {
       
       // call existing
       if (prevDrawCallback)
@@ -92,32 +98,32 @@ HTMLWidgets.widget({
     };
   },
   
-  resolveFunctions: function(x) {
-    this.stringToFunction(x, 'annotationClickHandler');
-    this.stringToFunction(x, 'annotationDblClickHandler');
-    this.stringToFunction(x, 'annotationMouseOutHandler');
-    this.stringToFunction(x, 'annotationMouseOverHandler');
-    this.stringToFunction(x, 'axisLabelFormatter');
-    this.stringToFunction(x, 'axes.x.axisLabelFormatter');
-    this.stringToFunction(x, 'axes.y.axisLabelFormatter');
-    this.stringToFunction(x, 'axes.y2.axisLabelFormatter');
-    this.stringToFunction(x, 'axes.x.ticker');
-    this.stringToFunction(x, 'axes.y.ticker');
-    this.stringToFunction(x, 'axes.y2.ticker');
-    this.stringToFunction(x, 'xValueParser');
-    this.stringToFunction(x, 'clickCallback');
-    this.stringToFunction(x, 'drawCallback');
-    this.stringToFunction(x, 'highlightCallback');
-    this.stringToFunction(x, 'pointClickCallback');
-    this.stringToFunction(x, 'underlayCallback');
-    this.stringToFunction(x, 'unhighlightCallback');
-    this.stringToFunction(x, 'zoomCallback');
-    this.stringToFunction(x, 'drawHighlightPointCallback');
-    this.stringToFunction(x, 'drawPointCallback');
-    this.stringToFunction(x, 'valueFormatter');
-    this.stringToFunction(x, 'axes.x.valueFormatter');
-    this.stringToFunction(x, 'axes.y.valueFormatter');
-    this.stringToFunction(x, 'axes.y2.valueFormatter');
+  resolveFunctions: function(attrs) {
+    this.stringToFunction(attrs, 'annotationClickHandler');
+    this.stringToFunction(attrs, 'annotationDblClickHandler');
+    this.stringToFunction(attrs, 'annotationMouseOutHandler');
+    this.stringToFunction(attrs, 'annotationMouseOverHandler');
+    this.stringToFunction(attrs, 'axisLabelFormatter');
+    this.stringToFunction(attrs, 'axes.attrs.axisLabelFormatter');
+    this.stringToFunction(attrs, 'axes.y.axisLabelFormatter');
+    this.stringToFunction(attrs, 'axes.y2.axisLabelFormatter');
+    this.stringToFunction(attrs, 'axes.attrs.ticker');
+    this.stringToFunction(attrs, 'axes.y.ticker');
+    this.stringToFunction(attrs, 'axes.y2.ticker');
+    this.stringToFunction(attrs, 'xValueParser');
+    this.stringToFunction(attrs, 'clickCallback');
+    this.stringToFunction(attrs, 'drawCallback');
+    this.stringToFunction(attrs, 'highlightCallback');
+    this.stringToFunction(attrs, 'pointClickCallback');
+    this.stringToFunction(attrs, 'underlayCallback');
+    this.stringToFunction(attrs, 'unhighlightCallback');
+    this.stringToFunction(attrs, 'zoomCallback');
+    this.stringToFunction(attrs, 'drawHighlightPointCallback');
+    this.stringToFunction(attrs, 'drawPointCallback');
+    this.stringToFunction(attrs, 'valueFormatter');
+    this.stringToFunction(attrs, 'axes.attrs.valueFormatter');
+    this.stringToFunction(attrs, 'axes.y.valueFormatter');
+    this.stringToFunction(attrs, 'axes.y2.valueFormatter');
   },
   
   stringToFunction: function(o, member) {
