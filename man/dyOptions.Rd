@@ -6,7 +6,8 @@
 dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
   drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
   strokePattern = NULL, strokeBorderWidth = NULL,
-  strokeBorderColor = "white", ...)
+  strokeBorderColor = "white", colorValue = 0.5, colorSaturation = 1,
+  fillAlpha = 0.15, ...)
 }
 \arguments{
 \item{stackedGraph}{If set, stack series on top of one another rather than
@@ -47,6 +48,19 @@ option can also be set on a per-series basis.}
 \item{strokeBorderColor}{Color for the line border used if
 \code{strokeBorderWidth} is set. This option can also be set on a
 per-series basis.}
+
+\item{colorValue}{If custom per-series colors are not specified, value of the
+data series colors, as in hue/saturation/value (0.0-1.0, default 0.5).}
+
+\item{colorSaturation}{If custom per-series colors are not specified,
+saturation of the automatically-generated data series colors (0.0-1.0,
+default 0.5).}
+
+\item{fillAlpha}{Shaded bars around aggregate series composed of lower,
+value, and upper series are drawn in the same color as the series, but with
+partial transparency. This sets the transparency. A value of 0.0 means that
+the error bars will not be drawn, whereas a value of 1.0 means that the
+error bars will be as dark as the line for the series itself.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for
