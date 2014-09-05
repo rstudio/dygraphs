@@ -4,7 +4,8 @@
 \title{Interactive plot for time series data}
 \usage{
 dygraph(data, title = NULL, series = list(), axes = list(),
-  options = list(), group = NULL, width = NULL, height = NULL)
+  interaction = list(), options = list(), group = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
@@ -18,6 +19,9 @@ explicity using the \code{name} parameter of \code{dySeries}.}
 
 \item{axes}{Axis definition (or list of axis definitions) created using the
 the \code{\link{dyAxis}} function.}
+
+\item{interaction}{Interactions (or list of interactions) created using the
+\code{\link{dyInteraction}} function.}
 
 \item{options}{Options (or list of options) created using the
 \code{\link{dyOptions}} function.}

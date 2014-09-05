@@ -59,7 +59,7 @@ dyOptions <- function(stackedGraph = FALSE,
                       strokeBorderWidth = NULL,
                       strokeBorderColor = "white",
                       colorValue = 0.5,
-                      colorSaturation = 1.0
+                      colorSaturation = 1.0,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph

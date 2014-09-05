@@ -20,6 +20,8 @@
 #'   explicity using the \code{name} parameter of \code{dySeries}.
 #' @param axes Axis definition (or list of axis definitions) created using the 
 #'   the \code{\link{dyAxis}} function.
+#' @param interaction Interactions (or list of interactions) created using the
+#'   \code{\link{dyInteraction}} function.
 #' @param options Options (or list of options) created using the
 #'   \code{\link{dyOptions}} function.
 #' @param group Group to associate this plot with. The x-axis zoom level of 
@@ -34,16 +36,19 @@ dygraph <- function(data,
                     title = NULL,
                     series = list(),
                     axes = list(),
+                    interaction = list(),
                     options = list(),
                     group = NULL,
                     width = NULL, 
                     height = NULL) {
   
-  # allow series, axes, and options to be specified as single elements
+  # allow series, axes, interaction, and options to be specified as single elements
   if (inherits(series, "dygraph.series"))
     series <- list(series)
   if (inherits(axes, "dygraph.axis"))
     axes <- list(axes)
+  if (inherits(interaction, "dygraph.interaction"))
+    interaction <- list(interaction)
   if (inherits(options, "dygraph.options"))
     options <- list(options)
   
@@ -88,6 +93,7 @@ dygraph <- function(data,
   # add series, axes, and options
   attrs <- addSeries(attrs, series)
   attrs <- addAxes(attrs, axes)
+  attrs <- addInteraction(attrs, interaction)
   attrs <- addOptions(attrs, options)
   
   # add time series data (we do this at the end so we don't pay the
