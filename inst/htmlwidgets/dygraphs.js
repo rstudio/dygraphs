@@ -65,10 +65,20 @@ HTMLWidgets.widget({
   groups: {},
   
   addGroupDrawCallback: function(x) {
+    
+    // check for an existing drawCallback
+    var prevDrawCallback = x["drawCallback"];
+    
     this.groups[x.meta.group] = this.groups[x.meta.group] || [];
     var group = this.groups[x.meta.group];
     var blockRedraw = false;
     x.drawCallback = function(me, initial) {
+      
+      // call existing
+      if (prevDrawCallback)
+        prevDrawCallback(me, initial);
+      
+      // sync peers in group
       if (blockRedraw || initial) return;
       blockRedraw = true;
       var range = me.xAxisRange();
@@ -83,20 +93,44 @@ HTMLWidgets.widget({
   },
   
   resolveFunctions: function(x) {
-    this.evaluateMember(x, 'axisLabelFormatter');
-    this.evaluateMember(x, 'axes.x.axisLabelFormatter');
-    this.evaluateMember(x, 'axes.y.axisLabelFormatter');
+    this.stringToFunction(x, 'annotationClickHandler');
+    this.stringToFunction(x, 'annotationDblClickHandler');
+    this.stringToFunction(x, 'annotationMouseOutHandler');
+    this.stringToFunction(x, 'annotationMouseOverHandler');
+    this.stringToFunction(x, 'axisLabelFormatter');
+    this.stringToFunction(x, 'axes.x.axisLabelFormatter');
+    this.stringToFunction(x, 'axes.y.axisLabelFormatter');
+    this.stringToFunction(x, 'axes.y2.axisLabelFormatter');
+    this.stringToFunction(x, 'axes.x.ticker');
+    this.stringToFunction(x, 'axes.y.ticker');
+    this.stringToFunction(x, 'axes.y2.ticker');
+    this.stringToFunction(x, 'xValueParser');
+    this.stringToFunction(x, 'clickCallback');
+    this.stringToFunction(x, 'drawCallback');
+    this.stringToFunction(x, 'highlightCallback');
+    this.stringToFunction(x, 'pointClickCallback');
+    this.stringToFunction(x, 'underlayCallback');
+    this.stringToFunction(x, 'unhighlightCallback');
+    this.stringToFunction(x, 'zoomCallback');
+    this.stringToFunction(x, 'drawHighlightPointCallback');
+    this.stringToFunction(x, 'drawPointCallback');
+    this.stringToFunction(x, 'valueFormatter');
+    this.stringToFunction(x, 'axes.x.valueFormatter');
+    this.stringToFunction(x, 'axes.y.valueFormatter');
+    this.stringToFunction(x, 'axes.y2.valueFormatter');
   },
   
-  evaluateMember: function(o, member) {
+  stringToFunction: function(o, member) {
     var parts = member.split('.');
     for(var i = 0, l = parts.length; i < l; i++) {
       var part = parts[i];
       if(o !== null && typeof o === "object" && part in o) {
-        if (i == (l-1)) // if we are at the end of the line then evalulate
-          o[part] = eval("(" + o[part] + ")"); 
-        else // otherwise continue to next embedded object
+        if (i == (l-1)) { // if we are at the end of the line then evalulate 
+          if (typeof o[part] === "string")
+            o[part] = eval("(" + o[part] + ")"); 
+        } else { // otherwise continue to next embedded object
           o = o[part];
+        }
       }
       else  // part not found, no evaluation 
         return;
