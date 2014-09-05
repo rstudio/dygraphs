@@ -83,27 +83,23 @@ HTMLWidgets.widget({
   },
   
   resolveFunctions: function(x) {
-    if (this.memberExists(x, 'axisLabelFormatter'))
-      x.axisLabelFormatter = eval("(" + x.axisLabelFormatter + ")");
-    if (this.memberExists(x, 'axes.x.axisLabelFormatter'))
-      x.axes.x.axisLabelFormatter = eval("(" + x.axes.x.axisLabelFormatter + ")");
-    if (this.memberExists(x, 'axes.y.axisLabelFormatter'))
-      x.axes.y.axisLabelFormatter = eval("(" + x.axes.y.axisLabelFormatter + ")");
+    this.evaluateMember(x, 'axisLabelFormatter');
+    this.evaluateMember(x, 'axes.x.axisLabelFormatter');
+    this.evaluateMember(x, 'axes.y.axisLabelFormatter');
   },
   
-  memberExists: function(o, member) {
+  evaluateMember: function(o, member) {
     var parts = member.split('.');
     for(var i = 0, l = parts.length; i < l; i++) {
-        var part = parts[i];
-        if(o !== null && typeof o === "object" && part in o) {
-            o = o[part];
-        }
-        else {
-            return false;
-        }
-    }
-    return true;
+      var part = parts[i];
+      if(o !== null && typeof o === "object" && part in o) {
+        if (i == (l-1)) // if we are at the end of the line then evalulate
+          o[part] = eval("(" + o[part] + ")"); 
+        else // otherwise continue to next embedded object
+          o = o[part];
+      }
+      else  // part not found, no evaluation 
+        return;
+    } 
   }
-  
-  
 });
