@@ -4,7 +4,7 @@
 \title{dygraph data series options}
 \usage{
 dySeries(name = NULL, label = NULL, color = NULL, axis = "y",
-  fillGraph = FALSE, ...)
+  fillGraph = NULL, drawPoints = NULL, pointSize = NULL, ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound by
@@ -24,7 +24,18 @@ specified, equally-spaced points around a color wheel are used.}
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
 \item{fillGraph}{Should the area underneath the graph be filled? This option
-  is not compatible with error bars.}
+is not compatible with error bars. If no option is specified then the
+global default is utilized.}
+
+\item{drawPoints}{Draw a small dot at each point, in addition to a line going
+through the point. This makes the individual data points easier to see, but
+can increase visual clutter in the chart. If no option is specified then
+the global default is utilized.}
+
+\item{pointSize}{The size of the dot to draw on each point in pixels. A dot
+  is always drawn when a point is "isolated", i.e. there is a missing point
+  on either side of it. This also controls the size of those dots. If no
+  option is specified then the global default is utilized.}
 
 \item{...}{Additional options to pass directly to dygraphs (see the
   \href{http://dygraphs.com/options.html}{dygraphs documentation} for

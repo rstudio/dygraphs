@@ -18,7 +18,16 @@
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param fillGraph Should the area underneath the graph be filled? This option 
-#'   is not compatible with error bars.
+#'   is not compatible with error bars. If no option is specified then the 
+#'   global default is utilized.
+#' @param drawPoints Draw a small dot at each point, in addition to a line going
+#'   through the point. This makes the individual data points easier to see, but
+#'   can increase visual clutter in the chart. If no option is specified then
+#'   the global default is utilized.
+#' @param pointSize The size of the dot to draw on each point in pixels. A dot 
+#'   is always drawn when a point is "isolated", i.e. there is a missing point 
+#'   on either side of it. This also controls the size of those dots. If no
+#'   option is specified then the global default is utilized.
 #'   
 #' @return Series options
 #'   
@@ -27,7 +36,9 @@ dySeries <- function(name = NULL,
                      label = NULL,
                      color = NULL,
                      axis = "y", 
-                     fillGraph = FALSE,
+                     fillGraph = NULL,
+                     drawPoints = NULL,
+                     pointSize = NULL,
                      ...) {
   
   # ensure that name is either NULL or of length 1 or 3
@@ -43,6 +54,8 @@ dySeries <- function(name = NULL,
   series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
   series$options$fillGraph <- fillGraph
+  series$options$drawPoints <- drawPoints
+  series$options$pointSize <- pointSize
   structure(series, class = "dygraph.series")
 }
 
