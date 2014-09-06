@@ -105,6 +105,7 @@ dygraph <- function(data,
   
   # hoist css into side data
   x$css <- attrs$css
+  attrs$css <- NULL
   
   # create widget
   htmlwidgets::createWidget(

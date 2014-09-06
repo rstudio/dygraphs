@@ -25,7 +25,12 @@ dygraph(discoveries,
   
   series = dySeries("Discoveries"),
   
-  axes = dyAxis("x", label = "Total / Year", valueRange = c(4, 10), pixelsPerLabel = 60),
+  axes = list(
+    dyAxis("x", label = "Total / Year", pixelsPerLabel = 60),
+    dyAxis("y")
+  ),
+  
+
   
   interaction = dyInteraction(),
   
@@ -46,6 +51,7 @@ weather <- cbind(rainfall, temperature)
 
 dygraph(weather,
   series = dySeries('rainfall', label = "Rain", axis = 'y2'),
+  options = dyOptions(css = "inst/examples/styles.css")
 )
 
 library(quantmod)
