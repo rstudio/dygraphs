@@ -3,8 +3,8 @@
 \alias{dyOptions}
 \title{dygraph options}
 \usage{
-dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
-  fillAlpha = 0.15, drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
+dyOptions(stackedGraph = FALSE, fillGraph = FALSE, fillAlpha = 0.15,
+  stepPlot = FALSE, drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
   strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = "white", colorValue = 0.5, colorSaturation = 1,
   drawXAxis = TRUE, drawYAxis = TRUE, includeZero = FALSE,
@@ -16,9 +16,6 @@ dyOptions(stackedGraph = FALSE, stepPlot = FALSE, fillGraph = FALSE,
 drawing them independently. The first series specified in the input data
 will wind up on top of the chart and the last will be on bottom.}
 
-\item{stepPlot}{When set, display the graph as a step plot instead of a line
-plot. This option can also be set on a per-series basis.}
-
 \item{fillGraph}{Should the area underneath the graph be filled? This option
 is not compatible with error bars. This option can also be set on a
 per-series basis.}
@@ -26,6 +23,9 @@ per-series basis.}
 \item{fillAlpha}{Transparency for filled regions of the plot. A value of 0.0
 means that the fill will not be drawn, whereas a value of 1.0 means that
 the fill will be as dark as the line of the series itself.}
+
+\item{stepPlot}{When set, display the graph as a step plot instead of a line
+plot. This option can also be set on a per-series basis.}
 
 \item{drawPoints}{Draw a small dot at each point, in addition to a line going
 through the point. This makes the individual data points easier to see, but

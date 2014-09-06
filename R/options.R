@@ -6,14 +6,14 @@
 #' @param stackedGraph If set, stack series on top of one another rather than 
 #'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
-#' @param stepPlot When set, display the graph as a step plot instead of a line 
-#'   plot. This option can also be set on a per-series basis.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
 #'   is not compatible with error bars. This option can also be set on a 
 #'   per-series basis.
 #' @param fillAlpha Transparency for filled regions of the plot. A value of 0.0 
 #'   means that the fill will not be drawn, whereas a value of 1.0 means that 
 #'   the fill will be as dark as the line of the series itself.
+#' @param stepPlot When set, display the graph as a step plot instead of a line 
+#'   plot. This option can also be set on a per-series basis.
 #' @param drawPoints Draw a small dot at each point, in addition to a line going
 #'   through the point. This makes the individual data points easier to see, but
 #'   can increase visual clutter in the chart. This option can also be set on a 
@@ -77,9 +77,9 @@
 #'   
 #' @export
 dyOptions <- function(stackedGraph = FALSE,
-                      stepPlot = FALSE,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
+                      stepPlot = FALSE,
                       drawPoints = FALSE,
                       pointSize = 1.0,
                       strokeWidth = 1.0,
@@ -100,9 +100,9 @@ dyOptions <- function(stackedGraph = FALSE,
                       ...) {
   options <- list()
   options$stackedGraph <- stackedGraph
-  options$stepPlot <- stepPlot
   options$fillGraph <- fillGraph
   options$fillAlpha = fillAlpha
+  options$stepPlot <- stepPlot
   options$drawPoints <- drawPoints
   options$pointSize <- pointSize
   options$strokeWidth <- strokeWidth
