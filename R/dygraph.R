@@ -1,4 +1,5 @@
 
+# TODO: use colorbrewer (or equiv) for default colors
 # TODO: support for annotations
 # TODO: add some padding (pending)
 
