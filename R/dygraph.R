@@ -1,5 +1,4 @@
 
-# TODO: use colorbrewer (or equiv) for default colors
 # TODO: support for annotations
 # TODO: support of other data input types? (e.g. formula)
 # TODO: improved default CSS/fonts (for viewer pane only?)
