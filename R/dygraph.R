@@ -1,10 +1,13 @@
 
 # TODO: support for annotations
-# TODO: support of other data input types? (e.g. formula)
+# TODO: support of other data input types? (e.g. formula, x, y, etc.)
+# TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
 # TODO: improved default CSS/fonts (for viewer pane only?)
 # TODO: overcome xts imports/s3 issues
 # TODO: does the use of dySeries automatically discard other columns?
 # TODO: built-in support for smoothing (regressions) with error bars
+#         -- look at loess and lm/predict, e.g.
+#               predict(lm(dist ~ speed, cars), cars, interval = "confidence")
 #         -- points + line with error bar for future
 
 # TODO: docs and examples
