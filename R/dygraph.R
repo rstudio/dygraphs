@@ -1,4 +1,5 @@
 
+# TODO: need a colors argument on dyOptions
 # TODO: support for annotations
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
@@ -9,6 +10,8 @@
 #         -- look at loess and lm/predict, e.g.
 #               predict(lm(dist ~ speed, cars), cars, interval = "confidence")
 #         -- points + line with error bar for future
+#         -- dySmooth as series type
+#         -- allow dySeries to return multiple data series (via S3?)
 
 # TODO: docs and examples
 
