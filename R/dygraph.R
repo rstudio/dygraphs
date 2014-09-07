@@ -1,6 +1,12 @@
 
 # TODO: use colorbrewer (or equiv) for default colors
 # TODO: support for annotations
+# TODO: support of other data input types? (e.g. formula)
+# TODO: improved default CSS/fonts (for viewer pane only?)
+# TODO: overcome xts imports/s3 issues
+# TODO: does the use of dySeries automatically discard other columns?
+# TODO: built-in support for smoothing (regressions) with error bars
+#         -- points + line with error bar for future
 
 # TODO: docs and examples
 
