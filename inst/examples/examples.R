@@ -16,7 +16,7 @@ dygraph(lungDeaths) %>%
 dygraph(discoveries, main = "Important Discoveries") %>%
   dyAxis("x", pixelsPerLabel = 60) %>%
   dySeries("V1", label = "Discoveries") %>%
-  dyInteraction(showRangeSelector = TRUE) %>%
+  dyRangeSelector() %>%
   dyOptions(fillGraph = TRUE, strokeWidth = 2)
 
 temperature <- ts(

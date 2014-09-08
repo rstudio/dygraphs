@@ -2,8 +2,6 @@
 
 export("%>%")
 export(dyAxis)
-export(dyDataAdd)
-export(dyDataReplace)
 export(dyInteraction)
 export(dyOptions)
 export(dyRangeSelector)
