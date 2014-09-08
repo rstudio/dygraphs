@@ -1,9 +1,14 @@
 
-#' dygraph interaction
+#' Series mouse-over highlighting
 #' 
-#' Add interactive behaviors to a dygraph plot.
+#' Configure options for data series mouse-over highlighting. Note that 
+#' highlighting is always enabled for dygraphs so this function is used
+#' to customize rather than enable highlighting.
 #' 
-#' @param dygraph Dygraph to add interactive behaviors to
+#' @param dygraph Dygraph to configure highlighting behavior for.
+#' @param showLabelsOnHighlight Whether to show the legend upon mouseover.
+#' @param hideOverlayOnMouseOut Whether to hide the legend when the mouse leaves
+#'   the chart area.
 #' @param highlightCircleSize The size in pixels of the dot drawn over 
 #'   highlighted points.
 #' @param highlightSeriesBackgroundAlpha Fade the background while highlighting 
@@ -13,39 +18,55 @@
 #'   to the series closest to the mouse pointer for interactive
 #'   highlighting. Example: list(strokeWidth = 3). See the documentation on 
 #'   \code{\link{dySeries}} for additional details on options that can be set.
-#' @param showLabelsOnHighlight Whether to show the legend upon mouseover.
-#' @param hideOverlayOnMouseOut Whether to hide the legend when the mouse leaves
-#'   the chart area.
-#' @param showRoller If the rolling average period text box should be shown.
-#' @param rollPeriod Number of timestamps over which to average data.
 #'   
-#' @return Interaction options
+#' @return A dygraph with customized highlighting options
 #'   
 #' @export
-dyInteraction <- function(dygraph,
-                          highlightCircleSize = 3,
-                          highlightSeriesBackgroundAlpha = 0.5,
-                          highlightSeriesOpts = list(),
-                          showLabelsOnHighlight = TRUE,
-                          hideOverlyOnMouseOut = TRUE,
-                          showRoller = FALSE,
-                          rollPeriod = 1) {
-  interaction <- list()
-  interaction$highlightCircleSize <- highlightCircleSize
-  interaction$highlightSeriesBackgroundAlpha <- highlightSeriesBackgroundAlpha
-  interaction$highlightSeriesOpts <- highlightSeriesOpts
-  interaction$showLabelsOnHighlight <- showLabelsOnHighlight
-  interaction$hideOverlayOnMouseOut <- hideOverlyOnMouseOut
-  interaction$showRoller <- showRoller
-  interaction$rollPeriod = rollPeriod
+dyHighlight <- function(dygraph,
+                        showLabelsOnHighlight = TRUE,
+                        hideOverlyOnMouseOut = TRUE,
+                        highlightCircleSize = 3,
+                        highlightSeriesBackgroundAlpha = 0.5,
+                        highlightSeriesOpts = list()) {
+  highlight <- list()
+  highlight$showLabelsOnHighlight <- showLabelsOnHighlight
+  highlight$hideOverlayOnMouseOut <- hideOverlyOnMouseOut
+  highlight$highlightCircleSize <- highlightCircleSize
+  highlight$highlightSeriesBackgroundAlpha <- highlightSeriesBackgroundAlpha
+  highlight$highlightSeriesOpts <- highlightSeriesOpts
   
-  # merge interactions
-  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, interaction)
+  # merge highlight
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, highlight)
   
   # return modified dygraph
   dygraph
 }
 
+#' Rolling average period text box
+#' 
+#' Add a rolling average period text box to the bottom left of the plot. Y
+#' values are averaged over the specified number of time scale units.
+#' 
+#' @param dygraph Dygraph to add roller to
+#' @param rollPeriod Number of time scale units (e.g. days, months, years) to
+#'   average values over.
+#'   
+#' @return A dygraph that displays a range selector
+#' 
+#' @export
+dyRoller <- function(dygraph,
+                     rollPeriod = 1) {
+  
+  roller <- list()
+  roller$showRoller <- TRUE
+  roller$rollPeriod = rollPeriod
+  
+  # merge roller
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, roller)
+  
+  # return modified dygraph
+  dygraph
+}
 
 #' Interactive selection and zooming of date ranges
 #' 

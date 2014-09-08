@@ -2,9 +2,10 @@
 
 export("%>%")
 export(dyAxis)
-export(dyInteraction)
+export(dyHighlight)
 export(dyOptions)
 export(dyRangeSelector)
+export(dyRoller)
 export(dySeries)
 export(dygraph)
 export(dygraphOutput)

@@ -11,7 +11,8 @@ dygraph(lungDeaths) %>%
   dyAxis("y", label = "Deaths", drawGrid = FALSE) %>%
   dySeries("Male") %>%
   dySeries("Female") %>% 
-  dyInteraction(highlightSeriesOpts = list(strokeWidth = 3))
+  dyRoller(rollPeriod = 10) %>%
+  dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
 
 dygraph(discoveries, main = "Important Discoveries") %>%
   dyAxis("x", pixelsPerLabel = 60) %>%

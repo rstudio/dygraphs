@@ -1,8 +1,6 @@
 
 # TODO: support for annotations
-
-# TODO: consider breaking dyInteraction into separate functions
-
+# TODO: add interaction function for event handlers
 # TODO: docs and examples
 
 #' Interactive plot for time series data
