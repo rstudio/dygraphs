@@ -1,15 +1,19 @@
 
 # TODO: support for annotations
+
 # TODO: consider using magrittr syntax
+
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
+
 # TODO: improved default CSS/fonts (for viewer pane only?)
+
+# TODO: custom series types: dyPoints, dyLine, dySmooth, dyPredict
 # TODO: built-in support for smoothing (regressions) with error bars
 #         -- look at loess and lm/predict, e.g.
 #               predict(lm(dist ~ speed, cars), cars, interval = "confidence")
 #         -- dySmooth as series type
-# TODO: custom series types: dyPoints, dyLine, dySmooth, dyPredict
-# TODO: consider breaking dyOptions into dyOptions and dyTheme
+
 
 # TODO: docs and examples
 
@@ -88,7 +92,7 @@ dygraph <- function(data,
   
   # add data (strip names first so we marshall as a 2d array)
   names(data) <- NULL
-  x$attrs$file <- data
+  x$data <- data
   
   # add series
   if (inherits(series, "dygraph.series"))
