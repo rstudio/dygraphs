@@ -1,7 +1,6 @@
 
 # TODO: support for annotations
 
-# TODO: get main, xlab, ylab back in
 # TODO: use add and remove functions in dySeries
 # TODO: consider breaking dyInteraction into separate functions
 
@@ -14,7 +13,9 @@
 #' 
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
-#' @param title Main plot title (optional)
+#' @param main Main plot title (optional)
+#' @param xlab X axis label
+#' @param ylab Y axis label
 #' @param interaction Interactions (or list of interactions) created using the
 #'   \code{\link{dyInteraction}} function.
 #' @param group Group to associate this plot with. The x-axis zoom level of 
@@ -32,12 +33,8 @@
 #' @export %>%     
 #'     
 #' @export
-dygraph <- function(data, 
-                    title = NULL,
-                    interaction = list(),
-                    group = NULL,
-                    width = NULL, 
-                    height = NULL) {
+dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
+                    group = NULL, width = NULL, height = NULL) {
   
   # convert data to xts
   if (!xts::is.xts(data))
@@ -60,7 +57,9 @@ dygraph <- function(data,
   
   # create native dygraph attrs object
   attrs <- list()
-  attrs$title <- title
+  attrs$title <- main
+  attrs$xlabel <- xlab
+  attrs$ylabel <- ylab
   attrs$labels <- names(data)
   if (length(attrs$labels) > 1)
     attrs$legend <- "always"

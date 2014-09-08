@@ -13,7 +13,7 @@ dygraph(lungDeaths) %>%
   dySeries("Female") %>% 
   dyInteraction(highlightSeriesOpts = list(strokeWidth = 3))
 
-dygraph(discoveries, title = "Important Discoveries") %>%
+dygraph(discoveries, main = "Important Discoveries") %>%
   dyAxis("x", pixelsPerLabel = 60) %>%
   dySeries("V1", label = "Discoveries") %>%
   dyInteraction(showRangeSelector = TRUE) %>%
@@ -43,7 +43,7 @@ library(quantmod)
 # 
 # stocks <- cbind(BCOV, MSFT)
 
-dygraph(stocks, title = "Stocks") %>% 
+dygraph(stocks, main = "Stocks") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
   dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")) %>%
   dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
