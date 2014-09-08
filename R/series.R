@@ -1,18 +1,16 @@
 
 #' dygraph data series options
 #' 
-#' Add per-series options to a dygraph plot. Note that options will use the
-#' default global setting (as determined by \code{\link{dyOptions}}) when not
+#' Add per-series options to a dygraph plot. Note that options will use the 
+#' default global setting (as determined by \code{\link{dyOptions}}) when not 
 #' specified explicitly.
 #' 
 #' @inheritParams dyOptions
 #'   
 #' @param name Name of series within dataset (unamed series can be bound by 
-#'   order or using the convention V1, V2, etc.). This can also be a character 
-#'   vector of length 3 that specifies a set of input series to use as the 
-#'   lower, value, and upper values for a series with a shaded bar drawn around 
-#'   it. In this case the \code{label} parameter must also be specified to 
-#'   provide a label for the aggregate series.
+#'   using the convention V1, V2, etc.). This can also be a character vector of
+#'   length 3 that specifies a set of input series to use as the lower, value,
+#'   and upper for a series with a shaded bar drawn around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
@@ -43,7 +41,7 @@
 #' @return Series options
 #'   
 #' @export
-dySeries <- function(name = NULL, 
+dySeries <- function(name, 
                      label = NULL,
                      color = NULL,
                      axis = "y", 
@@ -57,10 +55,10 @@ dySeries <- function(name = NULL,
                      strokeBorderColor = NULL,
                      ...) {
   
-  # ensure that name is either NULL or of length 1 or 3
-  if (!is.null(name) && length(name) != 1 && length(name)  != 3) {
-    stop("The name parameter must either be NULL, a single ",
-         "character value, or a character value of length 3")
+  # ensure that name is of length 1 or 3
+  if (length(name) != 1 && length(name)  != 3) {
+    stop("The name parameter must either be a character vector ",
+         "of length one or three")
   }
   
   series <- list()
@@ -81,106 +79,69 @@ dySeries <- function(name = NULL,
 }
 
 
-addSeries <- function (attrs, series) {
+addSeries <- function(x, series) {
+  
+  # if there is a custom color and no colors field
+  # exists then allocate it
+  if (!is.null(series$color) && is.null(x$attrs$colors))
+    x$attrs$colors <- rep("black", length(x$attrs$labels) - 1)
+  
+  # resolve multi-series
+  if (length(series$name) == 3) {
     
-  if (length(series) > 0) {
-    colors = character(length(series))
-    for (i in 1:length(series)) { 
-      
-      # copy the series and validate it
-      s <- series[[i]]
-      if (!inherits(s, "dygraph.series"))
-        stop("You must pass only dySeries objects in the series parameter")
-      
-      # record color
-      if (!is.null(s$color))
-        colors[[i]] <- s$color
-      
-      # if this is a named series then find it's index
-      # and re-bind i to it
-      if (!is.null(s$name)) {
-        m <- match(s$name, attrs$labels)
-        if (!is.na(m))
-          i <- m - 1
-      }
-      
-      # custom label if requested
-      if (!is.null(s$label))
-        attrs$labels[[i + 1]] <- s$label
-      
-      # set series options
-      name <- attrs$labels[[i + 1]]
-      attrs$series[[name]] <- s$options
+    # find column indexes within the data
+    cols <- integer(3)
+    for (i in 1:3) {
+      col <- which(x$attrs$labels == series$name[[i]])
+      if (length(col) != 1)
+        stop("Series name '", series$name[[i]], "' not found in input data")
+      cols[[i]] <- col
     }
     
-    # resolve colors (if one specified then all must be specified)
-    colors <- colors[colors != ""]
-    if (length(colors) > 0) {
-      if (length(colors) == length(series)) {
-        attrs$colors <- colors
-      } else {
-        stop("If you specify one custom series color you must specify ",
-             "a color for all series")
-      }
-    }
-  }
-  attrs
-}
-
-
-haveCustomBars <- function(series) {
-  if (!is.null(series) && length(series) > 0) {
-    for (i in 1:length(series))
-      if (length(series[[i]]$name) == 3)
-        return(TRUE)
-  }
-  FALSE
-}
-
-
-resolveCustomBars <- function(data, series) {
-  
-  seriesNames <- character()
-  for (i in 1:length(series)) { 
+    # mark attrs as containing custom bars
+    x$attrs$customBars <- TRUE
     
-    s <- series[[i]]
+    # compute multi-series
+    multiData <- toMultiSeries(x$attrs$file[[cols[[1]]]],
+                               x$attrs$file[[cols[[2]]]],
+                               x$attrs$file[[cols[[3]]]])
     
-    if (length(s$name) == 3) {
-      
-      # get the names
-      names <- s$name
-      
-      # compute the multi series
-      multiSeries <- toMultiSeries(data[[names[[1]]]], 
-                                   data[[names[[2]]]],
-                                   data[[names[[3]]]])
-      
-      # remove those columns from the named list
-      data[names(data) %in% names] <- NULL
-          
-      # set multi-series (using the value column)
-      s$name <- names[[2]]
-      data[[s$name]] <- multiSeries
-      
-      # track series names
-      seriesNames <- c(seriesNames, s$name)
-    }
+    # remove the upper and lower slots
+    if (!is.null(x$attrs$colors))
+      x$attrs$colors <- x$attrs$colors[-c(cols[[1]] - 1, cols[[3]] - 1)]
+    x$attrs$labels <- x$attrs$labels[-c(cols[[1]], cols[[3]])]
+    x$attrs$file <- x$attrs$file[-c(cols[[1]], cols[[3]])]
     
-    series[[i]] <- s
+    # fixup label and name
+    series$name <- series$name[[2]]
+    if (is.null(series$label))
+      series$label <- series$name  
+    
+    # set the new series data
+    col <- which(x$attrs$labels == series$name)
+    x$attrs$file[[col]] <- multiData
   }
   
-  # for dataset elements not named in a multi-series, provide
-  # three values so that they can still be displayed
-  columns <- names(data)
-  columns <- columns[!columns %in% seriesNames]
-  for (column in columns) {
-    values <- data[[column]]
-    data[[column]] <- toMultiSeries(values, values, values)
-  }
+  # determine column
+  col <- which(x$attrs$labels == series$name)
+  if (length(col) != 1)
+    stop("Series name '", series$name, "' not found in input data")
+    
+  # color
+  if (!is.null(series$color))
+    x$attrs$colors[[col - 1]] <- series$color
   
-  # return resolved dataset and series
-  list(data = data, series = series)
+  # label
+  if (!is.null(series$label))
+    x$attrs$labels[[col]] <- series$label
+  
+  # options
+  x$attrs$series[[series$name]] <- series$options
+
+  # return modified x
+  x
 }
+
 
 # return a list of three element arrays 
 toMultiSeries <- function(lower, value, upper) {  

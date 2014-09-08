@@ -3,18 +3,16 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(name = NULL, label = NULL, color = NULL, axis = "y",
-  stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = NULL, ...)
+dySeries(name, label = NULL, color = NULL, axis = "y", stepPlot = NULL,
+  fillGraph = NULL, drawPoints = NULL, pointSize = NULL,
+  strokeWidth = NULL, strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = NULL, ...)
 }
 \arguments{
 \item{name}{Name of series within dataset (unamed series can be bound by
-order or using the convention V1, V2, etc.). This can also be a character
-vector of length 3 that specifies a set of input series to use as the
-lower, value, and upper values for a series with a shaded bar drawn around
-it. In this case the \code{label} parameter must also be specified to
-provide a label for the aggregate series.}
+using the convention V1, V2, etc.). This can also be a character vector of
+length 3 that specifies a set of input series to use as the lower, value,
+and upper for a series with a shaded bar drawn around it.}
 
 \item{label}{Label to display for series (uses name if no label defined)}
 

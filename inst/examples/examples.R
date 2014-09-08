@@ -23,7 +23,7 @@ dygraph(discoveries,
   
   title = "Important Discoveries",
   
-  series = dySeries("Discoveries"),
+  series = dySeries("V1", label = "Discoveries"),
   
   axes = list(
     dyAxis("x", label = "Total / Year", pixelsPerLabel = 60),
@@ -62,14 +62,15 @@ library(quantmod)
 # MSFT$MSFT.Open <- NULL
 # MSFT$MSFT.Volume <- NULL
 # MSFT$MSFT.Adjusted <- NULL
-
-stocks <- cbind(BCOV, MSFT)
+# 
+# stocks <- cbind(BCOV, MSFT)
 
 dygraph(stocks,
   series = list(
-    dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV"),
+    dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")),
     dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
-  )
+  ),
+  options = dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
 )
 
 
