@@ -12,7 +12,6 @@
 # TODO: built-in support for smoothing (regressions) with error bars
 #         -- look at loess and lm/predict, e.g.
 #               predict(lm(dist ~ speed, cars), cars, interval = "confidence")
-#         -- dySmooth as series type
 
 
 # TODO: docs and examples
