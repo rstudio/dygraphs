@@ -8,7 +8,9 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Depends:
-    xts (>= 0.9-7)
+    R (>= 3.0),
+    methods
 Imports:
+    xts (>= 0.9-7),
     zoo (>= 1.7-10),
     htmlwidgets

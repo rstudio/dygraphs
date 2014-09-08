@@ -9,7 +9,6 @@
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
 # TODO: improved default CSS/fonts (for viewer pane only?)
-# TODO: overcome xts imports/s3 issues
 # TODO: does the use of dySeries automatically discard other columns?
 # TODO: built-in support for smoothing (regressions) with error bars
 #         -- look at loess and lm/predict, e.g.
@@ -45,7 +44,12 @@
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
 #' @return Interactive dygraph plot
-#'   
+#'  
+#' @importFrom xts is.xts
+#' @importFrom xts as.xts
+#' @importFrom xts periodicity
+#' @importFrom zoo coredata
+#'     
 #' @export
 dygraph <- function(data, 
                     title = NULL,
@@ -68,11 +72,11 @@ dygraph <- function(data,
     options <- list(options)
   
   # convert data to xts
-  if (!is.xts(data))
-    data <- as.xts(data)
+  if (!xts::is.xts(data))
+    data <- xts::as.xts(data)
   
   # check periodicity 
-  periodicity <- periodicity(data)
+  periodicity <- xts::periodicity(data)
   
   # convert time string we can pass to javascript Date function and
   # extract core data from xts object
