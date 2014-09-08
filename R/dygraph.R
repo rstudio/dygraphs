@@ -3,8 +3,9 @@
 
 # TODO: consider using magrittr syntax
 
+# TODO: y2 axis doesn't seemt to be working
+
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
-# TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
 
 # TODO: improved default CSS/fonts (for viewer pane only?)
 
@@ -23,7 +24,10 @@
 #' 
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
-#' @param title Main plot title (optional)
+#' @param main Main plot title (optional)
+#' @param xlab X axis label
+#' @param ylab Y axis label
+#' @param y2lab Y2 axis label
 #' @param series Series definition (or list of series definitions) created using
 #'   the \code{\link{dySeries}} function. Series can be bound positionally or 
 #'   explicity using the \code{name} parameter of \code{dySeries}.
@@ -47,7 +51,10 @@
 #'     
 #' @export
 dygraph <- function(data, 
-                    title = NULL,
+                    main = NULL,
+                    xlab = NULL,
+                    ylab = NULL,
+                    y2lab = NULL,
                     series = list(),
                     axes = list(),
                     interaction = list(),
@@ -77,7 +84,10 @@ dygraph <- function(data,
   
   # create native dygraph attrs object
   attrs <- list()
-  attrs$title <- title
+  attrs$title <- main
+  attrs$xlabel <- xlab
+  attrs$ylabel <- ylab
+  attrs$y2label <- y2lab
   attrs$labels <- names(data)
   if (length(attrs$labels) > 1)
     attrs$legend <- "always"
