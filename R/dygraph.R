@@ -1,7 +1,6 @@
 
 # TODO: support for annotations
 
-# TODO: use add and remove functions in dySeries
 # TODO: consider breaking dyInteraction into separate functions
 
 # TODO: docs and examples

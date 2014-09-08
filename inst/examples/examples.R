@@ -43,7 +43,7 @@ library(quantmod)
 # 
 # stocks <- cbind(BCOV, MSFT)
 
-dygraph(stocks, main = "Stocks") %>% 
+dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
   dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")) %>%
   dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
