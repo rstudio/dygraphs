@@ -1,5 +1,11 @@
 
 # TODO: support for annotations
+# TODO: consider using magrittr syntax
+#       - step one would be re-coding existing main function so that
+#         all transformations are stateless and can therefore 
+#         occur in any order
+#       - if we do this then separate data into it's own x field so 
+#         that mergeLists doesn't repeadely copy the data)
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
 # TODO: improved default CSS/fonts (for viewer pane only?)
@@ -11,6 +17,8 @@
 #         -- points + line with error bar for future
 #         -- dySmooth as series type
 #         -- allow dySeries to return multiple data series (via S3?)
+# TODO: custom series types: dyPoints, dyLine, dySmooth, dyPredict
+# TODO: consider breaking dyOptions into dyOptions and dyTheme
 
 # TODO: docs and examples
 
