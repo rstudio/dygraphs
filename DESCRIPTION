@@ -9,8 +9,8 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Depends:
     R (>= 3.0),
-    methods
+    methods,
+    zoo (>= 1.7-10)
 Imports:
     xts (>= 0.9-7),
-    zoo (>= 1.7-10),
     htmlwidgets
