@@ -2,7 +2,6 @@
 # TODO: support for annotations
 
 # TODO: consider using magrittr syntax
-
 # TODO: consider series types: dyPoints, dyLine, dySmooth, dyPredict
 
 # TODO: docs and examples

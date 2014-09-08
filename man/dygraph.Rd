@@ -3,19 +3,15 @@
 \alias{dygraph}
 \title{Interactive plot for time series data}
 \usage{
-dygraph(data, main = NULL, xlab = NULL, ylab = NULL, series = list(),
-  axes = list(), interaction = list(), options = list(), group = NULL,
-  width = NULL, height = NULL)
+dygraph(data, title = NULL, series = list(), axes = list(),
+  interaction = list(), options = list(), group = NULL, width = NULL,
+  height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
 which is covertible to \code{xts}).}
 
-\item{main}{Main plot title (optional)}
-
-\item{xlab}{X axis label}
-
-\item{ylab}{Y axis label}
+\item{title}{Main plot title (optional)}
 
 \item{series}{Series definition (or list of series definitions) created using
 the \code{\link{dySeries}} function. Series can be bound positionally or
