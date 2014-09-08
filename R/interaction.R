@@ -3,6 +3,7 @@
 #' 
 #' Add interactive behaviors to a dygraph plot.
 #' 
+#' @param dygraph Dygraph to add interactive behaviors to
 #' @param showRangeSelector Show or hide the range selector widget.
 #' @param dateWindow Initially zoom in on a section of the graph. Is a two 
 #'   element vector [earliest, latest], where earliest/latest objects 
@@ -27,7 +28,8 @@
 #' @return Interaction options
 #'   
 #' @export
-dyInteraction <- function(showRangeSelector = FALSE,
+dyInteraction <- function(dygraph,
+                          showRangeSelector = FALSE,
                           dateWindow = NULL,
                           animatedZooms = FALSE,
                           highlightCircleSize = 3,
@@ -56,20 +58,10 @@ dyInteraction <- function(showRangeSelector = FALSE,
   interaction$hideOverlayOnMouseOut <- hideOverlyOnMouseOut
   interaction$showRoller <- showRoller
   interaction$rollPeriod = rollPeriod
-  structure(interaction, class = "dygraph.interaction")
-}
-
-
-addInteraction <- function (attrs, interaction) {
   
-  for (i in interaction) {
-    # validate
-    if (!inherits(i, "dygraph.interaction"))
-      stop("You must pass only dyInteraction objects in the interaction parameter")
-    
-    # merge 
-    attrs <- mergeLists(attrs, i)
-  }
+  # merge interactions
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, interaction)
   
-  attrs
+  # return modified dygraph
+  dygraph
 }

@@ -6,7 +6,8 @@
 #' specified explicitly.
 #' 
 #' @inheritParams dyOptions
-#'   
+#'
+#' @param dygraph Dygraph to add an axis definition to
 #' @param name Axis name ('x', 'y', or 'y2')
 #' @param label Label to display for axis (defaults to none).
 #' @param valueRange Explicitly set the vertical range of the graph to 
@@ -44,7 +45,8 @@
 #' @return Axis options
 #' 
 #' @export
-dyAxis <- function(name, 
+dyAxis <- function(dygraph,
+                   name, 
                    label = NULL, 
                    valueRange = NULL,
                    ticker = NULL,
@@ -71,25 +73,17 @@ dyAxis <- function(name,
   axis$options$gridLineColor <- gridLineColor
   axis$options$gridLineWidth <- gridLineWidth
   axis$options$independentTicks <- independentTicks
-  structure(axis, class = "dygraph.axis")
+
+  # copy attrs for modification
+  attrs <- dygraph$x$attrs
+  
+  # label and options
+  if (!is.null(axis$label))
+    attrs[[sprintf("%slabel", axis$name)]] <- axis$label
+  attrs$axes[[axis$name]] <- axis$options  
+  
+  # return modified dygraph
+  dygraph$x$attrs <- attrs
+  dygraph
 }
 
-
-addAxes <- function (attrs, axes) {
-
-  if (length(axes) > 0) {
-    for (i in 1:length(axes)) {
-      
-      # copy the axis and validate it
-      axis <- axes[[i]]
-      if (!inherits(axis, "dygraph.axis"))
-        stop("You must pass only dyAxis objects in the axes parameter")
-      
-      # set axis options
-      if (!is.null(axis$label))
-        attrs[[sprintf("%slabel", axis$name)]] <- axis$label
-      attrs$axes[[axis$name]] <- axis$options  
-    }
-  }
-  attrs
-}

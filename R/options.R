@@ -3,6 +3,7 @@
 #' 
 #' Add options to a dygraph plot.
 #' 
+#' @param dygraph Dygraph to add options to
 #' @param stackedGraph If set, stack series on top of one another rather than 
 #'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
@@ -81,7 +82,8 @@
 #' @return Series options
 #'   
 #' @export
-dyOptions <- function(stackedGraph = FALSE,
+dyOptions <- function(dygraph,
+                      stackedGraph = FALSE,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
                       stepPlot = FALSE,
@@ -129,20 +131,10 @@ dyOptions <- function(stackedGraph = FALSE,
   if (!is.null(css))
     options$css <- paste(readLines(css, warn = FALSE), collapse = "\n")
   options <- append(options, list(...))
-  structure(options, class = "dygraph.options")
-}
-
-
-addOptions <- function (attrs, options) {
   
-  for (o in options) {
-    # validate
-    if (!inherits(o, "dygraph.options"))
-      stop("You must pass only dyOptions objects in the options parameter")
-    
-    # merge 
-    attrs <- mergeLists(attrs, o)
-  }
+  # merge options into attrs
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
   
-  attrs
+  # return modified dygraph
+  dygraph
 }

@@ -3,9 +3,8 @@
 \alias{dygraph}
 \title{Interactive plot for time series data}
 \usage{
-dygraph(data, title = NULL, series = list(), axes = list(),
-  interaction = list(), options = list(), group = NULL, width = NULL,
-  height = NULL)
+dygraph(data, title = NULL, interaction = list(), group = NULL,
+  width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
@@ -13,18 +12,8 @@ which is covertible to \code{xts}).}
 
 \item{title}{Main plot title (optional)}
 
-\item{series}{Series definition (or list of series definitions) created using
-the \code{\link{dySeries}} function. Series can be bound positionally or
-explicity using the \code{name} parameter of \code{dySeries}.}
-
-\item{axes}{Axis definition (or list of axis definitions) created using the
-the \code{\link{dyAxis}} function.}
-
 \item{interaction}{Interactions (or list of interactions) created using the
 \code{\link{dyInteraction}} function.}
-
-\item{options}{Options (or list of options) created using the
-\code{\link{dyOptions}} function.}
 
 \item{group}{Group to associate this plot with. The x-axis zoom level of
 plots within a group is automatically synchronized.}

@@ -6,37 +6,18 @@ library(datasets)
 lungDeaths <- cbind(mdeaths, fdeaths)
 colnames(lungDeaths) <- c("Male", "Female")
 
-dygraph(lungDeaths, 
-  series = list(
-    dySeries("Male"),
-    dySeries("Female")
-  ),
-  axes = list(
-    dyAxis("x", label = "Month"),
-    dyAxis("y", label = "Deaths", drawGrid = FALSE)
-  ),
-  interaction = dyInteraction(highlightSeriesOpts = list(strokeWidth = 3)),
-  options = dyOptions()
-)
+dygraph(lungDeaths) %>%  
+  dyAxis("x", label = "Month") %>%
+  dyAxis("y", label = "Deaths", drawGrid = FALSE) %>%
+  dySeries("Male") %>%
+  dySeries("Female") %>% 
+  dyInteraction(highlightSeriesOpts = list(strokeWidth = 3))
 
-dygraph(discoveries, 
-  
-  title = "Important Discoveries",
-
-  series = dySeries("V1", label = "Discoveries"),
-  
-  axes = list(
-    dyAxis("x", pixelsPerLabel = 60)
-  ),
-
-  interaction = dyInteraction(),
-  
-  options = dyOptions(
-    fillGraph = TRUE,
-    strokeWidth = 2
-  )
-)
-
+dygraph(discoveries, title = "Important Discoveries") %>%
+  dyAxis("x", pixelsPerLabel = 60) %>%
+  dySeries("V1", label = "Discoveries") %>%
+  dyInteraction(showRangeSelector = TRUE) %>%
+  dyOptions(fillGraph = TRUE, strokeWidth = 2)
 
 temperature <- ts(
   data = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6),
@@ -46,12 +27,10 @@ rainfall <- ts(
   frequency = 12, start = c(1980, 1))
 weather <- cbind(rainfall, temperature)
 
-dygraph(weather,
-  axes = list(
-    dyAxis('y2', independentTicks = TRUE)
-  ),
-  series = dySeries('rainfall', label = "Rain", axis = 'y2')
-)
+dygraph(weather) %>%
+  dyAxis('y2', independentTicks = TRUE) %>%
+  dySeries('rainfall', label = "Rain", axis = 'y2')
+
 
 library(quantmod)
 # getSymbols(c("BCOV", "MSFT"), from = "2012-01-01")
@@ -64,14 +43,10 @@ library(quantmod)
 # 
 # stocks <- cbind(BCOV, MSFT)
 
-dygraph(stocks,
-  title = "Stocks",
-  series = list(
-    dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")),
-    dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
-  ),
-  options = dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
-)
+dygraph(stocks, title = "Stocks") %>% 
+  dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
+  dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")) %>%
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
 
 
 

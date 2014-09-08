@@ -1,8 +1,9 @@
 
 # TODO: support for annotations
 
-# TODO: consider using magrittr syntax
-# TODO: consider series types: dyPoints, dyLine, dySmooth, dyPredict
+# TODO: get main, xlab, ylab back in
+# TODO: use add and remove functions in dySeries
+# TODO: consider breaking dyInteraction into separate functions
 
 # TODO: docs and examples
 
@@ -14,15 +15,8 @@
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
 #' @param title Main plot title (optional)
-#' @param series Series definition (or list of series definitions) created using
-#'   the \code{\link{dySeries}} function. Series can be bound positionally or 
-#'   explicity using the \code{name} parameter of \code{dySeries}.
-#' @param axes Axis definition (or list of axis definitions) created using the 
-#'   the \code{\link{dyAxis}} function.
 #' @param interaction Interactions (or list of interactions) created using the
 #'   \code{\link{dyInteraction}} function.
-#' @param options Options (or list of options) created using the
-#'   \code{\link{dyOptions}} function.
 #' @param group Group to associate this plot with. The x-axis zoom level of 
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
@@ -34,14 +28,13 @@
 #' @importFrom xts as.xts
 #' @importFrom xts periodicity
 #' @importFrom zoo coredata
+#' @importFrom magrittr %>%
+#' @export %>%     
 #'     
 #' @export
 dygraph <- function(data, 
                     title = NULL,
-                    series = list(),
-                    axes = list(),
                     interaction = list(),
-                    options = list(),
                     group = NULL,
                     width = NULL, 
                     height = NULL) {
@@ -82,30 +75,7 @@ dygraph <- function(data,
   # add data (strip names first so we marshall as a 2d array)
   names(data) <- NULL
   x$data <- data
-  
-  # add series
-  if (inherits(series, "dygraph.series"))
-    series <- list(series)
-  for (s in series)
-    x <- addSeries(x, s)
     
-  # add axes
-  if (inherits(axes, "dygraph.axis"))
-    axes <- list(axes)
-  x$attrs <- addAxes(x$attrs, axes)
-  
-  # add interaction
-  if (inherits(interaction, "dygraph.interaction"))
-    interaction <- list(interaction)
-  x$attrs <- addInteraction(x$attrs, interaction)
-
-  # add options (hoist css into side data)
-  if (inherits(options, "dygraph.options"))
-    options <- list(options)
-  x$attrs <- addOptions(x$attrs, options)
-  x$css <- x$attrs$css
-  x$attrs$css <- NULL
-   
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",

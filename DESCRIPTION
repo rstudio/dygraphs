@@ -12,5 +12,6 @@ Depends:
     methods,
     zoo (>= 1.7-10)
 Imports:
+    magrittr,
     xts (>= 0.9-7),
     htmlwidgets

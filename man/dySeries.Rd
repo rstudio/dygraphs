@@ -3,12 +3,14 @@
 \alias{dySeries}
 \title{dygraph data series options}
 \usage{
-dySeries(name, label = NULL, color = NULL, axis = "y", stepPlot = NULL,
-  fillGraph = NULL, drawPoints = NULL, pointSize = NULL,
-  strokeWidth = NULL, strokePattern = NULL, strokeBorderWidth = NULL,
-  strokeBorderColor = NULL, ...)
+dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
+  stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
+  pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
+  strokeBorderWidth = NULL, strokeBorderColor = NULL, ...)
 }
 \arguments{
+\item{dygraph}{Dygraph to add a series definition to}
+
 \item{name}{Name of series within dataset (unamed series can be bound by
 using the convention V1, V2, etc.). This can also be a character vector of
 length 3 that specifies a set of input series to use as the lower, value,

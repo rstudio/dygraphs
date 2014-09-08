@@ -3,12 +3,14 @@
 \alias{dyAxis}
 \title{dygraph axis options}
 \usage{
-dyAxis(name, label = NULL, valueRange = NULL, ticker = NULL,
+dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
   pixelsPerLabel = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
   gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL,
   ...)
 }
 \arguments{
+\item{dygraph}{Dygraph to add an axis definition to}
+
 \item{name}{Axis name ('x', 'y', or 'y2')}
 
 \item{label}{Label to display for axis (defaults to none).}

@@ -7,6 +7,7 @@
 #' 
 #' @inheritParams dyOptions
 #'   
+#' @param dygraph Dygraph to add a series definition to
 #' @param name Name of series within dataset (unamed series can be bound by 
 #'   using the convention V1, V2, etc.). This can also be a character vector of
 #'   length 3 that specifies a set of input series to use as the lower, value,
@@ -41,7 +42,8 @@
 #' @return Series options
 #'   
 #' @export
-dySeries <- function(name, 
+dySeries <- function(dygraph,
+                     name, 
                      label = NULL,
                      color = NULL,
                      axis = "y", 
@@ -61,6 +63,7 @@ dySeries <- function(name,
          "of length one or three")
   }
   
+  # create series object
   series <- list()
   series$name <- name
   series$label <- label
@@ -75,16 +78,14 @@ dySeries <- function(name,
   series$options$strokePattern <- strokePattern
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor
-  structure(series, class = "dygraph.series")
-}
-
-
-addSeries <- function(x, series) {
+ 
+  # copy attrs for modification
+  attrs <- dygraph$x$attrs
   
   # if there is a custom color and no colors field
   # exists then allocate it
-  if (!is.null(series$color) && is.null(x$attrs$colors))
-    x$attrs$colors <- rep("black", length(x$attrs$labels) - 1)
+  if (!is.null(series$color) && is.null(attrs$colors))
+    attrs$colors <- rep("black", length(attrs$labels) - 1)
   
   # resolve multi-series
   if (length(series$name) == 3) {
@@ -92,25 +93,23 @@ addSeries <- function(x, series) {
     # find column indexes within the data
     cols <- integer(3)
     for (i in 1:3) {
-      col <- which(x$attrs$labels == series$name[[i]])
+      col <- which(attrs$labels == series$name[[i]])
       if (length(col) != 1)
         stop("Series name '", series$name[[i]], "' not found in input data")
       cols[[i]] <- col
     }
     
     # mark attrs as containing custom bars
-    x$attrs$customBars <- TRUE
+    attrs$customBars <- TRUE
     
     # compute multi-series
-    multiData <- toMultiSeries(x$data[[cols[[1]]]],
-                               x$data[[cols[[2]]]],
-                               x$data[[cols[[3]]]])
+    multiData <- toMultiSeries(dygraph$x$data[[cols[[1]]]],
+                               dygraph$x$data[[cols[[2]]]],
+                               dygraph$x$data[[cols[[3]]]])
     
     # remove the upper and lower slots
-    if (!is.null(x$attrs$colors))
-      x$attrs$colors <- x$attrs$colors[-c(cols[[1]] - 1, cols[[3]] - 1)]
-    x$attrs$labels <- x$attrs$labels[-c(cols[[1]], cols[[3]])]
-    x$data <- x$data[-c(cols[[1]], cols[[3]])]
+    attrs$labels <- attrs$labels[-c(cols[[1]], cols[[3]])]
+    dygraph$x$data <- dygraph$x$data[-c(cols[[1]], cols[[3]])]
     
     # fixup label and name
     series$name <- series$name[[2]]
@@ -118,33 +117,33 @@ addSeries <- function(x, series) {
       series$label <- series$name  
     
     # set the new series data
-    col <- which(x$attrs$labels == series$name)
-    x$data[[col]] <- multiData
+    col <- which(attrs$labels == series$name)
+    dygraph$x$data[[col]] <- multiData
   }
   
   # determine column
-  col <- which(x$attrs$labels == series$name)
+  col <- which(attrs$labels == series$name)
   if (length(col) != 1)
     stop("Series name '", series$name, "' not found in input data")
-    
+  
   # color
   if (!is.null(series$color))
-    x$attrs$colors[[col - 1]] <- series$color
+    attrs$colors[[col - 1]] <- series$color
   
   # default the label if we need to
   if (is.null(series$label))
     series$label <- series$name
   
   # set into labels
-  x$attrs$labels[[col]] <- series$label
+  attrs$labels[[col]] <- series$label
   
   # options
-  x$attrs$series[[series$label]] <- series$options
-
-  # return modified x
-  x
+  attrs$series[[series$label]] <- series$options
+  
+  # return modified dygraph
+  dygraph$x$attrs <- attrs
+  dygraph
 }
-
 
 # return a list of three element arrays 
 toMultiSeries <- function(lower, value, upper) {  

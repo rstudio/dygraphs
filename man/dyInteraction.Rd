@@ -3,13 +3,15 @@
 \alias{dyInteraction}
 \title{dygraph interaction}
 \usage{
-dyInteraction(showRangeSelector = FALSE, dateWindow = NULL,
+dyInteraction(dygraph, showRangeSelector = FALSE, dateWindow = NULL,
   animatedZooms = FALSE, highlightCircleSize = 3,
   highlightSeriesBackgroundAlpha = 0.5, highlightSeriesOpts = list(),
   showLabelsOnHighlight = TRUE, hideOverlyOnMouseOut = TRUE,
   showRoller = FALSE, rollPeriod = 1)
 }
 \arguments{
+\item{dygraph}{Dygraph to add interactive behaviors to}
+
 \item{showRangeSelector}{Show or hide the range selector widget.}
 
 \item{dateWindow}{Initially zoom in on a section of the graph. Is a two
