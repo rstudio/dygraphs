@@ -3,9 +3,9 @@
 \alias{dygraph}
 \title{Interactive plot for time series data}
 \usage{
-dygraph(data, main = NULL, xlab = NULL, ylab = NULL, y2lab = NULL,
-  series = list(), axes = list(), interaction = list(),
-  options = list(), group = NULL, width = NULL, height = NULL)
+dygraph(data, main = NULL, xlab = NULL, ylab = NULL, series = list(),
+  axes = list(), interaction = list(), options = list(), group = NULL,
+  width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
@@ -16,8 +16,6 @@ which is covertible to \code{xts}).}
 \item{xlab}{X axis label}
 
 \item{ylab}{Y axis label}
-
-\item{y2lab}{Y2 axis label}
 
 \item{series}{Series definition (or list of series definitions) created using
 the \code{\link{dySeries}} function. Series can be bound positionally or

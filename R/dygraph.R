@@ -5,16 +5,6 @@
 
 # TODO: y2 axis doesn't seemt to be working
 
-# TODO: support of other data input types? (e.g. formula, x, y, etc.)
-
-# TODO: improved default CSS/fonts (for viewer pane only?)
-
-# TODO: custom series types: dyPoints, dyLine, dySmooth, dyPredict
-# TODO: built-in support for smoothing (regressions) with error bars
-#         -- look at loess and lm/predict, e.g.
-#               predict(lm(dist ~ speed, cars), cars, interval = "confidence")
-
-
 # TODO: docs and examples
 
 #' Interactive plot for time series data
@@ -27,7 +17,6 @@
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
-#' @param y2lab Y2 axis label
 #' @param series Series definition (or list of series definitions) created using
 #'   the \code{\link{dySeries}} function. Series can be bound positionally or 
 #'   explicity using the \code{name} parameter of \code{dySeries}.
@@ -54,7 +43,6 @@ dygraph <- function(data,
                     main = NULL,
                     xlab = NULL,
                     ylab = NULL,
-                    y2lab = NULL,
                     series = list(),
                     axes = list(),
                     interaction = list(),
@@ -87,7 +75,6 @@ dygraph <- function(data,
   attrs$title <- main
   attrs$xlabel <- xlab
   attrs$ylabel <- ylab
-  attrs$y2label <- y2lab
   attrs$labels <- names(data)
   if (length(attrs$labels) > 1)
     attrs$legend <- "always"

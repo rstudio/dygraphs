@@ -86,7 +86,8 @@ addAxes <- function (attrs, axes) {
         stop("You must pass only dyAxis objects in the axes parameter")
       
       # set axis options
-      attrs[[sprintf("%slabel", axis$name)]] <- axis$label
+      if (!is.null(axis$label))
+        attrs[[sprintf("%slabel", axis$name)]] <- axis$label
       attrs$axes[[axis$name]] <- axis$options  
     }
   }
