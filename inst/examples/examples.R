@@ -21,10 +21,8 @@ dygraph(lungDeaths,
 
 dygraph(discoveries, 
   
-  main = "Important Discoveries",
-  xlab = "Total / Year",
-  ylab = "Discoveries",
-  
+  title = "Important Discoveries",
+
   series = dySeries("V1", label = "Discoveries"),
   
   axes = list(
@@ -67,9 +65,7 @@ library(quantmod)
 # stocks <- cbind(BCOV, MSFT)
 
 dygraph(stocks,
-  main = "Stocks",
-  xlab = "Date",
-  ylab = "Price",
+  title = "Stocks",
   series = list(
     dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")),
     dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")

@@ -14,9 +14,7 @@
 #' 
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is covertible to \code{xts}).
-#' @param main Main plot title (optional)
-#' @param xlab X axis label
-#' @param ylab Y axis label
+#' @param title Main plot title (optional)
 #' @param series Series definition (or list of series definitions) created using
 #'   the \code{\link{dySeries}} function. Series can be bound positionally or 
 #'   explicity using the \code{name} parameter of \code{dySeries}.
@@ -40,9 +38,7 @@
 #'     
 #' @export
 dygraph <- function(data, 
-                    main = NULL,
-                    xlab = NULL,
-                    ylab = NULL,
+                    title = NULL,
                     series = list(),
                     axes = list(),
                     interaction = list(),
@@ -72,9 +68,7 @@ dygraph <- function(data,
   
   # create native dygraph attrs object
   attrs <- list()
-  attrs$title <- main
-  attrs$xlabel <- xlab
-  attrs$ylabel <- ylab
+  attrs$title <- title
   attrs$labels <- names(data)
   if (length(attrs$labels) > 1)
     attrs$legend <- "always"
