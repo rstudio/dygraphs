@@ -3,7 +3,7 @@
 
 # TODO: consider using magrittr syntax
 
-# TODO: y2 axis doesn't seemt to be working
+# TODO: consider series types: dyPoints, dyLine, dySmooth, dyPredict
 
 # TODO: docs and examples
 

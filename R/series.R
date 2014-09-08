@@ -131,12 +131,15 @@ addSeries <- function(x, series) {
   if (!is.null(series$color))
     x$attrs$colors[[col - 1]] <- series$color
   
-  # label
-  if (!is.null(series$label))
-    x$attrs$labels[[col]] <- series$label
+  # default the label if we need to
+  if (is.null(series$label))
+    series$label <- series$name
+  
+  # set into labels
+  x$attrs$labels[[col]] <- series$label
   
   # options
-  x$attrs$series[[series$name]] <- series$options
+  x$attrs$series[[series$label]] <- series$options
 
   # return modified x
   x

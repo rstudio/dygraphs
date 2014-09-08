@@ -21,17 +21,16 @@ dygraph(lungDeaths,
 
 dygraph(discoveries, 
   
-  title = "Important Discoveries",
+  main = "Important Discoveries",
+  xlab = "Total / Year",
+  ylab = "Discoveries",
   
   series = dySeries("V1", label = "Discoveries"),
   
   axes = list(
-    dyAxis("x", label = "Total / Year", pixelsPerLabel = 60),
-    dyAxis("y")
+    dyAxis("x", pixelsPerLabel = 60)
   ),
-  
 
-  
   interaction = dyInteraction(),
   
   options = dyOptions(
@@ -50,8 +49,10 @@ rainfall <- ts(
 weather <- cbind(rainfall, temperature)
 
 dygraph(weather,
-  series = dySeries('rainfall', label = "Rain", axis = 'y2'),
-  options = dyOptions(css = "inst/examples/styles.css")
+  axes = list(
+    dyAxis('y2', independentTicks = TRUE)
+  ),
+  series = dySeries('rainfall', label = "Rain", axis = 'y2')
 )
 
 library(quantmod)
@@ -66,6 +67,9 @@ library(quantmod)
 # stocks <- cbind(BCOV, MSFT)
 
 dygraph(stocks,
+  main = "Stocks",
+  xlab = "Date",
+  ylab = "Price",
   series = list(
     dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")),
     dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
