@@ -1,8 +1,6 @@
 
 # TODO: support for annotations
 # TODO: consider using magrittr syntax
-#       - if we do this then separate data into it's own x field so 
-#         that mergeLists doesn't repeadely copy the data)
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function
 # TODO: improved default CSS/fonts (for viewer pane only?)

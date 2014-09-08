@@ -102,15 +102,15 @@ addSeries <- function(x, series) {
     x$attrs$customBars <- TRUE
     
     # compute multi-series
-    multiData <- toMultiSeries(x$attrs$file[[cols[[1]]]],
-                               x$attrs$file[[cols[[2]]]],
-                               x$attrs$file[[cols[[3]]]])
+    multiData <- toMultiSeries(x$data[[cols[[1]]]],
+                               x$data[[cols[[2]]]],
+                               x$data[[cols[[3]]]])
     
     # remove the upper and lower slots
     if (!is.null(x$attrs$colors))
       x$attrs$colors <- x$attrs$colors[-c(cols[[1]] - 1, cols[[3]] - 1)]
     x$attrs$labels <- x$attrs$labels[-c(cols[[1]], cols[[3]])]
-    x$attrs$file <- x$attrs$file[-c(cols[[1]], cols[[3]])]
+    x$data <- x$data[-c(cols[[1]], cols[[3]])]
     
     # fixup label and name
     series$name <- series$name[[2]]
@@ -119,7 +119,7 @@ addSeries <- function(x, series) {
     
     # set the new series data
     col <- which(x$attrs$labels == series$name)
-    x$attrs$file[[col]] <- multiData
+    x$data[[col]] <- multiData
   }
   
   # determine column

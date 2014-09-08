@@ -15,8 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
-    // get dygraph attrs
+    // get dygraph attrs and populate file field
     var attrs = x.attrs;
+    attrs.file = x.data;
     
     // resolve javascript functions
     this.resolveFunctions(x.attrs);
