@@ -1,5 +1,4 @@
 
-# TODO: need a colors argument on dyOptions
 # TODO: support for annotations
 # TODO: support of other data input types? (e.g. formula, x, y, etc.)
 # TODO: consider supporting x,y,main,xlab,ylab for consistency with plot function

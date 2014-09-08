@@ -36,11 +36,16 @@
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set. This option can also be set on a 
 #'   per-series basis.
-#' @param colorValue If custom per-series colors are not specified, value of the
-#'   data series colors, as in hue/saturation/value (0.0-1.0, default 0.5).
-#' @param colorSaturation If custom per-series colors are not specified, 
-#'   saturation of the automatically-generated data series colors (0.0-1.0, 
-#'   default 0.5).
+#' @param colors Character vector of colors for the data series. These can be of
+#'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 
+#'   specified, equally-spaced points around a color wheel are used. This option
+#'   can also be set on a per-series basis. Note that in both global and 
+#'   per-series specification of custom colors you must provide a color for all
+#'   series being displayed.
+#' @param colorValue If custom colors are not specified, value of the data
+#'   series colors, as in hue/saturation/value (0.0-1.0, default 0.5).
+#' @param colorSaturation If custom colors are not specified, saturation of the
+#'   automatically-generated data series colors (0.0-1.0, default 0.5).
 #' @param drawXAxis Whether to draw the x-axis. Setting this to false also 
 #'   prevents x-axis ticks from being drawn and reclaims the space for the chart
 #'   grid/lines.
@@ -62,13 +67,13 @@
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
 #'   chart.This option can also be set on a per-series basis.
-#' @param css Path to css file to be used for styling textual elements of the
-#'   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
-#'   the dygraphs website for additional details on which styles are available.
-#'   Note that CSS styles are global so will affect all dycharts on a given
-#'   web page. This also implies that for a page with multiple plots you 
-#'   only need to specify styles for the first one (alternatively you can
-#'   just add them directly to the page by other means).
+#' @param css Path to css file to be used for styling textual elements of the 
+#'   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on 
+#'   the dygraphs website for additional details on which styles are available. 
+#'   Note that CSS styles are global so will affect all dycharts on a given web 
+#'   page. This also implies that for a page with multiple plots you only need 
+#'   to specify styles for the first one (alternatively you can just add them 
+#'   directly to the page by other means).
 #' @param ... Additional options to pass directly to dygraphs (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
@@ -86,6 +91,7 @@ dyOptions <- function(stackedGraph = FALSE,
                       strokePattern = NULL,
                       strokeBorderWidth = NULL,
                       strokeBorderColor = "white",
+                      colors = NULL,
                       colorValue = 0.5,
                       colorSaturation = 1.0,
                       drawXAxis = TRUE,
@@ -109,6 +115,7 @@ dyOptions <- function(stackedGraph = FALSE,
   options$strokePattern <- strokePattern
   options$strokeBorderWidth <- strokeBorderWidth
   options$strokeBorderColor <- strokeBorderColor
+  options$colors <- colors
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
   options$drawXAxis <- drawXAxis
