@@ -1,16 +1,16 @@
 #' dygraph data series
 #' 
-#' Add a data series to a dygraph plot. Note that options will use the 
-#' default global setting (as determined by \code{\link{dyOptions}}) when not 
-#' specified explicitly. When no \code{dySeries} is specified for a 
-#' plot then all series within the underlying data are plotted.
+#' Add a data series to a dygraph plot. Note that options will use the default
+#' global setting (as determined by \code{\link{dyOptions}}) when not specified
+#' explicitly. When no \code{dySeries} is specified for a plot then all series
+#' within the underlying data are plotted.
 #' 
 #' @inheritParams dyOptions
 #'   
 #' @param dygraph Dygraph to add a series definition to
 #' @param name Name of series within dataset (unamed series can be bound by 
-#'   using the convention V1, V2, etc.). This can also be a character vector of
-#'   length 3 that specifies a set of input series to use as the lower, value,
+#'   using the convention V1, V2, etc.). This can also be a character vector of 
+#'   length 3 that specifies a set of input series to use as the lower, value, 
 #'   and upper for a series with a shaded bar drawn around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 

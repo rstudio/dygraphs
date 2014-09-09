@@ -61,9 +61,9 @@ lines more easily distinguishable. Useful for graphs with many lines.}
 Dygraph with additional series
 }
 \description{
-Add a data series to a dygraph plot. Note that options will use the
-default global setting (as determined by \code{\link{dyOptions}}) when not
-specified explicitly. When no \code{dySeries} is specified for a
-plot then all series within the underlying data are plotted.
+Add a data series to a dygraph plot. Note that options will use the default
+global setting (as determined by \code{\link{dyOptions}}) when not specified
+explicitly. When no \code{dySeries} is specified for a plot then all series
+within the underlying data are plotted.
 }
 
