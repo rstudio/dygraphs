@@ -2,18 +2,6 @@
 library(dygraphs)
 library(datasets)
 
-
-lungDeaths <- cbind(ldeaths, mdeaths, fdeaths, 
-                    ldeaths, mdeaths, fdeaths,
-                    ldeaths, mdeaths, fdeaths)
-
-colnames(lungDeaths) <- c("All", "Male", "Female",
-                          "All2", "Male2", "Female2",
-                          "All3", "Male3", "Female3")
-
-dygraph(lungDeaths) %>%
-  dyLegend(show = "always", width = 400,hideOnMouseOut = FALSE)
-
 # lung deaths
 lungDeaths <- cbind(mdeaths, fdeaths)
 colnames(lungDeaths) <- c("Male", "Female")
@@ -42,6 +30,7 @@ weather <- cbind(rainfall, temperature)
 
 dygraph(weather) %>%
   dyAxis('y2', independentTicks = TRUE) %>%
+  dySeries('temperature', label = "Temperature") %>%
   dySeries('rainfall', label = "Rain", axis = 'y2')
 
 
@@ -58,8 +47,8 @@ library(quantmod)
 
 dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
-  dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High")) %>%
-  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT")
+  dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV", color = "orange") %>%
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT", color = "yellow")
 
 
 

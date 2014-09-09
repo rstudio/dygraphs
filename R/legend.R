@@ -20,7 +20,7 @@
 #' @export
 dyLegend <- function(dygraph,
                      show = c("always", "onmouseover"),
-                     width = 350,
+                     width = 250,
                      showZeroValues = TRUE,
                      externalDiv = NULL,
                      hideOnMouseOut = TRUE) {

@@ -1,9 +1,12 @@
 
-#' dygraph data series options
+#' dygraph data series
 #' 
-#' Add per-series options to a dygraph plot. Note that options will use the 
+#' Add a data series to a dygraph plot. Note that options will use the 
 #' default global setting (as determined by \code{\link{dyOptions}}) when not 
-#' specified explicitly.
+#' specified explicitly. When no \code{dySeries} is specified for a 
+#' plot then all series within the underlying data are plotted. If a single
+#' call to \code{dySeries} is made however then only those series added
+#' explicitly via \code{dySeries} are plotted.
 #' 
 #' @inheritParams dyOptions
 #'   
@@ -63,11 +66,22 @@ dySeries <- function(dygraph,
          "of length one or three")
   }
   
+  # get a reference to the underlying data and labels
+  data <- attr(dygraph$x, "data")
+  labels <- names(data)
+  
+  # if this is the first custom series then reset our data fields
+  # to just include the first column (x values). 
+  if (!attr(dygraph$x, "customSeries")) {
+    attr(dygraph$x, "customSeries") <- TRUE
+    dygraph$x$data <- list(data[[1]])
+    dygraph$x$attrs$labels <- labels[[1]]
+  }
+  
   # create series object
   series <- list()
   series$name <- name
   series$label <- label
-  series$color <- color
   series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
   series$options$stepPlot <- stepPlot
@@ -82,18 +96,13 @@ dySeries <- function(dygraph,
   # copy attrs for modification
   attrs <- dygraph$x$attrs
   
-  # if there is a custom color and no colors field
-  # exists then allocate it
-  if (!is.null(series$color) && is.null(attrs$colors))
-    attrs$colors <- rep("black", length(attrs$labels) - 1)
-  
   # resolve multi-series
   if (length(series$name) == 3) {
     
     # find column indexes within the data
     cols <- integer(3)
     for (i in 1:3) {
-      col <- which(attrs$labels == series$name[[i]])
+      col <- which(labels == series$name[[i]])
       if (length(col) != 1)
         stop("Series name '", series$name[[i]], "' not found in input data")
       cols[[i]] <- col
@@ -102,48 +111,72 @@ dySeries <- function(dygraph,
     # mark attrs as containing custom bars
     attrs$customBars <- TRUE
     
-    # compute multi-series
-    multiData <- toMultiSeries(dygraph$x$data[[cols[[1]]]],
-                               dygraph$x$data[[cols[[2]]]],
-                               dygraph$x$data[[cols[[3]]]])
-    
-    # remove the upper and lower slots
-    attrs$labels <- attrs$labels[-c(cols[[1]], cols[[3]])]
-    dygraph$x$data <- dygraph$x$data[-c(cols[[1]], cols[[3]])]
-    
-    # fixup label and name
+    # fixup name
     series$name <- series$name[[2]]
-    if (is.null(series$label))
-      series$label <- series$name  
     
-    # set the new series data
-    col <- which(attrs$labels == series$name)
-    dygraph$x$data[[col]] <- multiData
+    # compute series data
+    seriesData <- toMultiSeries(data[[cols[[1]]]],
+                                data[[cols[[2]]]],
+                                data[[cols[[3]]]])
+    
+  } else {
+    # select series data
+    seriesData <- data[[series$name]]
   }
-  
-  # determine column
-  col <- which(attrs$labels == series$name)
-  if (length(col) != 1)
-    stop("Series name '", series$name, "' not found in input data")
-  
-  # color
-  if (!is.null(series$color))
-    attrs$colors[[col - 1]] <- series$color
   
   # default the label if we need to
   if (is.null(series$label))
-    series$label <- series$name
-  
-  # set into labels
-  attrs$labels[[col]] <- series$label
-  
-  # options
+    series$label <- series$name  
+   
+  # add label
+  attrs$labels <- c(attrs$labels, series$label)
+   
+  # set options
   attrs$series[[series$label]] <- series$options
   
-  # return modified dygraph
+  # set color if specified 
+  if (!is.null(color)) {
+    if (is.null(attrs$colors))
+      attrs$colors <- c()
+    attrs$colors[[length(attrs$labels) - 1]] <- color
+    attrs$colors[is.na(attrs$colors)] <- "black" # default missing
+  }
+  
+  # set attrs
   dygraph$x$attrs <- attrs
+  
+  # add data
+  dygraph$x$data[[length(dygraph$x$data) + 1]] <- seriesData
+  
+  # return modified dygraph
   dygraph
 }
+
+
+#' Add series data to dygraph
+#' 
+#' Add an additional column of series data to a dygraph. This
+#' is typically used in the construction of custom series types
+#' (e.g. log scaled, smoothed, etc.)
+#' 
+#' @param dygraph Dygraph to add data to
+#' @param name Name of series
+#' @param values Data values
+#' 
+#' @return Dygraph with additional series data 
+#' 
+#' @export 
+dySeriesData <- function(dygraph, name, values) {
+  
+  # add values
+  data <- attr(dygraph, "data")
+  data[[name]] <- values
+  attr(dygraph, "data") <- data
+  
+  # return modified dygraph
+  dygraph
+}
+
 
 # return a list of three element arrays 
 toMultiSeries <- function(lower, value, upper) {  

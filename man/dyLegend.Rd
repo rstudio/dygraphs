@@ -3,7 +3,7 @@
 \alias{dyLegend}
 \title{Customize dygraph legend}
 \usage{
-dyLegend(dygraph, show = c("always", "onmouseover"), width = 350,
+dyLegend(dygraph, show = c("always", "onmouseover"), width = 250,
   showZeroValues = TRUE, externalDiv = NULL, hideOnMouseOut = TRUE)
 }
 \arguments{

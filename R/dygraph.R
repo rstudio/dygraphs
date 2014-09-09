@@ -81,6 +81,13 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$scale <- periodicity$scale
   x$group <- group
   
+  # add attributes required for defining custom series. when a dySeries call
+  # is made it places series definition in "manual mode"; in this case we
+  # need to save the original data as a source of underlying data for custom
+  # series. also note that we have not yet seen a custom series.
+  attr(x, "data") <- data
+  attr(x, "customSeries") <- FALSE
+  
   # add data (strip names first so we marshall as a 2d array)
   names(data) <- NULL
   x$data <- data
