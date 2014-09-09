@@ -9,6 +9,8 @@
 
 # TODO: review time series history and xtsextra
 
+# TODO: review show legend (e.g. "always") behavior 
+
 # TODO: dySmooth, dyPredict, dyPoints, dyLine
 
 # TODO: Custom series == manual mode
