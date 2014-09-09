@@ -58,7 +58,7 @@ lines more easily distinguishable. Useful for graphs with many lines.}
   additional details).}
 }
 \value{
-Series options
+Dygraph with additional series
 }
 \description{
 Add a data series to a dygraph plot. Note that options will use the

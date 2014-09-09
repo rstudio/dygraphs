@@ -3,14 +3,6 @@
 
 # TODO: Consider supporting other x values via S3
 
-# TODO: Range highlighitng
-
-# TODO: zoo S3 / lookup issues
-
-# TODO: review time series history and xtsextra
-
-# TODO: dySmooth, dyPredict, dyPoints, dyLine
-
 # TODO: docs and examples
 
 #' Interactive plot for time series data
@@ -46,6 +38,9 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # check periodicity 
   periodicity <- xts::periodicity(data)
   
+  # extract x values
+  xValues <- as.double(as.POSIXct(time(data)))
+  
   # convert time to string we can pass to javascript Date function
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   
@@ -77,6 +72,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # is made it places series definition in "manual mode"; in this case we
   # need to save the original data as a source of underlying data for custom
   # series. also note that we have not yet seen a custom series.
+  attr(x, "xValues") <- xValues
   attr(x, "data") <- data
   attr(x, "customSeries") <- FALSE
   

@@ -42,7 +42,7 @@
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set.
 #'   
-#' @return Series options
+#' @return Dygraph with additional series
 #'   
 #' @export
 dySeries <- function(dygraph,
@@ -180,9 +180,9 @@ dySeries <- function(dygraph,
 dySeriesData <- function(dygraph, name, values) {
   
   # add values
-  data <- attr(dygraph, "data")
+  data <- attr(dygraph$x, "data")
   data[[name]] <- values
-  attr(dygraph, "data") <- data
+  attr(dygraph$x, "data") <- data
   
   # return modified dygraph
   dygraph
