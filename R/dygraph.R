@@ -1,5 +1,5 @@
 
-#' TODO: some type of auto-capture of original data series?
+# TODO: some type of auto-capture of original data series?
 
 #' Interactive plot for time series data
 #' 
@@ -31,10 +31,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   
   # check periodicity 
   periodicity <- xts::periodicity(data)
-  
-  # extract x values
-  xValues <- as.double(as.POSIXct(time(data)))
-  
+   
   # convert time to string we can pass to javascript Date function
   time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
   
@@ -66,7 +63,6 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # is made it places series definition in "manual mode"; in this case we
   # need to save the original data as a source of underlying data for custom
   # series. also note that we have not yet seen a custom series.
-  attr(x, "xValues") <- xValues
   attr(x, "data") <- data
   attr(x, "customSeries") <- FALSE
   
