@@ -4,9 +4,7 @@
 #' Add a data series to a dygraph plot. Note that options will use the 
 #' default global setting (as determined by \code{\link{dyOptions}}) when not 
 #' specified explicitly. When no \code{dySeries} is specified for a 
-#' plot then all series within the underlying data are plotted. If a single
-#' call to \code{dySeries} is made however then only those series added
-#' explicitly via \code{dySeries} are plotted.
+#' plot then all series within the underlying data are plotted.
 #' 
 #' @inheritParams dyOptions
 #'   
@@ -70,14 +68,12 @@ dySeries <- function(dygraph,
   data <- attr(dygraph$x, "data")
   labels <- names(data)
   
-  # if this is the first custom series then reset our data fields
-  # to just include the first column (x values). 
-  if (!attr(dygraph$x, "customSeries")) {
-    attr(dygraph$x, "customSeries") <- TRUE
-    dygraph$x$data <- list(data[[1]])
-    dygraph$x$attrs$labels <- labels[[1]]
-  }
-  
+  # data series named here are "consumed" from the automatically generated
+  # list of series (they'll be added back in below)
+  cols <- which(dygraph$x$attrs$labels %in% name)
+  dygraph$x$data <- dygraph$x$data[-c(cols)]
+  dygraph$x$attrs$labels <- dygraph$x$attrs$labels[-c(cols)]
+   
   # create series object
   series <- list()
   series$name <- name

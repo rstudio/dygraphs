@@ -3,8 +3,8 @@ library(dygraphs)
 library(datasets)
 
 # lung deaths
-lungDeaths <- cbind(mdeaths, fdeaths)
-colnames(lungDeaths) <- c("Male", "Female")
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+colnames(lungDeaths) <- c("All", "Male", "Female")
 
 dygraph(lungDeaths) %>%  
   dyAxis("x", label = "Month") %>%
@@ -13,6 +13,8 @@ dygraph(lungDeaths) %>%
   dySeries("Female") %>% 
   dyRoller(rollPeriod = 10) %>%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
+
+
 
 dygraph(discoveries, main = "Important Discoveries", ylab = "Discoveires") %>%
   dyAxis("x", pixelsPerLabel = 50) %>%
@@ -47,7 +49,7 @@ library(quantmod)
 
 dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
-  dySeries("MSFT.Close", label = "MSFT") %>%
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") %>%
   dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV")
 
 
