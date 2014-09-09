@@ -3,15 +3,15 @@ library(dygraphs)
 library(datasets)
 
 # lung deaths
-lungDeaths <- cbind(mdeaths, fdeaths)
-colnames(lungDeaths) <- c("Male", "Female")
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+colnames(lungDeaths) <- c("All", "Male", "Female")
 
 dygraph(lungDeaths) %>%  
   dyAxis("x", label = "Month") %>%
-  dyAxis("y", label = "Deaths (log scale)", drawGrid = FALSE) %>%
-  dySeries("Male", transform = log) %>%
-  dySeries("Female", transform = log) %>% 
-  dyRoller(rollPeriod = 2) %>%
+  dyAxis("y", label = "Deaths", drawGrid = FALSE) %>%
+  dySeries("Male") %>%
+  dySeries("Female") %>% 
+  dyRoller(rollPeriod = 10) %>%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
 
 
@@ -50,7 +50,6 @@ dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>%
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
   dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") %>%
   dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV")
-
 
 
 
