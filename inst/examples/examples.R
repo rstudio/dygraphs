@@ -15,7 +15,7 @@ dygraph(lungDeaths) %>%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
 
 dygraph(discoveries, main = "Important Discoveries", ylab = "Discoveires") %>%
-  dyAxis("x", pixelsPerLabel = 60) %>%
+  dyAxis("x", pixelsPerLabel = 50) %>%
   dySeries("V1", label = "Discoveries") %>%
   dyRangeSelector() %>%
   dyOptions(fillGraph = TRUE, strokeWidth = 2, css = "inst/examples//styles.css")
