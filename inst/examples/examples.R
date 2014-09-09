@@ -2,6 +2,18 @@
 library(dygraphs)
 library(datasets)
 
+
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths, 
+                    ldeaths, mdeaths, fdeaths,
+                    ldeaths, mdeaths, fdeaths)
+
+colnames(lungDeaths) <- c("All", "Male", "Female",
+                          "All2", "Male2", "Female2",
+                          "All3", "Male3", "Female3")
+
+dygraph(lungDeaths) %>%
+  dyLegend(show = "always", width = 400,hideOnMouseOut = FALSE)
+
 # lung deaths
 lungDeaths <- cbind(mdeaths, fdeaths)
 colnames(lungDeaths) <- c("Male", "Female")

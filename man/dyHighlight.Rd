@@ -3,17 +3,12 @@
 \alias{dyHighlight}
 \title{Series mouse-over highlighting}
 \usage{
-dyHighlight(dygraph, showLabelsOnHighlight = TRUE,
-  hideOverlyOnMouseOut = TRUE, highlightCircleSize = 3,
-  highlightSeriesBackgroundAlpha = 0.5, highlightSeriesOpts = list())
+dyHighlight(dygraph, highlightCircleSize = 3,
+  highlightSeriesBackgroundAlpha = 0.5, highlightSeriesOpts = list(),
+  hideOnMouseOut = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to configure highlighting behavior for.}
-
-\item{showLabelsOnHighlight}{Whether to show the legend upon mouseover.}
-
-\item{hideOverlayOnMouseOut}{Whether to hide the legend when the mouse leaves
-the chart area.}
 
 \item{highlightCircleSize}{The size in pixels of the dot drawn over
 highlighted points.}
@@ -23,16 +18,20 @@ series. 1=fully visible background (disable fading), 0=hiddden background
 (show highlighted series only).}
 
 \item{highlightSeriesOpts}{When set, the options from this list are applied
-  to the series closest to the mouse pointer for interactive
-  highlighting. Example: list(strokeWidth = 3). See the documentation on
-  \code{\link{dySeries}} for additional details on options that can be set.}
+to the series closest to the mouse pointer for interactive highlighting.
+Example: list(strokeWidth = 3). See the documentation on
+\code{\link{dySeries}} for additional details on options that can be set.}
+
+\item{hideOnMouseOut}{Whether to hide the highlighting effects when the mouse
+  leaves the chart area. Note that this also affects the hiding of the
+  \code{\link{dyLegend}} on mouse out.}
 }
 \value{
 A dygraph with customized highlighting options
 }
 \description{
 Configure options for data series mouse-over highlighting. Note that
-highlighting is always enabled for dygraphs so this function is used
-to customize rather than enable highlighting.
+highlighting is always enabled for dygraphs so this function is used to
+customize rather than enable highlighting.
 }
 
