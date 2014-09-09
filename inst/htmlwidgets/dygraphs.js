@@ -22,6 +22,14 @@ HTMLWidgets.widget({
     // resolve javascript functions
     this.resolveFunctions(x.attrs);
     
+    // resolve "auto" legend behavior
+    if (x.attrs.legend == "auto") {
+      if (x.data.length <= 2)
+        x.attrs.legend = "onmouseover";
+      else
+        x.attrs.legend = "always";
+    }
+    
     // provide an automatic x value formatter if none is already specified
     if (attrs.axes.x.valueFormatter === undefined)
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);

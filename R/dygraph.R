@@ -11,10 +11,6 @@
 
 # TODO: dySmooth, dyPredict, dyPoints, dyLine
 
-# TODO: matrix based implemention of multiSeries
-
-# TODO: revisit auto-legend behavior
-
 # TODO: ability to specify series by position not name?
 
 # TODO: docs and examples
@@ -74,8 +70,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$xlabel <- xlab
   attrs$ylabel <- ylab
   attrs$labels <- names(data)
-  if (length(attrs$labels) > 1)
-    attrs$legend <- "always"
+  attrs$legend <- "auto"
   attrs$axes$x <- list() 
    
   # create x (dychart attrs + some side data)

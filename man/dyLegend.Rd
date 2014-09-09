@@ -3,14 +3,17 @@
 \alias{dyLegend}
 \title{Customize dygraph legend}
 \usage{
-dyLegend(dygraph, show = c("always", "onmouseover"), width = 250,
+dyLegend(dygraph, show = c("auto", "always", "onmouseover"), width = 250,
   showZeroValues = TRUE, externalDiv = NULL, hideOnMouseOut = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to configure legend options for.}
 
-\item{show}{When to display the legend. By default it always appears. Set to
-"onmouseover" to only display it when a user mouses over the chart.}
+\item{show}{When to display the legend. Specify "always" to always show the
+legend. Specify "onmouseover" to only display it when a user mouses over
+the chart. The default behavior is "auto", which results in "always" when
+more than one series is plotted and "onmouseover" when only a single series
+is plotted.}
 
 \item{width}{Width (in pixels) of the div which shows the legend.}
 
