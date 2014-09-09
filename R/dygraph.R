@@ -11,8 +11,6 @@
 
 # TODO: dySmooth, dyPredict, dyPoints, dyLine
 
-# TODO: ability to specify series by position not name?
-
 # TODO: docs and examples
 
 #' Interactive plot for time series data
@@ -33,11 +31,7 @@
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
 #' @return Interactive dygraph plot
-#'  
-#' @importFrom xts is.xts
-#' @importFrom xts as.xts
-#' @importFrom xts periodicity
-#' @importFrom zoo coredata
+#' 
 #' @importFrom magrittr %>%
 #' @export %>%     
 #'     
