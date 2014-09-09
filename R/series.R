@@ -1,16 +1,16 @@
 #' dygraph data series
 #' 
-#' Add a data series to a dygraph plot. Note that options will use the 
-#' default global setting (as determined by \code{\link{dyOptions}}) when not 
-#' specified explicitly. When no \code{dySeries} is specified for a 
-#' plot then all series within the underlying data are plotted.
+#' Add a data series to a dygraph plot. Note that options will use the default
+#' global setting (as determined by \code{\link{dyOptions}}) when not specified
+#' explicitly. When no \code{dySeries} is specified for a plot then all series
+#' within the underlying data are plotted.
 #' 
 #' @inheritParams dyOptions
 #'   
 #' @param dygraph Dygraph to add a series definition to
 #' @param name Name of series within dataset (unamed series can be bound by 
-#'   using the convention V1, V2, etc.). This can also be a character vector of
-#'   length 3 that specifies a set of input series to use as the lower, value,
+#'   using the convention V1, V2, etc.). This can also be a character vector of 
+#'   length 3 that specifies a set of input series to use as the lower, value, 
 #'   and upper for a series with a shaded bar drawn around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
@@ -18,6 +18,8 @@
 #'   color for one series then you must specify one for all series. If not 
 #'   specified, equally-spaced points around a color wheel are used.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
+#' @param transform Optional function to apply to data series elements before
+#'   plotting (e.g. \code{log}).
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
@@ -47,6 +49,7 @@ dySeries <- function(dygraph,
                      label = NULL,
                      color = NULL,
                      axis = "y", 
+                     transform = NULL,
                      stepPlot = NULL,
                      fillGraph = NULL,
                      drawPoints = NULL,
@@ -109,14 +112,27 @@ dySeries <- function(dygraph,
     # fixup name
     series$name <- series$name[[2]]
     
+    # get data (apply optional transforms)
+    col1 <- data[[cols[[1]]]]
+    if (!is.null(transform)) 
+      col1 <- transform(col1)
+    col2 <- data[[cols[[2]]]]
+    if (!is.null(transform)) 
+      col2 <- transform(col2)
+    col3 <- data[[cols[[3]]]]
+    if (!is.null(transform)) 
+      col3 <- transform(col3)
+   
     # compute series data
-    seriesData <- toMultiSeries(data[[cols[[1]]]],
-                                data[[cols[[2]]]],
-                                data[[cols[[3]]]])
+    seriesData <- toMultiSeries(col1, col2, col3)
     
   } else {
     # select series data
     seriesData <- data[[series$name]]
+    
+    # apply optional transform
+    if (!is.null(transform))
+      seriesData <- transform(seriesData) 
   }
   
   # default the label if we need to

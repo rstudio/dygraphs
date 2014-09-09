@@ -4,9 +4,10 @@
 \title{dygraph data series}
 \usage{
 dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
-  stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = NULL, ...)
+  transform = NULL, stepPlot = NULL, fillGraph = NULL,
+  drawPoints = NULL, pointSize = NULL, strokeWidth = NULL,
+  strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = NULL, ...)
 }
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
@@ -24,6 +25,9 @@ color for one series then you must specify one for all series. If not
 specified, equally-spaced points around a color wheel are used.}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
+
+\item{transform}{Optional function to apply to data series elements before
+plotting (e.g. \code{log}).}
 
 \item{stepPlot}{When set, display the graph as a step plot instead of a line
 plot.}
@@ -61,9 +65,9 @@ lines more easily distinguishable. Useful for graphs with many lines.}
 Dygraph with additional series
 }
 \description{
-Add a data series to a dygraph plot. Note that options will use the
-default global setting (as determined by \code{\link{dyOptions}}) when not
-specified explicitly. When no \code{dySeries} is specified for a
-plot then all series within the underlying data are plotted.
+Add a data series to a dygraph plot. Note that options will use the default
+global setting (as determined by \code{\link{dyOptions}}) when not specified
+explicitly. When no \code{dySeries} is specified for a plot then all series
+within the underlying data are plotted.
 }
 
