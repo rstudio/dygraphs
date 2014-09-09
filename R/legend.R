@@ -15,7 +15,7 @@
 #'   graph. This value should be a div element id.
 #' @param hideOnMouseOut Whether to hide the legend when the mouse leaves the 
 #'   chart area. This option applies when \code{show} is set to "onmouseover". 
-#'   Note that this also affects the hiding of the \code{\link{dyHighlighting}} 
+#'   Note that this also affects the hiding of the \code{\link{dyHighlight}} 
 #'   on mouse out.
 #'   
 #' @return A dygraph with customized legend options
