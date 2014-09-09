@@ -8,10 +8,8 @@ Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Depends:
-    R (>= 3.0),
-    methods,
+    R (>= 3.0)
 Imports:
-    stats,
     magrittr,
     htmlwidgets,
     zoo (>= 1.7-10),

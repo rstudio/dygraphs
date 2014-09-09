@@ -15,9 +15,6 @@
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
 #' @return Interactive dygraph plot
-#' 
-#' @importFrom magrittr %>%
-#' @export %>%     
 #'     
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
