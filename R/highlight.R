@@ -1,6 +1,4 @@
-
-
-#' Series mouse-over highlighting
+#' dygraph series mouse-over highlighting
 #' 
 #' Configure options for data series mouse-over highlighting. Note that 
 #' highlighting is always enabled for dygraphs so this function is used to 

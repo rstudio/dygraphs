@@ -1,5 +1,4 @@
-
-#' Customize dygraph legend
+#' dygraph legend
 #' 
 #' Configure options for the dygraph series legend.
 #' 

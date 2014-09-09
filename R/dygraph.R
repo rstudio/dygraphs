@@ -1,5 +1,4 @@
-
-#' Interactive plot for time series data
+#' dygraph interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.

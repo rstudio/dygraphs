@@ -1,4 +1,4 @@
-#' Interactive selection and zooming of date ranges
+#' dygraph interactive range selection and zooming
 #' 
 #' Add a range selector to the bottom of the chart that allows users to pan and 
 #' zoom to various date ranges.

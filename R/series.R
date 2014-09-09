@@ -1,4 +1,3 @@
-
 #' dygraph data series
 #' 
 #' Add a data series to a dygraph plot. Note that options will use the 

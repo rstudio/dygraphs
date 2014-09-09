@@ -1,5 +1,4 @@
-
-#' dygraph axis options
+#' dygraph axis
 #' 
 #' Define options for an axis on a dygraph plot. Note that options will use the 
 #' default global setting (as determined by \code{\link{dyOptions}}) when not 

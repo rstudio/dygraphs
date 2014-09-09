@@ -4,7 +4,7 @@
 \alias{as.yearmon}
 \alias{as.yearqtr}
 \alias{dygraphs-exports}
-\title{Exported operators and S3 methods}
+\title{dygraph exported operators and S3 methods}
 \description{
 The following functions are imported and then re-exported
 from the dygraphs package to avoid listing the magrittr and

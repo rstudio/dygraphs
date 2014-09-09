@@ -1,4 +1,3 @@
-
 #' dygraph options
 #' 
 #' Add options to a dygraph plot.
