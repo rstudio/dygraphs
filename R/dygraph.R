@@ -1,9 +1,3 @@
-
-
-# TODO: Consider supporting other x values via S3
-
-# TODO: docs and examples
-
 #' Interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
