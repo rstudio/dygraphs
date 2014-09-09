@@ -1,3 +1,6 @@
+
+#' TODO: some type of auto-capture of original data series?
+
 #' Interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
