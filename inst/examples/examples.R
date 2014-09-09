@@ -31,7 +31,7 @@ weather <- cbind(rainfall, temperature)
 dygraph(weather) %>%
   dyAxis('y2', independentTicks = TRUE) %>%
   dySeries('temperature') %>%
-  dySmoothedSeries('rainfall', axis = 'y2')
+  dySeries('rainfall', axis = 'y2')
 
 
 library(quantmod)
@@ -47,7 +47,7 @@ library(quantmod)
 
 dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
-  dySmoothedSeries("MSFT.Close", label = "MSFT") %>%
+  dySeries("MSFT.Close", label = "MSFT") %>%
   dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV")
 
 
