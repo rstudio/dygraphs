@@ -1,16 +1,15 @@
 
 # TODO: support for annotations
-# TODO: add interaction function for event handlers
 
 # TODO: Consider supporting other x values via S3
 
 # TODO: Range highlighitng
 
+# TODO: zoo S3 / lookup issues
+
 # TODO: review time series history and xtsextra
 
 # TODO: dySmooth, dyPredict, dyPoints, dyLine
-
-# TODO: Improved default fonts
 
 # TODO: Custom series == manual mode
 # TODO: Handle some customBars, some not

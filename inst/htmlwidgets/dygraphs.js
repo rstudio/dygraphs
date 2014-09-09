@@ -35,6 +35,10 @@ HTMLWidgets.widget({
     // add drawCallback for group
     if (x.group != null)
       this.addGroupDrawCallback(x);  
+      
+    // add default font for viewer mode
+    if (this.queryVar("viewer_pane") === "1")
+      document.body.style.fontFamily = "Arial, sans-serif";
     
     if (instance.dygraph) { // update exisigng instance
        
@@ -156,5 +160,14 @@ HTMLWidgets.widget({
       else  // part not found, no evaluation 
         return;
     } 
+  },
+  
+  // Returns the value of a GET variable
+  queryVar: function(name) {
+    return decodeURI(window.location.search.replace(
+      new RegExp("^(?:.*[&\\?]" +
+                 encodeURI(name).replace(/[\.\+\*]/g, "\\$&") +
+                 "(?:\\=([^&]*))?)?.*$", "i"),
+      "$1"));
   }
 });
