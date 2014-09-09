@@ -1,5 +1,4 @@
 
-# TODO: support for annotations
 
 # TODO: Consider supporting other x values via S3
 
