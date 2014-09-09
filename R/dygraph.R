@@ -15,8 +15,6 @@
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
-#' @param interaction Interactions (or list of interactions) created using the
-#'   \code{\link{dyInteraction}} function.
 #' @param group Group to associate this plot with. The x-axis zoom level of 
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)

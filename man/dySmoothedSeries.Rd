@@ -31,6 +31,6 @@ specified, equally-spaced points around a color wheel are used.}
 Dygraph with additional smoothed series
 }
 \description{
-Add a smoothed series to a dychart
+Add a smoothed series to a dychart.
 }
 

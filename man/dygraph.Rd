@@ -16,9 +16,6 @@ which is covertible to \code{xts}).}
 
 \item{ylab}{Y axis label}
 
-\item{interaction}{Interactions (or list of interactions) created using the
-\code{\link{dyInteraction}} function.}
-
 \item{group}{Group to associate this plot with. The x-axis zoom level of
 plots within a group is automatically synchronized.}
 
