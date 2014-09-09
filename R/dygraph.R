@@ -11,8 +11,11 @@
 
 # TODO: dySmooth, dyPredict, dyPoints, dyLine
 
-# TODO: Custom series == manual mode
-# TODO: Handle some customBars, some not
+# TODO: matrix based implemention of multiSeries
+
+# TODO: revisit auto-legend behavior
+
+# TODO: ability to specify series by position not name?
 
 # TODO: docs and examples
 

@@ -148,6 +148,17 @@ dySeries <- function(dygraph,
   # add data
   dygraph$x$data[[length(dygraph$x$data) + 1]] <- seriesData
   
+  # if we are using custom bars then fixed non custom-bar data
+  # series to still display
+  if (isTRUE(attrs$customBars)) {
+    for (i in 2:length(dygraph$x$data)) {
+      if (length(dygraph$x$data[[i]][[1]]) == 1) {
+        values <- dygraph$x$data[[i]]
+        dygraph$x$data[[i]] <- toMultiSeries(values, values, values)
+      }
+    }
+  }
+  
   # return modified dygraph
   dygraph
 }
