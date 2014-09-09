@@ -128,12 +128,14 @@ dyOptions <- function(dygraph,
   options$drawGrid < drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
-  if (!is.null(css))
-    options$css <- paste(readLines(css, warn = FALSE), collapse = "\n")
   options <- append(options, list(...))
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
+  
+  # read css
+  if (!is.null(css))
+    dygraph$x$css <- paste(readLines(css, warn = FALSE), collapse = "\n")
   
   # return modified dygraph
   dygraph

@@ -14,11 +14,11 @@ dygraph(lungDeaths) %>%
   dyRoller(rollPeriod = 10) %>%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
 
-dygraph(discoveries, main = "Important Discoveries") %>%
+dygraph(discoveries, main = "Important Discoveries", ylab = "Discoveires") %>%
   dyAxis("x", pixelsPerLabel = 60) %>%
   dySeries("V1", label = "Discoveries") %>%
   dyRangeSelector() %>%
-  dyOptions(fillGraph = TRUE, strokeWidth = 2)
+  dyOptions(fillGraph = TRUE, strokeWidth = 2, css = "inst/examples//styles.css")
 
 temperature <- ts(
   data = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6),
