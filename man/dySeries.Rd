@@ -64,8 +64,6 @@ Dygraph with additional series
 Add a data series to a dygraph plot. Note that options will use the
 default global setting (as determined by \code{\link{dyOptions}}) when not
 specified explicitly. When no \code{dySeries} is specified for a
-plot then all series within the underlying data are plotted. If a single
-call to \code{dySeries} is made however then only those series added
-explicitly via \code{dySeries} are plotted.
+plot then all series within the underlying data are plotted.
 }
 
