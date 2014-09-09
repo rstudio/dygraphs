@@ -15,7 +15,6 @@ dygraph(lungDeaths) %>%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
 
 
-
 dygraph(discoveries, main = "Important Discoveries", ylab = "Discoveires") %>%
   dyAxis("x", pixelsPerLabel = 50) %>%
   dySeries("V1", label = "Discoveries") %>%
@@ -49,8 +48,10 @@ library(quantmod)
 
 dygraph(stocks, main = "Stocks", xlab = "time", ylab = "price") %>% 
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1")) %>%
-  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT", transform = log) %>%
-  dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV", transform = log)
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") %>%
+  dySeries(c("BCOV.Low", "BCOV.Close", "BCOV.High"), label = "BCOV")
+
+
 
 
 
