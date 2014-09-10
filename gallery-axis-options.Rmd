@@ -9,6 +9,22 @@ library(dygraphs)
 You can customize the display of axes using the `dyOptions` function (for global options) and `dyAxis` function (for per-axis options). Here's an example that uses both:
 
 ```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>%
+  dyAxis("y", label = "Temp (F)", valueRange = c(40, 60)) %>%
+  dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)
+```
+
+1) The `valueRange` is used to set a specific range for the y axis.
+
+2) The `axisLineWidth` option specifies a slightly wider pixel width for axis lines.
+
+3) The `fillGraph` option specifies that y values should be filled vertically
+
+3) The `drawGrid` option turns off the grid for both axes (we'll demonstrate doing this on a per-axis basis below).
+
+Here's another example that customizes some other axes properites:
+
+```{r}
 dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
   dyAxis("x", pixelsPerLabel = 50, drawGrid = FALSE) %>%
   dyAxis("y", label = "Passengers (Thousands)") %>%

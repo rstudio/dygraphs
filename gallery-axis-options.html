@@ -142,14 +142,57 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 <p>You can customize the display of axes using the <code>dyOptions</code> function (for global options) and <code>dyAxis</code> function (for per-axis options). Here’s an example that uses both:</p>
+<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
+  dyAxis(&quot;y&quot;, label = &quot;Temp (F)&quot;, valueRange = c(40, 60)) %&gt;%
+  dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)</code></pre>
+<p><div id="htmlwidget-9641" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9641">{ "attrs": {
+ "title": "New Haven Temperatures",
+"labels": [ "year", "V1" ],
+"legend": "auto",
+"axes": {
+ "x": [],
+"y": {
+ "valueRange": [     40,     60 ] 
+} 
+},
+"ylabel": "Temp (F)",
+"stackedGraph": false,
+"fillGraph": true,
+"fillAlpha":   0.15,
+"stepPlot": false,
+"drawPoints": false,
+"pointSize":      1,
+"strokeWidth":      1,
+"strokeBorderColor": "white",
+"colorValue":    0.5,
+"colorSaturation":      1,
+"drawXAxis": true,
+"drawYAxis": true,
+"includeZero": false,
+"axisLineColor": "black",
+"axisLineWidth":    1.5,
+"drawGrid": false,
+"gridLineWidth":    0.3 
+},"scale": "yearly","data": [
+ [ "Mon, 01 Jan 1912 00:00:00 GMT", "Wed, 01 Jan 1913 00:00:00 GMT", "Thu, 01 Jan 1914 00:00:00 GMT", "Fri, 01 Jan 1915 00:00:00 GMT", "Sat, 01 Jan 1916 00:00:00 GMT", "Mon, 01 Jan 1917 00:00:00 GMT", "Tue, 01 Jan 1918 00:00:00 GMT", "Wed, 01 Jan 1919 00:00:00 GMT", "Thu, 01 Jan 1920 00:00:00 GMT", "Sat, 01 Jan 1921 00:00:00 GMT", "Sun, 01 Jan 1922 00:00:00 GMT", "Mon, 01 Jan 1923 00:00:00 GMT", "Tue, 01 Jan 1924 00:00:00 GMT", "Thu, 01 Jan 1925 00:00:00 GMT", "Fri, 01 Jan 1926 00:00:00 GMT", "Sat, 01 Jan 1927 00:00:00 GMT", "Sun, 01 Jan 1928 00:00:00 GMT", "Tue, 01 Jan 1929 00:00:00 GMT", "Wed, 01 Jan 1930 00:00:00 GMT", "Thu, 01 Jan 1931 00:00:00 GMT", "Fri, 01 Jan 1932 00:00:00 GMT", "Sun, 01 Jan 1933 00:00:00 GMT", "Mon, 01 Jan 1934 00:00:00 GMT", "Tue, 01 Jan 1935 00:00:00 GMT", "Wed, 01 Jan 1936 00:00:00 GMT", "Fri, 01 Jan 1937 00:00:00 GMT", "Sat, 01 Jan 1938 00:00:00 GMT", "Sun, 01 Jan 1939 00:00:00 GMT", "Mon, 01 Jan 1940 00:00:00 GMT", "Wed, 01 Jan 1941 00:00:00 GMT", "Thu, 01 Jan 1942 00:00:00 GMT", "Fri, 01 Jan 1943 00:00:00 GMT", "Sat, 01 Jan 1944 00:00:00 GMT", "Mon, 01 Jan 1945 00:00:00 GMT", "Tue, 01 Jan 1946 00:00:00 GMT", "Wed, 01 Jan 1947 00:00:00 GMT", "Thu, 01 Jan 1948 00:00:00 GMT", "Sat, 01 Jan 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT", "Fri, 01 Jan 1960 00:00:00 GMT", "Sun, 01 Jan 1961 00:00:00 GMT", "Mon, 01 Jan 1962 00:00:00 GMT", "Tue, 01 Jan 1963 00:00:00 GMT", "Wed, 01 Jan 1964 00:00:00 GMT", "Fri, 01 Jan 1965 00:00:00 GMT", "Sat, 01 Jan 1966 00:00:00 GMT", "Sun, 01 Jan 1967 00:00:00 GMT", "Mon, 01 Jan 1968 00:00:00 GMT", "Wed, 01 Jan 1969 00:00:00 GMT", "Thu, 01 Jan 1970 00:00:00 GMT", "Fri, 01 Jan 1971 00:00:00 GMT" ],
+[   49.9,   52.3,   49.4,   51.1,   49.4,   47.9,   49.8,   50.9,   49.3,   51.9,   50.8,   49.6,   49.3,   50.6,   48.4,   50.7,   50.9,   50.6,   51.5,   52.8,   51.8,   51.1,   49.8,   50.2,   50.4,   51.6,   51.8,   50.9,   48.8,   51.7,     51,   50.6,   51.7,   51.5,   52.1,   51.3,     51,     54,   51.4,   52.7,   53.1,   54.6,     52,     52,   50.9,   52.6,   50.2,   52.6,   51.6,   51.9,   50.5,   50.9,   51.7,   51.4,   51.7,   50.8,   51.9,   51.8,   51.9,     53 ] 
+] }</script></p>
+<ol style="list-style-type: decimal">
+<li><p>The <code>valueRange</code> is used to set a specific range for the y axis.</p></li>
+<li><p>The <code>axisLineWidth</code> option specifies a slightly wider pixel width for axis lines.</p></li>
+<li><p>The <code>fillGraph</code> option specifies that y values should be filled vertically</p></li>
+<li><p>The <code>drawGrid</code> option turns off the grid for both axes (we’ll demonstrate doing this on a per-axis basis below).</p></li>
+</ol>
+<p>Here’s another example that customizes some other axes properites:</p>
 <pre class="r"><code>dygraph(AirPassengers, main = &quot;Airline Passengers / Month&quot;) %&gt;%
   dyAxis(&quot;x&quot;, pixelsPerLabel = 50, drawGrid = FALSE) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Passengers (Thousands)&quot;) %&gt;%
   dyOptions(includeZero = TRUE, 
             axisLineColor = &quot;navy&quot;, 
             gridLineColor = &quot;lightblue&quot;)</code></pre>
-<p><div id="htmlwidget-8710" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8710">{ "attrs": {
+<p><div id="htmlwidget-2771" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2771">{ "attrs": {
  "title": "Airline Passengers / Month",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -176,6 +219,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 "includeZero": true,
 "axisLineColor": "navy",
 "axisLineWidth":    0.3,
+"drawGrid": true,
 "gridLineColor": "lightblue",
 "gridLineWidth":    0.3 
 },"scale": "monthly","data": [
