@@ -31,4 +31,8 @@ A dygraph that displays a range selector
 Add a range selector to the bottom of the chart that allows users to pan and
 zoom to various date ranges.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 

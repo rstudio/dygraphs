@@ -34,4 +34,8 @@ Configure options for data series mouse-over highlighting. Note that
 highlighting is always enabled for dygraphs so this function is used to
 customize rather than enable highlighting.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 

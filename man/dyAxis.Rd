@@ -66,4 +66,8 @@ Define options for an axis on a dygraph plot. Note that options will use the
 default global setting (as determined by \code{\link{dyOptions}}) when not
 specified explicitly.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 

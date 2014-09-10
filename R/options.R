@@ -80,6 +80,10 @@
 #'   
 #' @return Series options
 #'   
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.  
+#'    
 #' @export
 dyOptions <- function(dygraph,
                       stackedGraph = FALSE,

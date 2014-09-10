@@ -18,6 +18,10 @@
 #'   
 #' @return A dygraph that displays a range selector
 #'   
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.  
+#' 
 #' @export
 dyRangeSelector <- function(dygraph,
                             dateWindow = NULL, 

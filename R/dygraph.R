@@ -14,7 +14,11 @@
 #' @param height Height in pixels (optional, defaults to automatic sizing)
 #'   
 #' @return Interactive dygraph plot
-#'     
+#'   
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.
+#' 
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     group = NULL, width = NULL, height = NULL) {

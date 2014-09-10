@@ -18,6 +18,10 @@
 #'   on mouse out.
 #'   
 #' @return A dygraph with customized legend options
+#' 
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.  
 #'   
 #' @export
 dyLegend <- function(dygraph,

@@ -66,4 +66,8 @@ global setting (as determined by \code{\link{dyOptions}}) when not specified
 explicitly. When no \code{dySeries} is specified for a plot then all series
 within the underlying data are plotted.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 

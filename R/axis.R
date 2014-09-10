@@ -43,6 +43,10 @@
 #'   
 #' @return Axis options
 #' 
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.  
+#'  
 #' @export
 dyAxis <- function(dygraph,
                    name, 

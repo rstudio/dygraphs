@@ -41,6 +41,10 @@
 #'   
 #' @return Dygraph with additional series
 #'   
+#' @note
+#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+#' additional details and examples.  
+#'   
 #' @export
 dySeries <- function(dygraph,
                      name, 

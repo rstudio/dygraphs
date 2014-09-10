@@ -118,4 +118,8 @@ Series options
 \description{
 Add options to a dygraph plot.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 

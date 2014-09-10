@@ -33,4 +33,8 @@ A dygraph with customized legend options
 \description{
 Configure options for the dygraph series legend.
 }
+\note{
+See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+additional details and examples.
+}
 
