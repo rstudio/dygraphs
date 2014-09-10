@@ -103,13 +103,17 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="shiny.html">Shiny</a></li>
   
   <li class="nav-header">Gallery</li>
-  <li><a href="#">Example1</a></li>
-  <li><a href="#">Example2</a></li>
-  <li><a href="#">Example3</a></li>
-  <li><a href="#">Example4</a></li>
-  <li><a href="#">Example5</a></li>
+  <li><a href="gallery-graph-labels.html">Graph Labels</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-additional-y-axis.html">Additional Y Axis</a></li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
+  <li><a href="gallery-css-label-styling.html">CSS Label Styling</a></li>
   
-  ...
 </ul>
   
 </div>
@@ -140,8 +144,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-3676" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3676">{ "attrs": {
+<p><div id="htmlwidget-3362" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3362">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -155,8 +159,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-2093" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2093">{ "attrs": {
+<p><div id="htmlwidget-4593" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4593">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -177,8 +181,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-9883" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-9883">{ "attrs": {
+<p><div id="htmlwidget-3029" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3029">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
