@@ -2,10 +2,14 @@
 title: "Graph Labels"
 ---
 
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+
 You can add labels to a dygraph using the `main`, `ylab` and `xlab` arguments. For example:
 
 ```{r}
-library(dygraphs)
 dygraph(discoveries, 
         main = "Important Discoveries", 
         ylab = "Discoveries / Year")
