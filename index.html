@@ -37,9 +37,15 @@ div .dygraphs {
   margin-bottom: 25px;
 }
 
+div .dygraphs input[type="text"] {
+  width: 25px;
+}
+
 pre {
   margin-bottom: 15px;
 }
+
+
 
 .sidebar-nav-fixed {
   position:fixed;
@@ -160,8 +166,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-1420" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1420">{ "attrs": {
+<p><div id="htmlwidget-9502" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9502">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -175,15 +181,15 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-975" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-975">{ "attrs": {
+<p><div id="htmlwidget-3351" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3351">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
  "x": [] 
 },
 "showRangeSelector": true,
-"height":     40,
+"rangeSelectorHeight":     40,
 "rangeSelectorPlotFillColor": " #A7B1C4",
 "rangeSelectorPlotStrokeColor": "#808FAB" 
 },"scale": "monthly","data": [
@@ -197,8 +203,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-8099" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8099">{ "attrs": {
+<p><div id="htmlwidget-9725" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9725">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -230,7 +236,7 @@ dygraph(lungDeaths)</code></pre>
 "drawGrid": true,
 "gridLineWidth":    0.3,
 "showRangeSelector": true,
-"height":     40,
+"rangeSelectorHeight":     40,
 "rangeSelectorPlotFillColor": " #A7B1C4",
 "rangeSelectorPlotStrokeColor": "#808FAB" 
 },"scale": "monthly","data": [

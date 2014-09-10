@@ -37,9 +37,15 @@ div .dygraphs {
   margin-bottom: 25px;
 }
 
+div .dygraphs input[type="text"] {
+  width: 25px;
+}
+
 pre {
   margin-bottom: 15px;
 }
+
+
 
 .sidebar-nav-fixed {
   position:fixed;
@@ -144,8 +150,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>You can add range selector to the bottom of a dygraph that provides a straightforward interace for panning and zooming. For example:</p>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
   dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-8331" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8331">{ "attrs": {
+<p><div id="htmlwidget-8699" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8699">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
@@ -163,8 +169,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>You can also specify an initial date range for the range selector:</p>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
   dyRangeSelector(dateWindow = c(&quot;1920-01-01&quot;, &quot;1960-01-01&quot;))</code></pre>
-<p><div id="htmlwidget-5698" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5698">{ "attrs": {
+<p><div id="htmlwidget-4898" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4898">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
@@ -184,8 +190,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>Several other options affect the appearance of the range selector:</p>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
   dyRangeSelector(height = 20, strokeColor = &quot;&quot;)</code></pre>
-<p><div id="htmlwidget-4989" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4989">{ "attrs": {
+<p><div id="htmlwidget-3383" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3383">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
