@@ -1,5 +1,5 @@
 ---
-title: "R dygraphs"
+title: "Interactive time series for R"
 ---
 
 Welcome to dygraphs!
