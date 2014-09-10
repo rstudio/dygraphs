@@ -10,7 +10,7 @@
 
 
 
-<title>Interactive time series for R</title>
+<title>dygraphs for R</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,40 +18,22 @@
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-
-/* padding for bootstrap navbar */
+<style type = "text/css">
 body {
-  padding-top: 50px;
-  padding-bottom: 40px;
+  padding-top: 30px;
 }
-@media (max-width: 979px) {
-  body {
-    padding-top: 0;
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 200px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+      position:static;
+      width:auto;
   }
-}
-
-/* offset scroll position for anchor links (for fixed navbar)  */
-@media (min-width: 980px) {
-  .section h2 {
-    padding-top: 52px;
-    margin-top: -52px;
-  }
-  .section h3 {
-    padding-top: 52px;
-    margin-top: -52px;
-  }
-}
-
-
-/* don't use link color in navbar */
-.dropdown-menu>li>a {
-  color: black;
-}
-
-/* some padding for disqus */
-#disqus_thread {
-  margin-top: 45px;
 }
 
 </style>
@@ -92,68 +74,59 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="container-fluid main-container">
 
 
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="brand" href="/">R dygraphs</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="using.html">Using</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-        <ul class="nav pull-right">
-          <a class="btn btn-primary" href="https://github.com/jjallaire/dygraphs">
-            <i class="fa fa-github fa-lg"></i>
-            GitHub
-          </a>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+<div class="row-fluid">
+
+<div class="span3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  <li class="active"><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="#">Example1</a></li>
+  <li><a href="#">Example2</a></li>
+  <li><a href="#">Example3</a></li>
+  <li><a href="#">Example4</a></li>
+  <li><a href="#">Example5</a></li>
+  
+  ...
+</ul>
+  
 </div>
+  
+<div class="span8 offset1">
 
 <div id="header">
-<h1 class="title">Interactive time series for R</h1>
+<h1 class="title">dygraphs for R</h1>
 </div>
 
 
-<p>Welcome to dygraphs!</p>
+<p>Interactive time series for R.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis eleifend libero vel accumsan. Sed ut lacinia justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus accumsan turpis diam, sit amet rhoncus est ornare id. Maecenas suscipit, diam et iaculis interdum, justo turpis placerat est, ac dignissim sem dui eget enim. Morbi consequat orci orci, et sollicitudin nisl dignissim ac. Phasellus finibus metus non tellus gravida pellentesque id sit amet felis.</p>
+<p>Aliquam in faucibus elit, vitae finibus lectus. Duis posuere, nisl sed fermentum eleifend, quam tellus consectetur enim, at feugiat nisi felis id metus. Etiam at sapien lorem. Fusce tristique sapien vel erat interdum tempus. Vestibulum quis nisl porta, fermentum metus ac, tempor ligula. In at venenatis nisl, ut rhoncus libero. Aenean elementum, nisl ut scelerisque cursus, sapien felis molestie purus, et efficitur sapien ex sed mauris.</p>
+<p>Etiam sapien sem, cursus eu sem ac, mollis luctus eros. Nulla hendrerit fermentum dolor, sed viverra tortor rutrum auctor. Mauris non consectetur tellus, vitae bibendum velit. Aliquam vel fringilla nulla. Phasellus luctus porttitor metus eget elementum. Curabitur laoreet suscipit mauris et varius. Donec molestie viverra fringilla. Suspendisse id molestie sem. Curabitur tempus magna vitae sapien iaculis mattis.</p>
+<p>Vestibulum convallis elementum nisl, eu tincidunt purus venenatis sed. Nunc quis dictum magna. Cras ornare dui sed malesuada ultricies. Nullam sit amet neque turpis. Sed ultricies leo felis, ac auctor tortor porttitor at. Aenean interdum nisl id lacus facilisis accumsan. Mauris eget mi quis nisi rutrum tincidunt et ac lectus. Suspendisse a sodales mauris, nec tristique eros. Ut a nibh id felis posuere feugiat venenatis vitae odio. Proin ligula justo, efficitur quis varius sit amet, auctor nec ex. Proin et enim et diam accumsan lobortis vel quis diam. Aliquam at volutpat nunc. Morbi volutpat nisl vitae orci egestas, eu auctor odio porta. Nulla sed magna venenatis, ornare enim eu, feugiat est. Duis scelerisque ante velit, ut ultricies risus ullamcorper in.</p>
+<p>Aliquam elit metus, pharetra nec interdum ac, tristique id dui. Maecenas neque ante, placerat sed tincidunt ac, elementum eget risus. Donec tempor, sem convallis accumsan tempus, velit mi consequat nisl, eu feugiat ipsum dolor eget dui. Etiam at erat non nibh accumsan suscipit. Sed consequat fermentum ipsum ut porta. Fusce eget felis ut purus accumsan porttitor ac et metus. Donec dictum justo diam, quis facilisis arcu viverra id. Fusce varius dolor id nunc feugiat tincidunt eget nec augue. Aenean et est nec orci euismod eleifend. Maecenas placerat velit pharetra, pulvinar metus sed, tincidunt lorem. Quisque imperdiet laoreet dui eget tincidunt. Sed tincidunt rutrum augue, et cursus magna vehicula sed.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam convallis eleifend libero vel accumsan. Sed ut lacinia justo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus accumsan turpis diam, sit amet rhoncus est ornare id. Maecenas suscipit, diam et iaculis interdum, justo turpis placerat est, ac dignissim sem dui eget enim. Morbi consequat orci orci, et sollicitudin nisl dignissim ac. Phasellus finibus metus non tellus gravida pellentesque id sit amet felis.</p>
+<p>Aliquam in faucibus elit, vitae finibus lectus. Duis posuere, nisl sed fermentum eleifend, quam tellus consectetur enim, at feugiat nisi felis id metus. Etiam at sapien lorem. Fusce tristique sapien vel erat interdum tempus. Vestibulum quis nisl porta, fermentum metus ac, tempor ligula. In at venenatis nisl, ut rhoncus libero. Aenean elementum, nisl ut scelerisque cursus, sapien felis molestie purus, et efficitur sapien ex sed mauris.</p>
+<p>Etiam sapien sem, cursus eu sem ac, mollis luctus eros. Nulla hendrerit fermentum dolor, sed viverra tortor rutrum auctor. Mauris non consectetur tellus, vitae bibendum velit. Aliquam vel fringilla nulla. Phasellus luctus porttitor metus eget elementum. Curabitur laoreet suscipit mauris et varius. Donec molestie viverra fringilla. Suspendisse id molestie sem. Curabitur tempus magna vitae sapien iaculis mattis.</p>
+<p>Vestibulum convallis elementum nisl, eu tincidunt purus venenatis sed. Nunc quis dictum magna. Cras ornare dui sed malesuada ultricies. Nullam sit amet neque turpis. Sed ultricies leo felis, ac auctor tortor porttitor at. Aenean interdum nisl id lacus facilisis accumsan. Mauris eget mi quis nisi rutrum tincidunt et ac lectus. Suspendisse a sodales mauris, nec tristique eros. Ut a nibh id felis posuere feugiat venenatis vitae odio. Proin ligula justo, efficitur quis varius sit amet, auctor nec ex. Proin et enim et diam accumsan lobortis vel quis diam. Aliquam at volutpat nunc. Morbi volutpat nisl vitae orci egestas, eu auctor odio porta. Nulla sed magna venenatis, ornare enim eu, feugiat est. Duis scelerisque ante velit, ut ultricies risus ullamcorper in.</p>
+<p>Aliquam elit metus, pharetra nec interdum ac, tristique id dui. Maecenas neque ante, placerat sed tincidunt ac, elementum eget risus. Donec tempor, sem convallis accumsan tempus, velit mi consequat nisl, eu feugiat ipsum dolor eget dui. Etiam at erat non nibh accumsan suscipit. Sed consequat fermentum ipsum ut porta. Fusce eget felis ut purus accumsan porttitor ac et metus. Donec dictum justo diam, quis facilisis arcu viverra id. Fusce varius dolor id nunc feugiat tincidunt eget nec augue. Aenean et est nec orci euismod eleifend. Maecenas placerat velit pharetra, pulvinar metus sed, tincidunt lorem. Quisque imperdiet laoreet dui eget tincidunt. Sed tincidunt rutrum augue, et cursus magna vehicula sed.</p>
 
 
-<!-- some extra javascript for older browsers -->
-<script type="text/javascript" src="libs/polyfill.js"></script>
+</div>  
+</div>
 
 <script>
 
-// manage active state of menu based on current page
+// manage active state of toc based on current page
 $(document).ready(function () {
-
     // active menu
     href = window.location.pathname
     href = href.substr(href.lastIndexOf('/') + 1)
     $('a[href="' + href + '"]').parent().addClass('active');
-
-    // manage active menu header
-    //if (href.startsWith('authoring_'))
-    //  $('a[href="' + 'authoring' + '"]').parent().addClass('active');
-    //else if (href.endsWith('_format.html'))
-    //  $('a[href="' + 'formats' + '"]').parent().addClass('active');
-    //else if (href.startsWith('developer_'))
-    //  $('a[href="' + 'developer' + '"]').parent().addClass('active');
-
 });
 
 </script>
-
-<!-- disqus -->
-
-<!-- no disqus yet -->
 
 </div>
 
