@@ -128,7 +128,7 @@ dyOptions <- function(dygraph,
   options$includeZero <- includeZero
   options$axisLineColor <- axisLineColor
   options$axisLineWidth <- axisLineWidth
-  options$drawGrid < drawGrid
+  options$drawGrid <- drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
   options <- append(options, list(...))
