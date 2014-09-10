@@ -2,4 +2,38 @@
 title: "Using in R Markdown"
 ---
 
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+
+You can use dygraphs within [R Markdown](http://rmarkdown.rstudio.com) documents just like any other R plotting function. However, rather than a PNG file being included in your document, the JavaScript required to render your dygraph is included. 
+
+Note that since dygraphs are web-based (they use HTML, CSS, and JavaScript) they can only be included in HTML based R Markdown formats (i.e. they can't be used in PDF or Word documents).
+
+#### Figure Size
+
+By default, dygraphs that appear within R Markdown documents respect the default figure size of the document. This means that their size will be the same as that of other standard plots.
+
+Figure sizes are specified in inches and can be included as a global option of the document output format. For example:
+
+<pre class="r"><code>---
+title: "My Document"
+output:
+  html_document:
+    fig_width: 6
+    fig_height: 4
+---
+</code></pre>
+
+You can also specify figure sizes on a per-chunk basis. For example, to create a dygraph that is smaller than the default (7x5) you could do this:
+
+<pre class="r"><code>&#96;&#96;&#96;{r, fig.width=6, fig.height=2.5}
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+&#96;&#96;&#96;
+</code></pre>
+
+```{r, echo=FALSE, fig.width=6, fig.height=2.5}
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+```
 

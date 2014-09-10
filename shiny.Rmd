@@ -2,4 +2,13 @@
 title: "Using in Shiny Applications"
 ---
 
+The dygraphs package provides the `dygraphOutput` and `renderDygraph` functions to enable use of dygraphs within [Shiny](http://shiny.rstudio.com) applications and R Markdown [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html). 
+
+These functions work exactly like the Shiny *plotOutput* and *renderPlot* functions. For example, here's a simple Shiny application that uses these functions:
+
+**ui.R**
+
+
+**server.R**
+
 
