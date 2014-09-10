@@ -2,4 +2,33 @@
 title: "Range Selector"
 ---
 
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+You can add range selector to the bottom of a dygraph that provides a straightforward interace for panning and zooming. For example:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+  dyRangeSelector()
+```
+
+You can also specify an initial date range for the range selector:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
+Note that the `dateWindow` parameter should be a two-element vector of `POSIXct` (or objects that can unambiguously converted to POSIXct).
+
+Several other options affect the appearance of the range selector:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+  dyRangeSelector(height = 20, strokeColor = "")
+```
+
+
+
 
