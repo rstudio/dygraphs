@@ -1,0 +1,45 @@
+---
+title: "Second Y-Axis"
+---
+
+If you are plotting multiple series that have distinct value types you can add a second Y-axis to show a distinct value scale. This is done by setting the `independentTicks` option for the y2 axis and then assigning one or more series to the y2 axis. For example:
+
+
+```{r}
+library(dygraphs)
+
+# define mts with distinct y-axis scales
+temperature <- ts(frequency = 12, start = c(1980, 1),
+  data = c(7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 
+           25.2, 26.5, 23.3, 18.3, 13.9, 9.6))
+rainfall <- ts(frequency = 12, start = c(1980, 1),
+  data = c(49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 
+           135.6, 148.5, 216.4, 194.1, 95.6, 54.4))
+weather <- cbind(rainfall, temperature)
+
+# assign the "rainfall" series to the y2 axis
+dygraph(weather) %>%
+  dySeries("rainfall", axis = 'y2')
+```
+
+#### Independent Ticks
+
+The `independentTicks` option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to disply the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include: 
+
+1) y=TRUE, y2=FALSE (default): y is the primary axis and the y2 ticks are aligned to the the ones of y. (only 1 grid) 
+
+2) y=FALSE, y2=TRUE: y2 is the primary axis and the y ticks are aligned to the the ones of y2. (only 1 grid) 
+
+3) y=TRUE, y2=TRUE: Both axis are independent and have their own ticks. (2 grids) 
+
+In this example we specify that the y2 axis has indepenent ticks (resulting in a more natural value scale for the axis labels):
+
+```{r}
+dygraph(weather) %>%
+  dyAxis("y2", independentTicks = TRUE) %>%
+  dySeries("rainfall", axis = 'y2')
+```
+
+
+
+

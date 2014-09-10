@@ -17,10 +17,24 @@
 <link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-binding-1.0/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
   padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 .sidebar-nav-fixed {
@@ -102,7 +116,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li class="nav-header">Gallery</li>
   <li><a href="gallery-graph-labels.html">Graph Labels</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
-  <li><a href="gallery-additional-y-axis.html">Additional Y Axis</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
@@ -122,7 +136,28 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-
+<p>You can add labels to a dygraph using the <code>main</code>, <code>ylab</code> and <code>xlab</code> arguments. For example:</p>
+<pre class="r"><code>library(dygraphs)
+dygraph(discoveries, 
+        main = &quot;Important Discoveries&quot;, 
+        ylab = &quot;Discoveries / Year&quot;)</code></pre>
+<p><div id="htmlwidget-4679" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4679">{ "attrs": {
+ "title": "Important Discoveries",
+"ylabel": "Discoveries / Year",
+"labels": [ "year", "V1" ],
+"legend": "auto",
+"axes": {
+ "x": [] 
+} 
+},"scale": "yearly","data": [
+ [ "Sun, 01 Jan 1860 00:00:00 GMT", "Tue, 01 Jan 1861 00:00:00 GMT", "Wed, 01 Jan 1862 00:00:00 GMT", "Thu, 01 Jan 1863 00:00:00 GMT", "Fri, 01 Jan 1864 00:00:00 GMT", "Sun, 01 Jan 1865 00:00:00 GMT", "Mon, 01 Jan 1866 00:00:00 GMT", "Tue, 01 Jan 1867 00:00:00 GMT", "Wed, 01 Jan 1868 00:00:00 GMT", "Fri, 01 Jan 1869 00:00:00 GMT", "Sat, 01 Jan 1870 00:00:00 GMT", "Sun, 01 Jan 1871 00:00:00 GMT", "Mon, 01 Jan 1872 00:00:00 GMT", "Wed, 01 Jan 1873 00:00:00 GMT", "Thu, 01 Jan 1874 00:00:00 GMT", "Fri, 01 Jan 1875 00:00:00 GMT", "Sat, 01 Jan 1876 00:00:00 GMT", "Mon, 01 Jan 1877 00:00:00 GMT", "Tue, 01 Jan 1878 00:00:00 GMT", "Wed, 01 Jan 1879 00:00:00 GMT", "Thu, 01 Jan 1880 00:00:00 GMT", "Sat, 01 Jan 1881 00:00:00 GMT", "Sun, 01 Jan 1882 00:00:00 GMT", "Mon, 01 Jan 1883 00:00:00 GMT", "Tue, 01 Jan 1884 00:00:00 GMT", "Thu, 01 Jan 1885 00:00:00 GMT", "Fri, 01 Jan 1886 00:00:00 GMT", "Sat, 01 Jan 1887 00:00:00 GMT", "Sun, 01 Jan 1888 00:00:00 GMT", "Tue, 01 Jan 1889 00:00:00 GMT", "Wed, 01 Jan 1890 00:00:00 GMT", "Thu, 01 Jan 1891 00:00:00 GMT", "Fri, 01 Jan 1892 00:00:00 GMT", "Sun, 01 Jan 1893 00:00:00 GMT", "Mon, 01 Jan 1894 00:00:00 GMT", "Tue, 01 Jan 1895 00:00:00 GMT", "Wed, 01 Jan 1896 00:00:00 GMT", "Fri, 01 Jan 1897 00:00:00 GMT", "Sat, 01 Jan 1898 00:00:00 GMT", "Sun, 01 Jan 1899 00:00:00 GMT", "Mon, 01 Jan 1900 00:00:00 GMT", "Tue, 01 Jan 1901 00:00:00 GMT", "Wed, 01 Jan 1902 00:00:00 GMT", "Thu, 01 Jan 1903 00:00:00 GMT", "Fri, 01 Jan 1904 00:00:00 GMT", "Sun, 01 Jan 1905 00:00:00 GMT", "Mon, 01 Jan 1906 00:00:00 GMT", "Tue, 01 Jan 1907 00:00:00 GMT", "Wed, 01 Jan 1908 00:00:00 GMT", "Fri, 01 Jan 1909 00:00:00 GMT", "Sat, 01 Jan 1910 00:00:00 GMT", "Sun, 01 Jan 1911 00:00:00 GMT", "Mon, 01 Jan 1912 00:00:00 GMT", "Wed, 01 Jan 1913 00:00:00 GMT", "Thu, 01 Jan 1914 00:00:00 GMT", "Fri, 01 Jan 1915 00:00:00 GMT", "Sat, 01 Jan 1916 00:00:00 GMT", "Mon, 01 Jan 1917 00:00:00 GMT", "Tue, 01 Jan 1918 00:00:00 GMT", "Wed, 01 Jan 1919 00:00:00 GMT", "Thu, 01 Jan 1920 00:00:00 GMT", "Sat, 01 Jan 1921 00:00:00 GMT", "Sun, 01 Jan 1922 00:00:00 GMT", "Mon, 01 Jan 1923 00:00:00 GMT", "Tue, 01 Jan 1924 00:00:00 GMT", "Thu, 01 Jan 1925 00:00:00 GMT", "Fri, 01 Jan 1926 00:00:00 GMT", "Sat, 01 Jan 1927 00:00:00 GMT", "Sun, 01 Jan 1928 00:00:00 GMT", "Tue, 01 Jan 1929 00:00:00 GMT", "Wed, 01 Jan 1930 00:00:00 GMT", "Thu, 01 Jan 1931 00:00:00 GMT", "Fri, 01 Jan 1932 00:00:00 GMT", "Sun, 01 Jan 1933 00:00:00 GMT", "Mon, 01 Jan 1934 00:00:00 GMT", "Tue, 01 Jan 1935 00:00:00 GMT", "Wed, 01 Jan 1936 00:00:00 GMT", "Fri, 01 Jan 1937 00:00:00 GMT", "Sat, 01 Jan 1938 00:00:00 GMT", "Sun, 01 Jan 1939 00:00:00 GMT", "Mon, 01 Jan 1940 00:00:00 GMT", "Wed, 01 Jan 1941 00:00:00 GMT", "Thu, 01 Jan 1942 00:00:00 GMT", "Fri, 01 Jan 1943 00:00:00 GMT", "Sat, 01 Jan 1944 00:00:00 GMT", "Mon, 01 Jan 1945 00:00:00 GMT", "Tue, 01 Jan 1946 00:00:00 GMT", "Wed, 01 Jan 1947 00:00:00 GMT", "Thu, 01 Jan 1948 00:00:00 GMT", "Sat, 01 Jan 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT" ],
+[      5,      3,      0,      2,      0,      3,      2,      3,      6,      1,      2,      1,      2,      1,      3,      3,      3,      5,      2,      4,      4,      0,      2,      3,      7,     12,      3,     10,      9,      2,      3,      7,      7,      2,      3,      3,      6,      2,      4,      3,      5,      2,      2,      4,      0,      4,      2,      5,      2,      3,      3,      6,      5,      8,      3,      6,      6,      0,      5,      2,      2,      2,      6,      3,      4,      4,      2,      2,      4,      7,      5,      3,      3,      0,      2,      2,      2,      1,      3,      4,      2,      2,      1,      1,      1,      2,      1,      4,      4,      3,      2,      1,      4,      1,      1,      1,      0,      0,      2,      0 ] 
+] }</script></p>
+<p>It’s also possible to specify labels as part of a <code>dyAxis</code> definition. For example:</p>
+<pre class="r"><code>dygraph(discoveries, main = &quot;Important Discoveries&quot;) %&gt;%
+  dyAxis(&quot;y&quot;, label = &quot;Discoveries / Year&quot;)</code></pre>
+<p>The appearance of labels can be customized extensively using CSS. See the <a href="gallery-css-label-styling.html">CSS Label Styling</a> example for additional details.</p>
 
 
 </div>  
