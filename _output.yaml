@@ -1,4 +1,6 @@
 html_document:
+  fig_width: 6
+  fig_height: 3.5
   self_contained: false
   theme: flatly
   highlight: textmate
