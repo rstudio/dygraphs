@@ -17,6 +17,9 @@
 <link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-binding-1.0/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -133,7 +136,55 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-
+<p>You can customize the display of axes using the <code>dyOptions</code> function (for global options) and <code>dyAxis</code> function (for per-axis options). Here’s an example that uses both:</p>
+<pre class="r"><code>dygraph(AirPassengers, main = &quot;Airline Passengers / Month&quot;) %&gt;%
+  dyAxis(&quot;x&quot;, pixelsPerLabel = 50, drawGrid = FALSE) %&gt;%
+  dyAxis(&quot;y&quot;, label = &quot;Passengers (Thousands)&quot;) %&gt;%
+  dyOptions(includeZero = TRUE, 
+            axisLineColor = &quot;navy&quot;, 
+            gridLineColor = &quot;lightblue&quot;)</code></pre>
+<p><div id="htmlwidget-4446" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4446">{ "attrs": {
+ "title": "Airline Passengers / Month",
+"labels": [ "month", "V1" ],
+"legend": "auto",
+"axes": {
+ "x": {
+ "pixelsPerLabel":     50,
+"drawGrid": false 
+},
+"y": [] 
+},
+"ylabel": "Passengers (Thousands)",
+"stackedGraph": false,
+"fillGraph": false,
+"fillAlpha":   0.15,
+"stepPlot": false,
+"drawPoints": false,
+"pointSize":      1,
+"strokeWidth":      1,
+"strokeBorderColor": "white",
+"colorValue":    0.5,
+"colorSaturation":      1,
+"drawXAxis": true,
+"drawYAxis": true,
+"includeZero": true,
+"axisLineColor": "navy",
+"axisLineWidth":    0.3,
+"gridLineColor": "lightblue",
+"gridLineWidth":    0.3 
+},"scale": "monthly","data": [
+ [ "Sat, 01 Jan 1949 00:00:00 GMT", "Tue, 01 Feb 1949 00:00:00 GMT", "Tue, 01 Mar 1949 00:00:00 GMT", "Fri, 01 Apr 1949 00:00:00 GMT", "Sun, 01 May 1949 00:00:00 GMT", "Wed, 01 Jun 1949 00:00:00 GMT", "Fri, 01 Jul 1949 00:00:00 GMT", "Mon, 01 Aug 1949 00:00:00 GMT", "Thu, 01 Sep 1949 00:00:00 GMT", "Sat, 01 Oct 1949 00:00:00 GMT", "Tue, 01 Nov 1949 00:00:00 GMT", "Thu, 01 Dec 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Wed, 01 Feb 1950 00:00:00 GMT", "Wed, 01 Mar 1950 00:00:00 GMT", "Sat, 01 Apr 1950 00:00:00 GMT", "Mon, 01 May 1950 00:00:00 GMT", "Thu, 01 Jun 1950 00:00:00 GMT", "Sat, 01 Jul 1950 00:00:00 GMT", "Tue, 01 Aug 1950 00:00:00 GMT", "Fri, 01 Sep 1950 00:00:00 GMT", "Sun, 01 Oct 1950 00:00:00 GMT", "Wed, 01 Nov 1950 00:00:00 GMT", "Fri, 01 Dec 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Thu, 01 Feb 1951 00:00:00 GMT", "Thu, 01 Mar 1951 00:00:00 GMT", "Sun, 01 Apr 1951 00:00:00 GMT", "Tue, 01 May 1951 00:00:00 GMT", "Fri, 01 Jun 1951 00:00:00 GMT", "Sun, 01 Jul 1951 00:00:00 GMT", "Wed, 01 Aug 1951 00:00:00 GMT", "Sat, 01 Sep 1951 00:00:00 GMT", "Mon, 01 Oct 1951 00:00:00 GMT", "Thu, 01 Nov 1951 00:00:00 GMT", "Sat, 01 Dec 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Fri, 01 Feb 1952 00:00:00 GMT", "Sat, 01 Mar 1952 00:00:00 GMT", "Tue, 01 Apr 1952 00:00:00 GMT", "Thu, 01 May 1952 00:00:00 GMT", "Sun, 01 Jun 1952 00:00:00 GMT", "Tue, 01 Jul 1952 00:00:00 GMT", "Fri, 01 Aug 1952 00:00:00 GMT", "Mon, 01 Sep 1952 00:00:00 GMT", "Wed, 01 Oct 1952 00:00:00 GMT", "Sat, 01 Nov 1952 00:00:00 GMT", "Mon, 01 Dec 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Sun, 01 Feb 1953 00:00:00 GMT", "Sun, 01 Mar 1953 00:00:00 GMT", "Wed, 01 Apr 1953 00:00:00 GMT", "Fri, 01 May 1953 00:00:00 GMT", "Mon, 01 Jun 1953 00:00:00 GMT", "Wed, 01 Jul 1953 00:00:00 GMT", "Sat, 01 Aug 1953 00:00:00 GMT", "Tue, 01 Sep 1953 00:00:00 GMT", "Thu, 01 Oct 1953 00:00:00 GMT", "Sun, 01 Nov 1953 00:00:00 GMT", "Tue, 01 Dec 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Mon, 01 Feb 1954 00:00:00 GMT", "Mon, 01 Mar 1954 00:00:00 GMT", "Thu, 01 Apr 1954 00:00:00 GMT", "Sat, 01 May 1954 00:00:00 GMT", "Tue, 01 Jun 1954 00:00:00 GMT", "Thu, 01 Jul 1954 00:00:00 GMT", "Sun, 01 Aug 1954 00:00:00 GMT", "Wed, 01 Sep 1954 00:00:00 GMT", "Fri, 01 Oct 1954 00:00:00 GMT", "Mon, 01 Nov 1954 00:00:00 GMT", "Wed, 01 Dec 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Tue, 01 Feb 1955 00:00:00 GMT", "Tue, 01 Mar 1955 00:00:00 GMT", "Fri, 01 Apr 1955 00:00:00 GMT", "Sun, 01 May 1955 00:00:00 GMT", "Wed, 01 Jun 1955 00:00:00 GMT", "Fri, 01 Jul 1955 00:00:00 GMT", "Mon, 01 Aug 1955 00:00:00 GMT", "Thu, 01 Sep 1955 00:00:00 GMT", "Sat, 01 Oct 1955 00:00:00 GMT", "Tue, 01 Nov 1955 00:00:00 GMT", "Thu, 01 Dec 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Wed, 01 Feb 1956 00:00:00 GMT", "Thu, 01 Mar 1956 00:00:00 GMT", "Sun, 01 Apr 1956 00:00:00 GMT", "Tue, 01 May 1956 00:00:00 GMT", "Fri, 01 Jun 1956 00:00:00 GMT", "Sun, 01 Jul 1956 00:00:00 GMT", "Wed, 01 Aug 1956 00:00:00 GMT", "Sat, 01 Sep 1956 00:00:00 GMT", "Mon, 01 Oct 1956 00:00:00 GMT", "Thu, 01 Nov 1956 00:00:00 GMT", "Sat, 01 Dec 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Fri, 01 Feb 1957 00:00:00 GMT", "Fri, 01 Mar 1957 00:00:00 GMT", "Mon, 01 Apr 1957 00:00:00 GMT", "Wed, 01 May 1957 00:00:00 GMT", "Sat, 01 Jun 1957 00:00:00 GMT", "Mon, 01 Jul 1957 00:00:00 GMT", "Thu, 01 Aug 1957 00:00:00 GMT", "Sun, 01 Sep 1957 00:00:00 GMT", "Tue, 01 Oct 1957 00:00:00 GMT", "Fri, 01 Nov 1957 00:00:00 GMT", "Sun, 01 Dec 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Sat, 01 Feb 1958 00:00:00 GMT", "Sat, 01 Mar 1958 00:00:00 GMT", "Tue, 01 Apr 1958 00:00:00 GMT", "Thu, 01 May 1958 00:00:00 GMT", "Sun, 01 Jun 1958 00:00:00 GMT", "Tue, 01 Jul 1958 00:00:00 GMT", "Fri, 01 Aug 1958 00:00:00 GMT", "Mon, 01 Sep 1958 00:00:00 GMT", "Wed, 01 Oct 1958 00:00:00 GMT", "Sat, 01 Nov 1958 00:00:00 GMT", "Mon, 01 Dec 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT", "Sun, 01 Feb 1959 00:00:00 GMT", "Sun, 01 Mar 1959 00:00:00 GMT", "Wed, 01 Apr 1959 00:00:00 GMT", "Fri, 01 May 1959 00:00:00 GMT", "Mon, 01 Jun 1959 00:00:00 GMT", "Wed, 01 Jul 1959 00:00:00 GMT", "Sat, 01 Aug 1959 00:00:00 GMT", "Tue, 01 Sep 1959 00:00:00 GMT", "Thu, 01 Oct 1959 00:00:00 GMT", "Sun, 01 Nov 1959 00:00:00 GMT", "Tue, 01 Dec 1959 00:00:00 GMT", "Fri, 01 Jan 1960 00:00:00 GMT", "Mon, 01 Feb 1960 00:00:00 GMT", "Tue, 01 Mar 1960 00:00:00 GMT", "Fri, 01 Apr 1960 00:00:00 GMT", "Sun, 01 May 1960 00:00:00 GMT", "Wed, 01 Jun 1960 00:00:00 GMT", "Fri, 01 Jul 1960 00:00:00 GMT", "Mon, 01 Aug 1960 00:00:00 GMT", "Thu, 01 Sep 1960 00:00:00 GMT", "Sat, 01 Oct 1960 00:00:00 GMT", "Tue, 01 Nov 1960 00:00:00 GMT", "Thu, 01 Dec 1960 00:00:00 GMT" ],
+[    112,    118,    132,    129,    121,    135,    148,    148,    136,    119,    104,    118,    115,    126,    141,    135,    125,    149,    170,    170,    158,    133,    114,    140,    145,    150,    178,    163,    172,    178,    199,    199,    184,    162,    146,    166,    171,    180,    193,    181,    183,    218,    230,    242,    209,    191,    172,    194,    196,    196,    236,    235,    229,    243,    264,    272,    237,    211,    180,    201,    204,    188,    235,    227,    234,    264,    302,    293,    259,    229,    203,    229,    242,    233,    267,    269,    270,    315,    364,    347,    312,    274,    237,    278,    284,    277,    317,    313,    318,    374,    413,    405,    355,    306,    271,    306,    315,    301,    356,    348,    355,    422,    465,    467,    404,    347,    305,    336,    340,    318,    362,    348,    363,    435,    491,    505,    404,    359,    310,    337,    360,    342,    406,    396,    420,    472,    548,    559,    463,    407,    362,    405,    417,    391,    419,    461,    472,    535,    622,    606,    508,    461,    390,    432 ] 
+] }</script></p>
+<p>Here we use a number of options to customize axis display:</p>
+<ol style="list-style-type: decimal">
+<li><p>The <code>pixelsPerLabel</code> option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing reuslts in too few labels).</p></li>
+<li><p>The <code>drawGrid</code> option turns off the grid for the x axis</p></li>
+<li><p>The <code>includeZero</code> option ensures that the y axis is scaled from zero rather than the low-end of it’s range of values.</p></li>
+<li><p>The <code>axisLineColor</code> and <code>gridLineColor</code> options change the colors of axis and grid lines respectively.</p></li>
+</ol>
+<p>There are many more options available that affect axis display. See the documentation on <code>dyAxis</code> and <code>dyOptions</code> for more details.</p>
 
 
 </div>  

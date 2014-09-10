@@ -133,7 +133,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-
+<p>You can use <code>dygraph</code> at the R console just like any other plotting function. For example, here’s the code used to plot the <code>nhtemp</code> time series with R graphics along with the code to plot it using dygraphs:</p>
+<pre class="r"><code>plot(nhtemp, main = &quot;New Haven Temperatures&quot;, ylab = &quot;Temp (F)&quot;)
+dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;, ylab = &quot;Temp (F)&quot;) </code></pre>
+<p>In the default R console the dygraph will appear in an external browser window.</p>
+<div id="rstudio-viewer" class="section level4">
+<h4>RStudio Viewer</h4>
+<p>If you call <code>dygraph</code> within RStudio then it’s output appears within the <em>Viewer</em> pane, a special pane dedicated to displaying web content. The Viewer pane works exactly like the Plots pane, and inclues history, zoom, and options for exporting it’s contents to image files, the clipboard, or standalone HTML. Here’s what the output of the previous call looks like in the Viewer pane:</p>
+<p><img src="images/rstudio-viewer-pane.png" alt="RStudio Viewer Pane" /></p>
+<p>Note that plotting to the RStudio Viewer relies on a very recent version of RStudio (v0.98.1056 or higher) so you should download the <a href="http://www.rstudio.com/products/rstudio/">latest release</a> of RStudio before trying this out.</p>
+</div>
 
 
 </div>  
