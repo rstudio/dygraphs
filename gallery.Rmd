@@ -1,6 +1,0 @@
----
-title: "Usage"
-output: html_document
----
-
-Gallery goes here

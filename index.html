@@ -29,13 +29,23 @@ body {
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
-  width: 200px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
 }
 
 @media (max-width: 767px) {
   .sidebar-nav-fixed {
-      position:static;
-      width:auto;
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
   }
 }
 
@@ -82,9 +92,15 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="span3">
   
 <ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
   <li><a href="index.html">Home</a></li>
   
-  <li><a href="using.html">Using</a></li>
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
   
   <li class="nav-header">Gallery</li>
   <li><a href="#">Example1</a></li>
@@ -98,7 +114,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   
 </div>
   
-<div class="span8 offset1">
+<div class="span8">
 
 <div id="header">
 <h1 class="title">dygraphs for R</h1>
@@ -124,8 +140,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-8179" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8179">{ "attrs": {
+<p><div id="htmlwidget-3676" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3676">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -139,8 +155,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-9116" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-9116">{ "attrs": {
+<p><div id="htmlwidget-2093" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2093">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -161,8 +177,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-5825" style="width:576px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5825">{ "attrs": {
+<p><div id="htmlwidget-9883" style="width:576px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9883">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -202,6 +218,8 @@ dygraph(lungDeaths)</code></pre>
 [    901,    689,    827,    677,    522,    406,    441,    393,    387,    582,    578,    666,    830,    752,    785,    664,    467,    438,    421,    412,    343,    440,    531,    771,    767,   1141,    896,    532,    447,    420,    376,    330,    357,    445,    546,    764,    862,    660,    663,    643,    502,    392,    411,    348,    387,    385,    411,    638,    796,    853,    737,    546,    530,    446,    431,    362,    387,    430,    425,    679,    821,    785,    727,    612,    478,    429,    405,    379,    393,    411,    487,    574 ] 
 ] }</script></p>
 <p>The <em>Gallery</em> includes many more examples of the various features available to customize dygraphs.</p>
+<!-- Fork me on Github Button -->
+
 <p><a href="https://github.com/jjallaire/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>
 </div>
 

@@ -10,7 +10,7 @@
 
 
 
-<title>Usage</title>
+<title>Using at the R Console</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,13 +26,23 @@ body {
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
-  width: 200px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
 }
 
 @media (max-width: 767px) {
   .sidebar-nav-fixed {
-      position:static;
-      width:auto;
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
   }
 }
 
@@ -79,9 +89,15 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="span3">
   
 <ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
   <li><a href="index.html">Home</a></li>
   
-  <li><a href="using.html">Using</a></li>
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
   
   <li class="nav-header">Gallery</li>
   <li><a href="#">Example1</a></li>
@@ -95,14 +111,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   
 </div>
   
-<div class="span8 offset1">
+<div class="span8">
 
 <div id="header">
-<h1 class="title">Usage</h1>
+<h1 class="title">Using at the R Console</h1>
 </div>
 
 
-<p>Gallery goes here</p>
+
 
 
 </div>  
