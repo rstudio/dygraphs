@@ -18,11 +18,11 @@ can only be specified at Dygraph creation time.}
 
 \item{fillColor}{The range selector mini plot fill color. This can be of the
 form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
-\code{NULL} or "" to turn off fill.}
+"" to turn off fill.}
 
 \item{strokeColor}{The range selector mini plot stroke color. This can be of
   the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
-  \code{NULL} or "" to turn off stroke.}
+  "" to turn off stroke.}
 }
 \value{
 A dygraph that displays a range selector
