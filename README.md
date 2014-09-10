@@ -5,7 +5,7 @@ The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) Ja
 - Automatically plots [xts](http://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
 - Rich interactive features including zoom, pan, and mouseover highlighting.
 - Highly configurable series display, including the ability to display custom bars (e.g. - prediction intervals) around series.
-- Usable at the R console as well as within R Markdown documents and Shiny web applications.
+- Usable at the R console as well as within [R Markdown](http://rmarkdown.rstudio.com) documents and [Shiny](http://shiny.rstudio.com) web applications.
 
 #### Installation
 
