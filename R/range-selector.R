@@ -40,7 +40,7 @@ dyRangeSelector <- function(dygraph,
                                   }
     );
   }
-  selector$height <- height
+  selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- fillColor
   selector$rangeSelectorPlotStrokeColor <- strokeColor
   
