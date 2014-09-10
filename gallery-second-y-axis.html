@@ -19,7 +19,7 @@
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
-<script src="libs/dygraphs-binding-1.0/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -35,6 +35,10 @@ h1 {
 div .dygraphs {
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
 }
 
 .sidebar-nav-fixed {
@@ -119,6 +123,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-legend-options.html">Legend Options</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
@@ -149,8 +154,8 @@ weather &lt;- cbind(rainfall, temperature)
 # assign the &quot;rainfall&quot; series to the y2 axis
 dygraph(weather) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-4814" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4814">{ "attrs": {
+<p><div id="htmlwidget-6456" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6456">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -179,8 +184,8 @@ dygraph(weather) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Temperature (C)&quot;) %&gt;%
   dyAxis(&quot;y2&quot;, label = &quot;Rainfall&quot;, independentTicks = TRUE) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-6231" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-6231">{ "attrs": {
+<p><div id="htmlwidget-105" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-105">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -213,8 +218,10 @@ dygraph(weather) %&gt;%
 // manage active state of toc based on current page
 $(document).ready(function () {
     // active menu
-    href = window.location.pathname
-    href = href.substr(href.lastIndexOf('/') + 1)
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
     $('a[href="' + href + '"]').parent().addClass('active');
 });
 

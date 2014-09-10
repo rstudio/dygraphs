@@ -19,7 +19,7 @@
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
-<script src="libs/dygraphs-binding-1.0/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -35,6 +35,10 @@ h1 {
 div .dygraphs {
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
 }
 
 .sidebar-nav-fixed {
@@ -119,6 +123,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-legend-options.html">Legend Options</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
@@ -157,8 +162,8 @@ dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
 &#96;&#96;&#96;
 </code></pre>
 
-<p><div id="htmlwidget-1981" style="width:576px;height:240px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1981">{ "attrs": {
+<p><div id="htmlwidget-4595" style="width:576px;height:240px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4595">{ "attrs": {
  "title": "New Haven Temperatures",
 "ylabel": "Temp (F)",
 "labels": [ "year", "V1" ],
@@ -181,8 +186,10 @@ dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
 // manage active state of toc based on current page
 $(document).ready(function () {
     // active menu
-    href = window.location.pathname
-    href = href.substr(href.lastIndexOf('/') + 1)
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
     $('a[href="' + href + '"]').parent().addClass('active');
 });
 

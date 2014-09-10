@@ -34,6 +34,10 @@ div .dygraphs {
   margin-bottom: 25px;
 }
 
+pre {
+  margin-bottom: 15px;
+}
+
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
@@ -116,6 +120,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-legend-options.html">Legend Options</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
@@ -134,9 +139,57 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 <p>The dygraphs package provides the <code>dygraphOutput</code> and <code>renderDygraph</code> functions to enable use of dygraphs within <a href="http://shiny.rstudio.com">Shiny</a> applications and R Markdown <a href="http://shiny.rstudio.com/articles/interactive-docs.html">interactive documents</a>.</p>
+<p>Note that using dycharts with Shiny requires a development version of the Shiny package. You can install this using <strong>devtools</strong> as follows:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/shiny&quot;)</code></pre>
+<div id="simple-example" class="section level4">
+<h4>Simple Example</h4>
 <p>These functions work exactly like the Shiny <em>plotOutput</em> and <em>renderPlot</em> functions. For example, here’s a simple Shiny application that uses these functions:</p>
 <p><strong>ui.R</strong></p>
+<pre class="r"><code>library(dygraphs)
+
+shinyUI(fluidPage(
+  
+  titlePanel(&quot;Shiny dycharts&quot;),
+  
+  sidebarLayout(
+    
+    sidebarPanel(
+      checkboxInput(inputId = &quot;males&quot;, value = TRUE,
+                    label = &quot;Males Series&quot;),
+      checkboxInput(inputId = &quot;females&quot;, value = TRUE,
+                    label = &quot;Females Series&quot;)
+    ),
+    
+    mainPanel(
+      dygraphOutput(&quot;dygraph&quot;)
+    )
+  )
+))</code></pre>
 <p><strong>server.R</strong></p>
+<pre class="r"><code>library(dygraphs)
+library(datasets)
+
+shinyServer(function(input, output) {
+  
+  lungDeaths &lt;- reactive({
+     if (input$males &amp;&amp; input$females)
+       cbind(ldeaths, mdeaths, fdeaths)
+     else if (input$males)
+       cbind(ldeaths, mdeaths)
+     else if (input$females)
+       cbind(ldeaths, fdeaths)
+     else
+       ldeaths
+  })
+  
+  output$dygraph &lt;- renderDygraph({
+
+    dygraph(lungDeaths(), 
+            main = &quot;Monthly Deaths from Lung Diseases (UK)&quot;)
+    
+  })
+})</code></pre>
+</div>
 
 
 </div>  
@@ -147,8 +200,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 // manage active state of toc based on current page
 $(document).ready(function () {
     // active menu
-    href = window.location.pathname
-    href = href.substr(href.lastIndexOf('/') + 1)
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
     $('a[href="' + href + '"]').parent().addClass('active');
 });
 

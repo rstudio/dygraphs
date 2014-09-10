@@ -34,6 +34,10 @@ div .dygraphs {
   margin-bottom: 25px;
 }
 
+pre {
+  margin-bottom: 15px;
+}
+
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
@@ -116,6 +120,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-legend-options.html">Legend Options</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
@@ -153,8 +158,10 @@ dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;, ylab = &quot;Temp (F)
 // manage active state of toc based on current page
 $(document).ready(function () {
     // active menu
-    href = window.location.pathname
-    href = href.substr(href.lastIndexOf('/') + 1)
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
     $('a[href="' + href + '"]').parent().addClass('active');
 });
 

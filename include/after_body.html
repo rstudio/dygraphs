@@ -7,8 +7,10 @@
 // manage active state of toc based on current page
 $(document).ready(function () {
     // active menu
-    href = window.location.pathname
-    href = href.substr(href.lastIndexOf('/') + 1)
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
     $('a[href="' + href + '"]').parent().addClass('active');
 });
 

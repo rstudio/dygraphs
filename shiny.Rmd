@@ -4,11 +4,65 @@ title: "Using in Shiny Applications"
 
 The dygraphs package provides the `dygraphOutput` and `renderDygraph` functions to enable use of dygraphs within [Shiny](http://shiny.rstudio.com) applications and R Markdown [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html). 
 
+Note that using dycharts with Shiny requires a development version of the Shiny package. You can install this using **devtools** as follows:
+
+```{r, eval=FALSE}
+devtools::install_github("rstudio/shiny")
+```
+
+#### Simple Example
+
 These functions work exactly like the Shiny *plotOutput* and *renderPlot* functions. For example, here's a simple Shiny application that uses these functions:
 
 **ui.R**
 
+```{r, eval=FALSE}
+library(dygraphs)
+
+shinyUI(fluidPage(
+  
+  titlePanel("Shiny dycharts"),
+  
+  sidebarLayout(
+    
+    sidebarPanel(
+      checkboxInput(inputId = "males", value = TRUE,
+                    label = "Males Series"),
+      checkboxInput(inputId = "females", value = TRUE,
+                    label = "Females Series")
+    ),
+    
+    mainPanel(
+      dygraphOutput("dygraph")
+    )
+  )
+))
+```
 
 **server.R**
 
+```{r, eval=FALSE}
+library(dygraphs)
+library(datasets)
 
+shinyServer(function(input, output) {
+  
+  lungDeaths <- reactive({
+     if (input$males && input$females)
+       cbind(ldeaths, mdeaths, fdeaths)
+     else if (input$males)
+       cbind(ldeaths, mdeaths)
+     else if (input$females)
+       cbind(ldeaths, fdeaths)
+     else
+       ldeaths
+  })
+  
+  output$dygraph <- renderDygraph({
+
+    dygraph(lungDeaths(), 
+            main = "Monthly Deaths from Lung Diseases (UK)")
+    
+  })
+})
+```
