@@ -13,7 +13,7 @@ You can plot error bars (or any other high/low oriented data) along with a serie
 ```{r}
 hw <- HoltWinters(ldeaths)
 predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
-dygraph(predicted, main = "Predicted Deaths from Lung Disease (UK)") %>%
+dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
   dySeries(c("lwr", "fit", "upr"), label = "Deaths")
 ```
 

@@ -166,8 +166,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-2366" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2366">{ "attrs": {
+<p><div id="htmlwidget-78" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-78">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -181,8 +181,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-3595" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3595">{ "attrs": {
+<p><div id="htmlwidget-8409" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8409">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -203,8 +203,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector(height = 20)</code></pre>
-<p><div id="htmlwidget-8681" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8681">{ "attrs": {
+<p><div id="htmlwidget-3378" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3378">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -248,13 +248,13 @@ dygraph(lungDeaths)</code></pre>
 <pre class="r"><code>hw &lt;- HoltWinters(ldeaths)
 predicted &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
-dygraph(predicted, main = &quot;Predicted Deaths from Lung Disease (UK)&quot;) %&gt;%
+dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dyAxis(&quot;x&quot;, drawGrid = FALSE) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set1&quot;))</code></pre>
-<p><div id="htmlwidget-342" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-342">{ "attrs": {
- "title": "Predicted Deaths from Lung Disease (UK)",
+<p><div id="htmlwidget-5885" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5885">{ "attrs": {
+ "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",
 "axes": {
