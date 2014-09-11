@@ -4,7 +4,8 @@
 \title{dygraph legend}
 \usage{
 dyLegend(dygraph, show = c("auto", "always", "onmouseover"), width = 250,
-  showZeroValues = TRUE, externalDiv = NULL, hideOnMouseOut = TRUE)
+  showZeroValues = TRUE, labelsDiv = NULL, labelsSeparateLines = FALSE,
+  hideOnMouseOut = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to configure legend options for.}
@@ -19,13 +20,16 @@ is plotted.}
 
 \item{showZeroValues}{Show zero value labels in the legend.}
 
-\item{externalDiv}{Show data labels in an external div, rather than on the
+\item{labelsDiv}{Show data labels in an external div, rather than on the
 graph. This value should be a div element id.}
+
+\item{labelsSeparateLines}{Put a <br/> between lines in the label string.
+Often used in conjunction with \code{labelsDiv}.}
 
 \item{hideOnMouseOut}{Whether to hide the legend when the mouse leaves the
   chart area. This option applies when \code{show} is set to "onmouseover".
-  Note that this also affects the hiding of the \code{\link{dyHighlight}}
-  on mouse out.}
+  Note that this also affects the hiding of the \code{\link{dyHighlight}} on
+  mouse out.}
 }
 \value{
 A dygraph with customized legend options
@@ -34,7 +38,7 @@ A dygraph with customized legend options
 Configure options for the dygraph series legend.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the \href{http://jjallaire.github.io/dygraphs/}{online
+documentation} for additional details and examples.
 }
 
