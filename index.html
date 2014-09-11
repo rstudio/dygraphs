@@ -166,8 +166,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-8112" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8112">{ "attrs": {
+<p><div id="htmlwidget-2366" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2366">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -181,8 +181,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-4749" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4749">{ "attrs": {
+<p><div id="htmlwidget-3595" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3595">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -202,9 +202,9 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;mdeaths&quot;, label = &quot;Male&quot;) %&gt;%
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
-  dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-9017" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-9017">{ "attrs": {
+  dyRangeSelector(height = 20)</code></pre>
+<p><div id="htmlwidget-8681" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8681">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -236,7 +236,7 @@ dygraph(lungDeaths)</code></pre>
 "drawGrid": true,
 "gridLineWidth":    0.3,
 "showRangeSelector": true,
-"rangeSelectorHeight":     40,
+"rangeSelectorHeight":     20,
 "rangeSelectorPlotFillColor": " #A7B1C4",
 "rangeSelectorPlotStrokeColor": "#808FAB" 
 },"scale": "monthly","data": [
@@ -244,7 +244,126 @@ dygraph(lungDeaths)</code></pre>
 [   2134,   1863,   1877,   1877,   1492,   1249,   1280,   1131,   1209,   1492,   1621,   1846,   2103,   2137,   2153,   1833,   1403,   1288,   1186,   1133,   1053,   1347,   1545,   2066,   2020,   2750,   2283,   1479,   1189,   1160,   1113,    970,    999,   1208,   1467,   2059,   2240,   1634,   1722,   1801,   1246,   1162,   1087,   1013,    959,   1179,   1229,   1655,   2019,   2284,   1942,   1423,   1340,   1187,   1098,   1004,    970,   1140,   1110,   1812,   2263,   1820,   1846,   1531,   1215,   1075,   1056,    975,    940,   1081,   1294,   1341 ],
 [    901,    689,    827,    677,    522,    406,    441,    393,    387,    582,    578,    666,    830,    752,    785,    664,    467,    438,    421,    412,    343,    440,    531,    771,    767,   1141,    896,    532,    447,    420,    376,    330,    357,    445,    546,    764,    862,    660,    663,    643,    502,    392,    411,    348,    387,    385,    411,    638,    796,    853,    737,    546,    530,    446,    431,    362,    387,    430,    425,    679,    821,    785,    727,    612,    478,    429,    405,    379,    393,    411,    487,    574 ] 
 ] }</script></p>
-<p>The <em>Gallery</em> includes many more examples of the various features available to customize dygraphs.</p>
+<p>Many options for customizing series and axis display are available. It’s even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here’s an example that illustates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom pallette for series colors:</p>
+<pre class="r"><code>hw &lt;- HoltWinters(ldeaths)
+predicted &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(predicted, main = &quot;Predicted Deaths from Lung Disease (UK)&quot;) %&gt;%
+  dyAxis(&quot;x&quot;, drawGrid = FALSE) %&gt;%
+  dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
+  dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set1&quot;))</code></pre>
+<p><div id="htmlwidget-342" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-342">{ "attrs": {
+ "title": "Predicted Deaths from Lung Disease (UK)",
+"labels": [ "month", "Deaths" ],
+"legend": "auto",
+"axes": {
+ "x": {
+ "drawGrid": false 
+} 
+},
+"customBars": true,
+"series": {
+ "Deaths": {
+ "axis": "y" 
+} 
+},
+"stackedGraph": false,
+"fillGraph": false,
+"fillAlpha":   0.15,
+"stepPlot": false,
+"drawPoints": false,
+"pointSize":      1,
+"strokeWidth":      1,
+"strokeBorderColor": "white",
+"colors": [ "#E41A1C", "#377EB8", "#4DAF4A" ],
+"colorValue":    0.5,
+"colorSaturation":      1,
+"drawXAxis": true,
+"drawYAxis": true,
+"includeZero": false,
+"axisLineColor": "black",
+"axisLineWidth":    0.3,
+"drawGrid": true,
+"gridLineWidth":    0.3 
+},"scale": "monthly","data": [
+ [ "Tue, 01 Jan 1980 00:00:00 GMT", "Fri, 01 Feb 1980 00:00:00 GMT", "Sat, 01 Mar 1980 00:00:00 GMT", "Tue, 01 Apr 1980 00:00:00 GMT", "Thu, 01 May 1980 00:00:00 GMT", "Sun, 01 Jun 1980 00:00:00 GMT", "Tue, 01 Jul 1980 00:00:00 GMT", "Fri, 01 Aug 1980 00:00:00 GMT", "Mon, 01 Sep 1980 00:00:00 GMT", "Wed, 01 Oct 1980 00:00:00 GMT", "Sat, 01 Nov 1980 00:00:00 GMT", "Mon, 01 Dec 1980 00:00:00 GMT", "Thu, 01 Jan 1981 00:00:00 GMT", "Sun, 01 Feb 1981 00:00:00 GMT", "Sun, 01 Mar 1981 00:00:00 GMT", "Wed, 01 Apr 1981 00:00:00 GMT", "Fri, 01 May 1981 00:00:00 GMT", "Mon, 01 Jun 1981 00:00:00 GMT", "Wed, 01 Jul 1981 00:00:00 GMT", "Sat, 01 Aug 1981 00:00:00 GMT", "Tue, 01 Sep 1981 00:00:00 GMT", "Thu, 01 Oct 1981 00:00:00 GMT", "Sun, 01 Nov 1981 00:00:00 GMT", "Tue, 01 Dec 1981 00:00:00 GMT", "Fri, 01 Jan 1982 00:00:00 GMT", "Mon, 01 Feb 1982 00:00:00 GMT", "Mon, 01 Mar 1982 00:00:00 GMT", "Thu, 01 Apr 1982 00:00:00 GMT", "Sat, 01 May 1982 00:00:00 GMT", "Tue, 01 Jun 1982 00:00:00 GMT", "Thu, 01 Jul 1982 00:00:00 GMT", "Sun, 01 Aug 1982 00:00:00 GMT", "Wed, 01 Sep 1982 00:00:00 GMT", "Fri, 01 Oct 1982 00:00:00 GMT", "Mon, 01 Nov 1982 00:00:00 GMT", "Wed, 01 Dec 1982 00:00:00 GMT", "Sat, 01 Jan 1983 00:00:00 GMT", "Tue, 01 Feb 1983 00:00:00 GMT", "Tue, 01 Mar 1983 00:00:00 GMT", "Fri, 01 Apr 1983 00:00:00 GMT", "Sun, 01 May 1983 00:00:00 GMT", "Wed, 01 Jun 1983 00:00:00 GMT", "Fri, 01 Jul 1983 00:00:00 GMT", "Mon, 01 Aug 1983 00:00:00 GMT", "Thu, 01 Sep 1983 00:00:00 GMT", "Sat, 01 Oct 1983 00:00:00 GMT", "Tue, 01 Nov 1983 00:00:00 GMT", "Thu, 01 Dec 1983 00:00:00 GMT", "Sun, 01 Jan 1984 00:00:00 GMT", "Wed, 01 Feb 1984 00:00:00 GMT", "Thu, 01 Mar 1984 00:00:00 GMT", "Sun, 01 Apr 1984 00:00:00 GMT", "Tue, 01 May 1984 00:00:00 GMT", "Fri, 01 Jun 1984 00:00:00 GMT", "Sun, 01 Jul 1984 00:00:00 GMT", "Wed, 01 Aug 1984 00:00:00 GMT", "Sat, 01 Sep 1984 00:00:00 GMT", "Mon, 01 Oct 1984 00:00:00 GMT", "Thu, 01 Nov 1984 00:00:00 GMT", "Sat, 01 Dec 1984 00:00:00 GMT", "Tue, 01 Jan 1985 00:00:00 GMT", "Fri, 01 Feb 1985 00:00:00 GMT", "Fri, 01 Mar 1985 00:00:00 GMT", "Mon, 01 Apr 1985 00:00:00 GMT", "Wed, 01 May 1985 00:00:00 GMT", "Sat, 01 Jun 1985 00:00:00 GMT", "Mon, 01 Jul 1985 00:00:00 GMT", "Thu, 01 Aug 1985 00:00:00 GMT", "Sun, 01 Sep 1985 00:00:00 GMT", "Tue, 01 Oct 1985 00:00:00 GMT", "Fri, 01 Nov 1985 00:00:00 GMT", "Sun, 01 Dec 1985 00:00:00 GMT" ],
+[
+ [ 2147.2, 2645.2, 3143.1 ],
+[ 2110.2, 2608.2, 3106.1 ],
+[ 2045.1, 2543.1, 3041.1 ],
+[ 1572.7, 2070.8, 2568.8 ],
+[ 1033.6, 1531.7, 2029.8 ],
+[    868, 1366.2, 1864.4 ],
+[ 818.02, 1316.3, 1814.6 ],
+[ 638.12, 1136.6,   1635 ],
+[ 649.46, 1148.1, 1646.7 ],
+[ 1015.7, 1514.5, 2013.3 ],
+[ 1167.9,   1667,   2166 ],
+[ 1618.4, 2117.8, 2617.1 ],
+[ 2046.7, 2551.2, 3055.7 ],
+[ 2009.3, 2514.2,   3019 ],
+[ 1943.9, 2449.2, 2954.5 ],
+[   1471, 1976.8, 2482.5 ],
+[ 931.45, 1437.8, 1944.1 ],
+[ 765.31, 1272.2, 1779.1 ],
+[ 714.78, 1222.3, 1729.9 ],
+[ 534.28, 1042.6, 1550.9 ],
+[    545, 1054.1, 1563.2 ],
+[ 910.57, 1420.5, 1930.5 ],
+[ 1062.1,   1573, 2083.9 ],
+[ 1511.9, 2023.8, 2535.7 ],
+[ 1937.9, 2457.2, 2976.6 ],
+[ 1899.7, 2420.2, 2940.7 ],
+[ 1833.4, 2355.2,   2877 ],
+[ 1359.7, 1882.8,   2406 ],
+[ 819.19, 1343.8, 1868.4 ],
+[ 652.12, 1178.2, 1704.4 ],
+[ 600.62, 1128.4, 1656.1 ],
+[ 419.13, 948.61, 1478.1 ],
+[ 428.81, 960.12, 1491.4 ],
+[ 793.32, 1326.6, 1859.8 ],
+[ 943.76,   1479, 2014.3 ],
+[ 1392.4, 1929.8, 2467.2 ],
+[ 1816.1, 2363.3, 2910.4 ],
+[ 1776.7, 2326.2, 2875.8 ],
+[ 1709.3, 2261.2, 2813.2 ],
+[ 1234.3, 1788.8, 2343.3 ],
+[ 692.65, 1249.8,   1807 ],
+[ 524.33, 1084.3, 1644.2 ],
+[ 471.57, 1034.4, 1597.2 ],
+[  288.8, 854.64, 1420.5 ],
+[ 297.18, 866.15, 1435.1 ],
+[ 660.38, 1232.6, 1804.8 ],
+[ 809.48, 1385.1, 1960.6 ],
+[ 1256.8, 1835.9, 2414.9 ],
+[ 1678.2, 2269.3, 2860.3 ],
+[ 1637.5, 2232.3,   2827 ],
+[ 1568.7, 2167.3, 2765.8 ],
+[ 1092.4, 1694.9, 2297.3 ],
+[ 549.33, 1155.8, 1762.3 ],
+[ 379.62,  990.3,   1601 ],
+[ 325.47, 940.43, 1555.4 ],
+[ 141.29, 760.67,   1380 ],
+[ 148.26, 772.18, 1396.1 ],
+[ 510.05, 1138.6, 1767.2 ],
+[ 657.74, 1291.1, 1924.4 ],
+[ 1103.6, 1741.9, 2380.2 ],
+[ 1523.1, 2175.3, 2827.5 ],
+[   1481, 2138.3, 2795.6 ],
+[ 1410.8, 2073.3, 2735.8 ],
+[ 933.11, 1600.9, 2268.7 ],
+[ 388.63, 1061.9, 1735.1 ],
+[ 217.53, 896.33, 1575.1 ],
+[ 161.98, 846.46, 1530.9 ],
+[ -23.592,  666.7,   1357 ],
+[ -18.004, 678.21, 1374.4 ],
+[  342.4, 1044.6, 1746.9 ],
+[ 488.71, 1197.1, 1905.5 ],
+[ 933.23, 1647.9, 2362.6 ] 
+] 
+] }</script></p>
+<p>The <em>Gallery</em> linked to from the sidebar includes many more examples of the various features available to customize dygraphs.</p>
 <!-- Fork me on Github Button -->
 
 <p><a href="https://github.com/jjallaire/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>

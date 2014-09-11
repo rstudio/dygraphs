@@ -44,10 +44,23 @@ dygraph(lungDeaths) %>%
   dySeries("mdeaths", label = "Male") %>%
   dySeries("fdeaths", label = "Female") %>%
   dyOptions(stackedGraph = TRUE) %>%
-  dyRangeSelector()
+  dyRangeSelector(height = 20)
 ```
 
-The *Gallery* includes many more examples of the various features available to customize dygraphs.
+Many options for customizing series and axis display are available. It's even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here's an example that illustates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom pallette for series colors:
+
+
+```{r}
+hw <- HoltWinters(ldeaths)
+predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(predicted, main = "Predicted Deaths from Lung Disease (UK)") %>%
+  dyAxis("x", drawGrid = FALSE) %>%
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+  dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
+```
+
+The *Gallery* linked to from the sidebar includes many more examples of the various features available to customize dygraphs.
 
 
 <!-- Fork me on Github Button -->
