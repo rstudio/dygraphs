@@ -10,7 +10,7 @@ HTMLWidgets.widget({
 
   resize: function(el, width, height, instance) {
     if (instance.dygraph)
-      instance.dygraph.resize(width, height);
+      instance.dygraph.resize();
   },
 
   renderValue: function(el, x, instance) {
