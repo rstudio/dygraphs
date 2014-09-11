@@ -128,13 +128,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-legend-options.html">Legend Options</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
   <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
-  <li><a href="gallery-css-label-styling.html">CSS Label Styling</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-css-label-styling.html">CSS Styling</a></li>
   
 </ul>
   
@@ -153,8 +153,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>lungDeaths &lt;- cbind(ldeaths, mdeaths, fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set2&quot;))</code></pre>
-<p><div id="htmlwidget-7511" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7511">{ "attrs": {
+<p><div id="htmlwidget-3587" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3587">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "ldeaths", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -192,8 +192,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <pre class="r"><code>lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyOptions(stepPlot = TRUE)</code></pre>
-<p><div id="htmlwidget-7534" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7534">{ "attrs": {
+<p><div id="htmlwidget-6676" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6676">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -228,8 +228,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <p>You can also fill in the area underneath the series as well as customize the alpha value for the filling:</p>
 <pre class="r"><code>dygraph(ldeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyOptions(fillGraph = TRUE, fillAlpha = 0.4)</code></pre>
-<p><div id="htmlwidget-3326" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3326">{ "attrs": {
+<p><div id="htmlwidget-5596" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5596">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -263,8 +263,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <p>You can include display of the individual points in a series as well as customize the size of the points:</p>
 <pre class="r"><code>dygraph(ldeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyOptions(drawPoints = TRUE, pointSize = 2)</code></pre>
-<p><div id="htmlwidget-7070" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7070">{ "attrs": {
+<p><div id="htmlwidget-4760" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4760">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -299,8 +299,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <pre class="r"><code>dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dySeries(&quot;mdeaths&quot;, drawPoints = TRUE, color = &quot;blue&quot;) %&gt;%
   dySeries(&quot;fdeaths&quot;, stepPlot = TRUE, fillGraph = TRUE, color = &quot;red&quot;)</code></pre>
-<p><div id="htmlwidget-7602" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7602">{ "attrs": {
+<p><div id="htmlwidget-3291" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3291">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -331,8 +331,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <p>You can also customize the way that series lines are drawn. Here we draw a wider line with a custom stroke pattern (dashed line):</p>
 <pre class="r"><code>dygraph(ldeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dySeries(&quot;V1&quot;, strokeWidth = 2, strokePattern = c(5, 2))</code></pre>
-<p><div id="htmlwidget-1033" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1033">{ "attrs": {
+<p><div id="htmlwidget-8190" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8190">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "V1" ],
 "legend": "auto",

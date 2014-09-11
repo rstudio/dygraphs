@@ -1,5 +1,5 @@
 ---
-title: "Legend Options"
+title: "Plot Legend"
 ---
 
 ```{r, include=FALSE}
