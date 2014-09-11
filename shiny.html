@@ -155,17 +155,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 shinyUI(fluidPage(
   
-  titlePanel(&quot;Shiny dycharts&quot;),
+  titlePanel(&quot;Predicted Deaths from Lung Disease (UK)&quot;),
   
   sidebarLayout(
-    
     sidebarPanel(
-      checkboxInput(inputId = &quot;males&quot;, value = TRUE,
-                    label = &quot;Males Series&quot;),
-      checkboxInput(inputId = &quot;females&quot;, value = TRUE,
-                    label = &quot;Females Series&quot;)
+      numericInput(&quot;months&quot;, label = &quot;Months to Predict&quot;, 
+                   value = 72, min = 12, max = 144, step = 12),
+      selectInput(&quot;interval&quot;, label = &quot;Prediction Interval&quot;,
+                  choices = c(&quot;0.80&quot;, &quot;0.90&quot;, &quot;0.95&quot;, &quot;0.99&quot;),
+                  selected = &quot;0.95&quot;)
     ),
-    
     mainPanel(
       dygraphOutput(&quot;dygraph&quot;)
     )
@@ -177,23 +176,18 @@ library(datasets)
 
 shinyServer(function(input, output) {
   
-  lungDeaths &lt;- reactive({
-     if (input$males &amp;&amp; input$females)
-       cbind(ldeaths, mdeaths, fdeaths)
-     else if (input$males)
-       cbind(ldeaths, mdeaths)
-     else if (input$females)
-       cbind(ldeaths, fdeaths)
-     else
-       ldeaths
+  predicted &lt;- reactive({
+    hw &lt;- HoltWinters(ldeaths)
+    predict(hw, n.ahead = input$months, 
+            prediction.interval = TRUE,
+            level = as.numeric(input$interval))
   })
   
   output$dygraph &lt;- renderDygraph({
-
-    dygraph(lungDeaths(), 
-            main = &quot;Monthly Deaths from Lung Diseases (UK)&quot;)
-    
+    dygraph(predicted(), main = &quot;Predicted Deaths/Month&quot;) %&gt;%
+      dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;)
   })
+  
 })</code></pre>
 </div>
 
