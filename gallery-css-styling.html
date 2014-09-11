@@ -17,6 +17,9 @@
 <link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -131,7 +134,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
-  <li><a href="gallery-css-label-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
   
 </ul>
   
@@ -144,7 +147,70 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-
+<p>You can use CSS to customize the typefaces used in dygraph labels. In this example we’ll use CSS to make the main label bold and to reduce the size of the typefaces used on the axes:</p>
+<pre class="css"><code>.dygraph-title {
+  font-weight: bold;
+}
+.dygraph-axis-label {
+  font-size: 11px;
+}</code></pre>
+<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
+  dyOptions(css = &quot;dygraph.css&quot;)</code></pre>
+<p><div id="htmlwidget-6569" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6569">{ "attrs": {
+ "title": "New Haven Temperatures",
+"labels": [ "year", "V1" ],
+"legend": "auto",
+"axes": {
+ "x": [] 
+},
+"stackedGraph": false,
+"fillGraph": false,
+"fillAlpha":   0.15,
+"stepPlot": false,
+"drawPoints": false,
+"pointSize":      1,
+"strokeWidth":      1,
+"strokeBorderColor": "white",
+"colorValue":    0.5,
+"colorSaturation":      1,
+"drawXAxis": true,
+"drawYAxis": true,
+"includeZero": false,
+"axisLineColor": "black",
+"axisLineWidth":    0.3,
+"drawGrid": true,
+"gridLineWidth":    0.3 
+},"scale": "yearly","data": [
+ [ "Mon, 01 Jan 1912 00:00:00 GMT", "Wed, 01 Jan 1913 00:00:00 GMT", "Thu, 01 Jan 1914 00:00:00 GMT", "Fri, 01 Jan 1915 00:00:00 GMT", "Sat, 01 Jan 1916 00:00:00 GMT", "Mon, 01 Jan 1917 00:00:00 GMT", "Tue, 01 Jan 1918 00:00:00 GMT", "Wed, 01 Jan 1919 00:00:00 GMT", "Thu, 01 Jan 1920 00:00:00 GMT", "Sat, 01 Jan 1921 00:00:00 GMT", "Sun, 01 Jan 1922 00:00:00 GMT", "Mon, 01 Jan 1923 00:00:00 GMT", "Tue, 01 Jan 1924 00:00:00 GMT", "Thu, 01 Jan 1925 00:00:00 GMT", "Fri, 01 Jan 1926 00:00:00 GMT", "Sat, 01 Jan 1927 00:00:00 GMT", "Sun, 01 Jan 1928 00:00:00 GMT", "Tue, 01 Jan 1929 00:00:00 GMT", "Wed, 01 Jan 1930 00:00:00 GMT", "Thu, 01 Jan 1931 00:00:00 GMT", "Fri, 01 Jan 1932 00:00:00 GMT", "Sun, 01 Jan 1933 00:00:00 GMT", "Mon, 01 Jan 1934 00:00:00 GMT", "Tue, 01 Jan 1935 00:00:00 GMT", "Wed, 01 Jan 1936 00:00:00 GMT", "Fri, 01 Jan 1937 00:00:00 GMT", "Sat, 01 Jan 1938 00:00:00 GMT", "Sun, 01 Jan 1939 00:00:00 GMT", "Mon, 01 Jan 1940 00:00:00 GMT", "Wed, 01 Jan 1941 00:00:00 GMT", "Thu, 01 Jan 1942 00:00:00 GMT", "Fri, 01 Jan 1943 00:00:00 GMT", "Sat, 01 Jan 1944 00:00:00 GMT", "Mon, 01 Jan 1945 00:00:00 GMT", "Tue, 01 Jan 1946 00:00:00 GMT", "Wed, 01 Jan 1947 00:00:00 GMT", "Thu, 01 Jan 1948 00:00:00 GMT", "Sat, 01 Jan 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT", "Fri, 01 Jan 1960 00:00:00 GMT", "Sun, 01 Jan 1961 00:00:00 GMT", "Mon, 01 Jan 1962 00:00:00 GMT", "Tue, 01 Jan 1963 00:00:00 GMT", "Wed, 01 Jan 1964 00:00:00 GMT", "Fri, 01 Jan 1965 00:00:00 GMT", "Sat, 01 Jan 1966 00:00:00 GMT", "Sun, 01 Jan 1967 00:00:00 GMT", "Mon, 01 Jan 1968 00:00:00 GMT", "Wed, 01 Jan 1969 00:00:00 GMT", "Thu, 01 Jan 1970 00:00:00 GMT", "Fri, 01 Jan 1971 00:00:00 GMT" ],
+[   49.9,   52.3,   49.4,   51.1,   49.4,   47.9,   49.8,   50.9,   49.3,   51.9,   50.8,   49.6,   49.3,   50.6,   48.4,   50.7,   50.9,   50.6,   51.5,   52.8,   51.8,   51.1,   49.8,   50.2,   50.4,   51.6,   51.8,   50.9,   48.8,   51.7,     51,   50.6,   51.7,   51.5,   52.1,   51.3,     51,     54,   51.4,   52.7,   53.1,   54.6,     52,     52,   50.9,   52.6,   50.2,   52.6,   51.6,   51.9,   50.5,   50.9,   51.7,   51.4,   51.7,   50.8,   51.9,   51.8,   51.9,     53 ] 
+],"css": ".dygraph-title {\n  font-weight: bold;\n}\n.dygraph-axis-label {\n  font-size: 11px;\n}" }</script></p>
+<div id="css-classes" class="section level4">
+<h4>CSS Classes</h4>
+<p>The CSS classes for the chart labels are:</p>
+<ul>
+<li>Title: <code>.dygraph-label .dygraph-title</code></li>
+<li>x-axis label: <code>.dygraph-label .dygraph-xlabel</code></li>
+<li>y-axis label: <code>.dygraph-label .dygraph-ylabel</code></li>
+<li>y2-axis label: <code>.dygraph-label .dygraph-y2label</code></li>
+</ul>
+<p>The axis labels also get CSS classes:</p>
+<ul>
+<li>x-axis: <code>.dygraph-axis-label .dygraph-axis-label-x</code></li>
+<li>y-axis: <code>.dygraph-axis-label .dygraph-axis-label-y</code></li>
+<li>y2-axis: <code>.dygraph-axis-label .dygraph-axis-label-y .dygraph-axis-label-y2</code></li>
+</ul>
+<p>The legend has the .dygraph-legend class. When using <code>highlightSeriesOpts</code>, the selected series’ &lt;span&gt; gets a <code>.highlight</code> class. This can be used to show only a single series in the legend.</p>
+<p>The full reference to the various CSS classes used throughout a dychart is here: <a href="http://dygraphs.com/css.html">http://dygraphs.com/css.html</a>.</p>
+</div>
+<div id="applying-styles-globally" class="section level4">
+<h4>Applying Styles Globally</h4>
+<p>If you are creating an R Markdown document or Shiny application, you may want to apply your dygraphs CSS globally to the page or application rather than attaching it to each plot. See these links for documentation on how to do this:</p>
+<ul>
+<li><p>R Markdown: <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom-css">http://rmarkdown.rstudio.com/html_document_format.html#custom-css</a></p></li>
+<li><p>Shiny: <a href="http://shiny.rstudio.com/articles/css.html#add-css-to-the-header-with-includecss">http://shiny.rstudio.com/articles/css.html#add-css-to-the-header-with-includecss</a></p></li>
+</ul>
+</div>
 
 
 </div>  
