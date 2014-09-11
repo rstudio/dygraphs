@@ -50,6 +50,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$labels <- names(data)
   attrs$legend <- "auto"
   attrs$axes$x <- list() 
+  attrs$axes$x$pixelsPerLabel <- 50
    
   # create x (dychart attrs + some side data)
   x <- list()

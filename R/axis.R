@@ -27,7 +27,7 @@
 #'   additional details).
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
 #'   y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
-#'   to 60 (x-axis) or 30 (y-axes).
+#'   to 50 (x-axis) or 30 (y-axes).
 #' @param drawGrid Whether to display gridlines in the chart.
 #' @param gridLineColor The color of the gridlines.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
@@ -70,7 +70,8 @@ dyAxis <- function(dygraph,
   axis$options <- list(...)
   axis$options$valueRange <- valueRange
   axis$options$ticker <- ticker
-  axis$options$pixelsPerLabel <- pixelsPerLabel 
+  if (!is.null(pixelsPerLabel))
+    axis$options$pixelsPerLabel <- pixelsPerLabel 
   axis$options$axisLabelFormatter <- axisLabelFormatter
   axis$options$drawGrid <- drawGrid
   axis$options$gridLineColor <- gridLineColor

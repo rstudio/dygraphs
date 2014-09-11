@@ -31,7 +31,7 @@ additional details).}
 
 \item{pixelsPerLabel}{Number of pixels to require between each x- and
 y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
-to 60 (x-axis) or 30 (y-axes).}
+to 50 (x-axis) or 30 (y-axes).}
 
 \item{axisLabelFormatter}{JavaScript function to call to format the tick
 values that appear along an axis (see the
