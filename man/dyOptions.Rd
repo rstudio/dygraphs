@@ -63,7 +63,8 @@ the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not
 specified, equally-spaced points around a color wheel are used. This option
 can also be set on a per-series basis. Note that in both global and
 per-series specification of custom colors you must provide a color for all
-series being displayed.}
+series being displayed. Note also that global and per-series color
+specification cannot be mixed.}
 
 \item{colorValue}{If custom colors are not specified, value of the data
 series colors, as in hue/saturation/value (0.0-1.0, default 0.5).}

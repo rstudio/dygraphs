@@ -1,8 +1,8 @@
 #' dygraph data series
 #' 
-#' Add a data series to a dygraph plot. Note that options will use the default
-#' global setting (as determined by \code{\link{dyOptions}}) when not specified
-#' explicitly. When no \code{dySeries} is specified for a plot then all series
+#' Add a data series to a dygraph plot. Note that options will use the default 
+#' global setting (as determined by \code{\link{dyOptions}}) when not specified 
+#' explicitly. When no \code{dySeries} is specified for a plot then all series 
 #' within the underlying data are plotted.
 #' 
 #' @inheritParams dyOptions
@@ -16,7 +16,9 @@
 #' @param color Color for series. These can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
 #'   color for one series then you must specify one for all series. If not 
-#'   specified, equally-spaced points around a color wheel are used.
+#'   specified then the global colors option (typically based on equally-spaced
+#'   points around a color wheel). Note also that global and per-series color 
+#'   specification cannot be mixed.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot.
@@ -41,10 +43,9 @@
 #'   
 #' @return Dygraph with additional series
 #'   
-#' @note
-#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-#' additional details and examples.  
-#'   
+#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online
+#' documentation} for additional details and examples.
+#' 
 #' @export
 dySeries <- function(dygraph,
                      name, 
@@ -140,13 +141,9 @@ dySeries <- function(dygraph,
   # set options
   attrs$series[[series$label]] <- series$options
   
-  # set color if specified 
-  if (!is.null(color)) {
-    if (is.null(attrs$colors))
-      attrs$colors <- c()
-    attrs$colors[[length(attrs$labels) - 1]] <- color
-    attrs$colors[is.na(attrs$colors)] <- "black" # default missing
-  }
+  # add color if specified 
+  if (!is.null(color))
+    attrs$colors <- c(attrs$colors, color)
   
   # set attrs
   dygraph$x$attrs <- attrs

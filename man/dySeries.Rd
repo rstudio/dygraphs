@@ -21,7 +21,9 @@ and upper for a series with a shaded bar drawn around it.}
 \item{color}{Color for series. These can be of the form "#AABBCC" or
 "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom
 color for one series then you must specify one for all series. If not
-specified, equally-spaced points around a color wheel are used.}
+specified then the global colors option (typically based on equally-spaced
+points around a color wheel). Note also that global and per-series color
+specification cannot be mixed.}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
@@ -67,7 +69,7 @@ explicitly. When no \code{dySeries} is specified for a plot then all series
 within the underlying data are plotted.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the \href{http://jjallaire.github.io/dygraphs/}{online
+documentation} for additional details and examples.
 }
 
