@@ -3,22 +3,16 @@ library(datasets)
 
 shinyServer(function(input, output) {
   
-  lungDeaths <- reactive({
-     if (input$males && input$females)
-       cbind(ldeaths, mdeaths, fdeaths)
-     else if (input$males)
-       cbind(ldeaths, mdeaths)
-     else if (input$females)
-       cbind(ldeaths, fdeaths)
-     else
-       ldeaths
+  predicted <- reactive({
+    hw <- HoltWinters(ldeaths)
+    predict(hw, n.ahead = input$months, 
+            prediction.interval = TRUE,
+            level = as.numeric(input$interval))
   })
   
   output$dygraph <- renderDygraph({
-
-    dygraph(lungDeaths(), 
-            main = "Monthly Deaths from Lung Diseases (UK)")
-    
+    dygraph(predicted(), main = "Predicted Deaths/Month") %>%
+      dySeries(c("lwr", "fit", "upr"), label = "Deaths")
   })
   
 })
