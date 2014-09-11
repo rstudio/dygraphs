@@ -77,7 +77,7 @@ dySeries <- function(dygraph,
   cols <- which(dygraph$x$attrs$labels %in% name)
   if (length(cols) != length(name)) {
     stop("One or more of the specified series were not found. ",
-         "Valid series names are: ", paste(labels[-1], sep = ", "))
+         "Valid series names are: ", paste(labels[-1], collapse = ", "))
   }
   
   # data series named here are "consumed" from the automatically generated
