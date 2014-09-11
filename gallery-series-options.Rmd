@@ -3,3 +3,71 @@ title: "Series Options"
 ---
 
 
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+#### Series Colors
+
+You can specify an alternate color pallette for series lines using the `colors` option. For example, to choose a pallette from [RColorBrewer](http://cran.rstudio.com/web/packages/RColorBrewer/index.html):
+
+
+```{r}
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyOptions(colors = RColorBrewer::brewer.pal(3, "Set2"))
+```
+
+#### Step Plots 
+
+By default dygraphs displays series as a line, you can however plot series as step chart as follows:
+
+```{r}
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyOptions(stepPlot = TRUE)
+```
+
+#### Filling
+
+You can also fill in the area underneath the series as well as customize the alpha value for the filling:
+
+```{r}
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
+```
+
+#### Point Display
+
+You can include display of the individual points in a series as well as customize the size of the points:
+
+```{r}
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 2)
+```
+
+#### Per-Series Options
+
+All of the options above can also be set on a per-series basis usign the `dySeries` function. For example:
+
+```{r}
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dySeries("mdeaths", drawPoints = TRUE, color = "blue") %>%
+  dySeries("fdeaths", stepPlot = TRUE, fillGraph = TRUE, color = "red")
+```
+
+Note that you can specify colors globally (as demonstrated above) or per-series, but you cannot mix both styles of assigning colors.
+
+#### Line Strokes
+
+You can also customize the way that series lines are drawn. Here we draw a wider line with a custom stroke pattern (dashed line):
+
+```{r}
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dySeries("V1", strokeWidth = 2, strokePattern = c(5, 2))
+```
+
+
+
+
+
