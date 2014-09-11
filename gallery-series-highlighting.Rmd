@@ -2,4 +2,28 @@
 title: "Series Highlighting"
 ---
 
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+
+When users hover their mouse over series and points on the graph a highlight effect appears on the surface of the graph. You can use the dyHighlight function to customize how the highlighting appears.
+
+In this example we specify a larger circle size for point highlighting as well as more decicively fade the non-highlighted series. We also request that the highlighting persist even after the mouse leaves the graph area.
+
+```{r}
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.2,
+              hideOnMouseOut = FALSE)
+```
+
+You can also set additional visual options for the highlighted series using `highlightSeriesOpts`. This argument takes a list of named series options to apply to just the currently highlighted series (see the `dySeries` function for the various options that can be set). Here we set the stroke width of highlighted series to 3:
+
+
+```{r}
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))
+```
+
 
