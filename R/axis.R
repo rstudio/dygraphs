@@ -66,6 +66,7 @@ dyAxis <- function(dygraph,
   axis <- list()
   axis$name <- name
   axis$label <- label
+  axis$options <- list()
   axis$options$valueRange <- valueRange
   axis$options$ticker <- ticker
   if (!is.null(pixelsPerLabel))

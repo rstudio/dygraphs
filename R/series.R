@@ -88,6 +88,7 @@ dySeries <- function(dygraph,
   series <- list()
   series$name <- name
   series$label <- label
+  series$options <- list()
   series$options$axis <- match.arg(axis, c("y", "y2"))
   series$options$stepPlot <- stepPlot
   series$options$fillGraph <- fillGraph
