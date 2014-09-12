@@ -5,7 +5,7 @@
 #' specified explicitly.
 #' 
 #' @inheritParams dyOptions
-#'
+#'   
 #' @param dygraph Dygraph to add an axis definition to
 #' @param name Axis name ('x', 'y', or 'y2')
 #' @param label Label to display for axis (defaults to none).
@@ -21,6 +21,8 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param axisHeight Height, in pixels, of the x-axis. If not set explicitly, 
+#'   this is computed based on \code{axisLabelFontSize} and \code{axisTickSize}.
 #' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
 #'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
 #'   'rgb(0, 100, 255)'.
@@ -28,7 +30,7 @@
 #' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
 #'   string. This may also be set globally using \code{dyOptions}.
 #' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
-#'   labels, both x- and y-axis. This may also be set globally using
+#'   labels, both x- and y-axis. This may also be set globally using 
 #'   \code{dyOptions}.
 #' @param axisLabelFormatter JavaScript function to call to format the tick 
 #'   values that appear along an axis (see the 
@@ -52,15 +54,16 @@
 #'   
 #' @return Axis options
 #'   
-#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online
-#' documentation} for additional details and examples.
-#' 
+#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
+#'   documentation} for additional details and examples.
+#'   
 #' @export
 dyAxis <- function(dygraph,
                    name, 
                    label = NULL, 
                    valueRange = NULL,
                    ticker = NULL,
+                   axisHeight = NULL,
                    axisLineColor = NULL,
                    axisLineWidth = NULL,
                    pixelsPerLabel = NULL,
@@ -75,12 +78,21 @@ dyAxis <- function(dygraph,
   if (!name %in% c("x", "y", "y2"))
     stop("Axis name must be 'x', 'y', or 'y2'")
   
+  # copy attrs for modification
+  attrs <- dygraph$x$attrs
+  
   axis <- list()
   axis$name <- name
   axis$label <- label
   axis$options <- list()
   axis$options$valueRange <- valueRange
   axis$options$ticker <- ticker
+  if (!is.null(axisHeight)) {
+    if (name == "x")
+      attrs$xAxisHeight <- axisHeight
+    else
+      stop("axisHeight is only applicable to the x axis")
+  }
   axis$options$axisLineColor <- axisLineColor
   axis$options$axisLineWidth <- axisLineWidth
   if (!is.null(pixelsPerLabel))
@@ -92,10 +104,7 @@ dyAxis <- function(dygraph,
   axis$options$gridLineColor <- gridLineColor
   axis$options$gridLineWidth <- gridLineWidth
   axis$options$independentTicks <- independentTicks
-
-  # copy attrs for modification
-  attrs <- dygraph$x$attrs
-  
+ 
   # label and options
   if (!is.null(axis$label))
     attrs[[sprintf("%slabel", axis$name)]] <- axis$label

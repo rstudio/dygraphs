@@ -4,8 +4,8 @@
 \title{dygraph axis}
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  axisLineColor = NULL, axisLineWidth = NULL, pixelsPerLabel = NULL,
-  axisLabelColor = NULL, axisLabelFontSize = NULL,
+  axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
+  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
   axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
   gridLineWidth = NULL, independentTicks = NULL)
 }
@@ -29,6 +29,9 @@ tick marks so, if you set this option, you'll most likely want to call one
 of them and modify the result. See dygraph-tickers.js and the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
+
+\item{axisHeight}{Height, in pixels, of the x-axis. If not set explicitly,
+this is computed based on \code{axisLabelFontSize} and \code{axisTickSize}.}
 
 \item{axisLineColor}{Color of the x- and y-axis lines. Accepts any value
 which the HTML canvas strokeStyle attribute understands, e.g. 'black' or
@@ -78,6 +81,6 @@ specified explicitly.
 }
 \note{
 See the \href{http://jjallaire.github.io/dygraphs/}{online
-documentation} for additional details and examples.
+  documentation} for additional details and examples.
 }
 
