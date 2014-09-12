@@ -73,8 +73,8 @@ dySeries <- function(dygraph,
   labels <- names(data)
   
   # get the cols where this series is located and verify that they are
-  # still available for consumption
-  cols <- which(dygraph$x$attrs$labels %in% name)
+  # available within the underlying dataset
+  cols <- which(labels %in% name)
   if (length(cols) != length(name)) {
     stop("One or more of the specified series were not found. ",
          "Valid series names are: ", paste(labels[-1], collapse = ", "))
