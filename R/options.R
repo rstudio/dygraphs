@@ -63,7 +63,7 @@
 #' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines.
 #' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
 #'   string. This may also be set on a per-axis basis.
-#' @param axisLabelFontSize Size of the font (in pixels) to use in the axis
+#' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
 #'   labels, both x- and y-axis. This may also be set on a per-axis basis.
 #' @param axisLabelWidth Width (in pixels) of the containing divs for x- and 
 #'   y-axis labels.
@@ -81,8 +81,30 @@
 #'   page. This also implies that for a page with multiple plots you only need 
 #'   to specify styles for the first one (alternatively you can just add them 
 #'   directly to the page by other means).
+#' @param digitsAfterDecimal Unless it's run in scientific mode (see the 
+#'   \code{sigFigs} option), dygraphs displays numbers with 
+#'   \code{digitsAfterDecimal} digits after the decimal point. Trailing zeros 
+#'   are not displayed, so with a value of 2 you'll get '0', '0.1', '0.12', 
+#'   '123.45' but not '123.456' (it will be rounded to '123.46'). Numbers with 
+#'   absolute value less than 0.1^digitsAfterDecimal (i.e. those which would 
+#'   show up as '0.00') will be displayed in scientific notation.
+#' @param labelsKMB Show K/M/B for thousands/millions/billions on y-axis.
+#' @param labelsKMG2 Show k/M/G for kilo/Mega/Giga on y-axis. This is different 
+#'   than \code{labelsKMB} in that it uses base 2, not 10.
+#' @param maxNumberWidth When displaying numbers in normal (not scientific) 
+#'   mode, large numbers will be displayed with many trailing zeros (e.g. 
+#'   100000000 instead of 1e9). This can lead to unwieldy y-axis labels. If 
+#'   there are more than maxNumberWidth digits to the left of the decimal in a 
+#'   number, dygraphs will switch to scientific notation, even when not 
+#'   operating in scientific mode. If you'd like to see all those digits, set 
+#'   this to something large, like 20 or 30.
+#' @param sigFigs By default, dygraphs displays numbers with a fixed number of
+#'   digits after the decimal point. If you'd prefer to have a fixed number of
+#'   significant figures, set this option to that number of sig figs. A value of
+#'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be
+#'   displayed as 1.23e+3.
 #'   
-#' @return Series options
+#' @return dygraph with additional options
 #'   
 #' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
 #'   documentation} for additional details and examples.
@@ -113,7 +135,12 @@ dyOptions <- function(dygraph,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
-                      css = NULL) {
+                      css = NULL,
+                      digitsAfterDecimal = 2,
+                      labelsKMB = FALSE,
+                      labelsKMG2 = FALSE,
+                      maxNumberWidth = 6,
+                      sigFigs = NULL) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -139,6 +166,11 @@ dyOptions <- function(dygraph,
   options$drawGrid <- drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
+  options$digitsAfterDecimal <- digitsAfterDecimal
+  options$labelsKMB <- labelsKMB
+  options$labelsKMG2 <- labelsKMG2
+  options$maxNumberWidth <- maxNumberWidth
+  options$sigFigs <- sigFigs
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)

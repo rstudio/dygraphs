@@ -11,7 +11,8 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   includeZero = FALSE, axisLineColor = "black", axisLineWidth = 0.3,
   axisLabelColor = "black", axisLabelFontSize = 14, axisLabelWidth = 50,
   drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = 0.3,
-  css = NULL)
+  css = NULL, digitsAfterDecimal = 2, labelsKMB = FALSE,
+  labelsKMG2 = FALSE, maxNumberWidth = 6, sigFigs = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -112,15 +113,42 @@ on a per-series basis.}
 chart. This option can also be set on a per-series basis.}
 
 \item{css}{Path to css file to be used for styling textual elements of the
-  graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
-  the dygraphs website for additional details on which styles are available.
-  Note that CSS styles are global so will affect all dycharts on a given web
-  page. This also implies that for a page with multiple plots you only need
-  to specify styles for the first one (alternatively you can just add them
-  directly to the page by other means).}
+graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
+the dygraphs website for additional details on which styles are available.
+Note that CSS styles are global so will affect all dycharts on a given web
+page. This also implies that for a page with multiple plots you only need
+to specify styles for the first one (alternatively you can just add them
+directly to the page by other means).}
+
+\item{digitsAfterDecimal}{Unless it's run in scientific mode (see the
+\code{sigFigs} option), dygraphs displays numbers with
+\code{digitsAfterDecimal} digits after the decimal point. Trailing zeros
+are not displayed, so with a value of 2 you'll get '0', '0.1', '0.12',
+'123.45' but not '123.456' (it will be rounded to '123.46'). Numbers with
+absolute value less than 0.1^digitsAfterDecimal (i.e. those which would
+show up as '0.00') will be displayed in scientific notation.}
+
+\item{labelsKMB}{Show K/M/B for thousands/millions/billions on y-axis.}
+
+\item{labelsKMG2}{Show k/M/G for kilo/Mega/Giga on y-axis. This is different
+than \code{labelsKMB} in that it uses base 2, not 10.}
+
+\item{maxNumberWidth}{When displaying numbers in normal (not scientific)
+mode, large numbers will be displayed with many trailing zeros (e.g.
+100000000 instead of 1e9). This can lead to unwieldy y-axis labels. If
+there are more than maxNumberWidth digits to the left of the decimal in a
+number, dygraphs will switch to scientific notation, even when not
+operating in scientific mode. If you'd like to see all those digits, set
+this to something large, like 20 or 30.}
+
+\item{sigFigs}{By default, dygraphs displays numbers with a fixed number of
+  digits after the decimal point. If you'd prefer to have a fixed number of
+  significant figures, set this option to that number of sig figs. A value of
+  2, for instance, would cause 1 to be display as 1.0 and 1234 to be
+  displayed as 1.23e+3.}
 }
 \value{
-Series options
+dygraph with additional options
 }
 \description{
 Add options to a dygraph plot.
