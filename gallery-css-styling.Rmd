@@ -11,6 +11,7 @@ You can use CSS to customize the typefaces used in dygraph labels. In this examp
 
 ```css
 .dygraph-title {
+  color: navy;
   font-weight: bold;
 }
 .dygraph-axis-label {
@@ -20,7 +21,7 @@ You can use CSS to customize the typefaces used in dygraph labels. In this examp
 
 ```{r}
 dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dyOptions(css = "dygraph.css")
+  dyCSS("dygraph.css")
 ```
 
 

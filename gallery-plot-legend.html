@@ -152,12 +152,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
   dySeries(&quot;V1&quot;, label = &quot;Temperature (F)&quot;) %&gt;%
   dyLegend(show = &quot;always&quot;, hideOnMouseOut = FALSE)</code></pre>
-<p><div id="htmlwidget-3486" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3486">{ "attrs": {
+<p><div id="htmlwidget-5074" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5074">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "Temperature (F)" ],
 "axes": {
- "x": [] 
+ "x": {
+ "pixelsPerLabel":     50 
+} 
 },
 "series": {
  "Temperature (F)": {
@@ -177,12 +179,14 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>lungDeaths &lt;- cbind(ldeaths,mdeaths,fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyLegend(width = 400)</code></pre>
-<p><div id="htmlwidget-1825" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1825">{ "attrs": {
+<p><div id="htmlwidget-2946" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2946">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "ldeaths", "mdeaths", "fdeaths" ],
 "axes": {
- "x": [] 
+ "x": {
+ "pixelsPerLabel":     50 
+} 
 },
 "legend": "auto",
 "labelsDivWidth":    400,
