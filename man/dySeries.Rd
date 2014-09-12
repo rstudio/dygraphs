@@ -6,7 +6,7 @@
 dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
   pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = NULL, ...)
+  strokeBorderWidth = NULL, strokeBorderColor = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
@@ -54,10 +54,6 @@ lines more easily distinguishable. Useful for graphs with many lines.}
 
 \item{strokeBorderColor}{Color for the line border used if
   \code{strokeBorderWidth} is set.}
-
-\item{...}{Additional options to pass directly to dygraphs (see the
-  \href{http://dygraphs.com/options.html}{dygraphs documentation} for
-  additional details).}
 }
 \value{
 Dygraph with additional series

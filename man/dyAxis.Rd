@@ -5,8 +5,7 @@
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
   pixelsPerLabel = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
-  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL,
-  ...)
+  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -53,10 +52,6 @@ chart.}
   the y ticks are aligned to the the ones of y2. (only 1 grid) 3.) y=true,
   y2=true: Both axis are independent and have their own ticks. (2 grids) 4.)
   y=false, y2=false: Invalid configuration causes an error.}
-
-\item{...}{Additional options to pass directly to dygraphs (see the
-  \href{http://dygraphs.com/options.html}{dygraphs documentation} for
-  additional details).}
 }
 \value{
 Axis options
