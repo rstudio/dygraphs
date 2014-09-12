@@ -9,12 +9,13 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = "white", plotter = NULL, colors = NULL,
   colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
-  drawYAxis = TRUE, includeZero = FALSE, axisLineColor = "black",
-  axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
-  axisLabelWidth = 50, drawGrid = TRUE, gridLineColor = NULL,
-  gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
-  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
-  maxNumberWidth = 6, sigFigs = NULL, timingName = NULL)
+  drawYAxis = TRUE, logscale = FALSE, includeZero = FALSE,
+  axisLineColor = "black", axisLineWidth = 0.3, axisLabelColor = "black",
+  axisLabelFontSize = 14, axisLabelWidth = 50, drawGrid = TRUE,
+  gridLineColor = NULL, gridLineWidth = 0.3, titleHeight = NULL,
+  rightGap = 5, digitsAfterDecimal = 2, labelsKMB = FALSE,
+  labelsKMG2 = FALSE, maxNumberWidth = 6, sigFigs = NULL,
+  timingName = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -97,6 +98,10 @@ grid/lines.}
 \item{drawYAxis}{Whether to draw the y-axis. Setting this to false also
 prevents y-axis ticks from being drawn and reclaims the space for the chart
 grid/lines.}
+
+\item{logscale}{When set for a y-axis, the graph shows that axis in log
+scale. Any values less than or equal to zero are not displayed. Can also be
+set on a per-axis basis.}
 
 \item{includeZero}{Usually, dygraphs will use the range of the data plus some
 padding to set the range of the y-axis. If this option is set, the y-axis

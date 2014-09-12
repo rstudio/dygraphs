@@ -64,6 +64,8 @@
 #' @param drawYAxis Whether to draw the y-axis. Setting this to false also 
 #'   prevents y-axis ticks from being drawn and reclaims the space for the chart
 #'   grid/lines.
+#' @param logscale When set the graph shows the y-axis in log scale. Any values
+#'   less than or equal to zero are not displayed.
 #' @param includeZero Usually, dygraphs will use the range of the data plus some
 #'   padding to set the range of the y-axis. If this option is set, the y-axis 
 #'   will always include zero, typically as the lowest value. This can be used 
@@ -89,7 +91,7 @@
 #'   the default font size of the title. If you style the title on your own, 
 #'   this controls how much space is set aside above the chart for the title's 
 #'   div.
-#' @param rightGap Number of pixels to leave blank at the right edge of the
+#' @param rightGap Number of pixels to leave blank at the right edge of the 
 #'   Dygraph. This makes it easier to highlight the right-most data point.
 #' @param digitsAfterDecimal Unless it's run in scientific mode (see the 
 #'   \code{sigFigs} option), dygraphs displays numbers with 
@@ -142,6 +144,7 @@ dyOptions <- function(dygraph,
                       colorSaturation = 1.0,
                       drawXAxis = TRUE,
                       drawYAxis = TRUE,
+                      logscale = FALSE,
                       includeZero = FALSE,
                       axisLineColor = "black",
                       axisLineWidth = 0.3,
@@ -178,6 +181,7 @@ dyOptions <- function(dygraph,
   options$colorSaturation <- colorSaturation
   options$drawXAxis <- drawXAxis
   options$drawYAxis <- drawYAxis
+  options$logscale <- logscale
   options$includeZero <- includeZero
   options$axisLineColor <- axisLineColor
   options$axisLineWidth <- axisLineWidth
