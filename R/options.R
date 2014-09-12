@@ -3,10 +3,6 @@
 #' Add options to a dygraph plot.
 #' 
 #' @param dygraph Dygraph to add options to
-#' @param titleHeight Height of the chart title, in pixels. This also controls 
-#'   the default font size of the title. If you style the title on your own, 
-#'   this controls how much space is set aside above the chart for the title's 
-#'   div.
 #' @param stackedGraph If set, stack series on top of one another rather than 
 #'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
@@ -89,6 +85,12 @@
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
 #'   chart. This option can also be set on a per-series basis.
+#' @param titleHeight Height of the chart title, in pixels. This also controls 
+#'   the default font size of the title. If you style the title on your own, 
+#'   this controls how much space is set aside above the chart for the title's 
+#'   div.
+#' @param rightGap Number of pixels to leave blank at the right edge of the
+#'   Dygraph. This makes it easier to highlight the right-most data point.
 #' @param digitsAfterDecimal Unless it's run in scientific mode (see the 
 #'   \code{sigFigs} option), dygraphs displays numbers with 
 #'   \code{digitsAfterDecimal} digits after the decimal point. Trailing zeros 
@@ -112,7 +114,7 @@
 #'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be 
 #'   displayed as 1.23e+3.
 #' @param timingName Set this option to log timing information. The value of the
-#'   option will be logged along with the timimg, so that you can distinguish
+#'   option will be logged along with the timimg, so that you can distinguish 
 #'   multiple dygraphs on the same page.
 #'   
 #' @return dygraph with additional options
@@ -122,7 +124,6 @@
 #'   
 #' @export
 dyOptions <- function(dygraph,
-                      titleHeight = NULL,
                       stackedGraph = FALSE,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
@@ -150,6 +151,8 @@ dyOptions <- function(dygraph,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
+                      titleHeight = NULL,
+                      rightGap = 5,
                       digitsAfterDecimal = 2,
                       labelsKMB = FALSE,
                       labelsKMG2 = FALSE,
@@ -157,7 +160,6 @@ dyOptions <- function(dygraph,
                       sigFigs = NULL,
                       timingName = NULL) {
   options <- list()
-  options$titleHeight <- titleHeight
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
   options$fillAlpha = fillAlpha
@@ -185,6 +187,8 @@ dyOptions <- function(dygraph,
   options$drawGrid <- drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
+  options$titleHeight <- titleHeight
+  options$rightGap <- rightGap
   options$digitsAfterDecimal <- digitsAfterDecimal
   options$labelsKMB <- labelsKMB
   options$labelsKMG2 <- labelsKMG2

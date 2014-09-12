@@ -3,26 +3,21 @@
 \alias{dyOptions}
 \title{dygraph options}
 \usage{
-dyOptions(dygraph, titleHeight = NULL, stackedGraph = FALSE,
-  fillGraph = FALSE, fillAlpha = 0.15, stepPlot = FALSE,
-  drawPoints = FALSE, pointSize = 1, drawGapEdgePoints = FALSE,
-  connectSeparatedPoints = FALSE, strokeWidth = 1, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = "white", plotter = NULL,
-  colors = NULL, colorValue = 0.5, colorSaturation = 1,
-  drawXAxis = TRUE, drawYAxis = TRUE, includeZero = FALSE,
-  axisLineColor = "black", axisLineWidth = 0.3, axisLabelColor = "black",
-  axisLabelFontSize = 14, axisLabelWidth = 50, drawGrid = TRUE,
-  gridLineColor = NULL, gridLineWidth = 0.3, digitsAfterDecimal = 2,
-  labelsKMB = FALSE, labelsKMG2 = FALSE, maxNumberWidth = 6,
-  sigFigs = NULL, timingName = NULL)
+dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
+  fillAlpha = 0.15, stepPlot = FALSE, drawPoints = FALSE, pointSize = 1,
+  drawGapEdgePoints = FALSE, connectSeparatedPoints = FALSE,
+  strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = "white", plotter = NULL, colors = NULL,
+  colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
+  drawYAxis = TRUE, includeZero = FALSE, axisLineColor = "black",
+  axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
+  axisLabelWidth = 50, drawGrid = TRUE, gridLineColor = NULL,
+  gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
+  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
+  maxNumberWidth = 6, sigFigs = NULL, timingName = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
-
-\item{titleHeight}{Height of the chart title, in pixels. This also controls
-the default font size of the title. If you style the title on your own,
-this controls how much space is set aside above the chart for the title's
-div.}
 
 \item{stackedGraph}{If set, stack series on top of one another rather than
 drawing them independently. The first series specified in the input data
@@ -132,6 +127,14 @@ on a per-series basis.}
 
 \item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
 chart. This option can also be set on a per-series basis.}
+
+\item{titleHeight}{Height of the chart title, in pixels. This also controls
+the default font size of the title. If you style the title on your own,
+this controls how much space is set aside above the chart for the title's
+div.}
+
+\item{rightGap}{Number of pixels to leave blank at the right edge of the
+Dygraph. This makes it easier to highlight the right-most data point.}
 
 \item{digitsAfterDecimal}{Unless it's run in scientific mode (see the
 \code{sigFigs} option), dygraphs displays numbers with
