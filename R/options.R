@@ -74,13 +74,6 @@
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
 #'   chart. This option can also be set on a per-series basis.
-#' @param css Path to css file to be used for styling textual elements of the 
-#'   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on 
-#'   the dygraphs website for additional details on which styles are available. 
-#'   Note that CSS styles are global so will affect all dycharts on a given web 
-#'   page. This also implies that for a page with multiple plots you only need 
-#'   to specify styles for the first one (alternatively you can just add them 
-#'   directly to the page by other means).
 #' @param digitsAfterDecimal Unless it's run in scientific mode (see the 
 #'   \code{sigFigs} option), dygraphs displays numbers with 
 #'   \code{digitsAfterDecimal} digits after the decimal point. Trailing zeros 
@@ -135,7 +128,6 @@ dyOptions <- function(dygraph,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
-                      css = NULL,
                       digitsAfterDecimal = 2,
                       labelsKMB = FALSE,
                       labelsKMG2 = FALSE,
@@ -174,11 +166,7 @@ dyOptions <- function(dygraph,
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
-  
-  # read css
-  if (!is.null(css))
-    dygraph$x$css <- paste(readLines(css, warn = FALSE), collapse = "\n")
-  
+   
   # return modified dygraph
   dygraph
 }

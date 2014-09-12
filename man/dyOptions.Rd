@@ -11,8 +11,8 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   includeZero = FALSE, axisLineColor = "black", axisLineWidth = 0.3,
   axisLabelColor = "black", axisLabelFontSize = 14, axisLabelWidth = 50,
   drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = 0.3,
-  css = NULL, digitsAfterDecimal = 2, labelsKMB = FALSE,
-  labelsKMG2 = FALSE, maxNumberWidth = 6, sigFigs = NULL)
+  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
+  maxNumberWidth = 6, sigFigs = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -111,14 +111,6 @@ on a per-series basis.}
 
 \item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
 chart. This option can also be set on a per-series basis.}
-
-\item{css}{Path to css file to be used for styling textual elements of the
-graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
-the dygraphs website for additional details on which styles are available.
-Note that CSS styles are global so will affect all dycharts on a given web
-page. This also implies that for a page with multiple plots you only need
-to specify styles for the first one (alternatively you can just add them
-directly to the page by other means).}
 
 \item{digitsAfterDecimal}{Unless it's run in scientific mode (see the
 \code{sigFigs} option), dygraphs displays numbers with
