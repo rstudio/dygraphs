@@ -3,9 +3,9 @@
 #' Add options to a dygraph plot.
 #' 
 #' @param dygraph Dygraph to add options to
-#' @param titleHeight Height of the chart title, in pixels. This also controls
-#'   the default font size of the title. If you style the title on your own,
-#'   this controls how much space is set aside above the chart for the title's
+#' @param titleHeight Height of the chart title, in pixels. This also controls 
+#'   the default font size of the title. If you style the title on your own, 
+#'   this controls how much space is set aside above the chart for the title's 
 #'   div.
 #' @param stackedGraph If set, stack series on top of one another rather than 
 #'   drawing them independently. The first series specified in the input data 
@@ -26,6 +26,13 @@
 #'   is always drawn when a point is "isolated", i.e. there is a missing point 
 #'   on either side of it. This also controls the size of those dots. This 
 #'   option can also be set on a per-series basis.
+#' @param drawGapEdgePoints Draw points at the edges of gaps in the data. This 
+#'   improves visibility of small data segments or other data irregularities.
+#' @param connectSeparatedPoints Usually, when Dygraphs encounters a missing 
+#'   value in a data series, it interprets this as a gap and draws it as such. 
+#'   If, instead, the missing values represents an x-value for which only a 
+#'   different series has data, then you'll want to connect the dots by setting 
+#'   this to true.
 #' @param strokeWidth The width of the lines connecting data points. This can be
 #'   used to increase the contrast or some graphs. This option can also be set 
 #'   on a per-series basis.
@@ -40,6 +47,10 @@
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set. This option can also be set on a 
 #'   per-series basis.
+#' @param plotter A function (or array of functions) which plot each data series
+#'   on the chart. May also be set on a per-series basis. See the \href{dygraphs
+#'   documentation}{http://dygraphs.com/tests/plotters.html} for additional 
+#'   details on plotting functions.
 #' @param colors Character vector of colors for the data series. These can be of
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 
 #'   specified, equally-spaced points around a color wheel are used. This option
@@ -108,17 +119,20 @@
 #'   
 #' @export
 dyOptions <- function(dygraph,
-                      titleHeight = 18,
+                      titleHeight = NULL,
                       stackedGraph = FALSE,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
                       stepPlot = FALSE,
                       drawPoints = FALSE,
                       pointSize = 1.0,
+                      drawGapEdgePoints = FALSE,
+                      connectSeparatedPoints = FALSE,
                       strokeWidth = 1.0,
                       strokePattern = NULL,
                       strokeBorderWidth = NULL,
                       strokeBorderColor = "white",
+                      plotter = NULL,
                       colors = NULL,
                       colorValue = 0.5,
                       colorSaturation = 1.0,
@@ -146,10 +160,13 @@ dyOptions <- function(dygraph,
   options$stepPlot <- stepPlot
   options$drawPoints <- drawPoints
   options$pointSize <- pointSize
+  options$drawGapEdgePoints <- drawGapEdgePoints
+  options$connectSeparatedPoints <- connectSeparatedPoints
   options$strokeWidth <- strokeWidth
   options$strokePattern <- strokePattern
   options$strokeBorderWidth <- strokeBorderWidth
   options$strokeBorderColor <- strokeBorderColor
+  options$plotter <- plotter
   options$colors <- colors
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation

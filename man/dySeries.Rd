@@ -6,7 +6,7 @@
 dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
   pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = NULL)
+  strokeBorderWidth = NULL, strokeBorderColor = NULL, plotter = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
@@ -53,7 +53,12 @@ smaller even length array. This is used to create dashed lines.}
 lines more easily distinguishable. Useful for graphs with many lines.}
 
 \item{strokeBorderColor}{Color for the line border used if
-  \code{strokeBorderWidth} is set.}
+\code{strokeBorderWidth} is set.}
+
+\item{plotter}{A function which plots the data series.
+  May also be set on on a global basis using \code{dyOptions}. See the
+  \href{dygraphs documentation}{http://dygraphs.com/tests/plotters.html} for
+  additional details on plotting functions.}
 }
 \value{
 Dygraph with additional series
@@ -66,6 +71,6 @@ within the underlying data are plotted.
 }
 \note{
 See the \href{http://jjallaire.github.io/dygraphs/}{online
-documentation} for additional details and examples.
+  documentation} for additional details and examples.
 }
 

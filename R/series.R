@@ -16,7 +16,7 @@
 #' @param color Color for series. These can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
 #'   color for one series then you must specify one for all series. If not 
-#'   specified then the global colors option (typically based on equally-spaced
+#'   specified then the global colors option (typically based on equally-spaced 
 #'   points around a color wheel). Note also that global and per-series color 
 #'   specification cannot be mixed.
 #' @param axis Y-axis to associate the series with ("y" or "y2")
@@ -40,12 +40,16 @@
 #'   lines more easily distinguishable. Useful for graphs with many lines.
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set.
+#' @param plotter A function which plots the data series.
+#'   May also be set on on a global basis using \code{dyOptions}. See the
+#'   \href{dygraphs documentation}{http://dygraphs.com/tests/plotters.html} for
+#'   additional details on plotting functions.
 #'   
 #' @return Dygraph with additional series
 #'   
-#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online
-#' documentation} for additional details and examples.
-#' 
+#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
+#'   documentation} for additional details and examples.
+#'   
 #' @export
 dySeries <- function(dygraph,
                      name, 
@@ -59,7 +63,8 @@ dySeries <- function(dygraph,
                      strokeWidth = NULL,
                      strokePattern = NULL,
                      strokeBorderWidth = NULL,
-                     strokeBorderColor = NULL) {
+                     strokeBorderColor = NULL,
+                     plotter = NULL) {
   
   # ensure that name is of length 1 or 3
   if (length(name) != 1 && length(name)  != 3) {
@@ -98,6 +103,7 @@ dySeries <- function(dygraph,
   series$options$strokePattern <- strokePattern
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor
+  series$options$plotter <- plotter
  
   # copy attrs for modification
   attrs <- dygraph$x$attrs
