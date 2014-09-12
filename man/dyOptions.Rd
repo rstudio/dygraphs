@@ -14,7 +14,7 @@ dyOptions(dygraph, titleHeight = NULL, stackedGraph = FALSE,
   axisLabelFontSize = 14, axisLabelWidth = 50, drawGrid = TRUE,
   gridLineColor = NULL, gridLineWidth = 0.3, digitsAfterDecimal = 2,
   labelsKMB = FALSE, labelsKMG2 = FALSE, maxNumberWidth = 6,
-  sigFigs = NULL)
+  sigFigs = NULL, timingName = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -155,10 +155,14 @@ operating in scientific mode. If you'd like to see all those digits, set
 this to something large, like 20 or 30.}
 
 \item{sigFigs}{By default, dygraphs displays numbers with a fixed number of
-  digits after the decimal point. If you'd prefer to have a fixed number of
-  significant figures, set this option to that number of sig figs. A value of
-  2, for instance, would cause 1 to be display as 1.0 and 1234 to be
-  displayed as 1.23e+3.}
+digits after the decimal point. If you'd prefer to have a fixed number of
+significant figures, set this option to that number of sig figs. A value of
+2, for instance, would cause 1 to be display as 1.0 and 1234 to be
+displayed as 1.23e+3.}
+
+\item{timingName}{Set this option to log timing information. The value of the
+  option will be logged along with the timimg, so that you can distinguish
+  multiple dygraphs on the same page.}
 }
 \value{
 dygraph with additional options

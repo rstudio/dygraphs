@@ -111,6 +111,9 @@
 #'   significant figures, set this option to that number of sig figs. A value of
 #'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be 
 #'   displayed as 1.23e+3.
+#' @param timingName Set this option to log timing information. The value of the
+#'   option will be logged along with the timimg, so that you can distinguish
+#'   multiple dygraphs on the same page.
 #'   
 #' @return dygraph with additional options
 #'   
@@ -151,7 +154,8 @@ dyOptions <- function(dygraph,
                       labelsKMB = FALSE,
                       labelsKMG2 = FALSE,
                       maxNumberWidth = 6,
-                      sigFigs = NULL) {
+                      sigFigs = NULL,
+                      timingName = NULL) {
   options <- list()
   options$titleHeight <- titleHeight
   options$stackedGraph <- stackedGraph
@@ -186,6 +190,7 @@ dyOptions <- function(dygraph,
   options$labelsKMG2 <- labelsKMG2
   options$maxNumberWidth <- maxNumberWidth
   options$sigFigs <- sigFigs
+  options$timingName <- timingName
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
