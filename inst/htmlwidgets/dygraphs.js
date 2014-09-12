@@ -35,10 +35,7 @@ HTMLWidgets.widget({
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
-    attrs.file[0] = attrs.file[0].map(function(value) { 
-      var date = new Date(value);   
-      return date;
-    });
+    attrs.file[0] = attrs.file[0].map(this.normalizeDateValue);
     
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
@@ -72,6 +69,18 @@ HTMLWidgets.widget({
       instance.dygraph = new Dygraph(el, attrs.file, attrs);
       if (x.group != null)
         this.groups[x.group].push(instance.dygraph);
+    }
+    
+    // set annotations
+    var thiz = this;
+    if (x.annotations != null) {
+      instance.dygraph.ready(function() {
+        x.annotations.map(function(annotation) {
+          var date = thiz.normalizeDateValue(annotation.x);
+          annotation.x = date.getTime();
+        });
+        instance.dygraph.setAnnotations(x.annotations);
+      }); 
     }
   },
   
@@ -190,5 +199,17 @@ HTMLWidgets.widget({
                  encodeURI(name).replace(/[\.\+\*]/g, "\\$&") +
                  "(?:\\=([^&]*))?)?.*$", "i"),
       "$1"));
+  },
+  
+  // we deal exclusively in UTC dates within R, however dygraphs deals exclusively
+  // in the local time zone. therefore, in order to plot dates in the way that
+  // user's expect we need to convert the UTC date value to a local time value
+  // that "looks like" the equivilant UTC value. to do this we add the timezone
+  // offset to the UTC date.
+  normalizeDateValue: function(value) {
+     var date = new Date(value); 
+     var localDateAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
+     var normalizedDate = new Date(localDateAsUTC);
+     return normalizedDate;
   }
 });

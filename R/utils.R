@@ -21,3 +21,7 @@ mergeLists <- function (base_list, overlay_list, recursive = TRUE) {
     merged_list
   }
 }
+
+asTimeStringGMT <- function(x) {
+  format(x, format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
+}

@@ -3,6 +3,7 @@
 export("%>%")
 export(as.yearmon)
 export(as.yearqtr)
+export(dyAnnotation)
 export(dyAxis)
 export(dyCSS)
 export(dyCallbacks)

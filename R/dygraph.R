@@ -31,7 +31,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   periodicity <- xts::periodicity(data)
    
   # convert time to string we can pass to javascript Date function
-  time <- format(time(data), format="%a, %d %b %Y %H:%M:%S GMT", tz='GMT')
+  time <- asTimeStringGMT(time(data))
   
   # get data as a named list
   data <- zoo::coredata(data)
@@ -57,6 +57,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$attrs <- attrs
   x$scale <- periodicity$scale
   x$group <- group
+  x$annotations <- list()
   
   # add attributes required for defining custom series. when a dySeries call
   # is made it places series definition in "manual mode"; in this case we
