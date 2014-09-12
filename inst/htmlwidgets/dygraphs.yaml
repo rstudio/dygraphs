@@ -3,3 +3,4 @@ dependencies:
     version: 1.0.1
     src: "htmlwidgets/lib/dygraphs"
     script: dygraph-combined.js
+    stylesheet: dygraph.css
