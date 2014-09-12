@@ -26,7 +26,7 @@
 #' 
 #' @export
 dyLegend <- function(dygraph,
-                     show = c("auto", "always", "onmouseover"),
+                     show = c("auto", "always", "onmouseover", "never"),
                      width = 250,
                      showZeroValues = TRUE,
                      labelsDiv = NULL,
@@ -35,6 +35,10 @@ dyLegend <- function(dygraph,
   
   legend <- list()
   legend$legend <- match.arg(show)
+  if (legend$legend == "never") {
+    legend$legend <- NULL
+    legend$showLabelsOnHighlight <- FALSE
+  }
   legend$labelsDivWidth <- width
   legend$labelsShowZeroValues <- showZeroValues
   legend$labelsDiv <- labelsDiv
