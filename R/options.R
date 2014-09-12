@@ -74,7 +74,7 @@
 #' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
 #'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
 #'   'rgb(0, 100, 255)'. This can also be set on a per-axis basis.
-#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines. This
+#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines. This 
 #'   can also be set on a per-axis basis.
 #' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
 #'   string. This may also be set on a per-axis basis.
@@ -117,6 +117,15 @@
 #'   significant figures, set this option to that number of sig figs. A value of
 #'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be 
 #'   displayed as 1.23e+3.
+#' @param panEdgeFraction A value representing the farthest a graph may be 
+#'   panned, in percent of the display. For example, a value of 0.1 means that 
+#'   the graph can only be panned 10% pased the edges of the displayed values. 
+#'   null means no bounds.
+#' @param animatedZooms Set this option to animate the transition between zoom
+#'   windows. Applies to programmatic and interactive zooms. Note that if you
+#'   also set a drawCallback, it will be called several times on each zoom. If
+#'   you set a zoomCallback, it will only be called after the animation is
+#'   complete.
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timimg, so that you can distinguish 
 #'   multiple dygraphs on the same page.
@@ -164,6 +173,8 @@ dyOptions <- function(dygraph,
                       labelsKMG2 = FALSE,
                       maxNumberWidth = 6,
                       sigFigs = NULL,
+                      panEdgeFraction = NULL,
+                      animatedZooms = FALSE,
                       timingName = NULL) {
   options <- list()
   options$stackedGraph <- stackedGraph
@@ -202,6 +213,8 @@ dyOptions <- function(dygraph,
   options$labelsKMG2 <- labelsKMG2
   options$maxNumberWidth <- maxNumberWidth
   options$sigFigs <- sigFigs
+  options$panEdgeFraction <- panEdgeFraction
+  options$animatedZooms <- animatedZooms
   options$timingName <- timingName
   
   # merge options into attrs
