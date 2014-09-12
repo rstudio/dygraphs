@@ -64,12 +64,15 @@
 #' @param drawYAxis Whether to draw the y-axis. Setting this to false also 
 #'   prevents y-axis ticks from being drawn and reclaims the space for the chart
 #'   grid/lines.
-#' @param logscale When set the graph shows the y-axis in log scale. Any values 
-#'   less than or equal to zero are not displayed.
 #' @param includeZero Usually, dygraphs will use the range of the data plus some
 #'   padding to set the range of the y-axis. If this option is set, the y-axis 
 #'   will always include zero, typically as the lowest value. This can be used 
 #'   to avoid exaggerating the variance in the data.
+#' @param drawAxesAtZero When set, draw the X axis at the Y=0 position and the Y
+#'   axis at the X=0 position if those positions are inside the graph's visible
+#'   area. Otherwise, draw the axes at the bottom or left graph edge as usual.
+#' @param logscale When set the graph shows the y-axis in log scale. Any values 
+#'   less than or equal to zero are not displayed.
 #' @param axisTickSize The spacing between axis labels and tick marks.
 #' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
 #'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
@@ -121,10 +124,10 @@
 #'   panned, in percent of the display. For example, a value of 0.1 means that 
 #'   the graph can only be panned 10% pased the edges of the displayed values. 
 #'   null means no bounds.
-#' @param animatedZooms Set this option to animate the transition between zoom
-#'   windows. Applies to programmatic and interactive zooms. Note that if you
-#'   also set a drawCallback, it will be called several times on each zoom. If
-#'   you set a zoomCallback, it will only be called after the animation is
+#' @param animatedZooms Set this option to animate the transition between zoom 
+#'   windows. Applies to programmatic and interactive zooms. Note that if you 
+#'   also set a drawCallback, it will be called several times on each zoom. If 
+#'   you set a zoomCallback, it will only be called after the animation is 
 #'   complete.
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timimg, so that you can distinguish 
@@ -155,8 +158,9 @@ dyOptions <- function(dygraph,
                       colorSaturation = 1.0,
                       drawXAxis = TRUE,
                       drawYAxis = TRUE,
-                      logscale = FALSE,
                       includeZero = FALSE,
+                      drawAxesAtZero = FALSE,
+                      logscale = FALSE,
                       axisTickSize = 3.0,
                       axisLineColor = "black",
                       axisLineWidth = 0.3,
@@ -195,8 +199,9 @@ dyOptions <- function(dygraph,
   options$colorSaturation <- colorSaturation
   options$drawXAxis <- drawXAxis
   options$drawYAxis <- drawYAxis
-  options$logscale <- logscale
   options$includeZero <- includeZero
+  options$drawAxesAtZero <- drawAxesAtZero
+  options$logscale <- logscale
   options$axisTickSize <- axisTickSize
   options$axisLineColor <- axisLineColor
   options$axisLineWidth <- axisLineWidth

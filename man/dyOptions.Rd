@@ -9,14 +9,14 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = "white", plotter = NULL, colors = NULL,
   colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
-  drawYAxis = TRUE, logscale = FALSE, includeZero = FALSE,
-  axisTickSize = 3, axisLineColor = "black", axisLineWidth = 0.3,
-  axisLabelColor = "black", axisLabelFontSize = 14, axisLabelWidth = 50,
-  drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = 0.3,
-  titleHeight = NULL, rightGap = 5, digitsAfterDecimal = 2,
-  labelsKMB = FALSE, labelsKMG2 = FALSE, maxNumberWidth = 6,
-  sigFigs = NULL, panEdgeFraction = NULL, animatedZooms = FALSE,
-  timingName = NULL)
+  drawYAxis = TRUE, includeZero = FALSE, drawAxesAtZero = FALSE,
+  logscale = FALSE, axisTickSize = 3, axisLineColor = "black",
+  axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
+  axisLabelWidth = 50, drawGrid = TRUE, gridLineColor = NULL,
+  gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
+  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
+  maxNumberWidth = 6, sigFigs = NULL, panEdgeFraction = NULL,
+  animatedZooms = FALSE, timingName = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -100,13 +100,17 @@ grid/lines.}
 prevents y-axis ticks from being drawn and reclaims the space for the chart
 grid/lines.}
 
-\item{logscale}{When set the graph shows the y-axis in log scale. Any values
-less than or equal to zero are not displayed.}
-
 \item{includeZero}{Usually, dygraphs will use the range of the data plus some
 padding to set the range of the y-axis. If this option is set, the y-axis
 will always include zero, typically as the lowest value. This can be used
 to avoid exaggerating the variance in the data.}
+
+\item{drawAxesAtZero}{When set, draw the X axis at the Y=0 position and the Y
+axis at the X=0 position if those positions are inside the graph's visible
+area. Otherwise, draw the axes at the bottom or left graph edge as usual.}
+
+\item{logscale}{When set the graph shows the y-axis in log scale. Any values
+less than or equal to zero are not displayed.}
 
 \item{axisTickSize}{The spacing between axis labels and tick marks.}
 
