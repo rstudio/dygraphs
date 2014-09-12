@@ -32,6 +32,7 @@
 #' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
 #'   labels, both x- and y-axis. This may also be set globally using 
 #'   \code{dyOptions}.
+#' @param axisLabelWidth Width, in pixels, of the axis labels
 #' @param axisLabelFormatter JavaScript function to call to format the tick 
 #'   values that appear along an axis (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
@@ -69,6 +70,7 @@ dyAxis <- function(dygraph,
                    pixelsPerLabel = NULL,
                    axisLabelColor = NULL,
                    axisLabelFontSize = NULL,
+                   axisLabelWidth = NULL,
                    axisLabelFormatter = NULL,
                    drawGrid = NULL,
                    gridLineColor = NULL,
@@ -99,6 +101,10 @@ dyAxis <- function(dygraph,
     axis$options$pixelsPerLabel <- pixelsPerLabel 
   axis$options$axisLabelColor <- axisLabelColor
   axis$options$axisLabelFontSize <- axisLabelFontSize
+  
+  if (!is.null(axisLabelWidth))
+    attrs[[sprintf("%sAxisLabelWidth", axis$name)]] <- axisLabelWidth
+  
   axis$options$axisLabelFormatter <- axisLabelFormatter
   axis$options$drawGrid <- drawGrid
   axis$options$gridLineColor <- gridLineColor

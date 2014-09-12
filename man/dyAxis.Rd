@@ -6,8 +6,8 @@
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
   axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
   pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
-  axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
-  gridLineWidth = NULL, independentTicks = NULL)
+  axisLabelWidth = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
+  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -49,6 +49,8 @@ string. This may also be set globally using \code{dyOptions}.}
 \item{axisLabelFontSize}{Size of the font (in pixels) to use in the axis
 labels, both x- and y-axis. This may also be set globally using
 \code{dyOptions}.}
+
+\item{axisLabelWidth}{Width, in pixels, of the axis labels}
 
 \item{axisLabelFormatter}{JavaScript function to call to format the tick
 values that appear along an axis (see the
