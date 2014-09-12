@@ -64,16 +64,18 @@
 #' @param drawYAxis Whether to draw the y-axis. Setting this to false also 
 #'   prevents y-axis ticks from being drawn and reclaims the space for the chart
 #'   grid/lines.
-#' @param logscale When set the graph shows the y-axis in log scale. Any values
+#' @param logscale When set the graph shows the y-axis in log scale. Any values 
 #'   less than or equal to zero are not displayed.
 #' @param includeZero Usually, dygraphs will use the range of the data plus some
 #'   padding to set the range of the y-axis. If this option is set, the y-axis 
 #'   will always include zero, typically as the lowest value. This can be used 
 #'   to avoid exaggerating the variance in the data.
+#' @param axisTickSize The spacing between axis labels and tick marks.
 #' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
 #'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
-#'   'rgb(0, 100, 255)'.
-#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines.
+#'   'rgb(0, 100, 255)'. This can also be set on a per-axis basis.
+#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines. This
+#'   can also be set on a per-axis basis.
 #' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
 #'   string. This may also be set on a per-axis basis.
 #' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
@@ -146,6 +148,7 @@ dyOptions <- function(dygraph,
                       drawYAxis = TRUE,
                       logscale = FALSE,
                       includeZero = FALSE,
+                      axisTickSize = 3.0,
                       axisLineColor = "black",
                       axisLineWidth = 0.3,
                       axisLabelColor = "black",
@@ -183,6 +186,7 @@ dyOptions <- function(dygraph,
   options$drawYAxis <- drawYAxis
   options$logscale <- logscale
   options$includeZero <- includeZero
+  options$axisTickSize <- axisTickSize
   options$axisLineColor <- axisLineColor
   options$axisLineWidth <- axisLineWidth
   options$axisLabelColor <- axisLabelColor

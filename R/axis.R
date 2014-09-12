@@ -21,6 +21,10 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
+#'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
+#'   'rgb(0, 100, 255)'.
+#' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines.
 #' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
 #'   string. This may also be set globally using \code{dyOptions}.
 #' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
@@ -57,6 +61,8 @@ dyAxis <- function(dygraph,
                    label = NULL, 
                    valueRange = NULL,
                    ticker = NULL,
+                   axisLineColor = NULL,
+                   axisLineWidth = NULL,
                    pixelsPerLabel = NULL,
                    axisLabelColor = NULL,
                    axisLabelFontSize = NULL,
@@ -75,6 +81,8 @@ dyAxis <- function(dygraph,
   axis$options <- list()
   axis$options$valueRange <- valueRange
   axis$options$ticker <- ticker
+  axis$options$axisLineColor <- axisLineColor
+  axis$options$axisLineWidth <- axisLineWidth
   if (!is.null(pixelsPerLabel))
     axis$options$pixelsPerLabel <- pixelsPerLabel 
   axis$options$axisLabelColor <- axisLabelColor

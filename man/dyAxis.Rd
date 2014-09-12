@@ -4,7 +4,8 @@
 \title{dygraph axis}
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
+  axisLineColor = NULL, axisLineWidth = NULL, pixelsPerLabel = NULL,
+  axisLabelColor = NULL, axisLabelFontSize = NULL,
   axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
   gridLineWidth = NULL, independentTicks = NULL)
 }
@@ -28,6 +29,12 @@ tick marks so, if you set this option, you'll most likely want to call one
 of them and modify the result. See dygraph-tickers.js and the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
+
+\item{axisLineColor}{Color of the x- and y-axis lines. Accepts any value
+which the HTML canvas strokeStyle attribute understands, e.g. 'black' or
+'rgb(0, 100, 255)'.}
+
+\item{axisLineWidth}{Thickness (in pixels) of the x- and y-axis lines.}
 
 \item{pixelsPerLabel}{Number of pixels to require between each x- and
 y-label. Larger values will yield a sparser axis with fewer ticks. Defaults

@@ -10,12 +10,12 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   strokeBorderColor = "white", plotter = NULL, colors = NULL,
   colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
   drawYAxis = TRUE, logscale = FALSE, includeZero = FALSE,
-  axisLineColor = "black", axisLineWidth = 0.3, axisLabelColor = "black",
-  axisLabelFontSize = 14, axisLabelWidth = 50, drawGrid = TRUE,
-  gridLineColor = NULL, gridLineWidth = 0.3, titleHeight = NULL,
-  rightGap = 5, digitsAfterDecimal = 2, labelsKMB = FALSE,
-  labelsKMG2 = FALSE, maxNumberWidth = 6, sigFigs = NULL,
-  timingName = NULL)
+  axisTickSize = 3, axisLineColor = "black", axisLineWidth = 0.3,
+  axisLabelColor = "black", axisLabelFontSize = 14, axisLabelWidth = 50,
+  drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = 0.3,
+  titleHeight = NULL, rightGap = 5, digitsAfterDecimal = 2,
+  labelsKMB = FALSE, labelsKMG2 = FALSE, maxNumberWidth = 6,
+  sigFigs = NULL, timingName = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -99,20 +99,22 @@ grid/lines.}
 prevents y-axis ticks from being drawn and reclaims the space for the chart
 grid/lines.}
 
-\item{logscale}{When set for a y-axis, the graph shows that axis in log
-scale. Any values less than or equal to zero are not displayed. Can also be
-set on a per-axis basis.}
+\item{logscale}{When set the graph shows the y-axis in log scale. Any values
+less than or equal to zero are not displayed.}
 
 \item{includeZero}{Usually, dygraphs will use the range of the data plus some
 padding to set the range of the y-axis. If this option is set, the y-axis
 will always include zero, typically as the lowest value. This can be used
 to avoid exaggerating the variance in the data.}
 
+\item{axisTickSize}{The spacing between axis labels and tick marks.}
+
 \item{axisLineColor}{Color of the x- and y-axis lines. Accepts any value
 which the HTML canvas strokeStyle attribute understands, e.g. 'black' or
-'rgb(0, 100, 255)'.}
+'rgb(0, 100, 255)'. This can also be set on a per-axis basis.}
 
-\item{axisLineWidth}{Thickness (in pixels) of the x- and y-axis lines.}
+\item{axisLineWidth}{Thickness (in pixels) of the x- and y-axis lines. This
+can also be set on a per-axis basis.}
 
 \item{axisLabelColor}{Color for x- and y-axis labels. This is a CSS color
 string. This may also be set on a per-axis basis.}
