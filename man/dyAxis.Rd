@@ -4,8 +4,9 @@
 \title{dygraph axis}
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  pixelsPerLabel = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
-  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
+  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
+  axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
+  gridLineWidth = NULL, independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -31,6 +32,13 @@ additional details).}
 \item{pixelsPerLabel}{Number of pixels to require between each x- and
 y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
 to 50 (x-axis) or 30 (y-axes).}
+
+\item{axisLabelColor}{Color for x- and y-axis labels. This is a CSS color
+string. This may also be set globally using \code{dyOptions}.}
+
+\item{axisLabelFontSize}{Size of the font (in pixels) to use in the axis
+labels, both x- and y-axis. This may also be set globally using
+\code{dyOptions}.}
 
 \item{axisLabelFormatter}{JavaScript function to call to format the tick
 values that appear along an axis (see the
@@ -62,7 +70,7 @@ default global setting (as determined by \code{\link{dyOptions}}) when not
 specified explicitly.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the \href{http://jjallaire.github.io/dygraphs/}{online
+documentation} for additional details and examples.
 }
 

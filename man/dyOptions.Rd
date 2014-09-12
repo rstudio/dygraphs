@@ -9,6 +9,7 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   strokeBorderColor = "white", colors = NULL, colorValue = 0.5,
   colorSaturation = 1, drawXAxis = TRUE, drawYAxis = TRUE,
   includeZero = FALSE, axisLineColor = "black", axisLineWidth = 0.3,
+  axisLabelColor = "black", axisLabelFontSize = 14, axisLabelWidth = 50,
   drawGrid = TRUE, gridLineColor = NULL, gridLineWidth = 0.3,
   css = NULL)
 }
@@ -91,6 +92,15 @@ which the HTML canvas strokeStyle attribute understands, e.g. 'black' or
 
 \item{axisLineWidth}{Thickness (in pixels) of the x- and y-axis lines.}
 
+\item{axisLabelColor}{Color for x- and y-axis labels. This is a CSS color
+string. This may also be set on a per-axis basis.}
+
+\item{axisLabelFontSize}{Size of the font (in pixels) to use in the axis
+labels, both x- and y-axis. This may also be set on a per-axis basis.}
+
+\item{axisLabelWidth}{Width (in pixels) of the containing divs for x- and
+y-axis labels.}
+
 \item{drawGrid}{Whether to display gridlines in the chart. This may be set on
 a per-axis basis to define the visibility of each axis' grid separately.
 Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.}
@@ -99,7 +109,7 @@ Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.}
 on a per-series basis.}
 
 \item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
-chart.This option can also be set on a per-series basis.}
+chart. This option can also be set on a per-series basis.}
 
 \item{css}{Path to css file to be used for styling textual elements of the
   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on
@@ -116,7 +126,7 @@ Series options
 Add options to a dygraph plot.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the \href{http://jjallaire.github.io/dygraphs/}{online
+  documentation} for additional details and examples.
 }
 

@@ -40,12 +40,12 @@
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 
 #'   specified, equally-spaced points around a color wheel are used. This option
 #'   can also be set on a per-series basis. Note that in both global and 
-#'   per-series specification of custom colors you must provide a color for all
+#'   per-series specification of custom colors you must provide a color for all 
 #'   series being displayed. Note also that global and per-series color 
 #'   specification cannot be mixed.
-#' @param colorValue If custom colors are not specified, value of the data
+#' @param colorValue If custom colors are not specified, value of the data 
 #'   series colors, as in hue/saturation/value (0.0-1.0, default 0.5).
-#' @param colorSaturation If custom colors are not specified, saturation of the
+#' @param colorSaturation If custom colors are not specified, saturation of the 
 #'   automatically-generated data series colors (0.0-1.0, default 0.5).
 #' @param drawXAxis Whether to draw the x-axis. Setting this to false also 
 #'   prevents x-axis ticks from being drawn and reclaims the space for the chart
@@ -61,13 +61,19 @@
 #'   which the HTML canvas strokeStyle attribute understands, e.g. 'black' or 
 #'   'rgb(0, 100, 255)'.
 #' @param axisLineWidth Thickness (in pixels) of the x- and y-axis lines.
+#' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
+#'   string. This may also be set on a per-axis basis.
+#' @param axisLabelFontSize Size of the font (in pixels) to use in the axis
+#'   labels, both x- and y-axis. This may also be set on a per-axis basis.
+#' @param axisLabelWidth Width (in pixels) of the containing divs for x- and 
+#'   y-axis labels.
 #' @param drawGrid Whether to display gridlines in the chart. This may be set on
 #'   a per-axis basis to define the visibility of each axis' grid separately. 
 #'   Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.
 #' @param gridLineColor The color of the gridlines. This option can also be set 
 #'   on a per-series basis.
 #' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
-#'   chart.This option can also be set on a per-series basis.
+#'   chart. This option can also be set on a per-series basis.
 #' @param css Path to css file to be used for styling textual elements of the 
 #'   graph. See the \href{http://dygraphs.com/css.html}{CSS documentation} on 
 #'   the dygraphs website for additional details on which styles are available. 
@@ -78,10 +84,9 @@
 #'   
 #' @return Series options
 #'   
-#' @note
-#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-#' additional details and examples.  
-#'    
+#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
+#'   documentation} for additional details and examples.
+#'   
 #' @export
 dyOptions <- function(dygraph,
                       stackedGraph = FALSE,
@@ -102,6 +107,9 @@ dyOptions <- function(dygraph,
                       includeZero = FALSE,
                       axisLineColor = "black",
                       axisLineWidth = 0.3,
+                      axisLabelColor = "black",
+                      axisLabelFontSize = 14,
+                      axisLabelWidth = 50,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
@@ -125,6 +133,9 @@ dyOptions <- function(dygraph,
   options$includeZero <- includeZero
   options$axisLineColor <- axisLineColor
   options$axisLineWidth <- axisLineWidth
+  options$axisLabelColor <- axisLabelColor
+  options$axisLabelFontSize <- axisLabelFontSize
+  options$axisLabelWidth <- axisLabelWidth
   options$drawGrid <- drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth

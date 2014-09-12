@@ -21,6 +21,11 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param axisLabelColor Color for x- and y-axis labels. This is a CSS color 
+#'   string. This may also be set globally using \code{dyOptions}.
+#' @param axisLabelFontSize Size of the font (in pixels) to use in the axis 
+#'   labels, both x- and y-axis. This may also be set globally using
+#'   \code{dyOptions}.
 #' @param axisLabelFormatter JavaScript function to call to format the tick 
 #'   values that appear along an axis (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
@@ -42,11 +47,10 @@
 #'   y=false, y2=false: Invalid configuration causes an error.
 #'   
 #' @return Axis options
+#'   
+#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online
+#' documentation} for additional details and examples.
 #' 
-#' @note
-#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-#' additional details and examples.  
-#'  
 #' @export
 dyAxis <- function(dygraph,
                    name, 
@@ -54,6 +58,8 @@ dyAxis <- function(dygraph,
                    valueRange = NULL,
                    ticker = NULL,
                    pixelsPerLabel = NULL,
+                   axisLabelColor = NULL,
+                   axisLabelFontSize = NULL,
                    axisLabelFormatter = NULL,
                    drawGrid = NULL,
                    gridLineColor = NULL,
@@ -71,6 +77,8 @@ dyAxis <- function(dygraph,
   axis$options$ticker <- ticker
   if (!is.null(pixelsPerLabel))
     axis$options$pixelsPerLabel <- pixelsPerLabel 
+  axis$options$axisLabelColor <- axisLabelColor
+  axis$options$axisLabelFontSize <- axisLabelFontSize
   axis$options$axisLabelFormatter <- axisLabelFormatter
   axis$options$drawGrid <- drawGrid
   axis$options$gridLineColor <- gridLineColor
