@@ -3,9 +3,10 @@
 \alias{dyOptions}
 \title{dygraph options}
 \usage{
-dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
-  fillAlpha = 0.15, stepPlot = FALSE, drawPoints = FALSE, pointSize = 1,
-  strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
+dyOptions(dygraph, titleHeight = 18, stackedGraph = FALSE,
+  fillGraph = FALSE, fillAlpha = 0.15, stepPlot = FALSE,
+  drawPoints = FALSE, pointSize = 1, strokeWidth = 1,
+  strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = "white", colors = NULL, colorValue = 0.5,
   colorSaturation = 1, drawXAxis = TRUE, drawYAxis = TRUE,
   includeZero = FALSE, axisLineColor = "black", axisLineWidth = 0.3,
@@ -16,6 +17,11 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
+
+\item{titleHeight}{Height of the chart title, in pixels. This also controls
+the default font size of the title. If you style the title on your own,
+this controls how much space is set aside above the chart for the title's
+div.}
 
 \item{stackedGraph}{If set, stack series on top of one another rather than
 drawing them independently. The first series specified in the input data

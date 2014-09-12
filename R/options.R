@@ -3,6 +3,10 @@
 #' Add options to a dygraph plot.
 #' 
 #' @param dygraph Dygraph to add options to
+#' @param titleHeight Height of the chart title, in pixels. This also controls
+#'   the default font size of the title. If you style the title on your own,
+#'   this controls how much space is set aside above the chart for the title's
+#'   div.
 #' @param stackedGraph If set, stack series on top of one another rather than 
 #'   drawing them independently. The first series specified in the input data 
 #'   will wind up on top of the chart and the last will be on bottom.
@@ -91,10 +95,10 @@
 #'   number, dygraphs will switch to scientific notation, even when not 
 #'   operating in scientific mode. If you'd like to see all those digits, set 
 #'   this to something large, like 20 or 30.
-#' @param sigFigs By default, dygraphs displays numbers with a fixed number of
-#'   digits after the decimal point. If you'd prefer to have a fixed number of
+#' @param sigFigs By default, dygraphs displays numbers with a fixed number of 
+#'   digits after the decimal point. If you'd prefer to have a fixed number of 
 #'   significant figures, set this option to that number of sig figs. A value of
-#'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be
+#'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be 
 #'   displayed as 1.23e+3.
 #'   
 #' @return dygraph with additional options
@@ -104,6 +108,7 @@
 #'   
 #' @export
 dyOptions <- function(dygraph,
+                      titleHeight = 18,
                       stackedGraph = FALSE,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
@@ -134,6 +139,7 @@ dyOptions <- function(dygraph,
                       maxNumberWidth = 6,
                       sigFigs = NULL) {
   options <- list()
+  options$titleHeight <- titleHeight
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
   options$fillAlpha = fillAlpha
