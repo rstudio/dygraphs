@@ -36,7 +36,8 @@ dyRangeSelector <- function(dygraph,
       stop("dateWindow must be vector of length 2 that is convertible to POSIXct")
     selector$dateWindow <- sapply(USE.NAMES = FALSE, dateWindow, 
                                   function(x) { 
-                                    as.double(as.POSIXct(x, tz = "GMT")) * 1000; 
+                                    x <- as.POSIXct(x, tz = "GMT")
+                                    asTimeStringGMT(x)
                                   }
     );
   }

@@ -15,6 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // reference to this for closures
+     var thiz = this;
+    
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
@@ -36,6 +39,12 @@ HTMLWidgets.widget({
     
     // convert time to js time
     attrs.file[0] = attrs.file[0].map(this.normalizeDateValue);
+    if (attrs.dateWindow != null) {
+      attrs.dateWindow = attrs.dateWindow.map(function(value) {
+        var date = thiz.normalizeDateValue(value);
+        return date.getTime();
+      });
+    }
     
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
@@ -72,7 +81,6 @@ HTMLWidgets.widget({
     }
     
     // set annotations
-    var thiz = this;
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
