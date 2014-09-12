@@ -21,6 +21,13 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param labelWidth Width of the div which contains the y-axis label. Since the
+#'   y-axis label appears rotated 90 degrees, this actually affects the height
+#'   of its div.
+#' @param labelHeight Height of the x-axis label, in pixels. This also controls
+#'   the default font size of the x-axis label. If you style the label on your
+#'   own, this controls how much space is set aside below the chart for the
+#'   x-axis label's div.
 #' @param axisHeight Height, in pixels, of the x-axis. If not set explicitly, 
 #'   this is computed based on \code{axisLabelFontSize} and \code{axisTickSize}.
 #' @param axisLineColor Color of the x- and y-axis lines. Accepts any value 
@@ -64,6 +71,8 @@ dyAxis <- function(dygraph,
                    label = NULL, 
                    valueRange = NULL,
                    ticker = NULL,
+                   labelWidth = NULL,
+                   labelHeight = NULL,
                    axisHeight = NULL,
                    axisLineColor = NULL,
                    axisLineWidth = NULL,
@@ -95,6 +104,12 @@ dyAxis <- function(dygraph,
     else
       stop("axisHeight is only applicable to the x axis")
   }
+  
+  if (!is.null(labelWidth))
+    attrs[[sprintf("%sLabelWidth", axis$name)]] <- labelWidth
+  if (!is.null(labelHeight))
+    attrs[[sprintf("%sLabelHeight", axis$name)]] <- labelHeight
+  
   axis$options$axisLineColor <- axisLineColor
   axis$options$axisLineWidth <- axisLineWidth
   if (!is.null(pixelsPerLabel))

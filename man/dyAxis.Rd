@@ -4,10 +4,11 @@
 \title{dygraph axis}
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
-  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
-  axisLabelWidth = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
-  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
+  labelWidth = NULL, labelHeight = NULL, axisHeight = NULL,
+  axisLineColor = NULL, axisLineWidth = NULL, pixelsPerLabel = NULL,
+  axisLabelColor = NULL, axisLabelFontSize = NULL, axisLabelWidth = NULL,
+  axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
+  gridLineWidth = NULL, independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -29,6 +30,15 @@ tick marks so, if you set this option, you'll most likely want to call one
 of them and modify the result. See dygraph-tickers.js and the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
+
+\item{labelWidth}{Width of the div which contains the y-axis label. Since the
+y-axis label appears rotated 90 degrees, this actually affects the height
+of its div.}
+
+\item{labelHeight}{Height of the x-axis label, in pixels. This also controls
+the default font size of the x-axis label. If you style the label on your
+own, this controls how much space is set aside below the chart for the
+x-axis label's div.}
 
 \item{axisHeight}{Height, in pixels, of the x-axis. If not set explicitly,
 this is computed based on \code{axisLabelFontSize} and \code{axisTickSize}.}
