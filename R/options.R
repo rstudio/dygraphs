@@ -75,9 +75,6 @@
 #'   page. This also implies that for a page with multiple plots you only need 
 #'   to specify styles for the first one (alternatively you can just add them 
 #'   directly to the page by other means).
-#' @param ... Additional options to pass directly to dygraphs (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
-#'   additional details).
 #'   
 #' @return Series options
 #'   
@@ -108,8 +105,7 @@ dyOptions <- function(dygraph,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
-                      css = NULL,
-                      ...) {
+                      css = NULL) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -132,7 +128,6 @@ dyOptions <- function(dygraph,
   options$drawGrid <- drawGrid
   options$gridLineColor <- gridLineColor
   options$gridLineWidth <- gridLineWidth
-  options <- append(options, list(...))
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)

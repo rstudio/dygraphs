@@ -59,8 +59,7 @@ dySeries <- function(dygraph,
                      strokeWidth = NULL,
                      strokePattern = NULL,
                      strokeBorderWidth = NULL,
-                     strokeBorderColor = NULL,
-                     ...) {
+                     strokeBorderColor = NULL) {
   
   # ensure that name is of length 1 or 3
   if (length(name) != 1 && length(name)  != 3) {
@@ -89,7 +88,6 @@ dySeries <- function(dygraph,
   series <- list()
   series$name <- name
   series$label <- label
-  series$options <- list(...)
   series$options$axis <- match.arg(axis, c("y", "y2"))
   series$options$stepPlot <- stepPlot
   series$options$fillGraph <- fillGraph

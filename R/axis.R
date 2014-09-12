@@ -58,8 +58,7 @@ dyAxis <- function(dygraph,
                    drawGrid = NULL,
                    gridLineColor = NULL,
                    gridLineWidth = NULL,
-                   independentTicks = NULL,
-                   ...) {
+                   independentTicks = NULL) {
   
   if (!name %in% c("x", "y", "y2"))
     stop("Axis name must be 'x', 'y', or 'y2'")
@@ -67,7 +66,6 @@ dyAxis <- function(dygraph,
   axis <- list()
   axis$name <- name
   axis$label <- label
-  axis$options <- list(...)
   axis$options$valueRange <- valueRange
   axis$options$ticker <- ticker
   if (!is.null(pixelsPerLabel))
