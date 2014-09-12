@@ -3,7 +3,10 @@
 \alias{dyAnnotation}
 \title{Annotation for dygraph chart}
 \usage{
-dyAnnotation(dygraph, x, text, tooltip = NULL, series = NULL)
+dyAnnotation(dygraph, x, text, tooltip = NULL, width = NULL,
+  height = NULL, cssClass = NULL, tickHeight = NULL,
+  attachAtBottom = FALSE, clickHandler = NULL, mouseOverHandler = NULL,
+  mouseOutHandler = NULL, dblClickHandler = NULL, series = NULL)
 }
 \arguments{
 \item{x}{Date value indicating where to place the annotation. This should be
@@ -13,15 +16,49 @@ of class \code{POSIXct} or convertable to \code{POSIXct}.}
 
 \item{tooltip}{Additional tooltip text to display on mouse hover}
 
+\item{width}{Width (in pixels) of the annotation flag.}
+
+\item{height}{Height (in pixels) of the annotation flag.}
+
+\item{cssClass}{CSS class to use for styling the annotation.}
+
+\item{tickHeight}{Height of the tick mark (in pixels) connecting the point to
+its flag or icon.}
+
+\item{attachAtBottom}{If true, attach annotations to the x-axis, rather than
+to actual points.}
+
+\item{clickHandler}{JavaScript function to call when an annotation is
+clicked.}
+
+\item{mouseOverHandler}{JavaScript function to call when the mouse hovers
+over an annotation.}
+
+\item{mouseOutHandler}{JavaScript function to call when the mouse exits an
+annotation.}
+
+\item{dblClickHandler}{JavaScript function to call when an annotation is
+double clicked.}
+
 \item{series}{Name of data series to attach annotation to}
 
-\item{series}{Series to attach the annotation to. By default, the last
-series defined using \code{\link{dySeries}}.}
+\item{series}{Series to attach the annotation to. By default, the last series
+  defined using \code{\link{dySeries}}.}
 }
 \value{
 Dygraph with specified annotation
 }
 \description{
 Define a text annotation for a data-point on a dygraph chart.
+}
+\note{
+Annotations are bound to specific series in the input data. If you have
+  only one series or if you define annotations immediately after a call to
+  \code{\link{dySeries}} then you need not speicfy the series explicitly.
+  Otherwise, you should use the \code{series} parameter to indicate which
+  series the annotation should be bound to.
+
+  Annotation event handlers can also specified globally (see
+  \code{\link{dyCallbacks}}).
 }
 

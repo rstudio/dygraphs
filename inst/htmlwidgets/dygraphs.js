@@ -79,13 +79,17 @@ HTMLWidgets.widget({
       if (x.group != null)
         this.groups[x.group].push(instance.dygraph);
     }
-    
+     
     // set annotations
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
           var date = thiz.normalizeDateValue(annotation.x);
           annotation.x = date.getTime();
+          thiz.evaluateStringMember(annotation, 'clickHandler');
+          thiz.evaluateStringMember(annotation, 'mouseOverHandler');
+          thiz.evaluateStringMember(annotation, 'mouseOutHandler');
+          thiz.evaluateStringMember(annotation, 'dblClickHandler');
         });
         instance.dygraph.setAnnotations(x.annotations);
       }); 
@@ -167,6 +171,10 @@ HTMLWidgets.widget({
     this.evaluateStringMember(attrs, 'zoomCallback');
     this.evaluateStringMember(attrs, 'drawHighlightPointCallback');
     this.evaluateStringMember(attrs, 'drawPointCallback');
+    this.evaluateStringMember(attrs, 'annotationClickHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOverHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOutHandler');
+    this.evaluateStringMember(attrs, 'annotationDblClickHandler');
     this.evaluateStringMember(attrs, 'valueFormatter');
     this.evaluateStringMember(attrs, 'axes.attrs.valueFormatter');
     this.evaluateStringMember(attrs, 'axes.y.valueFormatter');

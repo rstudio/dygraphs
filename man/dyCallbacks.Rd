@@ -7,7 +7,9 @@ dyCallbacks(dygraph, clickCallback = NULL, drawCallback = NULL,
   highlightCallback = NULL, pointClickCallback = NULL,
   underlayCallback = NULL, unhighlightCallback = NULL,
   zoomCallback = NULL, drawHighlightPointCallback = NULL,
-  drawPointCallback = NULL)
+  drawPointCallback = NULL, annotationClickHandler = NULL,
+  annotationMouseOverHandler = NULL, annotationMouseOutHandler = NULL,
+  annotationDblClickHandler = NULL)
 }
 \arguments{
 \item{clickCallback}{A function to call when the canvas is clicked.}
@@ -36,8 +38,22 @@ highlighted. Default is a small dot matching the series color. This method
 should constrain drawing to within pointSize pixels from (cx, cy)}
 
 \item{drawPointCallback}{Draw a custom item when drawPoints is enabled.
-  Default is a small dot matching the series color. This method should
-  constrain drawing to within pointSize pixels from (cx, cy).}
+Default is a small dot matching the series color. This method should
+constrain drawing to within pointSize pixels from (cx, cy).}
+
+\item{annotationClickHandler}{JavaScript function to call when an annotation
+is clicked. This can also be specified on a per-annotation basis.}
+
+\item{annotationMouseOverHandler}{JavaScript function to call when the mouse
+hovers over an annotation. This can also be specified on a per-annotation
+basis.}
+
+\item{annotationMouseOutHandler}{JavaScript function to call when the mouse
+exits an annotation. This can also be specified on a per-annotation basis.}
+
+\item{annotationDblClickHandler}{JavaScript function to call when an
+  annotation is double clicked. This can also be specified on a
+  per-annotation basis.}
 }
 \value{
 Dygraph with callbacks

@@ -21,9 +21,19 @@
 #' @param drawHighlightPointCallback Draw a custom item when a point is 
 #'   highlighted. Default is a small dot matching the series color. This method 
 #'   should constrain drawing to within pointSize pixels from (cx, cy)
-#' @param drawPointCallback Draw a custom item when drawPoints is enabled.
-#'   Default is a small dot matching the series color. This method should
+#' @param drawPointCallback Draw a custom item when drawPoints is enabled. 
+#'   Default is a small dot matching the series color. This method should 
 #'   constrain drawing to within pointSize pixels from (cx, cy).
+#' @param annotationClickHandler JavaScript function to call when an annotation
+#'   is clicked. This can also be specified on a per-annotation basis.
+#' @param annotationMouseOverHandler JavaScript function to call when the mouse
+#'   hovers over an annotation. This can also be specified on a per-annotation
+#'   basis.
+#' @param annotationMouseOutHandler JavaScript function to call when the mouse
+#'   exits an annotation. This can also be specified on a per-annotation basis.
+#' @param annotationDblClickHandler JavaScript function to call when an
+#'   annotation is double clicked. This can also be specified on a
+#'   per-annotation basis.
 #'   
 #' @return Dygraph with callbacks
 #'   
@@ -37,7 +47,11 @@ dyCallbacks <- function(dygraph,
                         unhighlightCallback = NULL,
                         zoomCallback = NULL,
                         drawHighlightPointCallback = NULL,
-                        drawPointCallback = NULL) {
+                        drawPointCallback = NULL,
+                        annotationClickHandler = NULL,
+                        annotationMouseOverHandler = NULL,
+                        annotationMouseOutHandler = NULL,
+                        annotationDblClickHandler = NULL) {
   
   callbacks <- list()
   callbacks$clickCallback <- clickCallback
@@ -49,6 +63,10 @@ dyCallbacks <- function(dygraph,
   callbacks$zoomCallback <- zoomCallback
   callbacks$drawHighlightPointCallback <- drawHighlightPointCallback
   callbacks$drawPointCallback <- drawPointCallback
+  callbacks$annotationClickHandler <- annotationClickHandler
+  callbacks$annotationMouseOverHandler <- annotationMouseOverHandler
+  callbacks$annotationMouseOutHandler <- annotationMouseOutHandler
+  callbacks$annotationDblClickHandler <- annotationDblClickHandler
   
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, callbacks)
   
