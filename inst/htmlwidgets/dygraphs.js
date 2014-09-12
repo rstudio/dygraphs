@@ -35,7 +35,10 @@ HTMLWidgets.widget({
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
-    attrs.file[0] = attrs.file[0].map(function(value) { return new Date(value); })
+    attrs.file[0] = attrs.file[0].map(function(value) { 
+      var date = new Date(value);   
+      return date;
+    });
     
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
