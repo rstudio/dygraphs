@@ -4,11 +4,11 @@
 \title{dygraph axis}
 \usage{
 dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  labelWidth = NULL, labelHeight = NULL, axisHeight = NULL,
-  axisLineColor = NULL, axisLineWidth = NULL, pixelsPerLabel = NULL,
-  axisLabelColor = NULL, axisLabelFontSize = NULL, axisLabelWidth = NULL,
-  axisLabelFormatter = NULL, drawGrid = NULL, gridLineColor = NULL,
-  gridLineWidth = NULL, independentTicks = NULL)
+  rangePad = NULL, labelWidth = NULL, labelHeight = NULL,
+  axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
+  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
+  axisLabelWidth = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
+  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -30,6 +30,9 @@ tick marks so, if you set this option, you'll most likely want to call one
 of them and modify the result. See dygraph-tickers.js and the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
+
+\item{rangePad}{Add the specified amount of extra space (in pixels) around
+the value range to ensure points at the edges remain visible.}
 
 \item{labelWidth}{Width of the div which contains the y-axis label. Since the
 y-axis label appears rotated 90 degrees, this actually affects the height

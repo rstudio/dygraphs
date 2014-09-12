@@ -21,12 +21,14 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param rangePad Add the specified amount of extra space (in pixels) around
+#'   the value range to ensure points at the edges remain visible.
 #' @param labelWidth Width of the div which contains the y-axis label. Since the
-#'   y-axis label appears rotated 90 degrees, this actually affects the height
+#'   y-axis label appears rotated 90 degrees, this actually affects the height 
 #'   of its div.
-#' @param labelHeight Height of the x-axis label, in pixels. This also controls
-#'   the default font size of the x-axis label. If you style the label on your
-#'   own, this controls how much space is set aside below the chart for the
+#' @param labelHeight Height of the x-axis label, in pixels. This also controls 
+#'   the default font size of the x-axis label. If you style the label on your 
+#'   own, this controls how much space is set aside below the chart for the 
 #'   x-axis label's div.
 #' @param axisHeight Height, in pixels, of the x-axis. If not set explicitly, 
 #'   this is computed based on \code{axisLabelFontSize} and \code{axisTickSize}.
@@ -71,6 +73,7 @@ dyAxis <- function(dygraph,
                    label = NULL, 
                    valueRange = NULL,
                    ticker = NULL,
+                   rangePad = NULL,
                    labelWidth = NULL,
                    labelHeight = NULL,
                    axisHeight = NULL,
@@ -97,6 +100,7 @@ dyAxis <- function(dygraph,
   axis$label <- label
   axis$options <- list()
   axis$options$valueRange <- valueRange
+   
   axis$options$ticker <- ticker
   if (!is.null(axisHeight)) {
     if (name == "x")
@@ -104,6 +108,9 @@ dyAxis <- function(dygraph,
     else
       stop("axisHeight is only applicable to the x axis")
   }
+  
+  if (!is.null(rangePad))
+    attrs[[sprintf("%sRangePad", axis$name)]] <- rangePad
   
   if (!is.null(labelWidth))
     attrs[[sprintf("%sLabelWidth", axis$name)]] <- labelWidth
