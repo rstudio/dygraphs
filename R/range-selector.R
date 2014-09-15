@@ -37,7 +37,7 @@ dyRangeSelector <- function(dygraph,
     selector$dateWindow <- sapply(USE.NAMES = FALSE, dateWindow, 
                                   function(x) { 
                                     x <- as.POSIXct(x, tz = "GMT")
-                                    asTimeStringGMT(x)
+                                    asISO8601Time(x)
                                   }
     );
   }

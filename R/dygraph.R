@@ -31,7 +31,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   periodicity <- xts::periodicity(data)
    
   # convert time to string we can pass to javascript Date function
-  time <- asTimeStringGMT(time(data))
+  time <- asISO8601Time(time(data))
   
   # get data as a named list
   data <- zoo::coredata(data)

@@ -53,9 +53,9 @@ dyAnnotation <- function(dygraph,
                          dblClickHandler = NULL,
                          series = NULL) {
   
-  # convert x to date format then to a suitable time string
+  # convert x to date format then to a suitable time value
   x <- as.POSIXct(x, tz = "GMT")
-  x <- asTimeStringGMT(x)
+  x <- asISO8601Time(x)
   
   # validate series if specified
   if (!is.null(series) && ! series %in% dygraph$x$attrs$labels) {
