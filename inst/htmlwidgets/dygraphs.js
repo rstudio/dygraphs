@@ -214,9 +214,13 @@ HTMLWidgets.widget({
         prevUnderlayCallback(canvas, area, g);
         
       for (var i = 0; i < x.events.length; i++) {
+        
+        // get event and x-coordinate
         var event = x.events[i];
         var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
         xPos = g.toDomXCoord(xPos);
+        
+        // draw line
         canvas.save();
         canvas.strokeStyle = event.color;
         thiz.dashedLine(canvas, 
@@ -225,6 +229,18 @@ HTMLWidgets.widget({
                         xPos, 
                         area.y + area.h,
                         event.strokePattern);
+        canvas.restore();
+        
+        // draw label
+        canvas.save();
+        thiz.setFontSize(canvas, 12);
+        var size = canvas.measureText(event.label);
+        var tx = xPos - 4;
+        var ty = area.y + size.width + 10;
+        canvas.translate(tx,ty);
+        canvas.rotate(3 * Math.PI / 2);
+        canvas.translate(-tx,-ty);
+        canvas.fillText(event.label, tx, ty);
         canvas.restore();
       }
     };
@@ -254,6 +270,15 @@ HTMLWidgets.widget({
       draw = !draw;
     }
     canvas.stroke();
+  },
+  
+  setFontSize: function(canvas, size) {
+    var cFont = canvas.font;
+    var parts = cFont.split(' ');
+    if (parts.length === 2)
+      canvas.font = size + 'px ' + parts[1];
+    else if (parts.length === 3)
+      canvas.font = parts[0] + ' ' + size + 'px ' + parts[2];
   },
   
   resolveFunctions: function(attrs) {
