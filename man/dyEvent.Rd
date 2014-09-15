@@ -14,8 +14,10 @@ another object convertible to \code{as.POSIXct}). convertable via
 
 \item{label}{Label for event.}
 
-\item{color}{Color of event line This can be of the form "#AABBCC" or
-  "rgb(255,100,200)" or "yellow". Defaults to black.}
+\item{color}{Color of event line. This can be of the form "#AABBCC" or
+  "rgb(255,100,200)" or "yellow". Defaults to black.
+  "dotdash") or a custom pattern array where the even index is a draw and odd
+  is a space in pixels.}
 }
 \value{
 A dygraph with the specified event line.

@@ -3,12 +3,14 @@
 #' Add a vertical event line to a dygraph
 #' 
 #' @param dygraph Dygraph to add event line to
-#' @param date Date/time for the event (must be a \code{as.POSIXct} object or
-#'   another object convertible to \code{as.POSIXct}). convertable via
+#' @param date Date/time for the event (must be a \code{as.POSIXct} object or 
+#'   another object convertible to \code{as.POSIXct}). convertable via 
 #'   \code{as.POSIXct}).
 #' @param label Label for event.
-#' @param color Color of event line This can be of the form "#AABBCC" or 
+#' @param color Color of event line. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
+#'   "dotdash") or a custom pattern array where the even index is a draw and odd
+#'   is a space in pixels.
 #'   
 #' @return A dygraph with the specified event line.
 #'   
