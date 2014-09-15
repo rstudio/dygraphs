@@ -34,12 +34,7 @@ dyRangeSelector <- function(dygraph,
   if (!is.null(dateWindow)) {
     if (length(dateWindow) != 2)
       stop("dateWindow must be vector of length 2 that is convertible to POSIXct")
-    selector$dateWindow <- sapply(USE.NAMES = FALSE, dateWindow, 
-                                  function(x) { 
-                                    x <- as.POSIXct(x, tz = "GMT")
-                                    asISO8601Time(x)
-                                  }
-    );
+    selector$dateWindow <- sapply(USE.NAMES = FALSE, dateWindow, axISO8601Time)
   }
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- fillColor

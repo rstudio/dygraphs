@@ -58,6 +58,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$scale <- periodicity$scale
   x$group <- group
   x$annotations <- list()
+  x$shadings <- list()
   
   # add attributes required for defining custom series. when a dySeries call
   # is made it places series definition in "manual mode"; in this case we

@@ -54,7 +54,6 @@ dyAnnotation <- function(dygraph,
                          series = NULL) {
   
   # convert x to date format then to a suitable time value
-  x <- as.POSIXct(x, tz = "GMT")
   x <- asISO8601Time(x)
   
   # validate series if specified

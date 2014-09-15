@@ -23,6 +23,8 @@ mergeLists <- function (base_list, overlay_list, recursive = TRUE) {
 }
 
 asISO8601Time <- function(x) {
+  if (!inherits(x, "POSIXct"))
+    x <- as.POSIXct(x, tz = "GMT")
   format(x, format="%FT%H:%M:%SZ", tz='GMT')
 }
 

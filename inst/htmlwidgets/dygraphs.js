@@ -55,6 +55,9 @@ HTMLWidgets.widget({
     if (x.group != null)
       this.addGroupDrawCallback(x);  
       
+    // add shading callback if necessary
+    this.addShadingCallback(x);
+      
     // add default font for viewer mode
     if (this.queryVar("viewer_pane") === "1")
       document.body.style.fontFamily = "Arial, sans-serif";
@@ -148,6 +151,40 @@ HTMLWidgets.widget({
         });
       }
       blockRedraw = false;
+    };
+  },
+  
+  addShadingCallback: function(x) {
+    
+    // bail if no shadings
+    if (x.shadings.length == 0)
+      return;
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing underlayCallback
+    var prevUnderlayCallback = attrs["underlayCallback"];
+    
+    // install callback
+    attrs.underlayCallback = function(canvas, area, g) {
+      
+      // call existing
+      if (prevUnderlayCallback)
+        prevUnderlayCallback(canvas, area, g);
+        
+      for (var i = 0; i < x.shadings.length; i++) {
+        var shading = x.shadings[i];
+        var x1 = thiz.normalizeDateValue(x.scale, shading.from).getTime();
+        var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
+        var left = g.toDomXCoord(x1);
+        var right = g.toDomXCoord(x2);
+        canvas.fillStyle = shading.color;
+        canvas.fillRect(left, area.y, right - left, area.h);
+      }
     };
   },
   
