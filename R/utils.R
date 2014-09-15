@@ -28,4 +28,18 @@ asISO8601Time <- function(x) {
   format(x, format="%FT%H:%M:%SZ", tz='GMT')
 }
 
+resolveStrokePattern <- function(strokePattern) {
+  if (is.character(strokePattern)) {
+    if (strokePattern == "dotted") 
+      strokePattern <- c(2, 2)
+    else if (strokePattern == "dashed")
+      strokePattern <- c(7, 3)
+    else if (strokePattern == "dotdash")
+      strokePattern <- c(7, 2, 2, 2)
+    else
+      stop("Invalid stroke pattern: valid values are dotted, ",
+           "dashed, and dotdash")
+  }
+  strokePattern
+}
 

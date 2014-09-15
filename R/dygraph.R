@@ -59,6 +59,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$group <- group
   x$annotations <- list()
   x$shadings <- list()
+  x$events <- list()
   
   # add attributes required for defining custom series. when a dySeries call
   # is made it places series definition in "manual mode"; in this case we

@@ -101,15 +101,7 @@ dySeries <- function(dygraph,
   series$options$drawPoints <- drawPoints
   series$options$pointSize <- pointSize
   series$options$strokeWidth <- strokeWidth
-  if (is.character(strokePattern)) {
-    if (strokePattern == "dotted") 
-      strokePattern <- c(2, 2)
-    else if (strokePattern == "dashed")
-      strokePattern <- c(7, 3)
-    else if (strokePattern == "dotdash")
-      strokePattern <- c(7, 2, 2, 2)
-  }
-  series$options$strokePattern <- strokePattern
+  series$options$strokePattern <- resolveStrokePattern(strokePattern)
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor
   series$options$plotter <- plotter

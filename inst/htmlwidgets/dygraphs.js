@@ -55,8 +55,9 @@ HTMLWidgets.widget({
     if (x.group != null)
       this.addGroupDrawCallback(x);  
       
-    // add shading callback if necessary
+    // add shading and event callback if necessary
     this.addShadingCallback(x);
+    this.addEventCallback(x);
       
     // add default font for viewer mode
     if (this.queryVar("viewer_pane") === "1")
@@ -182,10 +183,77 @@ HTMLWidgets.widget({
         var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
         var left = g.toDomXCoord(x1);
         var right = g.toDomXCoord(x2);
+        canvas.save();
         canvas.fillStyle = shading.color;
         canvas.fillRect(left, area.y, right - left, area.h);
+        canvas.restore();
       }
     };
+  },
+  
+  addEventCallback: function(x) {
+    
+    // bail if no evets
+    if (x.events.length == 0)
+      return;
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing underlayCallback
+    var prevUnderlayCallback = attrs["underlayCallback"];
+    
+    // install callback
+    attrs.underlayCallback = function(canvas, area, g) {
+      
+      // call existing
+      if (prevUnderlayCallback)
+        prevUnderlayCallback(canvas, area, g);
+        
+      for (var i = 0; i < x.events.length; i++) {
+        var event = x.events[i];
+        var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
+        xPos = g.toDomXCoord(xPos);
+        canvas.save();
+        canvas.strokeStyle = event.color;
+        thiz.dashedLine(canvas, 
+                        xPos, 
+                        area.y, 
+                        xPos, 
+                        area.y + area.h,
+                        event.strokePattern);
+        canvas.restore();
+      }
+    };
+  },
+  
+  // add dashed line support to canvas rendering context
+  // see: http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
+  dashedLine: function(canvas, x, y, x2, y2, dashArray) {
+    canvas.beginPath();
+    if (!dashArray) dashArray=[10,5];
+    if (dashLength==0) dashLength = 0.001; // Hack for Safari
+    var dashCount = dashArray.length;
+    canvas.moveTo(x, y);
+    var dx = (x2-x), dy = (y2-y);
+    var slope = dx ? dy/dx : 1e15;
+    var distRemaining = Math.sqrt( dx*dx + dy*dy );
+    var dashIndex=0, draw=true;
+    while (distRemaining>=0.1){
+      var dashLength = dashArray[dashIndex++%dashCount];
+      if (dashLength > distRemaining) dashLength = distRemaining;
+      var xStep = Math.sqrt( dashLength*dashLength / (1 + slope*slope) );
+      if (dx<0) xStep = -xStep;
+      x += xStep
+      y += slope*xStep;
+      canvas[draw ? 'lineTo' : 'moveTo'](x,y);
+      distRemaining -= dashLength;
+      draw = !draw;
+    }
+    canvas.stroke();
   },
   
   resolveFunctions: function(attrs) {
@@ -271,3 +339,4 @@ HTMLWidgets.widget({
     return date;
   }
 });
+
