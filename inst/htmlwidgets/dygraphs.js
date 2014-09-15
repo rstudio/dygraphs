@@ -38,10 +38,12 @@ HTMLWidgets.widget({
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
-    attrs.file[0] = attrs.file[0].map(this.normalizeDateValue);
+    attrs.file[0] = attrs.file[0].map(function(value) {
+      return thiz.normalizeDateValue(x.scale, value);
+    });
     if (attrs.dateWindow != null) {
       attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(value);
+        var date = thiz.normalizeDateValue(x.scale, value);
         return date.getTime();
       });
     }
@@ -84,7 +86,7 @@ HTMLWidgets.widget({
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(annotation.x);
+          var date = thiz.normalizeDateValue(x.scale, annotation.x);
           annotation.x = date.getTime();
           thiz.evaluateStringMember(annotation, 'clickHandler');
           thiz.evaluateStringMember(annotation, 'mouseOverHandler');
@@ -104,15 +106,15 @@ HTMLWidgets.widget({
     return function(millis) {
       var date = new Date(millis);
         if (scale == "yearly")
-          return date.getUTCFullYear();
+          return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
+          return monthNames[date.getMonth()] + ' ' + date.getFullYear(); 
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getUTCMonth()] + ' ' + 
-                           date.getUTCDate() + ' ' + 
-                           date.getUTCFullYear();
+          return monthNames[date.getMonth()] + ' ' + 
+                           date.getDate() + ' ' + 
+                           date.getFullYear();
         else
-          return date.toUTCString();
+          return date.toLocaleString();
     }
   },
   
@@ -217,15 +219,18 @@ HTMLWidgets.widget({
       "$1"));
   },
   
-  // we deal exclusively in UTC dates within R, however dygraphs deals exclusively
-  // in the local time zone. therefore, in order to plot dates in the way that
-  // user's expect we need to convert the UTC date value to a local time value
-  // that "looks like" the equivilant UTC value. to do this we add the timezone
-  // offset to the UTC date.
-  normalizeDateValue: function(value) {
-     var date = new Date(value); 
-     var localDateAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
-     var normalizedDate = new Date(localDateAsUTC);
-     return normalizedDate;
+  // we deal exclusively in UTC dates within R, however dygraphs deals 
+  // exclusively in the local time zone. therefore, in order to plot date
+  // lables that make sense to the user when we are dealing with days,
+  // months or years we need to convert the UTC date value to a local time
+  // value that "looks like" the equivilant UTC value. to do this we add the
+  // timezone offset to the UTC date.
+  normalizeDateValue: function(scale, value) {
+    var date = new Date(value); 
+    if (scale != "minute" && scale != "hourly") {
+      var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
+      date = new Date(localAsUTC);
+    }
+    return date;
   }
 });
