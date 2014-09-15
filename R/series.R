@@ -32,18 +32,19 @@
 #'   on either side of it. This also controls the size of those dots.
 #' @param strokeWidth The width of the lines connecting data points. This can be
 #'   used to increase the contrast or some graphs.
-#' @param strokePattern A custom pattern array where the even index is a draw 
-#'   and odd is a space in pixels. If null then it draws a solid line. The array
-#'   should have a even length as any odd lengthed array could be expressed as a
-#'   smaller even length array. This is used to create dashed lines.
+#' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
+#'   "dotdash") or a custom pattern array where the even index is a draw and odd
+#'   is a space in pixels. If \code{NULL} then it draws a solid line. The array
+#'   should have an even length as any odd lengthed array could be expressed as a
+#'   smaller even length array.
 #' @param strokeBorderWidth Draw a border around graph lines to make crossing 
 #'   lines more easily distinguishable. Useful for graphs with many lines.
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set.
-#' @param plotter A function which plots the data series.
-#'   May also be set on on a global basis using \code{dyOptions}. See the
-#'   \href{dygraphs documentation}{http://dygraphs.com/tests/plotters.html} for
-#'   additional details on plotting functions.
+#' @param plotter A function which plots the data series. May also be set on on 
+#'   a global basis using \code{dyOptions}. See the \href{dygraphs 
+#'   documentation}{http://dygraphs.com/tests/plotters.html} for additional 
+#'   details on plotting functions.
 #'   
 #' @return Dygraph with additional series
 #'   
@@ -100,6 +101,14 @@ dySeries <- function(dygraph,
   series$options$drawPoints <- drawPoints
   series$options$pointSize <- pointSize
   series$options$strokeWidth <- strokeWidth
+  if (is.character(strokePattern)) {
+    if (strokePattern == "dotted") 
+      strokePattern <- c(2, 2)
+    else if (strokePattern == "dashed")
+      strokePattern <- c(7, 3)
+    else if (strokePattern == "dotdash")
+      strokePattern <- c(7, 2, 2, 2)
+  }
   series$options$strokePattern <- strokePattern
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor

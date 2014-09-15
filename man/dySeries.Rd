@@ -44,10 +44,11 @@ on either side of it. This also controls the size of those dots.}
 \item{strokeWidth}{The width of the lines connecting data points. This can be
 used to increase the contrast or some graphs.}
 
-\item{strokePattern}{A custom pattern array where the even index is a draw
-and odd is a space in pixels. If null then it draws a solid line. The array
-should have a even length as any odd lengthed array could be expressed as a
-smaller even length array. This is used to create dashed lines.}
+\item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed", or
+"dotdash") or a custom pattern array where the even index is a draw and odd
+is a space in pixels. If \code{NULL} then it draws a solid line. The array
+should have an even length as any odd lengthed array could be expressed as a
+smaller even length array.}
 
 \item{strokeBorderWidth}{Draw a border around graph lines to make crossing
 lines more easily distinguishable. Useful for graphs with many lines.}
@@ -55,10 +56,10 @@ lines more easily distinguishable. Useful for graphs with many lines.}
 \item{strokeBorderColor}{Color for the line border used if
 \code{strokeBorderWidth} is set.}
 
-\item{plotter}{A function which plots the data series.
-  May also be set on on a global basis using \code{dyOptions}. See the
-  \href{dygraphs documentation}{http://dygraphs.com/tests/plotters.html} for
-  additional details on plotting functions.}
+\item{plotter}{A function which plots the data series. May also be set on on
+  a global basis using \code{dyOptions}. See the \href{dygraphs
+  documentation}{http://dygraphs.com/tests/plotters.html} for additional
+  details on plotting functions.}
 }
 \value{
 Dygraph with additional series
