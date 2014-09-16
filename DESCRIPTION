@@ -1,7 +1,7 @@
 Package: dygraphs
 Type: Package
 Title: Interface to dygraphs interactive time series JavaScript library
-Version: 0.1
+Version: 0.2
 Date: 2014-08-15
 Author: Dan Vanderkam, JJ Allaire
 Maintainer: JJ Allaire <jj@rstudio.com>
