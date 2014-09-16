@@ -159,7 +159,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="installation" class="section level3">
 <h3>Installation</h3>
 <p>The dygraphs package depends on the development version of the <a href="https://github.com/ramnathv/htmlwidgets">htmlwidgets</a> package so you need to install both packages. You can do this using the <strong>devtools</strong> package as follows:</p>
-<pre class="r"><code>devtools::install_github(c(&quot;ramnathv/htmlwidgets&quot;, &quot;jjallaire/dygraphs&quot;))</code></pre>
+<pre class="r"><code>devtools::install_github(c(&quot;ramnathv/htmlwidgets&quot;, &quot;rstudio/dygraphs&quot;))</code></pre>
 <p>You can use dygraphs at the R console, within R Markdown documents, and within Shiny applications. See the usage documentation linked to from the sidebar for more details. There are a few demos of dygraphs below as well as quite a few others in the gallery of examples.</p>
 </div>
 <div id="demos" class="section level3">
@@ -168,8 +168,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-9237" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-9237">{ "attrs": {
+<p><div id="htmlwidget-4213" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4213">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -185,8 +185,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-3292" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3292">{ "attrs": {
+<p><div id="htmlwidget-3473" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3473">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -209,8 +209,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector(height = 20)</code></pre>
-<p><div id="htmlwidget-4244" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4244">{ "attrs": {
+<p><div id="htmlwidget-7309" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7309">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -274,8 +274,8 @@ dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dyAxis(&quot;x&quot;, drawGrid = FALSE) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set1&quot;))</code></pre>
-<p><div id="htmlwidget-2082" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2082">{ "attrs": {
+<p><div id="htmlwidget-3409" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3409">{ "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",
@@ -402,7 +402,7 @@ dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
 <p>The <em>Gallery</em> linked to from the sidebar includes many more examples of the various features available to customize dygraphs.</p>
 <!-- Fork me on Github Button -->
 
-<p><a href="https://github.com/jjallaire/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>
+<p><a href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a></p>
 </div>
 
 
