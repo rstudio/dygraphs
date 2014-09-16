@@ -15,6 +15,9 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // reference to this for closures
+     var thiz = this;
+    
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
@@ -35,7 +38,15 @@ HTMLWidgets.widget({
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
-    attrs.file[0] = attrs.file[0].map(function(value) { return new Date(value); })
+    attrs.file[0] = attrs.file[0].map(function(value) {
+      return thiz.normalizeDateValue(x.scale, value);
+    });
+    if (attrs.dateWindow != null) {
+      attrs.dateWindow = attrs.dateWindow.map(function(value) {
+        var date = thiz.normalizeDateValue(x.scale, value);
+        return date.getTime();
+      });
+    }
     
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
@@ -43,6 +54,10 @@ HTMLWidgets.widget({
     // add drawCallback for group
     if (x.group != null)
       this.addGroupDrawCallback(x);  
+      
+    // add shading and event callback if necessary
+    this.addShadingCallback(x);
+    this.addEventCallback(x);
       
     // add default font for viewer mode
     if (this.queryVar("viewer_pane") === "1")
@@ -70,6 +85,21 @@ HTMLWidgets.widget({
       if (x.group != null)
         this.groups[x.group].push(instance.dygraph);
     }
+     
+    // set annotations
+    if (x.annotations != null) {
+      instance.dygraph.ready(function() {
+        x.annotations.map(function(annotation) {
+          var date = thiz.normalizeDateValue(x.scale, annotation.x);
+          annotation.x = date.getTime();
+          thiz.evaluateStringMember(annotation, 'clickHandler');
+          thiz.evaluateStringMember(annotation, 'mouseOverHandler');
+          thiz.evaluateStringMember(annotation, 'mouseOutHandler');
+          thiz.evaluateStringMember(annotation, 'dblClickHandler');
+        });
+        instance.dygraph.setAnnotations(x.annotations);
+      }); 
+    }
   },
   
   xValueFormatter: function(scale) {
@@ -80,15 +110,15 @@ HTMLWidgets.widget({
     return function(millis) {
       var date = new Date(millis);
         if (scale == "yearly")
-          return date.getUTCFullYear();
+          return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getUTCMonth()] + ' ' + date.getUTCFullYear(); 
+          return monthNames[date.getMonth()] + ' ' + date.getFullYear(); 
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getUTCMonth()] + ' ' + 
-                           date.getUTCDate() + ' ' + 
-                           date.getUTCFullYear();
+          return monthNames[date.getMonth()] + ' ' + 
+                           date.getDate() + ' ' + 
+                           date.getFullYear();
         else
-          return date.toUTCString();
+          return date.toLocaleString();
     }
   },
   
@@ -125,6 +155,134 @@ HTMLWidgets.widget({
     };
   },
   
+  addShadingCallback: function(x) {
+    
+    // bail if no shadings
+    if (x.shadings.length == 0)
+      return;
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing underlayCallback
+    var prevUnderlayCallback = attrs["underlayCallback"];
+    
+    // install callback
+    attrs.underlayCallback = function(canvas, area, g) {
+      
+      // call existing
+      if (prevUnderlayCallback)
+        prevUnderlayCallback(canvas, area, g);
+        
+      for (var i = 0; i < x.shadings.length; i++) {
+        var shading = x.shadings[i];
+        var x1 = thiz.normalizeDateValue(x.scale, shading.from).getTime();
+        var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
+        var left = g.toDomXCoord(x1);
+        var right = g.toDomXCoord(x2);
+        canvas.save();
+        canvas.fillStyle = shading.color;
+        canvas.fillRect(left, area.y, right - left, area.h);
+        canvas.restore();
+      }
+    };
+  },
+  
+  addEventCallback: function(x) {
+    
+    // bail if no evets
+    if (x.events.length == 0)
+      return;
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing underlayCallback
+    var prevUnderlayCallback = attrs["underlayCallback"];
+    
+    // install callback
+    attrs.underlayCallback = function(canvas, area, g) {
+      
+      // call existing
+      if (prevUnderlayCallback)
+        prevUnderlayCallback(canvas, area, g);
+        
+      for (var i = 0; i < x.events.length; i++) {
+        
+        // get event and x-coordinate
+        var event = x.events[i];
+        var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
+        xPos = g.toDomXCoord(xPos);
+        
+        // draw line
+        canvas.save();
+        canvas.strokeStyle = event.color;
+        thiz.dashedLine(canvas, 
+                        xPos, 
+                        area.y, 
+                        xPos, 
+                        area.y + area.h,
+                        event.strokePattern);
+        canvas.restore();
+        
+        // draw label
+        if (event.label != null) {
+          canvas.save();
+          thiz.setFontSize(canvas, 12);
+          var size = canvas.measureText(event.label);
+          var tx = xPos - 4;
+          var ty = area.y + size.width + 10;
+          canvas.translate(tx,ty);
+          canvas.rotate(3 * Math.PI / 2);
+          canvas.translate(-tx,-ty);
+          canvas.fillText(event.label, tx, ty);
+          canvas.restore();
+        }
+      }
+    };
+  },
+  
+  // add dashed line support to canvas rendering context
+  // see: http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
+  dashedLine: function(canvas, x, y, x2, y2, dashArray) {
+    canvas.beginPath();
+    if (!dashArray) dashArray=[10,5];
+    if (dashLength==0) dashLength = 0.001; // Hack for Safari
+    var dashCount = dashArray.length;
+    canvas.moveTo(x, y);
+    var dx = (x2-x), dy = (y2-y);
+    var slope = dx ? dy/dx : 1e15;
+    var distRemaining = Math.sqrt( dx*dx + dy*dy );
+    var dashIndex=0, draw=true;
+    while (distRemaining>=0.1){
+      var dashLength = dashArray[dashIndex++%dashCount];
+      if (dashLength > distRemaining) dashLength = distRemaining;
+      var xStep = Math.sqrt( dashLength*dashLength / (1 + slope*slope) );
+      if (dx<0) xStep = -xStep;
+      x += xStep
+      y += slope*xStep;
+      canvas[draw ? 'lineTo' : 'moveTo'](x,y);
+      distRemaining -= dashLength;
+      draw = !draw;
+    }
+    canvas.stroke();
+  },
+  
+  setFontSize: function(canvas, size) {
+    var cFont = canvas.font;
+    var parts = cFont.split(' ');
+    if (parts.length === 2)
+      canvas.font = size + 'px ' + parts[1];
+    else if (parts.length === 3)
+      canvas.font = parts[0] + ' ' + size + 'px ' + parts[2];
+  },
+  
   resolveFunctions: function(attrs) {
     this.evaluateStringMember(attrs, 'annotationClickHandler');
     this.evaluateStringMember(attrs, 'annotationDblClickHandler');
@@ -147,6 +305,10 @@ HTMLWidgets.widget({
     this.evaluateStringMember(attrs, 'zoomCallback');
     this.evaluateStringMember(attrs, 'drawHighlightPointCallback');
     this.evaluateStringMember(attrs, 'drawPointCallback');
+    this.evaluateStringMember(attrs, 'annotationClickHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOverHandler');
+    this.evaluateStringMember(attrs, 'annotationMouseOutHandler');
+    this.evaluateStringMember(attrs, 'annotationDblClickHandler');
     this.evaluateStringMember(attrs, 'valueFormatter');
     this.evaluateStringMember(attrs, 'axes.attrs.valueFormatter');
     this.evaluateStringMember(attrs, 'axes.y.valueFormatter');
@@ -187,5 +349,21 @@ HTMLWidgets.widget({
                  encodeURI(name).replace(/[\.\+\*]/g, "\\$&") +
                  "(?:\\=([^&]*))?)?.*$", "i"),
       "$1"));
+  },
+  
+  // we deal exclusively in UTC dates within R, however dygraphs deals 
+  // exclusively in the local time zone. therefore, in order to plot date
+  // lables that make sense to the user when we are dealing with days,
+  // months or years we need to convert the UTC date value to a local time
+  // value that "looks like" the equivilant UTC value. to do this we add the
+  // timezone offset to the UTC date.
+  normalizeDateValue: function(scale, value) {
+    var date = new Date(value); 
+    if (scale != "minute" && scale != "hourly") {
+      var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
+      date = new Date(localAsUTC);
+    }
+    return date;
   }
 });
+
