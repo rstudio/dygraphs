@@ -52,7 +52,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$axes$x <- list() 
   attrs$axes$x$pixelsPerLabel <- 50
    
-  # create x (dychart attrs + some side data)
+  # create x (dygraph attrs + some side data)
   x <- list()
   x$attrs <- attrs
   x$scale <- periodicity$scale

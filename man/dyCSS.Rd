@@ -24,7 +24,7 @@ See the
   \href{http://jjallaire.github.io/dygraphs/gallery-css-styling.html}{CSS
   Styling} article on the dygraphs for R website for additional details.
 
-  Note that CSS styles are global so will affect all dycharts on a given web
+  Note that CSS styles are global so will affect all dygraphs on a given web
   page. This also implies that for a page with multiple plots you only need
   to specify styles for the first one (alternatively you can just add them
   directly to the page by other means).
