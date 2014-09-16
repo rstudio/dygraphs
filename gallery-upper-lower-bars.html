@@ -148,11 +148,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <p>You can plot error bars (or any other high/low oriented data) along with a series by simply specifying the lower, value, and upper series together in the <code>dySeries</code> name parameter. For example:</p>
 <pre class="r"><code>hw &lt;- HoltWinters(ldeaths)
-predicted &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
-dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
+p &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(p, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;)</code></pre>
-<p><div id="htmlwidget-2581" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2581">{ "attrs": {
+<p><div id="htmlwidget-3152" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3152">{ "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",
@@ -244,7 +245,257 @@ dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
 [ 933.23, 1647.9, 2362.6 ] 
 ] 
 ] }</script></p>
-<p>Here’s another example that plots multiple series each of which have upper and lower bars:</p>
+<p>Here’s how you would plot the actual and predicted series on the same graph:</p>
+<pre class="r"><code>hw &lt;- HoltWinters(ldeaths)
+p &lt;- predict(hw, n.ahead = 36, prediction.interval = TRUE)
+all &lt;- cbind(ldeaths, p)
+
+dygraph(all, &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
+  dySeries(&quot;ldeaths&quot;, label = &quot;Actual&quot;) %&gt;%
+  dySeries(c(&quot;p.lwr&quot;, &quot;p.fit&quot;, &quot;p.upr&quot;), label = &quot;Predicted&quot;)</code></pre>
+<p><div id="htmlwidget-6658" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6658">{ "attrs": {
+ "title": "Deaths from Lung Disease (UK)",
+"labels": [ "month", "Actual", "Predicted" ],
+"legend": "auto",
+"axes": {
+ "x": {
+ "pixelsPerLabel":     50 
+} 
+},
+"series": {
+ "Actual": {
+ "axis": "y" 
+},
+"Predicted": {
+ "axis": "y" 
+} 
+},
+"customBars": true 
+},"scale": "monthly","annotations": [],"shadings": [],"events": [],"data": [
+ [ "1974-01-01T00:00:00Z", "1974-02-01T00:00:00Z", "1974-03-01T00:00:00Z", "1974-04-01T00:00:00Z", "1974-05-01T00:00:00Z", "1974-06-01T00:00:00Z", "1974-07-01T00:00:00Z", "1974-08-01T00:00:00Z", "1974-09-01T00:00:00Z", "1974-10-01T00:00:00Z", "1974-11-01T00:00:00Z", "1974-12-01T00:00:00Z", "1975-01-01T00:00:00Z", "1975-02-01T00:00:00Z", "1975-03-01T00:00:00Z", "1975-04-01T00:00:00Z", "1975-05-01T00:00:00Z", "1975-06-01T00:00:00Z", "1975-07-01T00:00:00Z", "1975-08-01T00:00:00Z", "1975-09-01T00:00:00Z", "1975-10-01T00:00:00Z", "1975-11-01T00:00:00Z", "1975-12-01T00:00:00Z", "1976-01-01T00:00:00Z", "1976-02-01T00:00:00Z", "1976-03-01T00:00:00Z", "1976-04-01T00:00:00Z", "1976-05-01T00:00:00Z", "1976-06-01T00:00:00Z", "1976-07-01T00:00:00Z", "1976-08-01T00:00:00Z", "1976-09-01T00:00:00Z", "1976-10-01T00:00:00Z", "1976-11-01T00:00:00Z", "1976-12-01T00:00:00Z", "1977-01-01T00:00:00Z", "1977-02-01T00:00:00Z", "1977-03-01T00:00:00Z", "1977-04-01T00:00:00Z", "1977-05-01T00:00:00Z", "1977-06-01T00:00:00Z", "1977-07-01T00:00:00Z", "1977-08-01T00:00:00Z", "1977-09-01T00:00:00Z", "1977-10-01T00:00:00Z", "1977-11-01T00:00:00Z", "1977-12-01T00:00:00Z", "1978-01-01T00:00:00Z", "1978-02-01T00:00:00Z", "1978-03-01T00:00:00Z", "1978-04-01T00:00:00Z", "1978-05-01T00:00:00Z", "1978-06-01T00:00:00Z", "1978-07-01T00:00:00Z", "1978-08-01T00:00:00Z", "1978-09-01T00:00:00Z", "1978-10-01T00:00:00Z", "1978-11-01T00:00:00Z", "1978-12-01T00:00:00Z", "1979-01-01T00:00:00Z", "1979-02-01T00:00:00Z", "1979-03-01T00:00:00Z", "1979-04-01T00:00:00Z", "1979-05-01T00:00:00Z", "1979-06-01T00:00:00Z", "1979-07-01T00:00:00Z", "1979-08-01T00:00:00Z", "1979-09-01T00:00:00Z", "1979-10-01T00:00:00Z", "1979-11-01T00:00:00Z", "1979-12-01T00:00:00Z", "1980-01-01T00:00:00Z", "1980-02-01T00:00:00Z", "1980-03-01T00:00:00Z", "1980-04-01T00:00:00Z", "1980-05-01T00:00:00Z", "1980-06-01T00:00:00Z", "1980-07-01T00:00:00Z", "1980-08-01T00:00:00Z", "1980-09-01T00:00:00Z", "1980-10-01T00:00:00Z", "1980-11-01T00:00:00Z", "1980-12-01T00:00:00Z", "1981-01-01T00:00:00Z", "1981-02-01T00:00:00Z", "1981-03-01T00:00:00Z", "1981-04-01T00:00:00Z", "1981-05-01T00:00:00Z", "1981-06-01T00:00:00Z", "1981-07-01T00:00:00Z", "1981-08-01T00:00:00Z", "1981-09-01T00:00:00Z", "1981-10-01T00:00:00Z", "1981-11-01T00:00:00Z", "1981-12-01T00:00:00Z", "1982-01-01T00:00:00Z", "1982-02-01T00:00:00Z", "1982-03-01T00:00:00Z", "1982-04-01T00:00:00Z", "1982-05-01T00:00:00Z", "1982-06-01T00:00:00Z", "1982-07-01T00:00:00Z", "1982-08-01T00:00:00Z", "1982-09-01T00:00:00Z", "1982-10-01T00:00:00Z", "1982-11-01T00:00:00Z", "1982-12-01T00:00:00Z" ],
+[
+ [   3035,   3035,   3035 ],
+[   2552,   2552,   2552 ],
+[   2704,   2704,   2704 ],
+[   2554,   2554,   2554 ],
+[   2014,   2014,   2014 ],
+[   1655,   1655,   1655 ],
+[   1721,   1721,   1721 ],
+[   1524,   1524,   1524 ],
+[   1596,   1596,   1596 ],
+[   2074,   2074,   2074 ],
+[   2199,   2199,   2199 ],
+[   2512,   2512,   2512 ],
+[   2933,   2933,   2933 ],
+[   2889,   2889,   2889 ],
+[   2938,   2938,   2938 ],
+[   2497,   2497,   2497 ],
+[   1870,   1870,   1870 ],
+[   1726,   1726,   1726 ],
+[   1607,   1607,   1607 ],
+[   1545,   1545,   1545 ],
+[   1396,   1396,   1396 ],
+[   1787,   1787,   1787 ],
+[   2076,   2076,   2076 ],
+[   2837,   2837,   2837 ],
+[   2787,   2787,   2787 ],
+[   3891,   3891,   3891 ],
+[   3179,   3179,   3179 ],
+[   2011,   2011,   2011 ],
+[   1636,   1636,   1636 ],
+[   1580,   1580,   1580 ],
+[   1489,   1489,   1489 ],
+[   1300,   1300,   1300 ],
+[   1356,   1356,   1356 ],
+[   1653,   1653,   1653 ],
+[   2013,   2013,   2013 ],
+[   2823,   2823,   2823 ],
+[   3102,   3102,   3102 ],
+[   2294,   2294,   2294 ],
+[   2385,   2385,   2385 ],
+[   2444,   2444,   2444 ],
+[   1748,   1748,   1748 ],
+[   1554,   1554,   1554 ],
+[   1498,   1498,   1498 ],
+[   1361,   1361,   1361 ],
+[   1346,   1346,   1346 ],
+[   1564,   1564,   1564 ],
+[   1640,   1640,   1640 ],
+[   2293,   2293,   2293 ],
+[   2815,   2815,   2815 ],
+[   3137,   3137,   3137 ],
+[   2679,   2679,   2679 ],
+[   1969,   1969,   1969 ],
+[   1870,   1870,   1870 ],
+[   1633,   1633,   1633 ],
+[   1529,   1529,   1529 ],
+[   1366,   1366,   1366 ],
+[   1357,   1357,   1357 ],
+[   1570,   1570,   1570 ],
+[   1535,   1535,   1535 ],
+[   2491,   2491,   2491 ],
+[   3084,   3084,   3084 ],
+[   2605,   2605,   2605 ],
+[   2573,   2573,   2573 ],
+[   2143,   2143,   2143 ],
+[   1693,   1693,   1693 ],
+[   1504,   1504,   1504 ],
+[   1461,   1461,   1461 ],
+[   1354,   1354,   1354 ],
+[   1333,   1333,   1333 ],
+[   1492,   1492,   1492 ],
+[   1781,   1781,   1781 ],
+[   1915,   1915,   1915 ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ] 
+],
+[
+ [ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ null, null, null ],
+[ 2147.2, 2645.2, 3143.1 ],
+[ 2110.2, 2608.2, 3106.1 ],
+[ 2045.1, 2543.1, 3041.1 ],
+[ 1572.7, 2070.8, 2568.8 ],
+[ 1033.6, 1531.7, 2029.8 ],
+[    868, 1366.2, 1864.4 ],
+[ 818.02, 1316.3, 1814.6 ],
+[ 638.12, 1136.6,   1635 ],
+[ 649.46, 1148.1, 1646.7 ],
+[ 1015.7, 1514.5, 2013.3 ],
+[ 1167.9,   1667,   2166 ],
+[ 1618.4, 2117.8, 2617.1 ],
+[ 2046.7, 2551.2, 3055.7 ],
+[ 2009.3, 2514.2,   3019 ],
+[ 1943.9, 2449.2, 2954.5 ],
+[   1471, 1976.8, 2482.5 ],
+[ 931.45, 1437.8, 1944.1 ],
+[ 765.31, 1272.2, 1779.1 ],
+[ 714.78, 1222.3, 1729.9 ],
+[ 534.28, 1042.6, 1550.9 ],
+[    545, 1054.1, 1563.2 ],
+[ 910.57, 1420.5, 1930.5 ],
+[ 1062.1,   1573, 2083.9 ],
+[ 1511.9, 2023.8, 2535.7 ],
+[ 1937.9, 2457.2, 2976.6 ],
+[ 1899.7, 2420.2, 2940.7 ],
+[ 1833.4, 2355.2,   2877 ],
+[ 1359.7, 1882.8,   2406 ],
+[ 819.19, 1343.8, 1868.4 ],
+[ 652.12, 1178.2, 1704.4 ],
+[ 600.62, 1128.4, 1656.1 ],
+[ 419.13, 948.61, 1478.1 ],
+[ 428.81, 960.12, 1491.4 ],
+[ 793.32, 1326.6, 1859.8 ],
+[ 943.76,   1479, 2014.3 ],
+[ 1392.4, 1929.8, 2467.2 ] 
+] 
+] }</script></p>
+<p>Finally, here’s an example that plots multiple series each of which have upper and lower bars:</p>
 <pre class="r"><code>library(quantmod)
 getSymbols(c(&quot;MSFT&quot;, &quot;HPQ&quot;), src=&quot;rda&quot;, from = &quot;2014-06-01&quot;)</code></pre>
 <pre><code>## [1] &quot;MSFT&quot; &quot;HPQ&quot;</code></pre>
@@ -252,8 +503,8 @@ getSymbols(c(&quot;MSFT&quot;, &quot;HPQ&quot;), src=&quot;rda&quot;, from = &qu
 dygraph(stocks, main = &quot;Microsoft and HP Share Prices&quot;) %&gt;% 
   dySeries(c(&quot;MSFT.Low&quot;, &quot;MSFT.Close&quot;, &quot;MSFT.High&quot;), label = &quot;MSFT&quot;) %&gt;%
   dySeries(c(&quot;HPQ.Low&quot;, &quot;HPQ.Close&quot;, &quot;HPQ.High&quot;), label = &quot;HPQ&quot;)</code></pre>
-<p><div id="htmlwidget-6071" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-6071">{ "attrs": {
+<p><div id="htmlwidget-1702" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-1702">{ "attrs": {
  "title": "Microsoft and HP Share Prices",
 "labels": [ "day", "MSFT", "HPQ" ],
 "legend": "auto",

@@ -12,12 +12,25 @@ You can plot error bars (or any other high/low oriented data) along with a serie
 
 ```{r}
 hw <- HoltWinters(ldeaths)
-predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
-dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
+p <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(p, main = "Predicted Lung Deaths (UK)") %>%
   dySeries(c("lwr", "fit", "upr"), label = "Deaths")
 ```
 
-Here's another example that plots multiple series each of which have upper and lower bars:
+Here's how you would plot the actual and predicted series on the same graph:
+
+```{r}
+hw <- HoltWinters(ldeaths)
+p <- predict(hw, n.ahead = 36, prediction.interval = TRUE)
+all <- cbind(ldeaths, p)
+
+dygraph(all, "Deaths from Lung Disease (UK)") %>%
+  dySeries("ldeaths", label = "Actual") %>%
+  dySeries(c("p.lwr", "p.fit", "p.upr"), label = "Predicted")
+```
+
+Finally, here's an example that plots multiple series each of which have upper and lower bars:
 
 ```{r}
 library(quantmod)
