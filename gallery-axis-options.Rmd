@@ -22,7 +22,7 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 3) The `drawGrid` option turns off the grid for both axes (we'll demonstrate doing this on a per-axis basis below).
 
-Here's another example that customizes some other axes properites:
+Here's another example that customizes some other axes properties:
 
 ```{r}
 dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
@@ -35,7 +35,7 @@ dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
 
 Here we use a number of options to customize axis display:
 
-1) The `pixelsPerLabel` option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing reuslts in too few labels).
+1) The `pixelsPerLabel` option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing results in too few labels).
 
 2) The `drawGrid` option turns off the grid for the x axis
 

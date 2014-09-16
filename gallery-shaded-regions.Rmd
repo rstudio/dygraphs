@@ -6,7 +6,7 @@ title: "Shaded Regions"
 library(dygraphs)
 ```
 
-You can add a shading effect to the graph background for one or more time ranges. This is useful for highlighting periods of time with special properies (e.g. holding periods for securities).
+You can add a shading effect to the graph background for one or more time ranges. This is useful for highlighting periods of time with special properties (e.g. holding periods for securities).
 
 For example, the following code adds a shading effect to the 1920's and 1940's for the New Haven Temperatures graph:
 

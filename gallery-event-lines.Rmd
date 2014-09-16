@@ -6,7 +6,7 @@ title: "Event Lines"
 library(dygraphs)
 ```
 
-Event lines are a useful way to note points within a time series where noteworty events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings: 
+Event lines are a useful way to note points within a time series where noteworthy events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings: 
 
 ```{r}
 dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%

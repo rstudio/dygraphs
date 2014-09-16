@@ -146,7 +146,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-<p>The dygraphs package is an R interface to the <a href="http://dygraphs.com">dygraphs</a> JavaScript charting library. It provides rich facilites for charting time-series data in R, including:</p>
+<p>The dygraphs package is an R interface to the <a href="http://dygraphs.com">dygraphs</a> JavaScript charting library. It provides rich facilities for charting time-series data in R, including:</p>
 <ul>
 <li>Automatically plots <a href="http://cran.rstudio.com/web/packages/xts/index.html">xts</a> time series objects (or any object convertible to xts).</li>
 <li>Highly configurable axis and series display (including optional second Y-axis).</li>
@@ -168,8 +168,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-2593" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2593">{ "attrs": {
+<p><div id="htmlwidget-9237" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9237">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -185,8 +185,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-9677" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-9677">{ "attrs": {
+<p><div id="htmlwidget-3292" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3292">{ "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
 "axes": {
@@ -203,14 +203,14 @@ dygraph(lungDeaths)</code></pre>
 [   2134,   1863,   1877,   1877,   1492,   1249,   1280,   1131,   1209,   1492,   1621,   1846,   2103,   2137,   2153,   1833,   1403,   1288,   1186,   1133,   1053,   1347,   1545,   2066,   2020,   2750,   2283,   1479,   1189,   1160,   1113,    970,    999,   1208,   1467,   2059,   2240,   1634,   1722,   1801,   1246,   1162,   1087,   1013,    959,   1179,   1229,   1655,   2019,   2284,   1942,   1423,   1340,   1187,   1098,   1004,    970,   1140,   1110,   1812,   2263,   1820,   1846,   1531,   1215,   1075,   1056,    975,    940,   1081,   1294,   1341 ],
 [    901,    689,    827,    677,    522,    406,    441,    393,    387,    582,    578,    666,    830,    752,    785,    664,    467,    438,    421,    412,    343,    440,    531,    771,    767,   1141,    896,    532,    447,    420,    376,    330,    357,    445,    546,    764,    862,    660,    663,    643,    502,    392,    411,    348,    387,    385,    411,    638,    796,    853,    737,    546,    530,    446,    431,    362,    387,    430,    425,    679,    821,    785,    727,    612,    478,    429,    405,    379,    393,    411,    487,    574 ] 
 ] }</script></p>
-<p>Note that this example uses the <code>%&gt;%</code> (or “pipe”) operator from the <a href="http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a> package to compose the dygraph with the range selector. You use a similar sytnax to customize axes, series, and other options. For example:</p>
+<p>Note that this example uses the <code>%&gt;%</code> (or “pipe”) operator from the <a href="http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html">magrittr</a> package to compose the dygraph with the range selector. You use a similar syntax to customize axes, series, and other options. For example:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;%
   dySeries(&quot;mdeaths&quot;, label = &quot;Male&quot;) %&gt;%
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector(height = 20)</code></pre>
-<p><div id="htmlwidget-1806" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1806">{ "attrs": {
+<p><div id="htmlwidget-4244" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4244">{ "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
 "axes": {
@@ -266,7 +266,7 @@ dygraph(lungDeaths)</code></pre>
 [   2134,   1863,   1877,   1877,   1492,   1249,   1280,   1131,   1209,   1492,   1621,   1846,   2103,   2137,   2153,   1833,   1403,   1288,   1186,   1133,   1053,   1347,   1545,   2066,   2020,   2750,   2283,   1479,   1189,   1160,   1113,    970,    999,   1208,   1467,   2059,   2240,   1634,   1722,   1801,   1246,   1162,   1087,   1013,    959,   1179,   1229,   1655,   2019,   2284,   1942,   1423,   1340,   1187,   1098,   1004,    970,   1140,   1110,   1812,   2263,   1820,   1846,   1531,   1215,   1075,   1056,    975,    940,   1081,   1294,   1341 ],
 [    901,    689,    827,    677,    522,    406,    441,    393,    387,    582,    578,    666,    830,    752,    785,    664,    467,    438,    421,    412,    343,    440,    531,    771,    767,   1141,    896,    532,    447,    420,    376,    330,    357,    445,    546,    764,    862,    660,    663,    643,    502,    392,    411,    348,    387,    385,    411,    638,    796,    853,    737,    546,    530,    446,    431,    362,    387,    430,    425,    679,    821,    785,    727,    612,    478,    429,    405,    379,    393,    411,    487,    574 ] 
 ] }</script></p>
-<p>Many options for customizing series and axis display are available. It’s even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here’s an example that illustates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom pallette for series colors:</p>
+<p>Many options for customizing series and axis display are available. It’s even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here’s an example that illustrates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom palette for series colors:</p>
 <pre class="r"><code>hw &lt;- HoltWinters(ldeaths)
 predicted &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
@@ -274,8 +274,8 @@ dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dyAxis(&quot;x&quot;, drawGrid = FALSE) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set1&quot;))</code></pre>
-<p><div id="htmlwidget-8401" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8401">{ "attrs": {
+<p><div id="htmlwidget-2082" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2082">{ "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",

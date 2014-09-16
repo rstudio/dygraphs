@@ -2,7 +2,7 @@
 title: "dygraphs for R"
 ---
 
-The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilites for charting time-series data in R, including:
+The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilities for charting time-series data in R, including:
 
 - Automatically plots [xts](http://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
 - Highly configurable axis and series display (including optional second Y-axis).
@@ -40,7 +40,7 @@ You can customize dygraphs by piping additional commands onto the original dygra
 dygraph(lungDeaths) %>% dyRangeSelector()
 ```
 
-Note that this example uses the `%>%` (or "pipe") operator from the [magrittr](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) package to compose the dygraph with the range selector. You use a similar sytnax to customize axes, series, and other options. For example:
+Note that this example uses the `%>%` (or "pipe") operator from the [magrittr](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) package to compose the dygraph with the range selector. You use a similar syntax to customize axes, series, and other options. For example:
 
 ```{r}
 dygraph(lungDeaths) %>%
@@ -50,7 +50,7 @@ dygraph(lungDeaths) %>%
   dyRangeSelector(height = 20)
 ```
 
-Many options for customizing series and axis display are available. It's even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here's an example that illustates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom pallette for series colors:
+Many options for customizing series and axis display are available. It's even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here's an example that illustrates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom palette for series colors:
 
 
 ```{r}

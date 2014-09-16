@@ -150,8 +150,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Temp (F)&quot;, valueRange = c(40, 60)) %&gt;%
   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)</code></pre>
-<p><div id="htmlwidget-7608" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7608">{ "attrs": {
+<p><div id="htmlwidget-382" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-382">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
@@ -205,15 +205,15 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><p>The <code>fillGraph</code> option specifies that y values should be filled vertically</p></li>
 <li><p>The <code>drawGrid</code> option turns off the grid for both axes (we’ll demonstrate doing this on a per-axis basis below).</p></li>
 </ol>
-<p>Here’s another example that customizes some other axes properites:</p>
+<p>Here’s another example that customizes some other axes properties:</p>
 <pre class="r"><code>dygraph(AirPassengers, main = &quot;Airline Passengers / Month&quot;) %&gt;%
   dyAxis(&quot;x&quot;, pixelsPerLabel = 50, drawGrid = FALSE) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Passengers (Thousands)&quot;) %&gt;%
   dyOptions(includeZero = TRUE, 
             axisLineColor = &quot;navy&quot;, 
             gridLineColor = &quot;lightblue&quot;)</code></pre>
-<p><div id="htmlwidget-4775" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4775">{ "attrs": {
+<p><div id="htmlwidget-3333" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3333">{ "attrs": {
  "title": "Airline Passengers / Month",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -263,7 +263,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ] }</script></p>
 <p>Here we use a number of options to customize axis display:</p>
 <ol style="list-style-type: decimal">
-<li><p>The <code>pixelsPerLabel</code> option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing reuslts in too few labels).</p></li>
+<li><p>The <code>pixelsPerLabel</code> option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing results in too few labels).</p></li>
 <li><p>The <code>drawGrid</code> option turns off the grid for the x axis</p></li>
 <li><p>The <code>includeZero</code> option ensures that the y axis is scaled from zero rather than the low-end of it’s range of values.</p></li>
 <li><p>The <code>axisLineColor</code> and <code>gridLineColor</code> options change the colors of axis and grid lines respectively.</p></li>

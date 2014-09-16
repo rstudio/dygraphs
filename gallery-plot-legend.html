@@ -147,12 +147,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 
 <p>There are several options available for customizing the appearance and behavior of the plot legend. By default the legend always appears when there are multiple series and only appears on mouseover when there is a single series. By default the legend shows point values when the mouse is over the graph but not when the mouse leaves.</p>
-<p>Here we override both of these defaults ensureing that the legend is always visible and that point values are still displayed even after the mouse leaves the plot:</p>
+<p>Here we override both of these defaults ensuring that the legend is always visible and that point values are still displayed even after the mouse leaves the plot:</p>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
   dySeries(&quot;V1&quot;, label = &quot;Temperature (F)&quot;) %&gt;%
   dyLegend(show = &quot;always&quot;, hideOnMouseOut = FALSE)</code></pre>
-<p><div id="htmlwidget-1780" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1780">{ "attrs": {
+<p><div id="htmlwidget-3924" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3924">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "Temperature (F)" ],
 "axes": {
@@ -178,8 +178,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>lungDeaths &lt;- cbind(ldeaths,mdeaths,fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyLegend(width = 400)</code></pre>
-<p><div id="htmlwidget-3292" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3292">{ "attrs": {
+<p><div id="htmlwidget-1769" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-1769">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "ldeaths", "mdeaths", "fdeaths" ],
 "axes": {

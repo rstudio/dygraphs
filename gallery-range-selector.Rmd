@@ -6,7 +6,7 @@ title: "Range Selector"
 library(dygraphs)
 ```
 
-You can add range selector to the bottom of a dygraph that provides a straightforward interace for panning and zooming. For example:
+You can add range selector to the bottom of a dygraph that provides a straightforward interface for panning and zooming. For example:
 
 ```{r}
 dygraph(nhtemp, main = "New Haven Temperatures")  %>% 

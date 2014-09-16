@@ -9,7 +9,7 @@ library(dygraphs)
 
 #### Series Colors
 
-You can specify an alternate color pallette for series lines using the `colors` option. For example, to choose a pallette from [RColorBrewer](http://cran.rstudio.com/web/packages/RColorBrewer/index.html):
+You can specify an alternate color palette for series lines using the `colors` option. For example, to choose a palette from [RColorBrewer](http://cran.rstudio.com/web/packages/RColorBrewer/index.html):
 
 
 ```{r}
@@ -48,7 +48,7 @@ dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
 
 #### Per-Series Options
 
-All of the options above can also be set on a per-series basis usign the `dySeries` function. For example:
+All of the options above can also be set on a per-series basis using the `dySeries` function. For example:
 
 ```{r}
 dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%

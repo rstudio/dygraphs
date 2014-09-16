@@ -146,13 +146,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </div>
 
 
-<p>Event lines are a useful way to note points within a time series where noteworty events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings:</p>
+<p>Event lines are a useful way to note points within a time series where noteworthy events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings:</p>
 <pre class="r"><code>dygraph(presidents, main = &quot;Quarterly Presidential Approval Ratings&quot;) %&gt;%
   dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
   dyEvent(date = &quot;1950-6-30&quot;, &quot;Korea&quot;, labelLoc = &quot;bottom&quot;) %&gt;%
   dyEvent(date = &quot;1965-2-09&quot;, &quot;Vietnam&quot;, labelLoc = &quot;bottom&quot;)</code></pre>
-<p><div id="htmlwidget-7837" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7837">{ "attrs": {
+<p><div id="htmlwidget-7451" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7451">{ "attrs": {
  "title": "Quarterly Presidential Approval Ratings",
 "labels": [ "quarter", "V1" ],
 "legend": "auto",

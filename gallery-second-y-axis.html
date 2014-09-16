@@ -159,8 +159,8 @@ weather &lt;- cbind(rainfall, temperature)
 # assign the &quot;rainfall&quot; series to the y2 axis
 dygraph(weather) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-2526" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2526">{ "attrs": {
+<p><div id="htmlwidget-7799" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7799">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -180,19 +180,19 @@ dygraph(weather) %&gt;%
 ] }</script></p>
 <div id="independent-ticks" class="section level4">
 <h4>Independent Ticks</h4>
-<p>The <code>independentTicks</code> option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to disply the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include:</p>
+<p>The <code>independentTicks</code> option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to display the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include:</p>
 <ol style="list-style-type: decimal">
 <li><p>y=TRUE, y2=FALSE (default): y is the primary axis and the y2 ticks are aligned to the the ones of y. (only 1 grid)</p></li>
 <li><p>y=FALSE, y2=TRUE: y2 is the primary axis and the y ticks are aligned to the the ones of y2. (only 1 grid)</p></li>
 <li><p>y=TRUE, y2=TRUE: Both axis are independent and have their own ticks. (2 grids)</p></li>
 </ol>
-<p>In this example we specify that the y2 axis has indepenent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.</p>
+<p>In this example we specify that the y2 axis has independent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.</p>
 <pre class="r"><code>dygraph(weather) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Temperature (C)&quot;) %&gt;%
   dyAxis(&quot;y2&quot;, label = &quot;Rainfall&quot;, independentTicks = TRUE) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-3546" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3546">{ "attrs": {
+<p><div id="htmlwidget-8585" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8585">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {

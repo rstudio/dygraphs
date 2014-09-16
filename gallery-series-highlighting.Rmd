@@ -7,9 +7,9 @@ library(dygraphs)
 ```
 
 
-When users hover their mouse over series and points on the graph a highlight effect appears on the surface of the graph. You can use the dyHighlight function to customize how the highlighting appears.
+When users hover their mouse over series and points on the graph a highlight effect appears on the surface of the graph. You can use the `dyHighlight` function to customize how the highlighting appears.
 
-In this example we specify a larger circle size for point highlighting as well as more decicively fade the non-highlighted series. We also request that the highlighting persist even after the mouse leaves the graph area.
+In this example we specify a larger circle size for point highlighting as well as more decisively fade the non-highlighted series. We also request that the highlighting persist even after the mouse leaves the graph area.
 
 ```{r}
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)

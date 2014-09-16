@@ -42,7 +42,7 @@ The axis labels also get CSS classes:
 
 The legend has the .dygraph-legend class. When using `highlightSeriesOpts`, the selected series' &lt;span&gt; gets a `.highlight` class. This can be used to show only a single series in the legend.
 
-The full reference to the various CSS classes used throughout a dychart is here: <http://dygraphs.com/css.html>.
+The full reference to the various CSS classes used throughout a dygraph is here: <http://dygraphs.com/css.html>.
 
 #### Applying Styles Globally
 

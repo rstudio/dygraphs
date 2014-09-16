@@ -17,7 +17,7 @@ In the default R console the dygraph will appear in an external browser window.
 
 #### RStudio Viewer
 
-If you call `dygraph` within RStudio then it's output appears within the *Viewer* pane, a special pane dedicated to displaying web content. The Viewer pane works exactly like the Plots pane, and inclues history, zoom, and options for exporting it's contents to image files, the clipboard, or standalone HTML. Here's what the output of the previous call looks like in the Viewer pane:
+If you call `dygraph` within RStudio then it's output appears within the *Viewer* pane, a special pane dedicated to displaying web content. The Viewer pane works exactly like the Plots pane, and includes history, zoom, and options for exporting it's contents to image files, the clipboard, or standalone HTML. Here's what the output of the previous call looks like in the Viewer pane:
 
 ![RStudio Viewer Pane](images/rstudio-viewer-pane.png)
 

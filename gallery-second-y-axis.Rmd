@@ -27,7 +27,7 @@ dygraph(weather) %>%
 
 #### Independent Ticks
 
-The `independentTicks` option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to disply the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include: 
+The `independentTicks` option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to display the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include: 
 
 1) y=TRUE, y2=FALSE (default): y is the primary axis and the y2 ticks are aligned to the the ones of y. (only 1 grid) 
 
@@ -35,7 +35,7 @@ The `independentTicks` option can be used to determine which axis is primary (an
 
 3) y=TRUE, y2=TRUE: Both axis are independent and have their own ticks. (2 grids) 
 
-In this example we specify that the y2 axis has indepenent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.
+In this example we specify that the y2 axis has independent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.
 
 ```{r}
 dygraph(weather) %>%
