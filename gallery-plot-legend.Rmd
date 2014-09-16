@@ -12,7 +12,7 @@ There are several options available for customizing the appearance and behavior 
 Here we override both of these defaults ensuring that the legend is always visible and that point values are still displayed even after the mouse leaves the plot:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
   dySeries("V1", label = "Temperature (F)") %>%
   dyLegend(show = "always", hideOnMouseOut = FALSE)
 ```

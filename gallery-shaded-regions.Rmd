@@ -12,7 +12,7 @@ For example, the following code adds a shading effect to the 1920's and 1940's f
 
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
   dyShading(from = "1920-1-1", to = "1930-1-1") %>%
   dyShading(from = "1940-1-1", to = "1950-1-1")
 ```
@@ -22,7 +22,7 @@ Note that the `from` and `to` parameters must be of type `POSIXct` (or objects t
 You may want to modify the color of the shading to make it more or less subtle. Here's a version of the previous graph with custom colors for each shading:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures")  %>% 
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
   dySeries(label = "Temp (F)", color = "black") %>%
   dyShading(from = "1920-1-1", to = "1930-1-1", color = "#FFE6E6") %>%
   dyShading(from = "1940-1-1", to = "1950-1-1", color = "#CCEBD6")

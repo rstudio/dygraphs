@@ -148,11 +148,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <p>You can add a shading effect to the graph background for one or more time ranges. This is useful for highlighting periods of time with special properties (e.g. holding periods for securities).</p>
 <p>For example, the following code adds a shading effect to the 1920’s and 1940’s for the New Haven Temperatures graph:</p>
-<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
+<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;% 
   dyShading(from = &quot;1920-1-1&quot;, to = &quot;1930-1-1&quot;) %&gt;%
   dyShading(from = &quot;1940-1-1&quot;, to = &quot;1950-1-1&quot;)</code></pre>
-<p><div id="htmlwidget-1281" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1281">{ "attrs": {
+<p><div id="htmlwidget-7542" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7542">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
@@ -178,12 +178,12 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ] }</script></p>
 <p>Note that the <code>from</code> and <code>to</code> parameters must be of type <code>POSIXct</code> (or objects that are directly convertible to POSIXct).</p>
 <p>You may want to modify the color of the shading to make it more or less subtle. Here’s a version of the previous graph with custom colors for each shading:</p>
-<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;)  %&gt;% 
+<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;% 
   dySeries(label = &quot;Temp (F)&quot;, color = &quot;black&quot;) %&gt;%
   dyShading(from = &quot;1920-1-1&quot;, to = &quot;1930-1-1&quot;, color = &quot;#FFE6E6&quot;) %&gt;%
   dyShading(from = &quot;1940-1-1&quot;, to = &quot;1950-1-1&quot;, color = &quot;#CCEBD6&quot;)</code></pre>
-<p><div id="htmlwidget-5119" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5119">{ "attrs": {
+<p><div id="htmlwidget-7473" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7473">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "Temp (F)" ],
 "legend": "auto",
@@ -197,9 +197,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
  "axis": "y" 
 } 
 },
-"colors": [
- "black" 
-] 
+"colors": "black" 
 },"scale": "yearly","annotations": [],"shadings": [
  {
  "from": "1920-01-01T00:00:00Z",

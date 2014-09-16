@@ -12,7 +12,7 @@ In order to smooth out the display of a series you can specify a `rollPeriod`. T
 The `dyRoller` function adds a roller with a specified roll period:
 
 ```{r}
-dygraph(discoveries, main = "Important Discoveries")  %>% 
+dygraph(discoveries, main = "Important Discoveries") %>% 
   dyRoller(rollPeriod = 5)
 ```
 
