@@ -35,7 +35,8 @@ highlighting is always enabled for dygraphs so this function is used to
 customize rather than enable highlighting.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the
+\href{http://rstudio.github.io/dygraphs/gallery-series-highlighting.html}{online
+documentation} for additional details and examples.
 }
 

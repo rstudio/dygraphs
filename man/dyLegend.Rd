@@ -38,7 +38,8 @@ A dygraph with customized legend options
 Configure options for the dygraph series legend.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online
-documentation} for additional details and examples.
+See the
+  \href{http://rstudio.github.io/dygraphs/gallery-plot-legend.html}{online
+  documentation} for additional details and examples.
 }
 

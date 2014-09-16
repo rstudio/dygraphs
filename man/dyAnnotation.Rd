@@ -60,5 +60,9 @@ Annotations are bound to specific series in the input data. If you have
 
   Annotation event handlers can also specified globally (see
   \code{\link{dyCallbacks}}).
+
+See the
+  \href{http://rstudio.github.io/dygraphs/gallery-annotations.html}{online
+  documentation} for additional details and examples.
 }
 

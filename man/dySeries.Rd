@@ -73,7 +73,8 @@ explicitly. When no \code{dySeries} is specified for a plot then all series
 within the underlying data are plotted.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online
+See the
+  \href{http://rstudio.github.io/dygraphs/gallery-series-options.html}{online
   documentation} for additional details and examples.
 }
 

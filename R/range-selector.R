@@ -10,17 +10,17 @@
 #' @param height Height, in pixels, of the range selector widget. This option 
 #'   can only be specified at Dygraph creation time.
 #' @param fillColor The range selector mini plot fill color. This can be of the 
-#'   form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify 
-#'   "" to turn off fill.
-#' @param strokeColor The range selector mini plot stroke color. This can be of
-#'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
+#'   form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify ""
+#'   to turn off fill.
+#' @param strokeColor The range selector mini plot stroke color. This can be of 
+#'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify 
 #'   "" to turn off stroke.
 #'   
 #' @return A dygraph that displays a range selector
 #'   
-#' @note
-#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-#' additional details and examples.  
+#' @note See the
+#' \href{http://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
+#' documentation} for additional details and examples.
 #' 
 #' @export
 dyRangeSelector <- function(dygraph,

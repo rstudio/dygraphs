@@ -17,8 +17,8 @@ convertable via \code{as.POSIXct}.}
 can only be specified at Dygraph creation time.}
 
 \item{fillColor}{The range selector mini plot fill color. This can be of the
-form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
-"" to turn off fill.}
+form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify ""
+to turn off fill.}
 
 \item{strokeColor}{The range selector mini plot stroke color. This can be of
   the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
@@ -32,7 +32,8 @@ Add a range selector to the bottom of the chart that allows users to pan and
 zoom to various date ranges.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the
+\href{http://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
+documentation} for additional details and examples.
 }
 

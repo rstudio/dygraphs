@@ -21,7 +21,7 @@
 #'   of them and modify the result. See dygraph-tickers.js and the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
-#' @param rangePad Add the specified amount of extra space (in pixels) around
+#' @param rangePad Add the specified amount of extra space (in pixels) around 
 #'   the value range to ensure points at the edges remain visible.
 #' @param labelWidth Width of the div which contains the y-axis label. Since the
 #'   y-axis label appears rotated 90 degrees, this actually affects the height 
@@ -64,7 +64,8 @@
 #'   
 #' @return Axis options
 #'   
-#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
+#' @note See the
+#'   \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online 
 #'   documentation} for additional details and examples.
 #'   
 #' @export

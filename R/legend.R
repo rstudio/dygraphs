@@ -12,18 +12,19 @@
 #' @param showZeroValues Show zero value labels in the legend.
 #' @param labelsDiv Show data labels in an external div, rather than on the 
 #'   graph. This value should be a div element id.
-#' @param labelsSeparateLines Put a <br/> between lines in the label string.
+#' @param labelsSeparateLines Put a <br/> between lines in the label string. 
 #'   Often used in conjunction with \code{labelsDiv}.
 #' @param hideOnMouseOut Whether to hide the legend when the mouse leaves the 
 #'   chart area. This option applies when \code{show} is set to "onmouseover". 
-#'   Note that this also affects the hiding of the \code{\link{dyHighlight}} on
+#'   Note that this also affects the hiding of the \code{\link{dyHighlight}} on 
 #'   mouse out.
 #'   
 #' @return A dygraph with customized legend options
 #'   
-#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online
-#' documentation} for additional details and examples.
-#' 
+#' @note See the 
+#'   \href{http://rstudio.github.io/dygraphs/gallery-plot-legend.html}{online
+#'   documentation} for additional details and examples.
+#'   
 #' @export
 dyLegend <- function(dygraph,
                      show = c("auto", "always", "onmouseover", "never"),

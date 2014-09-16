@@ -95,7 +95,8 @@ default global setting (as determined by \code{\link{dyOptions}}) when not
 specified explicitly.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online
+See the
+  \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online
   documentation} for additional details and examples.
 }
 

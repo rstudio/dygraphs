@@ -20,10 +20,10 @@
 #'   
 #' @return A dygraph with customized highlighting options
 #'   
-#' @note
-#' See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-#' additional details and examples.  
-#'  
+#' @note See the
+#' \href{http://rstudio.github.io/dygraphs/gallery-series-highlighting.html}{online
+#' documentation} for additional details and examples.
+#' 
 #' @export
 dyHighlight <- function(dygraph,
                         highlightCircleSize = 3,

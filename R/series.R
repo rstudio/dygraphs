@@ -12,7 +12,7 @@
 #'   time-series objects). If there aren't explicit series names then series can
 #'   be bound by using the \code{xts} convention V1, V2, etc. This parameter can
 #'   also be a character vector of length 3 that specifies a set of input series
-#'   to use as the lower, value, and upper for a series with a shaded bar drawn
+#'   to use as the lower, value, and upper for a series with a shaded bar drawn 
 #'   around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
@@ -50,7 +50,8 @@
 #'   
 #' @return Dygraph with additional series
 #'   
-#' @note See the \href{http://jjallaire.github.io/dygraphs/}{online 
+#' @note See the 
+#'   \href{http://rstudio.github.io/dygraphs/gallery-series-options.html}{online
 #'   documentation} for additional details and examples.
 #'   
 #' @export

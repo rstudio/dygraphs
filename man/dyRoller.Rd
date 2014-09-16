@@ -19,7 +19,8 @@ Add a rolling average period text box to the bottom left of the plot. Y
 values are averaged over the specified number of time scale units.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
-additional details and examples.
+See the
+\href{http://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
+documentation} for additional details and examples.
 }
 
