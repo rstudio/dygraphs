@@ -3,7 +3,8 @@
 \alias{dyEvent}
 \title{dygraph event line}
 \usage{
-dyEvent(dygraph, date, label, color = "black", strokePattern = "dashed")
+dyEvent(dygraph, date, label, labelLoc = c("top", "bottom"),
+  color = "black", strokePattern = "dashed")
 }
 \arguments{
 \item{dygraph}{Dygraph to add event line to}
@@ -13,6 +14,8 @@ another object convertible to \code{as.POSIXct}). convertable via
 \code{as.POSIXct}).}
 
 \item{label}{Label for event.}
+
+\item{labelLoc}{Location for label (top or bottom).}
 
 \item{color}{Color of event line. This can be of the form "#AABBCC" or
   "rgb(255,100,200)" or "yellow". Defaults to black.

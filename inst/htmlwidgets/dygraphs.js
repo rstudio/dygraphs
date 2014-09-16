@@ -237,7 +237,11 @@ HTMLWidgets.widget({
           thiz.setFontSize(canvas, 12);
           var size = canvas.measureText(event.label);
           var tx = xPos - 4;
-          var ty = area.y + size.width + 10;
+          var ty;
+          if (event.labelLoc == "top")
+            ty = area.y + size.width + 10;
+          else
+            ty = area.y + area.h - 10;
           canvas.translate(tx,ty);
           canvas.rotate(3 * Math.PI / 2);
           canvas.translate(-tx,-ty);

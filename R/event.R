@@ -7,6 +7,7 @@
 #'   another object convertible to \code{as.POSIXct}). convertable via 
 #'   \code{as.POSIXct}).
 #' @param label Label for event.
+#' @param labelLoc Location for label (top or bottom).
 #' @param color Color of event line. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
 #'   "dotdash") or a custom pattern array where the even index is a draw and odd
@@ -21,6 +22,7 @@
 dyEvent <- function(dygraph, 
                     date, 
                     label, 
+                    labelLoc = c("top", "bottom"),
                     color = "black", 
                     strokePattern = "dashed") {
   
@@ -28,6 +30,7 @@ dyEvent <- function(dygraph,
   event <- list()
   event$date <- asISO8601Time(date)
   event$label <- label
+  event$labelLoc <- match.arg(labelLoc)
   event$color <- color
   event$strokePattern <- resolveStrokePattern(strokePattern)
  
