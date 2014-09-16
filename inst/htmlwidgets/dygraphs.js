@@ -232,16 +232,18 @@ HTMLWidgets.widget({
         canvas.restore();
         
         // draw label
-        canvas.save();
-        thiz.setFontSize(canvas, 12);
-        var size = canvas.measureText(event.label);
-        var tx = xPos - 4;
-        var ty = area.y + size.width + 10;
-        canvas.translate(tx,ty);
-        canvas.rotate(3 * Math.PI / 2);
-        canvas.translate(-tx,-ty);
-        canvas.fillText(event.label, tx, ty);
-        canvas.restore();
+        if (event.label != null) {
+          canvas.save();
+          thiz.setFontSize(canvas, 12);
+          var size = canvas.measureText(event.label);
+          var tx = xPos - 4;
+          var ty = area.y + size.width + 10;
+          canvas.translate(tx,ty);
+          canvas.rotate(3 * Math.PI / 2);
+          canvas.translate(-tx,-ty);
+          canvas.fillText(event.label, tx, ty);
+          canvas.restore();
+        }
       }
     };
   },
