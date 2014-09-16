@@ -18,6 +18,7 @@
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
@@ -35,10 +36,6 @@ h1 {
 div .dygraphs {
   margin-top: 25px;
   margin-bottom: 25px;
-}
-
-div .dygraphs input[type="text"] {
-  width: 25px;
 }
 
 pre {
@@ -151,8 +148,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(discoveries, 
         main = &quot;Important Discoveries&quot;, 
         ylab = &quot;Discoveries / Year&quot;)</code></pre>
-<p><div id="htmlwidget-3559" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3559">{ "attrs": {
+<p><div id="htmlwidget-5664" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5664">{ "attrs": {
  "title": "Important Discoveries",
 "ylabel": "Discoveries / Year",
 "labels": [ "year", "V1" ],
@@ -162,8 +159,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
  "pixelsPerLabel":     50 
 } 
 } 
-},"scale": "yearly","data": [
- [ "Sun, 01 Jan 1860 00:00:00 GMT", "Tue, 01 Jan 1861 00:00:00 GMT", "Wed, 01 Jan 1862 00:00:00 GMT", "Thu, 01 Jan 1863 00:00:00 GMT", "Fri, 01 Jan 1864 00:00:00 GMT", "Sun, 01 Jan 1865 00:00:00 GMT", "Mon, 01 Jan 1866 00:00:00 GMT", "Tue, 01 Jan 1867 00:00:00 GMT", "Wed, 01 Jan 1868 00:00:00 GMT", "Fri, 01 Jan 1869 00:00:00 GMT", "Sat, 01 Jan 1870 00:00:00 GMT", "Sun, 01 Jan 1871 00:00:00 GMT", "Mon, 01 Jan 1872 00:00:00 GMT", "Wed, 01 Jan 1873 00:00:00 GMT", "Thu, 01 Jan 1874 00:00:00 GMT", "Fri, 01 Jan 1875 00:00:00 GMT", "Sat, 01 Jan 1876 00:00:00 GMT", "Mon, 01 Jan 1877 00:00:00 GMT", "Tue, 01 Jan 1878 00:00:00 GMT", "Wed, 01 Jan 1879 00:00:00 GMT", "Thu, 01 Jan 1880 00:00:00 GMT", "Sat, 01 Jan 1881 00:00:00 GMT", "Sun, 01 Jan 1882 00:00:00 GMT", "Mon, 01 Jan 1883 00:00:00 GMT", "Tue, 01 Jan 1884 00:00:00 GMT", "Thu, 01 Jan 1885 00:00:00 GMT", "Fri, 01 Jan 1886 00:00:00 GMT", "Sat, 01 Jan 1887 00:00:00 GMT", "Sun, 01 Jan 1888 00:00:00 GMT", "Tue, 01 Jan 1889 00:00:00 GMT", "Wed, 01 Jan 1890 00:00:00 GMT", "Thu, 01 Jan 1891 00:00:00 GMT", "Fri, 01 Jan 1892 00:00:00 GMT", "Sun, 01 Jan 1893 00:00:00 GMT", "Mon, 01 Jan 1894 00:00:00 GMT", "Tue, 01 Jan 1895 00:00:00 GMT", "Wed, 01 Jan 1896 00:00:00 GMT", "Fri, 01 Jan 1897 00:00:00 GMT", "Sat, 01 Jan 1898 00:00:00 GMT", "Sun, 01 Jan 1899 00:00:00 GMT", "Mon, 01 Jan 1900 00:00:00 GMT", "Tue, 01 Jan 1901 00:00:00 GMT", "Wed, 01 Jan 1902 00:00:00 GMT", "Thu, 01 Jan 1903 00:00:00 GMT", "Fri, 01 Jan 1904 00:00:00 GMT", "Sun, 01 Jan 1905 00:00:00 GMT", "Mon, 01 Jan 1906 00:00:00 GMT", "Tue, 01 Jan 1907 00:00:00 GMT", "Wed, 01 Jan 1908 00:00:00 GMT", "Fri, 01 Jan 1909 00:00:00 GMT", "Sat, 01 Jan 1910 00:00:00 GMT", "Sun, 01 Jan 1911 00:00:00 GMT", "Mon, 01 Jan 1912 00:00:00 GMT", "Wed, 01 Jan 1913 00:00:00 GMT", "Thu, 01 Jan 1914 00:00:00 GMT", "Fri, 01 Jan 1915 00:00:00 GMT", "Sat, 01 Jan 1916 00:00:00 GMT", "Mon, 01 Jan 1917 00:00:00 GMT", "Tue, 01 Jan 1918 00:00:00 GMT", "Wed, 01 Jan 1919 00:00:00 GMT", "Thu, 01 Jan 1920 00:00:00 GMT", "Sat, 01 Jan 1921 00:00:00 GMT", "Sun, 01 Jan 1922 00:00:00 GMT", "Mon, 01 Jan 1923 00:00:00 GMT", "Tue, 01 Jan 1924 00:00:00 GMT", "Thu, 01 Jan 1925 00:00:00 GMT", "Fri, 01 Jan 1926 00:00:00 GMT", "Sat, 01 Jan 1927 00:00:00 GMT", "Sun, 01 Jan 1928 00:00:00 GMT", "Tue, 01 Jan 1929 00:00:00 GMT", "Wed, 01 Jan 1930 00:00:00 GMT", "Thu, 01 Jan 1931 00:00:00 GMT", "Fri, 01 Jan 1932 00:00:00 GMT", "Sun, 01 Jan 1933 00:00:00 GMT", "Mon, 01 Jan 1934 00:00:00 GMT", "Tue, 01 Jan 1935 00:00:00 GMT", "Wed, 01 Jan 1936 00:00:00 GMT", "Fri, 01 Jan 1937 00:00:00 GMT", "Sat, 01 Jan 1938 00:00:00 GMT", "Sun, 01 Jan 1939 00:00:00 GMT", "Mon, 01 Jan 1940 00:00:00 GMT", "Wed, 01 Jan 1941 00:00:00 GMT", "Thu, 01 Jan 1942 00:00:00 GMT", "Fri, 01 Jan 1943 00:00:00 GMT", "Sat, 01 Jan 1944 00:00:00 GMT", "Mon, 01 Jan 1945 00:00:00 GMT", "Tue, 01 Jan 1946 00:00:00 GMT", "Wed, 01 Jan 1947 00:00:00 GMT", "Thu, 01 Jan 1948 00:00:00 GMT", "Sat, 01 Jan 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT" ],
+},"scale": "yearly","annotations": [],"shadings": [],"events": [],"data": [
+ [ "1860-01-01T00:00:00Z", "1861-01-01T00:00:00Z", "1862-01-01T00:00:00Z", "1863-01-01T00:00:00Z", "1864-01-01T00:00:00Z", "1865-01-01T00:00:00Z", "1866-01-01T00:00:00Z", "1867-01-01T00:00:00Z", "1868-01-01T00:00:00Z", "1869-01-01T00:00:00Z", "1870-01-01T00:00:00Z", "1871-01-01T00:00:00Z", "1872-01-01T00:00:00Z", "1873-01-01T00:00:00Z", "1874-01-01T00:00:00Z", "1875-01-01T00:00:00Z", "1876-01-01T00:00:00Z", "1877-01-01T00:00:00Z", "1878-01-01T00:00:00Z", "1879-01-01T00:00:00Z", "1880-01-01T00:00:00Z", "1881-01-01T00:00:00Z", "1882-01-01T00:00:00Z", "1883-01-01T00:00:00Z", "1884-01-01T00:00:00Z", "1885-01-01T00:00:00Z", "1886-01-01T00:00:00Z", "1887-01-01T00:00:00Z", "1888-01-01T00:00:00Z", "1889-01-01T00:00:00Z", "1890-01-01T00:00:00Z", "1891-01-01T00:00:00Z", "1892-01-01T00:00:00Z", "1893-01-01T00:00:00Z", "1894-01-01T00:00:00Z", "1895-01-01T00:00:00Z", "1896-01-01T00:00:00Z", "1897-01-01T00:00:00Z", "1898-01-01T00:00:00Z", "1899-01-01T00:00:00Z", "1900-01-01T00:00:00Z", "1901-01-01T00:00:00Z", "1902-01-01T00:00:00Z", "1903-01-01T00:00:00Z", "1904-01-01T00:00:00Z", "1905-01-01T00:00:00Z", "1906-01-01T00:00:00Z", "1907-01-01T00:00:00Z", "1908-01-01T00:00:00Z", "1909-01-01T00:00:00Z", "1910-01-01T00:00:00Z", "1911-01-01T00:00:00Z", "1912-01-01T00:00:00Z", "1913-01-01T00:00:00Z", "1914-01-01T00:00:00Z", "1915-01-01T00:00:00Z", "1916-01-01T00:00:00Z", "1917-01-01T00:00:00Z", "1918-01-01T00:00:00Z", "1919-01-01T00:00:00Z", "1920-01-01T00:00:00Z", "1921-01-01T00:00:00Z", "1922-01-01T00:00:00Z", "1923-01-01T00:00:00Z", "1924-01-01T00:00:00Z", "1925-01-01T00:00:00Z", "1926-01-01T00:00:00Z", "1927-01-01T00:00:00Z", "1928-01-01T00:00:00Z", "1929-01-01T00:00:00Z", "1930-01-01T00:00:00Z", "1931-01-01T00:00:00Z", "1932-01-01T00:00:00Z", "1933-01-01T00:00:00Z", "1934-01-01T00:00:00Z", "1935-01-01T00:00:00Z", "1936-01-01T00:00:00Z", "1937-01-01T00:00:00Z", "1938-01-01T00:00:00Z", "1939-01-01T00:00:00Z", "1940-01-01T00:00:00Z", "1941-01-01T00:00:00Z", "1942-01-01T00:00:00Z", "1943-01-01T00:00:00Z", "1944-01-01T00:00:00Z", "1945-01-01T00:00:00Z", "1946-01-01T00:00:00Z", "1947-01-01T00:00:00Z", "1948-01-01T00:00:00Z", "1949-01-01T00:00:00Z", "1950-01-01T00:00:00Z", "1951-01-01T00:00:00Z", "1952-01-01T00:00:00Z", "1953-01-01T00:00:00Z", "1954-01-01T00:00:00Z", "1955-01-01T00:00:00Z", "1956-01-01T00:00:00Z", "1957-01-01T00:00:00Z", "1958-01-01T00:00:00Z", "1959-01-01T00:00:00Z" ],
 [      5,      3,      0,      2,      0,      3,      2,      3,      6,      1,      2,      1,      2,      1,      3,      3,      3,      5,      2,      4,      4,      0,      2,      3,      7,     12,      3,     10,      9,      2,      3,      7,      7,      2,      3,      3,      6,      2,      4,      3,      5,      2,      2,      4,      0,      4,      2,      5,      2,      3,      3,      6,      5,      8,      3,      6,      6,      0,      5,      2,      2,      2,      6,      3,      4,      4,      2,      2,      4,      7,      5,      3,      3,      0,      2,      2,      2,      1,      3,      4,      2,      2,      1,      1,      1,      2,      1,      4,      4,      3,      2,      1,      4,      1,      1,      1,      0,      0,      2,      0 ] 
 ] }</script></p>
 <p>It’s also possible to specify labels as part of a <code>dyAxis</code> definition. For example:</p>

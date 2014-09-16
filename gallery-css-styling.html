@@ -18,6 +18,7 @@
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
@@ -35,10 +36,6 @@ h1 {
 div .dygraphs {
   margin-top: 25px;
   margin-bottom: 25px;
-}
-
-div .dygraphs input[type="text"] {
-  width: 25px;
 }
 
 pre {
@@ -149,7 +146,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <p>You can use CSS to customize the typefaces used in dygraph labels. In this example we’ll use CSS to make the main label bold and to reduce the size of the typefaces used on the axes:</p>
 <pre class="css"><code>.dygraph-title {
-  color: blue;
+  color: navy;
   font-weight: bold;
 }
 .dygraph-axis-label {
@@ -157,8 +154,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 }</code></pre>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
   dyCSS(&quot;dygraph.css&quot;)</code></pre>
-<p><div id="htmlwidget-3666" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3666">{ "attrs": {
+<p><div id="htmlwidget-4408" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-4408">{ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
@@ -167,8 +164,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
  "pixelsPerLabel":     50 
 } 
 } 
-},"scale": "yearly","data": [
- [ "Mon, 01 Jan 1912 00:00:00 GMT", "Wed, 01 Jan 1913 00:00:00 GMT", "Thu, 01 Jan 1914 00:00:00 GMT", "Fri, 01 Jan 1915 00:00:00 GMT", "Sat, 01 Jan 1916 00:00:00 GMT", "Mon, 01 Jan 1917 00:00:00 GMT", "Tue, 01 Jan 1918 00:00:00 GMT", "Wed, 01 Jan 1919 00:00:00 GMT", "Thu, 01 Jan 1920 00:00:00 GMT", "Sat, 01 Jan 1921 00:00:00 GMT", "Sun, 01 Jan 1922 00:00:00 GMT", "Mon, 01 Jan 1923 00:00:00 GMT", "Tue, 01 Jan 1924 00:00:00 GMT", "Thu, 01 Jan 1925 00:00:00 GMT", "Fri, 01 Jan 1926 00:00:00 GMT", "Sat, 01 Jan 1927 00:00:00 GMT", "Sun, 01 Jan 1928 00:00:00 GMT", "Tue, 01 Jan 1929 00:00:00 GMT", "Wed, 01 Jan 1930 00:00:00 GMT", "Thu, 01 Jan 1931 00:00:00 GMT", "Fri, 01 Jan 1932 00:00:00 GMT", "Sun, 01 Jan 1933 00:00:00 GMT", "Mon, 01 Jan 1934 00:00:00 GMT", "Tue, 01 Jan 1935 00:00:00 GMT", "Wed, 01 Jan 1936 00:00:00 GMT", "Fri, 01 Jan 1937 00:00:00 GMT", "Sat, 01 Jan 1938 00:00:00 GMT", "Sun, 01 Jan 1939 00:00:00 GMT", "Mon, 01 Jan 1940 00:00:00 GMT", "Wed, 01 Jan 1941 00:00:00 GMT", "Thu, 01 Jan 1942 00:00:00 GMT", "Fri, 01 Jan 1943 00:00:00 GMT", "Sat, 01 Jan 1944 00:00:00 GMT", "Mon, 01 Jan 1945 00:00:00 GMT", "Tue, 01 Jan 1946 00:00:00 GMT", "Wed, 01 Jan 1947 00:00:00 GMT", "Thu, 01 Jan 1948 00:00:00 GMT", "Sat, 01 Jan 1949 00:00:00 GMT", "Sun, 01 Jan 1950 00:00:00 GMT", "Mon, 01 Jan 1951 00:00:00 GMT", "Tue, 01 Jan 1952 00:00:00 GMT", "Thu, 01 Jan 1953 00:00:00 GMT", "Fri, 01 Jan 1954 00:00:00 GMT", "Sat, 01 Jan 1955 00:00:00 GMT", "Sun, 01 Jan 1956 00:00:00 GMT", "Tue, 01 Jan 1957 00:00:00 GMT", "Wed, 01 Jan 1958 00:00:00 GMT", "Thu, 01 Jan 1959 00:00:00 GMT", "Fri, 01 Jan 1960 00:00:00 GMT", "Sun, 01 Jan 1961 00:00:00 GMT", "Mon, 01 Jan 1962 00:00:00 GMT", "Tue, 01 Jan 1963 00:00:00 GMT", "Wed, 01 Jan 1964 00:00:00 GMT", "Fri, 01 Jan 1965 00:00:00 GMT", "Sat, 01 Jan 1966 00:00:00 GMT", "Sun, 01 Jan 1967 00:00:00 GMT", "Mon, 01 Jan 1968 00:00:00 GMT", "Wed, 01 Jan 1969 00:00:00 GMT", "Thu, 01 Jan 1970 00:00:00 GMT", "Fri, 01 Jan 1971 00:00:00 GMT" ],
+},"scale": "yearly","annotations": [],"shadings": [],"events": [],"data": [
+ [ "1912-01-01T00:00:00Z", "1913-01-01T00:00:00Z", "1914-01-01T00:00:00Z", "1915-01-01T00:00:00Z", "1916-01-01T00:00:00Z", "1917-01-01T00:00:00Z", "1918-01-01T00:00:00Z", "1919-01-01T00:00:00Z", "1920-01-01T00:00:00Z", "1921-01-01T00:00:00Z", "1922-01-01T00:00:00Z", "1923-01-01T00:00:00Z", "1924-01-01T00:00:00Z", "1925-01-01T00:00:00Z", "1926-01-01T00:00:00Z", "1927-01-01T00:00:00Z", "1928-01-01T00:00:00Z", "1929-01-01T00:00:00Z", "1930-01-01T00:00:00Z", "1931-01-01T00:00:00Z", "1932-01-01T00:00:00Z", "1933-01-01T00:00:00Z", "1934-01-01T00:00:00Z", "1935-01-01T00:00:00Z", "1936-01-01T00:00:00Z", "1937-01-01T00:00:00Z", "1938-01-01T00:00:00Z", "1939-01-01T00:00:00Z", "1940-01-01T00:00:00Z", "1941-01-01T00:00:00Z", "1942-01-01T00:00:00Z", "1943-01-01T00:00:00Z", "1944-01-01T00:00:00Z", "1945-01-01T00:00:00Z", "1946-01-01T00:00:00Z", "1947-01-01T00:00:00Z", "1948-01-01T00:00:00Z", "1949-01-01T00:00:00Z", "1950-01-01T00:00:00Z", "1951-01-01T00:00:00Z", "1952-01-01T00:00:00Z", "1953-01-01T00:00:00Z", "1954-01-01T00:00:00Z", "1955-01-01T00:00:00Z", "1956-01-01T00:00:00Z", "1957-01-01T00:00:00Z", "1958-01-01T00:00:00Z", "1959-01-01T00:00:00Z", "1960-01-01T00:00:00Z", "1961-01-01T00:00:00Z", "1962-01-01T00:00:00Z", "1963-01-01T00:00:00Z", "1964-01-01T00:00:00Z", "1965-01-01T00:00:00Z", "1966-01-01T00:00:00Z", "1967-01-01T00:00:00Z", "1968-01-01T00:00:00Z", "1969-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "1971-01-01T00:00:00Z" ],
 [   49.9,   52.3,   49.4,   51.1,   49.4,   47.9,   49.8,   50.9,   49.3,   51.9,   50.8,   49.6,   49.3,   50.6,   48.4,   50.7,   50.9,   50.6,   51.5,   52.8,   51.8,   51.1,   49.8,   50.2,   50.4,   51.6,   51.8,   50.9,   48.8,   51.7,     51,   50.6,   51.7,   51.5,   52.1,   51.3,     51,     54,   51.4,   52.7,   53.1,   54.6,     52,     52,   50.9,   52.6,   50.2,   52.6,   51.6,   51.9,   50.5,   50.9,   51.7,   51.4,   51.7,   50.8,   51.9,   51.8,   51.9,     53 ] 
 ],"css": ".dygraph-title {\n  color: navy;\n  font-weight: bold;\n}\n.dygraph-axis-label {\n  font-size: 11px;\n}" }</script></p>
 <div id="css-classes" class="section level4">

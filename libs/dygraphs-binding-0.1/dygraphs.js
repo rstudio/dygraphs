@@ -10,7 +10,7 @@ HTMLWidgets.widget({
 
   resize: function(el, width, height, instance) {
     if (instance.dygraph)
-      instance.dygraph.resize(width, height);
+      instance.dygraph.resize();
   },
 
   renderValue: function(el, x, instance) {
@@ -151,6 +151,14 @@ HTMLWidgets.widget({
     this.evaluateStringMember(attrs, 'axes.attrs.valueFormatter');
     this.evaluateStringMember(attrs, 'axes.y.valueFormatter');
     this.evaluateStringMember(attrs, 'axes.y2.valueFormatter');
+    this.evaluateStringMember(attrs, 'plotter');
+    var thiz = this;
+    if (attrs.series != null) {
+      for (name in attrs.series) {
+        var series = attrs.series[name];
+        thiz.evaluateStringMember(series, 'plotter');
+      }
+    }
   },
   
   evaluateStringMember: function(o, member) {
@@ -160,7 +168,9 @@ HTMLWidgets.widget({
       if(o !== null && typeof o === "object" && part in o) {
         if (i == (l-1)) { // if we are at the end of the line then evalulate 
           if (typeof o[part] === "string")
-            o[part] = eval("(" + o[part] + ")"); 
+            o[part] = eval("(" + o[part] + ")")
+          else if (o[part] instanceof Array)
+            o[part].map(function(value) { return eval("(" + value + ")"); })
         } else { // otherwise continue to next embedded object
           o = o[part];
         }

@@ -18,6 +18,7 @@
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
 
@@ -35,10 +36,6 @@ h1 {
 div .dygraphs {
   margin-top: 25px;
   margin-bottom: 25px;
-}
-
-div .dygraphs input[type="text"] {
-  width: 25px;
 }
 
 pre {
@@ -160,8 +157,8 @@ weather &lt;- cbind(rainfall, temperature)
 # assign the &quot;rainfall&quot; series to the y2 axis
 dygraph(weather) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-3932" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3932">{ "attrs": {
+<p><div id="htmlwidget-116" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-116">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -174,8 +171,8 @@ dygraph(weather) %&gt;%
  "axis": "y2" 
 } 
 } 
-},"scale": "monthly","data": [
- [ "Tue, 01 Jan 1980 00:00:00 GMT", "Fri, 01 Feb 1980 00:00:00 GMT", "Sat, 01 Mar 1980 00:00:00 GMT", "Tue, 01 Apr 1980 00:00:00 GMT", "Thu, 01 May 1980 00:00:00 GMT", "Sun, 01 Jun 1980 00:00:00 GMT", "Tue, 01 Jul 1980 00:00:00 GMT", "Fri, 01 Aug 1980 00:00:00 GMT", "Mon, 01 Sep 1980 00:00:00 GMT", "Wed, 01 Oct 1980 00:00:00 GMT", "Sat, 01 Nov 1980 00:00:00 GMT", "Mon, 01 Dec 1980 00:00:00 GMT" ],
+},"scale": "monthly","annotations": [],"shadings": [],"events": [],"data": [
+ [ "1980-01-01T00:00:00Z", "1980-02-01T00:00:00Z", "1980-03-01T00:00:00Z", "1980-04-01T00:00:00Z", "1980-05-01T00:00:00Z", "1980-06-01T00:00:00Z", "1980-07-01T00:00:00Z", "1980-08-01T00:00:00Z", "1980-09-01T00:00:00Z", "1980-10-01T00:00:00Z", "1980-11-01T00:00:00Z", "1980-12-01T00:00:00Z" ],
 [      7,    6.9,    9.5,   14.5,   18.2,   21.5,   25.2,   26.5,   23.3,   18.3,   13.9,    9.6 ],
 [   49.9,   71.5,  106.4,  129.2,    144,    176,  135.6,  148.5,  216.4,  194.1,   95.6,   54.4 ] 
 ] }</script></p>
@@ -192,8 +189,8 @@ dygraph(weather) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Temperature (C)&quot;) %&gt;%
   dyAxis(&quot;y2&quot;, label = &quot;Rainfall&quot;, independentTicks = TRUE) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-7862" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7862">{ "attrs": {
+<p><div id="htmlwidget-3206" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3206">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -212,8 +209,8 @@ dygraph(weather) %&gt;%
  "axis": "y2" 
 } 
 } 
-},"scale": "monthly","data": [
- [ "Tue, 01 Jan 1980 00:00:00 GMT", "Fri, 01 Feb 1980 00:00:00 GMT", "Sat, 01 Mar 1980 00:00:00 GMT", "Tue, 01 Apr 1980 00:00:00 GMT", "Thu, 01 May 1980 00:00:00 GMT", "Sun, 01 Jun 1980 00:00:00 GMT", "Tue, 01 Jul 1980 00:00:00 GMT", "Fri, 01 Aug 1980 00:00:00 GMT", "Mon, 01 Sep 1980 00:00:00 GMT", "Wed, 01 Oct 1980 00:00:00 GMT", "Sat, 01 Nov 1980 00:00:00 GMT", "Mon, 01 Dec 1980 00:00:00 GMT" ],
+},"scale": "monthly","annotations": [],"shadings": [],"events": [],"data": [
+ [ "1980-01-01T00:00:00Z", "1980-02-01T00:00:00Z", "1980-03-01T00:00:00Z", "1980-04-01T00:00:00Z", "1980-05-01T00:00:00Z", "1980-06-01T00:00:00Z", "1980-07-01T00:00:00Z", "1980-08-01T00:00:00Z", "1980-09-01T00:00:00Z", "1980-10-01T00:00:00Z", "1980-11-01T00:00:00Z", "1980-12-01T00:00:00Z" ],
 [      7,    6.9,    9.5,   14.5,   18.2,   21.5,   25.2,   26.5,   23.3,   18.3,   13.9,    9.6 ],
 [   49.9,   71.5,  106.4,  129.2,    144,    176,  135.6,  148.5,  216.4,  194.1,   95.6,   54.4 ] 
 ] }</script></p>
