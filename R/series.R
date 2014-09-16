@@ -8,10 +8,12 @@
 #' @inheritParams dyOptions
 #'   
 #' @param dygraph Dygraph to add a series definition to
-#' @param name Name of series within dataset (unamed series can be bound by 
-#'   using the convention V1, V2, etc.). This can also be a character vector of 
-#'   length 3 that specifies a set of input series to use as the lower, value, 
-#'   and upper for a series with a shaded bar drawn around it.
+#' @param name Name of series within dataset (only required for multi 
+#'   time-series objects). If there aren't explicit series names then series can
+#'   be bound by using the \code{xts} convention V1, V2, etc. This parameter can
+#'   also be a character vector of length 3 that specifies a set of input series
+#'   to use as the lower, value, and upper for a series with a shaded bar drawn
+#'   around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
@@ -34,9 +36,9 @@
 #'   used to increase the contrast or some graphs.
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
 #'   "dotdash") or a custom pattern array where the even index is a draw and odd
-#'   is a space in pixels. If \code{NULL} then it draws a solid line. The array
-#'   should have an even length as any odd lengthed array could be expressed as a
-#'   smaller even length array.
+#'   is a space in pixels. If \code{NULL} then it draws a solid line. The array 
+#'   should have an even length as any odd lengthed array could be expressed as 
+#'   a smaller even length array.
 #' @param strokeBorderWidth Draw a border around graph lines to make crossing 
 #'   lines more easily distinguishable. Useful for graphs with many lines.
 #' @param strokeBorderColor Color for the line border used if 
@@ -53,7 +55,7 @@
 #'   
 #' @export
 dySeries <- function(dygraph,
-                     name, 
+                     name = NULL, 
                      label = NULL,
                      color = NULL,
                      axis = "y", 
@@ -67,15 +69,23 @@ dySeries <- function(dygraph,
                      strokeBorderColor = NULL,
                      plotter = NULL) {
   
+  # get a reference to the underlying data and labels
+  data <- attr(dygraph$x, "data")
+  labels <- names(data)
+  
+  # auto-bind name if necessary
+  if (is.null(name)) {
+    if (length(labels) == 2)
+      name <- labels[[2]]
+    else
+      stop("The name parameter is required for multi time-series objects")
+  }
+  
   # ensure that name is of length 1 or 3
   if (length(name) != 1 && length(name)  != 3) {
     stop("The name parameter must either be a character vector ",
          "of length one or three")
   }
-  
-  # get a reference to the underlying data and labels
-  data <- attr(dygraph$x, "data")
-  labels <- names(data)
   
   # get the cols where this series is located and verify that they are
   # available within the underlying dataset

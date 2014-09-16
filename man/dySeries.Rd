@@ -3,7 +3,7 @@
 \alias{dySeries}
 \title{dygraph data series}
 \usage{
-dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
+dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
   pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
   strokeBorderWidth = NULL, strokeBorderColor = NULL, plotter = NULL)
@@ -11,10 +11,12 @@ dySeries(dygraph, name, label = NULL, color = NULL, axis = "y",
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
 
-\item{name}{Name of series within dataset (unamed series can be bound by
-using the convention V1, V2, etc.). This can also be a character vector of
-length 3 that specifies a set of input series to use as the lower, value,
-and upper for a series with a shaded bar drawn around it.}
+\item{name}{Name of series within dataset (only required for multi
+time-series objects). If there aren't explicit series names then series can
+be bound by using the \code{xts} convention V1, V2, etc. This parameter can
+also be a character vector of length 3 that specifies a set of input series
+to use as the lower, value, and upper for a series with a shaded bar drawn
+around it.}
 
 \item{label}{Label to display for series (uses name if no label defined)}
 
@@ -47,8 +49,8 @@ used to increase the contrast or some graphs.}
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed", or
 "dotdash") or a custom pattern array where the even index is a draw and odd
 is a space in pixels. If \code{NULL} then it draws a solid line. The array
-should have an even length as any odd lengthed array could be expressed as a
-smaller even length array.}
+should have an even length as any odd lengthed array could be expressed as
+a smaller even length array.}
 
 \item{strokeBorderWidth}{Draw a border around graph lines to make crossing
 lines more easily distinguishable. Useful for graphs with many lines.}
