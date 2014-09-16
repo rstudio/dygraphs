@@ -12,7 +12,7 @@ The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) Ja
 The dygraphs package depends on the development version of the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package so you need to install both packages. You can do this using the **devtools** package as follows:
 
 ```S
-devtools::install_github("ramnathv/htmlwidgets", "jjallaire/dygraphs")
+devtools::install_github(c("ramnathv/htmlwidgets", "jjallaire/dygraphs"))
 ```
 
 #### Usage
