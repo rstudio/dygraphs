@@ -10,6 +10,7 @@
 #' @param labelLoc Location for label (top or bottom).
 #' @param color Color of event line. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
+#' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
 #'   "dotdash") or a custom pattern array where the even index is a draw and odd
 #'   is a space in pixels.
 #'   

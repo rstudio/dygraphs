@@ -12,12 +12,12 @@ dyShading(dygraph, from, to, color = "#EFEFEF")
 another object convertible to \code{as.POSIXct}). convertable via
 \code{as.POSIXct}).}
 
-\item{color}{Color of shading. This can be of the form "#AABBCC" or
-  "rgb(255,100,200)" or "yellow". Defaults to a very light gray.}
-
-\item{from}{Date/time to shade to (must be a \code{as.POSIXct} object or
+\item{to}{Date/time to shade to (must be a \code{as.POSIXct} object or
 another object convertible to \code{as.POSIXct}). convertable via
 \code{as.POSIXct}).}
+
+\item{color}{Color of shading. This can be of the form "#AABBCC" or
+  "rgb(255,100,200)" or "yellow". Defaults to a very light gray.}
 }
 \value{
 A dygraph with the specified shading

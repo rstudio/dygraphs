@@ -74,9 +74,9 @@ option can also be set on a per-series basis.}
 per-series basis.}
 
 \item{plotter}{A function (or array of functions) which plot each data series
-on the chart. May also be set on a per-series basis. See the \href{dygraphs
-documentation}{http://dygraphs.com/tests/plotters.html} for additional
-details on plotting functions.}
+on the chart. May also be set on a per-series basis. See the
+\href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for
+additional details on plotting functions.}
 
 \item{colors}{Character vector of colors for the data series. These can be of
 the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not
@@ -197,7 +197,7 @@ dygraph with additional options
 Add options to a dygraph plot.
 }
 \note{
-See the \href{http://rstudio.github.io/dygraphs/}{online
-  documentation} for additional details and examples.
+See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
+  for additional details and examples.
 }
 

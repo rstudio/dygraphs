@@ -44,9 +44,9 @@
 #'   \code{strokeBorderWidth} is set. This option can also be set on a 
 #'   per-series basis.
 #' @param plotter A function (or array of functions) which plot each data series
-#'   on the chart. May also be set on a per-series basis. See the \href{dygraphs
-#'   documentation}{http://dygraphs.com/tests/plotters.html} for additional 
-#'   details on plotting functions.
+#'   on the chart. May also be set on a per-series basis. See the
+#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for
+#'   additional details on plotting functions.
 #' @param colors Character vector of colors for the data series. These can be of
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 
 #'   specified, equally-spaced points around a color wheel are used. This option
@@ -69,7 +69,7 @@
 #'   will always include zero, typically as the lowest value. This can be used 
 #'   to avoid exaggerating the variance in the data.
 #' @param drawAxesAtZero When set, draw the X axis at the Y=0 position and the Y
-#'   axis at the X=0 position if those positions are inside the graph's visible
+#'   axis at the X=0 position if those positions are inside the graph's visible 
 #'   area. Otherwise, draw the axes at the bottom or left graph edge as usual.
 #' @param logscale When set the graph shows the y-axis in log scale. Any values 
 #'   less than or equal to zero are not displayed.
@@ -135,8 +135,8 @@
 #'   
 #' @return dygraph with additional options
 #'   
-#' @note See the \href{http://rstudio.github.io/dygraphs/}{online 
-#'   documentation} for additional details and examples.
+#' @note See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
+#'   for additional details and examples.
 #'   
 #' @export
 dyOptions <- function(dygraph,

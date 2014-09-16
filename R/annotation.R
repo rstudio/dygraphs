@@ -3,7 +3,7 @@
 #' 
 #' Define a text annotation for a data-point on a dygraph chart.
 #' 
-#' @param series Name of data series to attach annotation to
+#' @param dygraph Dygraph to add an annotation to
 #' @param x Date value indicating where to place the annotation. This should be 
 #'   of class \code{POSIXct} or convertable to \code{POSIXct}.
 #' @param text Text to overlay on the chart at the location of x

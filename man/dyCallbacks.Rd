@@ -12,6 +12,8 @@ dyCallbacks(dygraph, clickCallback = NULL, drawCallback = NULL,
   annotationDblClickHandler = NULL)
 }
 \arguments{
+\item{dygraph}{Dygraph to add callbacks to}
+
 \item{clickCallback}{A function to call when the canvas is clicked.}
 
 \item{drawCallback}{When set, this callback gets called every time the

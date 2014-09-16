@@ -18,7 +18,9 @@ another object convertible to \code{as.POSIXct}). convertable via
 \item{labelLoc}{Location for label (top or bottom).}
 
 \item{color}{Color of event line. This can be of the form "#AABBCC" or
-  "rgb(255,100,200)" or "yellow". Defaults to black.
+"rgb(255,100,200)" or "yellow". Defaults to black.}
+
+\item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed", or
   "dotdash") or a custom pattern array where the even index is a draw and odd
   is a space in pixels.}
 }

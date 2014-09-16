@@ -44,9 +44,9 @@
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set.
 #' @param plotter A function which plots the data series. May also be set on on 
-#'   a global basis using \code{dyOptions}. See the \href{dygraphs 
-#'   documentation}{http://dygraphs.com/tests/plotters.html} for additional 
-#'   details on plotting functions.
+#'   a global basis using \code{dyOptions}. See the
+#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for
+#'   additional details on plotting functions.
 #'   
 #' @return Dygraph with additional series
 #'   

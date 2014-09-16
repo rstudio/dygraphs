@@ -4,6 +4,7 @@
 #' \href{http://dygraphs.com/options.html}{dygraph options} reference for 
 #' additional details on the signature of each callback.
 #' 
+#' @param dygraph Dygraph to add callbacks to
 #' @param clickCallback A function to call when the canvas is clicked.
 #' @param drawCallback When set, this callback gets called every time the 
 #'   dygraph is drawn. This includes the initial draw, after zooming and 

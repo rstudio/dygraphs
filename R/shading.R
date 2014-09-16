@@ -6,7 +6,7 @@
 #' @param from Date/time to shade from (must be a \code{as.POSIXct} object or 
 #'   another object convertible to \code{as.POSIXct}). convertable via 
 #'   \code{as.POSIXct}).
-#' @param from Date/time to shade to (must be a \code{as.POSIXct} object or 
+#' @param to Date/time to shade to (must be a \code{as.POSIXct} object or 
 #'   another object convertible to \code{as.POSIXct}). convertable via 
 #'   \code{as.POSIXct}).
 #' @param color Color of shading. This can be of the form "#AABBCC" or 
