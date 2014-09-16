@@ -87,6 +87,7 @@ dySeries <- function(dygraph,
   
   # data series named here are "consumed" from the automatically generated
   # list of series (they'll be added back in below)
+  cols <- which(dygraph$x$attrs$labels %in% name)
   dygraph$x$data <- dygraph$x$data[-c(cols)]
   dygraph$x$attrs$labels <- dygraph$x$attrs$labels[-c(cols)]
    
