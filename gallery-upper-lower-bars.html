@@ -10,7 +10,7 @@
 
 
 
-<title>Custom/Error Bars</title>
+<title>Upper/Lower Bars</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,14 +125,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -140,7 +142,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="span8">
 
 <div id="header">
-<h1 class="title">Custom/Error Bars</h1>
+<h1 class="title">Upper/Lower Bars</h1>
 </div>
 
 
@@ -149,8 +151,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 predicted &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;)</code></pre>
-<p><div id="htmlwidget-2157" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2157">{ "attrs": {
+<p><div id="htmlwidget-6191" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6191">{ "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",
@@ -250,8 +252,8 @@ getSymbols(c(&quot;MSFT&quot;, &quot;HPQ&quot;), src=&quot;rda&quot;, from = &qu
 dygraph(stocks, main = &quot;Microsoft and HP Share Prices&quot;) %&gt;% 
   dySeries(c(&quot;MSFT.Low&quot;, &quot;MSFT.Close&quot;, &quot;MSFT.High&quot;), label = &quot;MSFT&quot;) %&gt;%
   dySeries(c(&quot;HPQ.Low&quot;, &quot;HPQ.Close&quot;, &quot;HPQ.High&quot;), label = &quot;HPQ&quot;)</code></pre>
-<p><div id="htmlwidget-7976" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-7976">{ "attrs": {
+<p><div id="htmlwidget-8281" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-8281">{ "attrs": {
  "title": "Microsoft and HP Share Prices",
 "labels": [ "day", "MSFT", "HPQ" ],
 "legend": "auto",

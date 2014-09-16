@@ -22,4 +22,4 @@ dygraph(discoveries, main = "Important Discoveries") %>%
   dyAxis("y", label = "Discoveries / Year")
 ```
 
-The appearance of labels can be customized extensively using CSS. See the [CSS Label Styling](gallery-css-label-styling.html) example for additional details.
+The appearance of labels can be customized extensively using CSS. See the [CSS Label Styling](gallery-css-styling.html) article for additional details.

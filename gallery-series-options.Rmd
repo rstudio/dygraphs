@@ -64,7 +64,7 @@ You can also customize the way that series lines are drawn. Here we draw a wider
 
 ```{r}
 dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dySeries("V1", strokeWidth = 2, strokePattern = c(5, 2))
+  dySeries("V1", strokeWidth = 2, strokePattern = "dashed")
 ```
 
 

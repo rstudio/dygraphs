@@ -14,7 +14,8 @@ In this example we specify a larger circle size for point highlighting as well a
 ```{r}
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
 dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.2,
+  dyHighlight(highlightCircleSize = 5, 
+              highlightSeriesBackgroundAlpha = 0.2,
               hideOnMouseOut = FALSE)
 ```
 

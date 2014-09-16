@@ -125,14 +125,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -157,8 +159,8 @@ weather &lt;- cbind(rainfall, temperature)
 # assign the &quot;rainfall&quot; series to the y2 axis
 dygraph(weather) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-116" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-116">{ "attrs": {
+<p><div id="htmlwidget-2526" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2526">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {
@@ -189,8 +191,8 @@ dygraph(weather) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Temperature (C)&quot;) %&gt;%
   dyAxis(&quot;y2&quot;, label = &quot;Rainfall&quot;, independentTicks = TRUE) %&gt;%
   dySeries(&quot;rainfall&quot;, axis = &#39;y2&#39;)</code></pre>
-<p><div id="htmlwidget-3206" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3206">{ "attrs": {
+<p><div id="htmlwidget-3546" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3546">{ "attrs": {
  "labels": [ "month", "temperature", "rainfall" ],
 "legend": "auto",
 "axes": {

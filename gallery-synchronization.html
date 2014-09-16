@@ -10,7 +10,7 @@
 
 
 
-<title>Synchronized Ranges</title>
+<title>Synchronization</title>
 
 <script src="libs/jquery-1.11.0/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,14 +125,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -140,7 +142,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div class="span8">
 
 <div id="header">
-<h1 class="title">Synchronized Ranges</h1>
+<h1 class="title">Synchronization</h1>
 </div>
 
 
@@ -148,8 +150,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(ldeaths, main = &quot;All&quot;, group = &quot;lung-deaths&quot;)
 dygraph(mdeaths, main = &quot;Male&quot;, group = &quot;lung-deaths&quot;)
 dygraph(fdeaths, main = &quot;Female&quot;, group = &quot;lung-deaths&quot;)</code></pre>
-<p><div id="htmlwidget-6890" style="width:624px;height:192px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-6890">{ "attrs": {
+<p><div id="htmlwidget-3809" style="width:624px;height:192px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3809">{ "attrs": {
  "title": "All",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -161,8 +163,8 @@ dygraph(fdeaths, main = &quot;Female&quot;, group = &quot;lung-deaths&quot;)</co
 },"scale": "monthly","group": "lung-deaths","annotations": [],"shadings": [],"events": [],"data": [
  [ "1974-01-01T00:00:00Z", "1974-02-01T00:00:00Z", "1974-03-01T00:00:00Z", "1974-04-01T00:00:00Z", "1974-05-01T00:00:00Z", "1974-06-01T00:00:00Z", "1974-07-01T00:00:00Z", "1974-08-01T00:00:00Z", "1974-09-01T00:00:00Z", "1974-10-01T00:00:00Z", "1974-11-01T00:00:00Z", "1974-12-01T00:00:00Z", "1975-01-01T00:00:00Z", "1975-02-01T00:00:00Z", "1975-03-01T00:00:00Z", "1975-04-01T00:00:00Z", "1975-05-01T00:00:00Z", "1975-06-01T00:00:00Z", "1975-07-01T00:00:00Z", "1975-08-01T00:00:00Z", "1975-09-01T00:00:00Z", "1975-10-01T00:00:00Z", "1975-11-01T00:00:00Z", "1975-12-01T00:00:00Z", "1976-01-01T00:00:00Z", "1976-02-01T00:00:00Z", "1976-03-01T00:00:00Z", "1976-04-01T00:00:00Z", "1976-05-01T00:00:00Z", "1976-06-01T00:00:00Z", "1976-07-01T00:00:00Z", "1976-08-01T00:00:00Z", "1976-09-01T00:00:00Z", "1976-10-01T00:00:00Z", "1976-11-01T00:00:00Z", "1976-12-01T00:00:00Z", "1977-01-01T00:00:00Z", "1977-02-01T00:00:00Z", "1977-03-01T00:00:00Z", "1977-04-01T00:00:00Z", "1977-05-01T00:00:00Z", "1977-06-01T00:00:00Z", "1977-07-01T00:00:00Z", "1977-08-01T00:00:00Z", "1977-09-01T00:00:00Z", "1977-10-01T00:00:00Z", "1977-11-01T00:00:00Z", "1977-12-01T00:00:00Z", "1978-01-01T00:00:00Z", "1978-02-01T00:00:00Z", "1978-03-01T00:00:00Z", "1978-04-01T00:00:00Z", "1978-05-01T00:00:00Z", "1978-06-01T00:00:00Z", "1978-07-01T00:00:00Z", "1978-08-01T00:00:00Z", "1978-09-01T00:00:00Z", "1978-10-01T00:00:00Z", "1978-11-01T00:00:00Z", "1978-12-01T00:00:00Z", "1979-01-01T00:00:00Z", "1979-02-01T00:00:00Z", "1979-03-01T00:00:00Z", "1979-04-01T00:00:00Z", "1979-05-01T00:00:00Z", "1979-06-01T00:00:00Z", "1979-07-01T00:00:00Z", "1979-08-01T00:00:00Z", "1979-09-01T00:00:00Z", "1979-10-01T00:00:00Z", "1979-11-01T00:00:00Z", "1979-12-01T00:00:00Z" ],
 [   3035,   2552,   2704,   2554,   2014,   1655,   1721,   1524,   1596,   2074,   2199,   2512,   2933,   2889,   2938,   2497,   1870,   1726,   1607,   1545,   1396,   1787,   2076,   2837,   2787,   3891,   3179,   2011,   1636,   1580,   1489,   1300,   1356,   1653,   2013,   2823,   3102,   2294,   2385,   2444,   1748,   1554,   1498,   1361,   1346,   1564,   1640,   2293,   2815,   3137,   2679,   1969,   1870,   1633,   1529,   1366,   1357,   1570,   1535,   2491,   3084,   2605,   2573,   2143,   1693,   1504,   1461,   1354,   1333,   1492,   1781,   1915 ] 
-] }</script><div id="htmlwidget-67" style="width:624px;height:192px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-67">{ "attrs": {
+] }</script><div id="htmlwidget-9949" style="width:624px;height:192px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-9949">{ "attrs": {
  "title": "Male",
 "labels": [ "month", "V1" ],
 "legend": "auto",
@@ -174,8 +176,8 @@ dygraph(fdeaths, main = &quot;Female&quot;, group = &quot;lung-deaths&quot;)</co
 },"scale": "monthly","group": "lung-deaths","annotations": [],"shadings": [],"events": [],"data": [
  [ "1974-01-01T00:00:00Z", "1974-02-01T00:00:00Z", "1974-03-01T00:00:00Z", "1974-04-01T00:00:00Z", "1974-05-01T00:00:00Z", "1974-06-01T00:00:00Z", "1974-07-01T00:00:00Z", "1974-08-01T00:00:00Z", "1974-09-01T00:00:00Z", "1974-10-01T00:00:00Z", "1974-11-01T00:00:00Z", "1974-12-01T00:00:00Z", "1975-01-01T00:00:00Z", "1975-02-01T00:00:00Z", "1975-03-01T00:00:00Z", "1975-04-01T00:00:00Z", "1975-05-01T00:00:00Z", "1975-06-01T00:00:00Z", "1975-07-01T00:00:00Z", "1975-08-01T00:00:00Z", "1975-09-01T00:00:00Z", "1975-10-01T00:00:00Z", "1975-11-01T00:00:00Z", "1975-12-01T00:00:00Z", "1976-01-01T00:00:00Z", "1976-02-01T00:00:00Z", "1976-03-01T00:00:00Z", "1976-04-01T00:00:00Z", "1976-05-01T00:00:00Z", "1976-06-01T00:00:00Z", "1976-07-01T00:00:00Z", "1976-08-01T00:00:00Z", "1976-09-01T00:00:00Z", "1976-10-01T00:00:00Z", "1976-11-01T00:00:00Z", "1976-12-01T00:00:00Z", "1977-01-01T00:00:00Z", "1977-02-01T00:00:00Z", "1977-03-01T00:00:00Z", "1977-04-01T00:00:00Z", "1977-05-01T00:00:00Z", "1977-06-01T00:00:00Z", "1977-07-01T00:00:00Z", "1977-08-01T00:00:00Z", "1977-09-01T00:00:00Z", "1977-10-01T00:00:00Z", "1977-11-01T00:00:00Z", "1977-12-01T00:00:00Z", "1978-01-01T00:00:00Z", "1978-02-01T00:00:00Z", "1978-03-01T00:00:00Z", "1978-04-01T00:00:00Z", "1978-05-01T00:00:00Z", "1978-06-01T00:00:00Z", "1978-07-01T00:00:00Z", "1978-08-01T00:00:00Z", "1978-09-01T00:00:00Z", "1978-10-01T00:00:00Z", "1978-11-01T00:00:00Z", "1978-12-01T00:00:00Z", "1979-01-01T00:00:00Z", "1979-02-01T00:00:00Z", "1979-03-01T00:00:00Z", "1979-04-01T00:00:00Z", "1979-05-01T00:00:00Z", "1979-06-01T00:00:00Z", "1979-07-01T00:00:00Z", "1979-08-01T00:00:00Z", "1979-09-01T00:00:00Z", "1979-10-01T00:00:00Z", "1979-11-01T00:00:00Z", "1979-12-01T00:00:00Z" ],
 [   2134,   1863,   1877,   1877,   1492,   1249,   1280,   1131,   1209,   1492,   1621,   1846,   2103,   2137,   2153,   1833,   1403,   1288,   1186,   1133,   1053,   1347,   1545,   2066,   2020,   2750,   2283,   1479,   1189,   1160,   1113,    970,    999,   1208,   1467,   2059,   2240,   1634,   1722,   1801,   1246,   1162,   1087,   1013,    959,   1179,   1229,   1655,   2019,   2284,   1942,   1423,   1340,   1187,   1098,   1004,    970,   1140,   1110,   1812,   2263,   1820,   1846,   1531,   1215,   1075,   1056,    975,    940,   1081,   1294,   1341 ] 
-] }</script><div id="htmlwidget-8524" style="width:624px;height:192px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8524">{ "attrs": {
+] }</script><div id="htmlwidget-2378" style="width:624px;height:192px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2378">{ "attrs": {
  "title": "Female",
 "labels": [ "month", "V1" ],
 "legend": "auto",

@@ -125,14 +125,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -148,10 +150,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>In this example we specify a larger circle size for point highlighting as well as more decicively fade the non-highlighted series. We also request that the highlighting persist even after the mouse leaves the graph area.</p>
 <pre class="r"><code>lungDeaths &lt;- cbind(ldeaths, mdeaths, fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
-  dyHighlight(highlightCircleSize = 5, highlightSeriesBackgroundAlpha = 0.2,
+  dyHighlight(highlightCircleSize = 5, 
+              highlightSeriesBackgroundAlpha = 0.2,
               hideOnMouseOut = FALSE)</code></pre>
-<p><div id="htmlwidget-2606" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2606">{ "attrs": {
+<p><div id="htmlwidget-17" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-17">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "ldeaths", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -173,8 +176,8 @@ dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
 <p>You can also set additional visual options for the highlighted series using <code>highlightSeriesOpts</code>. This argument takes a list of named series options to apply to just the currently highlighted series (see the <code>dySeries</code> function for the various options that can be set). Here we set the stroke width of highlighted series to 3:</p>
 <pre class="r"><code>dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyHighlight(highlightSeriesOpts = list(strokeWidth = 3))</code></pre>
-<p><div id="htmlwidget-1283" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-1283">{ "attrs": {
+<p><div id="htmlwidget-6290" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6290">{ "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "ldeaths", "mdeaths", "fdeaths" ],
 "legend": "auto",

@@ -1,0 +1,40 @@
+---
+title: "Annotations"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+You can add annotations to individual points within a plot. To minimize their visual footprint annotations are typically short abbreviations (e.g. "A", "B", "C") which are elaborated upon in a tooltip or with adjacent explanatory text.
+
+For example, in the following graph we annotate the dates which saw the first deployment of US combat troops to Korea and Vietnam:
+
+```{r}
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
+  dyAxis("y", valueRange = c(0, 100)) %>%
+  dyAnnotation("1950-7-1", text = "A", tooltip = "Korea") %>%
+  dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")
+```
+
+There's a very important aspect of this example to note: the **actual** dates of the two events are not used for the annotation. Rather, dates that align with the quarterly boundaries of the time series are used (this is because dygraphs will only include annotations that exactly match one of it's x-axis values).
+
+Note that if you want to print a larger annotation and attach it to the x-axis rather than individual points you can use the `attachAtBottom` and `width` parameters as follows:
+
+```{r}
+presAnnotation <- function(dygraph, x, text) {
+  dygraph %>%
+    dyAnnotation(x, text, attachAtBottom = TRUE, width = 60)
+}
+
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
+  dyAxis("y", valueRange = c(0, 100)) %>%
+  presAnnotation("1950-7-1", text = "Korea") %>%
+  presAnnotation("1965-1-1", text = "Vietnam")
+```
+
+This example also demonstrates another concept: writing a helper function to define common graph element options in a single place. The `presAnnotation` function takes a dygraph and then modifies it to include an annotation with the requisite layout behavior.
+
+
+
+

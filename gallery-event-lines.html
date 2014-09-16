@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title>Event Lines</title>
+
+<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
+<link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
+<script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
+<script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
+
+<style type = "text/css">
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
+  }
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div class="row-fluid">
+
+<div class="span3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
+  <li><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
+  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
+</ul>
+  
+</div>
+  
+<div class="span8">
+
+<div id="header">
+<h1 class="title">Event Lines</h1>
+</div>
+
+
+<p>Event lines are a useful way to note points within a time series where noteworty events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings:</p>
+<pre class="r"><code>dygraph(presidents, main = &quot;Quarterly Presidential Approval Ratings&quot;) %&gt;%
+  dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
+  dyEvent(date = &quot;1950-6-30&quot;, &quot;Korea&quot;, labelLoc = &quot;bottom&quot;) %&gt;%
+  dyEvent(date = &quot;1965-2-09&quot;, &quot;Vietnam&quot;, labelLoc = &quot;bottom&quot;)</code></pre>
+<p><div id="htmlwidget-7837" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7837">{ "attrs": {
+ "title": "Quarterly Presidential Approval Ratings",
+"labels": [ "quarter", "V1" ],
+"legend": "auto",
+"axes": {
+ "x": {
+ "pixelsPerLabel":     50 
+},
+"y": {
+ "valueRange": [      0,    100 ] 
+} 
+} 
+},"scale": "quarterly","annotations": [],"shadings": [],"events": [
+ {
+ "date": "1950-06-30T00:00:00Z",
+"label": "Korea",
+"labelLoc": "bottom",
+"color": "black",
+"strokePattern": [      7,      3 ] 
+},
+{
+ "date": "1965-02-09T00:00:00Z",
+"label": "Vietnam",
+"labelLoc": "bottom",
+"color": "black",
+"strokePattern": [      7,      3 ] 
+} 
+],"data": [
+ [ "1945-01-01T00:00:00Z", "1945-04-01T00:00:00Z", "1945-07-01T00:00:00Z", "1945-10-01T00:00:00Z", "1946-01-01T00:00:00Z", "1946-04-01T00:00:00Z", "1946-07-01T00:00:00Z", "1946-10-01T00:00:00Z", "1947-01-01T00:00:00Z", "1947-04-01T00:00:00Z", "1947-07-01T00:00:00Z", "1947-10-01T00:00:00Z", "1948-01-01T00:00:00Z", "1948-04-01T00:00:00Z", "1948-07-01T00:00:00Z", "1948-10-01T00:00:00Z", "1949-01-01T00:00:00Z", "1949-04-01T00:00:00Z", "1949-07-01T00:00:00Z", "1949-10-01T00:00:00Z", "1950-01-01T00:00:00Z", "1950-04-01T00:00:00Z", "1950-07-01T00:00:00Z", "1950-10-01T00:00:00Z", "1951-01-01T00:00:00Z", "1951-04-01T00:00:00Z", "1951-07-01T00:00:00Z", "1951-10-01T00:00:00Z", "1952-01-01T00:00:00Z", "1952-04-01T00:00:00Z", "1952-07-01T00:00:00Z", "1952-10-01T00:00:00Z", "1953-01-01T00:00:00Z", "1953-04-01T00:00:00Z", "1953-07-01T00:00:00Z", "1953-10-01T00:00:00Z", "1954-01-01T00:00:00Z", "1954-04-01T00:00:00Z", "1954-07-01T00:00:00Z", "1954-10-01T00:00:00Z", "1955-01-01T00:00:00Z", "1955-04-01T00:00:00Z", "1955-07-01T00:00:00Z", "1955-10-01T00:00:00Z", "1956-01-01T00:00:00Z", "1956-04-01T00:00:00Z", "1956-07-01T00:00:00Z", "1956-10-01T00:00:00Z", "1957-01-01T00:00:00Z", "1957-04-01T00:00:00Z", "1957-07-01T00:00:00Z", "1957-10-01T00:00:00Z", "1958-01-01T00:00:00Z", "1958-04-01T00:00:00Z", "1958-07-01T00:00:00Z", "1958-10-01T00:00:00Z", "1959-01-01T00:00:00Z", "1959-04-01T00:00:00Z", "1959-07-01T00:00:00Z", "1959-10-01T00:00:00Z", "1960-01-01T00:00:00Z", "1960-04-01T00:00:00Z", "1960-07-01T00:00:00Z", "1960-10-01T00:00:00Z", "1961-01-01T00:00:00Z", "1961-04-01T00:00:00Z", "1961-07-01T00:00:00Z", "1961-10-01T00:00:00Z", "1962-01-01T00:00:00Z", "1962-04-01T00:00:00Z", "1962-07-01T00:00:00Z", "1962-10-01T00:00:00Z", "1963-01-01T00:00:00Z", "1963-04-01T00:00:00Z", "1963-07-01T00:00:00Z", "1963-10-01T00:00:00Z", "1964-01-01T00:00:00Z", "1964-04-01T00:00:00Z", "1964-07-01T00:00:00Z", "1964-10-01T00:00:00Z", "1965-01-01T00:00:00Z", "1965-04-01T00:00:00Z", "1965-07-01T00:00:00Z", "1965-10-01T00:00:00Z", "1966-01-01T00:00:00Z", "1966-04-01T00:00:00Z", "1966-07-01T00:00:00Z", "1966-10-01T00:00:00Z", "1967-01-01T00:00:00Z", "1967-04-01T00:00:00Z", "1967-07-01T00:00:00Z", "1967-10-01T00:00:00Z", "1968-01-01T00:00:00Z", "1968-04-01T00:00:00Z", "1968-07-01T00:00:00Z", "1968-10-01T00:00:00Z", "1969-01-01T00:00:00Z", "1969-04-01T00:00:00Z", "1969-07-01T00:00:00Z", "1969-10-01T00:00:00Z", "1970-01-01T00:00:00Z", "1970-04-01T00:00:00Z", "1970-07-01T00:00:00Z", "1970-10-01T00:00:00Z", "1971-01-01T00:00:00Z", "1971-04-01T00:00:00Z", "1971-07-01T00:00:00Z", "1971-10-01T00:00:00Z", "1972-01-01T00:00:00Z", "1972-04-01T00:00:00Z", "1972-07-01T00:00:00Z", "1972-10-01T00:00:00Z", "1973-01-01T00:00:00Z", "1973-04-01T00:00:00Z", "1973-07-01T00:00:00Z", "1973-10-01T00:00:00Z", "1974-01-01T00:00:00Z", "1974-04-01T00:00:00Z", "1974-07-01T00:00:00Z", "1974-10-01T00:00:00Z" ],
+[ null,     87,     82,     75,     63,     50,     43,     32,     35,     60,     54,     55,     36,     39, null, null,     69,     57,     57,     51,     45,     37,     46,     39,     36,     24,     32,     23,     25,     32, null,     32,     59,     74,     75,     60,     71,     61,     71,     57,     71,     68,     79,     73,     76,     71,     67,     75,     79,     62,     63,     57,     60,     49,     48,     52,     57,     62,     61,     66,     71,     62,     61,     57,     72,     83,     71,     78,     79,     71,     62,     74,     76,     64,     62,     57,     80,     73,     69,     69,     71,     64,     69,     62,     63,     46,     56,     44,     44,     52,     38,     46,     36,     49,     35,     44,     59,     65,     65,     56,     66,     53,     61,     52,     51,     48,     54,     49,     49,     61, null, null,     68,     44,     40,     27,     28,     25,     24,     24 ] 
+] }</script></p>
+<p>Note that we specify that our event labels go at the bottom of the graph so they don’t interfere with the legend, and set the y-axis <code>valueRange</code> to ensure that there is adequate room at the bottom for the labels.</p>
+
+
+</div>  
+</div>
+
+<script>
+
+// manage active state of toc based on current page
+$(document).ready(function () {
+    // active menu
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
+    $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+
+</body>
+</html>

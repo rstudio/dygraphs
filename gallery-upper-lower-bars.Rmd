@@ -1,5 +1,5 @@
 ---
-title: "Custom/Error Bars"
+title: "Upper/Lower Bars"
 ---
 
 ```{r, include=FALSE}

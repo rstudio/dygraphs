@@ -125,14 +125,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -148,8 +150,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(discoveries, 
         main = &quot;Important Discoveries&quot;, 
         ylab = &quot;Discoveries / Year&quot;)</code></pre>
-<p><div id="htmlwidget-5664" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5664">{ "attrs": {
+<p><div id="htmlwidget-949" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-949">{ "attrs": {
  "title": "Important Discoveries",
 "ylabel": "Discoveries / Year",
 "labels": [ "year", "V1" ],
@@ -166,7 +168,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <p>It’s also possible to specify labels as part of a <code>dyAxis</code> definition. For example:</p>
 <pre class="r"><code>dygraph(discoveries, main = &quot;Important Discoveries&quot;) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Discoveries / Year&quot;)</code></pre>
-<p>The appearance of labels can be customized extensively using CSS. See the <a href="gallery-css-label-styling.html">CSS Label Styling</a> example for additional details.</p>
+<p>The appearance of labels can be customized extensively using CSS. See the <a href="gallery-css-styling.html">CSS Label Styling</a> article for additional details.</p>
 
 
 </div>  

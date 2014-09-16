@@ -1,0 +1,20 @@
+---
+title: "Event Lines"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+Event lines are a useful way to note points within a time series where noteworty events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings: 
+
+```{r}
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
+  dyAxis("y", valueRange = c(0, 100)) %>%
+  dyEvent(date = "1950-6-30", "Korea", labelLoc = "bottom") %>%
+  dyEvent(date = "1965-2-09", "Vietnam", labelLoc = "bottom")
+```
+
+Note that we specify that our event labels go at the bottom of the graph so they don't interfere with the legend, and set the y-axis `valueRange` to ensure that there is adequate room at the bottom for the labels.
+
+

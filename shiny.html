@@ -121,14 +121,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-range-selector.html">Range Selector</a></li>
-  <li><a href="gallery-synchronized-ranges.html">Synchronized Ranges</a></li>
-  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-custom-bars.html">Custom/Error Bars</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
-  
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Event Lines</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
 </ul>
   
 </div>
@@ -159,7 +161,8 @@ shinyUI(fluidPage(
                    value = 72, min = 12, max = 144, step = 12),
       selectInput(&quot;interval&quot;, label = &quot;Prediction Interval&quot;,
                   choices = c(&quot;0.80&quot;, &quot;0.90&quot;, &quot;0.95&quot;, &quot;0.99&quot;),
-                  selected = &quot;0.95&quot;)
+                  selected = &quot;0.95&quot;),
+      checkboxInput(&quot;showgrid&quot;, label = &quot;Show Grid&quot;, value = TRUE)
     ),
     mainPanel(
       dygraphOutput(&quot;dygraph&quot;)
@@ -181,7 +184,8 @@ shinyServer(function(input, output) {
   
   output$dygraph &lt;- renderDygraph({
     dygraph(predicted(), main = &quot;Predicted Deaths/Month&quot;) %&gt;%
-      dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;)
+      dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
+      dyOptions(drawGrid = input$showgrid)
   })
   
 })</code></pre>
