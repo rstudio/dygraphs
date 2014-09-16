@@ -30,16 +30,16 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # check periodicity 
   periodicity <- xts::periodicity(data)
    
-  # convert time to string we can pass to javascript Date function
-  time <- asISO8601Time(time(data))
+  # extract time
+  time <- time(data)
   
   # get data as a named list
   data <- zoo::coredata(data)
   data <- unclass(as.data.frame(data))
    
-  # merge time back into list
+  # merge time back into list and convert to JS friendly string
   timeColumn <- list()
-  timeColumn[[periodicity$label]] <- time
+  timeColumn[[periodicity$label]] <- asISO8601Time(time)
   data <- append(timeColumn, data)
   
   # create native dygraph attrs object
@@ -64,6 +64,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # add attributes required for defining custom series. when a dySeries call
   # is made it places series definition in "manual mode"; in this case we
   # need to save the original data 
+  attr(x, "time") <- time
   attr(x, "data") <- data
   
   # add data (strip names first so we marshall as a 2d array)
