@@ -66,6 +66,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # need to save the original data 
   attr(x, "time") <- time
   attr(x, "data") <- data
+  attr(x, "seriesAutobind") <- 2
   
   # add data (strip names first so we marshall as a 2d array)
   names(data) <- NULL

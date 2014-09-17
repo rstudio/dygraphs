@@ -8,12 +8,11 @@
 #' @inheritParams dyOptions
 #'   
 #' @param dygraph Dygraph to add a series definition to
-#' @param name Name of series within dataset (only required for multi 
-#'   time-series objects). If there aren't explicit series names then series can
-#'   be bound by using the \code{xts} convention V1, V2, etc. This parameter can
-#'   also be a character vector of length 3 that specifies a set of input series
-#'   to use as the lower, value, and upper for a series with a shaded bar drawn 
-#'   around it.
+#' @param name Name of series within dataset. If no name is specified then 
+#'   series are bound to implicitly based on their order within the underlying 
+#'   time series object. This parameter can also be a character vector of length
+#'   3 that specifies a set of input column names to use as the lower, value,
+#'   and upper for a series with a shaded bar drawn around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
@@ -44,8 +43,8 @@
 #' @param strokeBorderColor Color for the line border used if 
 #'   \code{strokeBorderWidth} is set.
 #' @param plotter A function which plots the data series. May also be set on on 
-#'   a global basis using \code{dyOptions}. See the
-#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for
+#'   a global basis using \code{dyOptions}. See the 
+#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
 #'   additional details on plotting functions.
 #'   
 #' @return Dygraph with additional series
@@ -75,12 +74,10 @@ dySeries <- function(dygraph,
   labels <- names(data)
   
   # auto-bind name if necessary
-  if (is.null(name)) {
-    if (length(labels) == 2)
-      name <- labels[[2]]
-    else
-      stop("The name parameter is required for multi time-series objects")
-  }
+  autobind <- attr(dygraph$x, "seriesAutobind")
+  if (is.null(name))
+    name <- labels[[autobind]]
+  attr(dygraph$x, "seriesAutobind") <- autobind + length(name)
   
   # ensure that name is of length 1 or 3
   if (length(name) != 1 && length(name)  != 3) {
