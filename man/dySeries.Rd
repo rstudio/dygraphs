@@ -11,12 +11,11 @@ dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
 
-\item{name}{Name of series within dataset (only required for multi
-time-series objects). If there aren't explicit series names then series can
-be bound by using the \code{xts} convention V1, V2, etc. This parameter can
-also be a character vector of length 3 that specifies a set of input series
-to use as the lower, value, and upper for a series with a shaded bar drawn
-around it.}
+\item{name}{Name of series within dataset. If no name is specified then
+series are bound to implicitly based on their order within the underlying
+time series object. This parameter can also be a character vector of length
+3 that specifies a set of input column names to use as the lower, value,
+and upper for a series with a shaded bar drawn around it.}
 
 \item{label}{Label to display for series (uses name if no label defined)}
 
