@@ -74,10 +74,10 @@ dySeries <- function(dygraph,
   labels <- names(data)
   
   # auto-bind name if necessary
-  autobind <- attr(dygraph$x, "seriesAutobind")
+  autobind <- attr(dygraph$x, "autoSeries")
   if (is.null(name))
     name <- labels[[autobind]]
-  attr(dygraph$x, "seriesAutobind") <- autobind + length(name)
+  attr(dygraph$x, "autoSeries") <- autobind + length(name)
   
   # ensure that name is of length 1 or 3
   if (length(name) != 1 && length(name)  != 3) {
