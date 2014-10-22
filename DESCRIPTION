@@ -14,4 +14,4 @@ Imports:
     htmlwidgets,
     zoo (>= 1.7-10),
     xts (>= 0.9-7)
-Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.1.9008)
+Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2)
