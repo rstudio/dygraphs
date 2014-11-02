@@ -20,7 +20,7 @@
 <script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
 <link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
-<script src="libs/dygraphs-binding-0.1/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.2/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -160,15 +160,13 @@ output:
     fig_height: 4
 ---
 </code></pre>
-
 <p>You can also specify figure sizes on a per-chunk basis. For example, to create a dygraph that is smaller than the default (7x5) you could do this:</p>
 <pre class="r"><code>&#96;&#96;&#96;{r, fig.width=6, fig.height=2.5}
 dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
 &#96;&#96;&#96;
 </code></pre>
-
-<p><div id="htmlwidget-5562" style="width:576px;height:240px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5562">{ "attrs": {
+<p><div id="htmlwidget-5890" style="width:576px;height:240px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5890">{ "attrs": {
  "title": "New Haven Temperatures",
 "ylabel": "Temp (F)",
 "labels": [ "year", "V1" ],
