@@ -336,7 +336,7 @@ HTMLWidgets.widget({
           if (typeof o[part] === "string")
             o[part] = eval("(" + o[part] + ")")
           else if (o[part] instanceof Array)
-            o[part].map(function(value) { return eval("(" + value + ")"); })
+            o[part] = o[part].map(function(value) { return eval("(" + value + ")"); })
         } else { // otherwise continue to next embedded object
           o = o[part];
         }
