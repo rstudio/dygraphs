@@ -15,6 +15,20 @@ HTMLWidgets.widget({
 
   renderValue: function(el, x, instance) {
     
+    // null case for shiny dynamic UI
+    if (x === null) {
+
+      // if there is already a dygraph just hide it
+      if (instance.dygraph)
+        el.style.visibility = "hidden";
+
+      // don't do anything else
+      return;
+    }
+
+    // ensure visible (in case we were hidden previously)
+    el.style.visibility = "visible";
+
     // reference to this for closures
      var thiz = this;
     
