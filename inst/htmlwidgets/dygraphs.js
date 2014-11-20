@@ -294,6 +294,7 @@ HTMLWidgets.widget({
     this.evaluateStringMember(attrs, 'annotationMouseOverHandler');
     this.evaluateStringMember(attrs, 'axisLabelFormatter');
     this.evaluateStringMember(attrs, 'axes.attrs.axisLabelFormatter');
+    this.evaluateStringMember(attrs, 'axes.x.axisLabelFormatter');
     this.evaluateStringMember(attrs, 'axes.y.axisLabelFormatter');
     this.evaluateStringMember(attrs, 'axes.y2.axisLabelFormatter');
     this.evaluateStringMember(attrs, 'axes.attrs.ticker');
