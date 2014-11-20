@@ -7,8 +7,9 @@ dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
   rangePad = NULL, labelWidth = NULL, labelHeight = NULL,
   axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
   pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
-  axisLabelWidth = NULL, axisLabelFormatter = NULL, drawGrid = NULL,
-  gridLineColor = NULL, gridLineWidth = NULL, independentTicks = NULL)
+  axisLabelWidth = NULL, axisLabelFormatter = NULL, valueFormatter = NULL,
+  drawGrid = NULL, gridLineColor = NULL, gridLineWidth = NULL,
+  independentTicks = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}
@@ -67,6 +68,11 @@ labels, both x- and y-axis. This may also be set globally using
 
 \item{axisLabelFormatter}{JavaScript function to call to format the tick
 values that appear along an axis (see the
+\href{http://dygraphs.com/options.html}{dygraphs documentation} for
+additional details).}
+
+\item{valueFormatter}{JavaScript function to call to provide a custom display
+format for the values displayed on mouseover (see the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
 

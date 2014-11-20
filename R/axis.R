@@ -46,6 +46,10 @@
 #'   values that appear along an axis (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
+#' @param valueFormatter JavaScript function to call to provide a custom display
+#'   format for the values displayed on mouseover (see the
+#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   additional details).
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
 #'   y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
 #'   to 50 (x-axis) or 30 (y-axes).
@@ -64,7 +68,7 @@
 #'   
 #' @return Axis options
 #'   
-#' @note See the
+#' @note See the 
 #'   \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online 
 #'   documentation} for additional details and examples.
 #'   
@@ -85,6 +89,7 @@ dyAxis <- function(dygraph,
                    axisLabelFontSize = NULL,
                    axisLabelWidth = NULL,
                    axisLabelFormatter = NULL,
+                   valueFormatter = NULL,
                    drawGrid = NULL,
                    gridLineColor = NULL,
                    gridLineWidth = NULL,
@@ -102,7 +107,7 @@ dyAxis <- function(dygraph,
   axis$options <- list()
   axis$options$valueRange <- valueRange
    
-  axis$options$ticker <- ticker
+  axis$options$ticker <- JS(ticker)
   if (!is.null(axisHeight)) {
     if (name == "x")
       attrs$xAxisHeight <- axisHeight
@@ -128,7 +133,8 @@ dyAxis <- function(dygraph,
   if (!is.null(axisLabelWidth))
     attrs[[sprintf("%sAxisLabelWidth", axis$name)]] <- axisLabelWidth
   
-  axis$options$axisLabelFormatter <- axisLabelFormatter
+  axis$options$axisLabelFormatter <- JS(axisLabelFormatter)
+  axis$options$valueFormatter <- JS(valueFormatter)
   axis$options$drawGrid <- drawGrid
   axis$options$gridLineColor <- gridLineColor
   axis$options$gridLineWidth <- gridLineWidth

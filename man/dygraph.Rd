@@ -31,7 +31,7 @@ R interface to interactive time series plotting using the
 \href{http://dygraphs.com}{dygraphs} JavaScript library.
 }
 \note{
-See the \href{http://jjallaire.github.io/dygraphs/}{online documentation} for
+See the \href{http://rstudio.github.io/dygraphs/}{online documentation} for
 additional details and examples.
 }
 

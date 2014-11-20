@@ -55,19 +55,19 @@ dyCallbacks <- function(dygraph,
                         annotationDblClickHandler = NULL) {
   
   callbacks <- list()
-  callbacks$clickCallback <- clickCallback
-  callbacks$drawCallback <- drawCallback
-  callbacks$highlightCallback <- highlightCallback
-  callbacks$pointClickCallback <- pointClickCallback
-  callbacks$underlayCallback <- underlayCallback
-  callbacks$unhighlightCallback <- unhighlightCallback
-  callbacks$zoomCallback <- zoomCallback
-  callbacks$drawHighlightPointCallback <- drawHighlightPointCallback
-  callbacks$drawPointCallback <- drawPointCallback
-  callbacks$annotationClickHandler <- annotationClickHandler
-  callbacks$annotationMouseOverHandler <- annotationMouseOverHandler
-  callbacks$annotationMouseOutHandler <- annotationMouseOutHandler
-  callbacks$annotationDblClickHandler <- annotationDblClickHandler
+  callbacks$clickCallback <- JS(clickCallback)
+  callbacks$drawCallback <- JS(drawCallback)
+  callbacks$highlightCallback <- JS(highlightCallback)
+  callbacks$pointClickCallback <- JS(pointClickCallback)
+  callbacks$underlayCallback <- JS(underlayCallback)
+  callbacks$unhighlightCallback <- JS(unhighlightCallback)
+  callbacks$zoomCallback <- JS(zoomCallback)
+  callbacks$drawHighlightPointCallback <- JS(drawHighlightPointCallback)
+  callbacks$drawPointCallback <- JS(drawPointCallback)
+  callbacks$annotationClickHandler <- JS(annotationClickHandler)
+  callbacks$annotationMouseOverHandler <- JS(annotationMouseOverHandler)
+  callbacks$annotationMouseOutHandler <- JS(annotationMouseOutHandler)
+  callbacks$annotationDblClickHandler <- JS(annotationDblClickHandler)
   
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, callbacks)
   

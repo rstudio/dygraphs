@@ -113,7 +113,7 @@ dySeries <- function(dygraph,
   series$options$strokePattern <- resolveStrokePattern(strokePattern)
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor
-  series$options$plotter <- plotter
+  series$options$plotter <- JS(plotter)
  
   # copy attrs for modification
   attrs <- dygraph$x$attrs

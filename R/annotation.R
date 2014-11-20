@@ -80,10 +80,10 @@ dyAnnotation <- function(dygraph,
   annotation$cssClass <- cssClass
   annotation$tickHeight <- tickHeight
   annotation$attachAtBottom <- attachAtBottom
-  annotation$clickHandler <- clickHandler
-  annotation$mouseOverHandler <- mouseOverHandler
-  annotation$mouseOutHandler <- mouseOutHandler
-  annotation$dblClickHandler <- dblClickHandler
+  annotation$clickHandler <- JS(clickHandler)
+  annotation$mouseOverHandler <- JS(mouseOverHandler)
+  annotation$mouseOutHandler <- JS(mouseOutHandler)
+  annotation$dblClickHandler <- JS(dblClickHandler)
   annotation$series <- series
   
   # add it
