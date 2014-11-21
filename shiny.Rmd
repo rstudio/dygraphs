@@ -4,11 +4,7 @@ title: "Using in Shiny Applications"
 
 The dygraphs package provides the `dygraphOutput` and `renderDygraph` functions to enable use of dygraphs within [Shiny](http://shiny.rstudio.com) applications and R Markdown [interactive documents](http://shiny.rstudio.com/articles/interactive-docs.html). 
 
-Note that using dygraphs with Shiny requires a development version of the Shiny package. You can install this using **devtools** as follows:
-
-```{r, eval=FALSE}
-devtools::install_github("rstudio/shiny")
-```
+Note that using dygraphs with Shiny requires a recent version of the Shiny package (>= 0.10.2.1) so you should be sure to update Shiny before trying out dygraphs with it.
 
 #### Simple Example
 
