@@ -21,10 +21,7 @@ HTMLWidgets.widget({
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
-    
-    // resolve javascript functions
-    this.resolveFunctions(x.attrs);
-    
+        
     // resolve "auto" legend behavior
     if (x.attrs.legend == "auto") {
       if (x.data.length <= 2)
