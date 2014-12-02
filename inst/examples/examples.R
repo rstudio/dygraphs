@@ -7,4 +7,6 @@ ts <- cbind(ldeaths, p)
 
 dygraph(ts, "Deaths from Lung Disease (UK)") %>%
   dySeries("ldeaths", label = "Deaths") %>%
-  dySeries(c("p.lwr", "p.fit", "p.upr"), label = "Predicted")
+  dySeries(c("p.lwr", "p.fit", "p.upr"), label = "Predicted") %>%
+  dyRangeSelector()
+
