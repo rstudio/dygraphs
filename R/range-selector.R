@@ -29,7 +29,7 @@ dyRangeSelector <- function(dygraph,
                             height = 40,
                             fillColor = " #A7B1C4",
                             strokeColor = "#808FAB", 
-                            keepMouseZoom = FALSE) {
+                            keepMouseZoom = TRUE) {
   
   selector <- list()
   selector$showRangeSelector = TRUE
@@ -42,9 +42,8 @@ dyRangeSelector <- function(dygraph,
   selector$rangeSelectorPlotFillColor <- fillColor
   selector$rangeSelectorPlotStrokeColor <- strokeColor
   
-  if(keepMouseZoom){
+  if(keepMouseZoom)
     selector$interactionModel= JS("Dygraph.Interaction.defaultModel")
-  }
   
   # merge selector
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, selector)
