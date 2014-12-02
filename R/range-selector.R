@@ -15,7 +15,8 @@
 #' @param strokeColor The range selector mini plot stroke color. This can be of 
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify 
 #'   "" to turn off stroke.
-#'   
+#' @param keepMouseZoom Keep mouse zoom when adding a range selector
+#' 
 #' @return A dygraph that displays a range selector
 #'   
 #' @note See the
@@ -27,7 +28,8 @@ dyRangeSelector <- function(dygraph,
                             dateWindow = NULL, 
                             height = 40,
                             fillColor = " #A7B1C4",
-                            strokeColor = "#808FAB") {
+                            strokeColor = "#808FAB", 
+                            keepMouseZoom = FALSE) {
   
   selector <- list()
   selector$showRangeSelector = TRUE
@@ -39,6 +41,10 @@ dyRangeSelector <- function(dygraph,
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- fillColor
   selector$rangeSelectorPlotStrokeColor <- strokeColor
+  
+  if(keepMouseZoom){
+    selector$interactionModel= JS("Dygraph.Interaction.defaultModel")
+  }
   
   # merge selector
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, selector)
