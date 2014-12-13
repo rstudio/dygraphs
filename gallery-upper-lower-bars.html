@@ -152,8 +152,8 @@ p &lt;- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
 dygraph(p, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;)</code></pre>
-<p><div id="htmlwidget-3844" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3844">{ "x": {
+<p><div id="htmlwidget-3078" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3078">{ "x": {
  "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
@@ -260,8 +260,8 @@ all &lt;- cbind(ldeaths, p)
 dygraph(all, &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dySeries(&quot;ldeaths&quot;, label = &quot;Actual&quot;) %&gt;%
   dySeries(c(&quot;p.lwr&quot;, &quot;p.fit&quot;, &quot;p.upr&quot;), label = &quot;Predicted&quot;)</code></pre>
-<p><div id="htmlwidget-4348" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-4348">{ "x": {
+<p><div id="htmlwidget-2577" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2577">{ "x": {
  "attrs": {
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "Actual", "Predicted" ],
@@ -517,8 +517,8 @@ getSymbols(c(&quot;MSFT&quot;, &quot;HPQ&quot;), from = &quot;2014-06-01&quot;, 
 dygraph(stocks, main = &quot;Microsoft and HP Share Prices&quot;) %&gt;% 
   dySeries(c(&quot;MSFT.Low&quot;, &quot;MSFT.Close&quot;, &quot;MSFT.High&quot;), label = &quot;MSFT&quot;) %&gt;%
   dySeries(c(&quot;HPQ.Low&quot;, &quot;HPQ.Close&quot;, &quot;HPQ.High&quot;), label = &quot;HPQ&quot;)</code></pre>
-<p><div id="htmlwidget-8012" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-8012">{ "x": {
+<p><div id="htmlwidget-5523" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-5523">{ "x": {
  "attrs": {
  "title": "Microsoft and HP Share Prices",
 "labels": [ "day", "MSFT", "HPQ" ],
