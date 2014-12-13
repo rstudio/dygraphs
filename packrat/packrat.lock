@@ -1,0 +1,178 @@
+PackratFormat: 1.4
+PackratVersion: 0.4.2
+RVersion: 3.1.1
+Repos: CRAN=http://cran.rstudio.com
+
+Package: RColorBrewer
+Source: CRAN
+Version: 1.0-5
+Hash: 6a849b729bec970204ca88b96906adbc
+
+Package: RCurl
+Source: CRAN
+Version: 1.95-4.5
+Hash: 1187c1ea73013abf25f362a7e6da1046
+Requires: bitops
+
+Package: RJSONIO
+Source: CRAN
+Version: 1.2-0.2
+Hash: f4aea783dfb279b89a0d735727fb46c5
+
+Package: TTR
+Source: CRAN
+Version: 0.22-0
+Hash: d4690fcdfa6e78f08a2a99eeb342cfea
+Requires: xts
+
+Package: bitops
+Source: CRAN
+Version: 1.0-6
+Hash: cb26464a8321628636b547518994c931
+
+Package: caTools
+Source: CRAN
+Version: 1.17
+Hash: e350bf43b27772012b530ccdf2e34f4d
+Requires: bitops
+
+Package: devtools
+Source: CRAN
+Version: 1.6.1
+Hash: e3096b832604a7a36ff0a6455e5cdddc
+Requires: RCurl, digest, evaluate, httr, jsonlite, memoise, rstudioapi,
+    whisker
+
+Package: digest
+Source: CRAN
+Version: 0.6.4
+Hash: e4bf0e79b15a352510aff0de905d31e2
+
+Package: dygraphs
+Source: github
+Version: 0.2
+Hash: b273ee118a33b395058e14cdff4e88a838132d6c
+Requires: htmlwidgets, magrittr, xts, zoo
+GithubRepo: dygraphs
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: b273ee118a33b395058e14cdff4e88a838132d6c
+
+Package: evaluate
+Source: CRAN
+Version: 0.5.5
+Hash: 20881970e590ee68de97a468694db7b0
+Requires: stringr
+
+Package: formatR
+Source: CRAN
+Version: 1.0
+Hash: a90c211d7df7e61a72b8ab6c99c2e848
+
+Package: highr
+Source: CRAN
+Version: 0.4
+Hash: 8c77cca8556e1501621b4a5ccb7999bd
+
+Package: htmltools
+Source: CRAN
+Version: 0.2.6
+Hash: 2c87108d130de261ac3c468d3316ae42
+Requires: digest
+
+Package: htmlwidgets
+Source: CRAN
+Version: 0.3.2
+Hash: fc11f8e19515931be78ec6860e5f89d4
+Requires: RJSONIO, htmltools, yaml
+
+Package: httr
+Source: CRAN
+Version: 0.5
+Hash: 68a70bdd16fb949a12e4fda7f31def00
+Requires: RCurl, digest, jsonlite, stringr
+
+Package: jsonlite
+Source: CRAN
+Version: 0.9.14
+Hash: 1e949c7f0f926734e2ff498eddb2309a
+
+Package: knitr
+Source: CRAN
+Version: 1.8
+Hash: d00d7b314ca4c34f8a56ceacefb31b4f
+Requires: digest, evaluate, formatR, highr, markdown, stringr
+
+Package: magrittr
+Source: CRAN
+Version: 1.0.1
+Hash: 576e5bf21e3801499cebc27af6ad1627
+
+Package: markdown
+Source: CRAN
+Version: 0.7.4
+Hash: 01d7f71ed6e3d9b1c17ba51cff91be72
+Requires: mime
+
+Package: memoise
+Source: CRAN
+Version: 0.2.1
+Hash: fc52fa39dfd216c44d64812ff31b1c67
+Requires: digest
+
+Package: mime
+Source: CRAN
+Version: 0.2
+Hash: 9179db921fcb2e5be44e217042ed06bc
+
+Package: packrat
+Source: github
+Version: 0.4.2
+Hash: 63b6c33c68a4e1b024ad0b50b55638c464a920d3
+GithubRepo: packrat
+GithubUsername: rstudio
+GithubRef: master
+GithubSha1: 63b6c33c68a4e1b024ad0b50b55638c464a920d3
+
+Package: quantmod
+Source: CRAN
+Version: 0.4-2
+Hash: 30e2c03f2b3af4eff6977c2b8b238d5b
+Requires: TTR, xts, zoo
+
+Package: rmarkdown
+Source: CRAN
+Version: 0.3.3
+Hash: fe7b370d7022b58c2b71469681c0431f
+Requires: caTools, htmltools, knitr, yaml
+
+Package: rstudioapi
+Source: CRAN
+Version: 0.1
+Hash: 5bd4449a873ec652a05c932312dcf04b
+
+Package: stringr
+Source: CRAN
+Version: 0.6.2
+Hash: cdde0cfa0f52cffeaca23a11a3899779
+
+Package: whisker
+Source: CRAN
+Version: 0.3-2
+Hash: 186ab2937fec1694c8a63009a2389c4e
+
+Package: xts
+Source: CRAN
+Version: 0.9-7
+Hash: be4b6faab98ec342c7aa497a903d7b43
+Requires: zoo
+
+Package: yaml
+Source: CRAN
+Version: 2.1.13
+Hash: e5d041c001f6d641fd009c1f6ef7d831
+
+Package: zoo
+Source: CRAN
+Version: 1.7-11
+Hash: a412b124ff249b078d9cd870de913c90
