@@ -14,10 +14,10 @@ The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) Ja
 
 ### Installation
 
-The dygraphs package depends on the development version of the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package so you need to install both packages. You can do this using the **devtools** package as follows:
+You can install the **dygraphs** package from GitHub as follows:
 
 ```{r, eval=FALSE}
-devtools::install_github(c("ramnathv/htmlwidgets", "rstudio/dygraphs"))
+devtools::install_github("rstudio/dygraphs")
 ```
 
 You can use dygraphs at the R console, within R Markdown documents, and within Shiny applications. See the usage documentation linked to from the sidebar for more details. There are a few demos of dygraphs below as well as quite a few others in the gallery of examples.

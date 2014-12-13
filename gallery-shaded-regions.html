@@ -17,7 +17,7 @@
 <link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
 <script src="libs/bootstrap-2.3.2/js/bootstrap.min.js"></script>
-<script src="libs/htmlwidgets-0.2.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-0.3.2/htmlwidgets.js"></script>
 <link href="libs/dygraphs-1.0.1/dygraph.css" rel="stylesheet" />
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/dygraphs-binding-0.2/dygraphs.js"></script>
@@ -151,17 +151,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;% 
   dyShading(from = &quot;1920-1-1&quot;, to = &quot;1930-1-1&quot;) %&gt;%
   dyShading(from = &quot;1940-1-1&quot;, to = &quot;1950-1-1&quot;)</code></pre>
-<p><div id="htmlwidget-3715" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3715">{ "attrs": {
+<p><div id="htmlwidget-3139" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3139">{ "x": {
+ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "V1" ],
 "legend": "auto",
 "axes": {
  "x": {
- "pixelsPerLabel":     50 
+ "pixelsPerLabel":                50 
 } 
 } 
-},"scale": "yearly","annotations": [],"shadings": [
+},
+"scale": "yearly",
+"annotations": [],
+"shadings": [
  {
  "from": "1920-01-01T00:00:00Z",
 "to": "1930-01-01T00:00:00Z",
@@ -172,24 +176,28 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 "to": "1950-01-01T00:00:00Z",
 "color": "#EFEFEF" 
 } 
-],"events": [],"data": [
+],
+"events": [],
+"data": [
  [ "1912-01-01T00:00:00Z", "1913-01-01T00:00:00Z", "1914-01-01T00:00:00Z", "1915-01-01T00:00:00Z", "1916-01-01T00:00:00Z", "1917-01-01T00:00:00Z", "1918-01-01T00:00:00Z", "1919-01-01T00:00:00Z", "1920-01-01T00:00:00Z", "1921-01-01T00:00:00Z", "1922-01-01T00:00:00Z", "1923-01-01T00:00:00Z", "1924-01-01T00:00:00Z", "1925-01-01T00:00:00Z", "1926-01-01T00:00:00Z", "1927-01-01T00:00:00Z", "1928-01-01T00:00:00Z", "1929-01-01T00:00:00Z", "1930-01-01T00:00:00Z", "1931-01-01T00:00:00Z", "1932-01-01T00:00:00Z", "1933-01-01T00:00:00Z", "1934-01-01T00:00:00Z", "1935-01-01T00:00:00Z", "1936-01-01T00:00:00Z", "1937-01-01T00:00:00Z", "1938-01-01T00:00:00Z", "1939-01-01T00:00:00Z", "1940-01-01T00:00:00Z", "1941-01-01T00:00:00Z", "1942-01-01T00:00:00Z", "1943-01-01T00:00:00Z", "1944-01-01T00:00:00Z", "1945-01-01T00:00:00Z", "1946-01-01T00:00:00Z", "1947-01-01T00:00:00Z", "1948-01-01T00:00:00Z", "1949-01-01T00:00:00Z", "1950-01-01T00:00:00Z", "1951-01-01T00:00:00Z", "1952-01-01T00:00:00Z", "1953-01-01T00:00:00Z", "1954-01-01T00:00:00Z", "1955-01-01T00:00:00Z", "1956-01-01T00:00:00Z", "1957-01-01T00:00:00Z", "1958-01-01T00:00:00Z", "1959-01-01T00:00:00Z", "1960-01-01T00:00:00Z", "1961-01-01T00:00:00Z", "1962-01-01T00:00:00Z", "1963-01-01T00:00:00Z", "1964-01-01T00:00:00Z", "1965-01-01T00:00:00Z", "1966-01-01T00:00:00Z", "1967-01-01T00:00:00Z", "1968-01-01T00:00:00Z", "1969-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "1971-01-01T00:00:00Z" ],
-[   49.9,   52.3,   49.4,   51.1,   49.4,   47.9,   49.8,   50.9,   49.3,   51.9,   50.8,   49.6,   49.3,   50.6,   48.4,   50.7,   50.9,   50.6,   51.5,   52.8,   51.8,   51.1,   49.8,   50.2,   50.4,   51.6,   51.8,   50.9,   48.8,   51.7,     51,   50.6,   51.7,   51.5,   52.1,   51.3,     51,     54,   51.4,   52.7,   53.1,   54.6,     52,     52,   50.9,   52.6,   50.2,   52.6,   51.6,   51.9,   50.5,   50.9,   51.7,   51.4,   51.7,   50.8,   51.9,   51.8,   51.9,     53 ] 
-] }</script></p>
+[              49.9,              52.3,              49.4,              51.1,              49.4,              47.9,              49.8,              50.9,              49.3,              51.9,              50.8,              49.6,              49.3,              50.6,              48.4,              50.7,              50.9,              50.6,              51.5,              52.8,              51.8,              51.1,              49.8,              50.2,              50.4,              51.6,              51.8,              50.9,              48.8,              51.7,                51,              50.6,              51.7,              51.5,              52.1,              51.3,                51,                54,              51.4,              52.7,              53.1,              54.6,                52,                52,              50.9,              52.6,              50.2,              52.6,              51.6,              51.9,              50.5,              50.9,              51.7,              51.4,              51.7,              50.8,              51.9,              51.8,              51.9,                53 ] 
+] 
+},"evals": [  ] }</script></p>
 <p>Note that the <code>from</code> and <code>to</code> parameters must be of type <code>POSIXct</code> (or objects that are directly convertible to POSIXct).</p>
 <p>You may want to modify the color of the shading to make it more or less subtle. Here’s a version of the previous graph with custom colors for each shading:</p>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;% 
   dySeries(label = &quot;Temp (F)&quot;, color = &quot;black&quot;) %&gt;%
   dyShading(from = &quot;1920-1-1&quot;, to = &quot;1930-1-1&quot;, color = &quot;#FFE6E6&quot;) %&gt;%
   dyShading(from = &quot;1940-1-1&quot;, to = &quot;1950-1-1&quot;, color = &quot;#CCEBD6&quot;)</code></pre>
-<p><div id="htmlwidget-2947" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2947">{ "attrs": {
+<p><div id="htmlwidget-7358" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7358">{ "x": {
+ "attrs": {
  "title": "New Haven Temperatures",
 "labels": [ "year", "Temp (F)" ],
 "legend": "auto",
 "axes": {
  "x": {
- "pixelsPerLabel":     50 
+ "pixelsPerLabel":                50 
 } 
 },
 "series": {
@@ -198,7 +206,10 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 } 
 },
 "colors": "black" 
-},"scale": "yearly","annotations": [],"shadings": [
+},
+"scale": "yearly",
+"annotations": [],
+"shadings": [
  {
  "from": "1920-01-01T00:00:00Z",
 "to": "1930-01-01T00:00:00Z",
@@ -209,10 +220,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 "to": "1950-01-01T00:00:00Z",
 "color": "#CCEBD6" 
 } 
-],"events": [],"data": [
+],
+"events": [],
+"data": [
  [ "1912-01-01T00:00:00Z", "1913-01-01T00:00:00Z", "1914-01-01T00:00:00Z", "1915-01-01T00:00:00Z", "1916-01-01T00:00:00Z", "1917-01-01T00:00:00Z", "1918-01-01T00:00:00Z", "1919-01-01T00:00:00Z", "1920-01-01T00:00:00Z", "1921-01-01T00:00:00Z", "1922-01-01T00:00:00Z", "1923-01-01T00:00:00Z", "1924-01-01T00:00:00Z", "1925-01-01T00:00:00Z", "1926-01-01T00:00:00Z", "1927-01-01T00:00:00Z", "1928-01-01T00:00:00Z", "1929-01-01T00:00:00Z", "1930-01-01T00:00:00Z", "1931-01-01T00:00:00Z", "1932-01-01T00:00:00Z", "1933-01-01T00:00:00Z", "1934-01-01T00:00:00Z", "1935-01-01T00:00:00Z", "1936-01-01T00:00:00Z", "1937-01-01T00:00:00Z", "1938-01-01T00:00:00Z", "1939-01-01T00:00:00Z", "1940-01-01T00:00:00Z", "1941-01-01T00:00:00Z", "1942-01-01T00:00:00Z", "1943-01-01T00:00:00Z", "1944-01-01T00:00:00Z", "1945-01-01T00:00:00Z", "1946-01-01T00:00:00Z", "1947-01-01T00:00:00Z", "1948-01-01T00:00:00Z", "1949-01-01T00:00:00Z", "1950-01-01T00:00:00Z", "1951-01-01T00:00:00Z", "1952-01-01T00:00:00Z", "1953-01-01T00:00:00Z", "1954-01-01T00:00:00Z", "1955-01-01T00:00:00Z", "1956-01-01T00:00:00Z", "1957-01-01T00:00:00Z", "1958-01-01T00:00:00Z", "1959-01-01T00:00:00Z", "1960-01-01T00:00:00Z", "1961-01-01T00:00:00Z", "1962-01-01T00:00:00Z", "1963-01-01T00:00:00Z", "1964-01-01T00:00:00Z", "1965-01-01T00:00:00Z", "1966-01-01T00:00:00Z", "1967-01-01T00:00:00Z", "1968-01-01T00:00:00Z", "1969-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "1971-01-01T00:00:00Z" ],
-[   49.9,   52.3,   49.4,   51.1,   49.4,   47.9,   49.8,   50.9,   49.3,   51.9,   50.8,   49.6,   49.3,   50.6,   48.4,   50.7,   50.9,   50.6,   51.5,   52.8,   51.8,   51.1,   49.8,   50.2,   50.4,   51.6,   51.8,   50.9,   48.8,   51.7,     51,   50.6,   51.7,   51.5,   52.1,   51.3,     51,     54,   51.4,   52.7,   53.1,   54.6,     52,     52,   50.9,   52.6,   50.2,   52.6,   51.6,   51.9,   50.5,   50.9,   51.7,   51.4,   51.7,   50.8,   51.9,   51.8,   51.9,     53 ] 
-] }</script></p>
+[              49.9,              52.3,              49.4,              51.1,              49.4,              47.9,              49.8,              50.9,              49.3,              51.9,              50.8,              49.6,              49.3,              50.6,              48.4,              50.7,              50.9,              50.6,              51.5,              52.8,              51.8,              51.1,              49.8,              50.2,              50.4,              51.6,              51.8,              50.9,              48.8,              51.7,                51,              50.6,              51.7,              51.5,              52.1,              51.3,                51,                54,              51.4,              52.7,              53.1,              54.6,                52,                52,              50.9,              52.6,              50.2,              52.6,              51.6,              51.9,              50.5,              50.9,              51.7,              51.4,              51.7,              50.8,              51.9,              51.8,              51.9,                53 ] 
+] 
+},"evals": [  ] }</script></p>
 <p>Note that we also changed the color of the series to black so that it contrast well with the custom background colors.</p>
 
 
