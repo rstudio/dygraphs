@@ -4,7 +4,7 @@
 \title{dygraph interactive plot for time series data}
 \usage{
 dygraph(data, main = NULL, xlab = NULL, ylab = NULL, group = NULL,
-  width = NULL, height = NULL)
+  width = NULL, height = NULL, fixed.tz.data = FALSE)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
@@ -22,6 +22,8 @@ plots within a group is automatically synchronized.}
 \item{width}{Width in pixels (optional, defaults to automatic sizing)}
 
 \item{height}{Height in pixels (optional, defaults to automatic sizing)}
+
+\item{fixed.tz.data}{Boolean, fixed timezone to data timezone ? FALSE by default}
 }
 \value{
 Interactive dygraph plot
