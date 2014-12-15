@@ -4,7 +4,7 @@
 \title{dygraph interactive range selection and zooming}
 \usage{
 dyRangeSelector(dygraph, dateWindow = NULL, height = 40,
-  fillColor = " #A7B1C4", strokeColor = "#808FAB")
+  fillColor = " #A7B1C4", strokeColor = "#808FAB", keepMouseZoom = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add range selector to}
@@ -21,8 +21,10 @@ form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify ""
 to turn off fill.}
 
 \item{strokeColor}{The range selector mini plot stroke color. This can be of
-  the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
-  "" to turn off stroke.}
+the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
+"" to turn off stroke.}
+
+\item{keepMouseZoom}{Keep mouse zoom when adding a range selector}
 }
 \value{
 A dygraph that displays a range selector
