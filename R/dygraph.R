@@ -12,6 +12,7 @@
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
 #' @param height Height in pixels (optional, defaults to automatic sizing)
+#'
 #' @return Interactive dygraph plot
 #'   
 #' @note
@@ -52,7 +53,6 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$axes$x$pixelsPerLabel <- 50
    
   # create x (dygraph attrs + some side data)
-  
   x <- list()
   x$attrs <- attrs
   x$scale <- periodicity$scale
