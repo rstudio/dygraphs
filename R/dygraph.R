@@ -12,7 +12,6 @@
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
 #' @param height Height in pixels (optional, defaults to automatic sizing)
-#' @param fixed.tz.data Boolean, fixed timezone to data timezone ? FALSE by default
 #' @return Interactive dygraph plot
 #'   
 #' @note
@@ -21,7 +20,7 @@
 #' 
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
-                    group = NULL, width = NULL, height = NULL, fixed.tz.data = FALSE) {
+                    group = NULL, width = NULL, height = NULL) {
   
   # convert data to xts
   if (!xts::is.xts(data))
@@ -61,12 +60,6 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$annotations <- list()
   x$shadings <- list()
   x$events <- list()
-  x$fixedtz <- fixed.tz.data
-  if(fixed.tz.data & attr(time, "tzone")==""){
-    warning("Can't fixe tz cause no informed tz in data")
-    x$fixedtz <- FALSE
-  }
-  x$tzone <- attr(time, "tzone")
   
   # add attributes required for defining custom series. when a dySeries call
   # is made it places series definition in "manual mode"; in this case we
