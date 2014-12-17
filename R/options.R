@@ -132,7 +132,7 @@
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timimg, so that you can distinguish 
 #'   multiple dygraphs on the same page.
-#'   
+#' @param fixedDataTimezone Boolean, fixed timezone to data timezone ? FALSE by default   
 #' @return dygraph with additional options
 #'   
 #' @note See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
@@ -179,7 +179,8 @@ dyOptions <- function(dygraph,
                       sigFigs = NULL,
                       panEdgeFraction = NULL,
                       animatedZooms = FALSE,
-                      timingName = NULL) {
+                      timingName = NULL,
+                      fixedDataTimezone = FALSE) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -225,6 +226,15 @@ dyOptions <- function(dygraph,
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
    
+  # fixed data timezone ?
+  data.timezone <- attr(attr(dygraph$x, "time"),"tzone")
+  dygraph$x$fixedtz <- fixedDataTimezone
+  if(fixedDataTimezone & data.timezone==""){
+    warning("Can't fixe tz cause no informed tz in data")
+    dygraph$x$fixedtz <- FALSE
+  }
+  dygraph$x$tzone <- data.timezone
+  
   # return modified dygraph
   dygraph
 }
