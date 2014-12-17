@@ -228,6 +228,9 @@ dyOptions <- function(dygraph,
    
   # fixed data timezone ?
   data.timezone <- attr(attr(dygraph$x, "time"),"tzone")
+  if(is.null(data.timezone)){
+    data.timezone <- ""
+  }
   dygraph$x$fixedtz <- fixedDataTimezone
   if(fixedDataTimezone & data.timezone==""){
     warning("Can't fixe tz cause no informed tz in data")
