@@ -4,7 +4,7 @@
 \title{dygraph interactive plot for time series data}
 \usage{
 dygraph(data, main = NULL, xlab = NULL, ylab = NULL, group = NULL,
-  width = NULL, height = NULL, fixed.tz.data = FALSE)
+  width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
