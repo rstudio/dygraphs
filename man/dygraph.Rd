@@ -22,8 +22,6 @@ plots within a group is automatically synchronized.}
 \item{width}{Width in pixels (optional, defaults to automatic sizing)}
 
 \item{height}{Height in pixels (optional, defaults to automatic sizing)}
-
-\item{fixed.tz.data}{Boolean, fixed timezone to data timezone ? FALSE by default}
 }
 \value{
 Interactive dygraph plot
