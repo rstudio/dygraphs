@@ -16,7 +16,7 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
   digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
   maxNumberWidth = 6, sigFigs = NULL, panEdgeFraction = NULL,
-  animatedZooms = FALSE, timingName = NULL)
+  animatedZooms = FALSE, timingName = NULL, fixedDataTimezone = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -187,8 +187,10 @@ you set a zoomCallback, it will only be called after the animation is
 complete.}
 
 \item{timingName}{Set this option to log timing information. The value of the
-  option will be logged along with the timimg, so that you can distinguish
-  multiple dygraphs on the same page.}
+option will be logged along with the timimg, so that you can distinguish
+multiple dygraphs on the same page.}
+
+\item{fixedDataTimezone}{Boolean, fixed timezone to data timezone ? FALSE by default}
 }
 \value{
 dygraph with additional options
