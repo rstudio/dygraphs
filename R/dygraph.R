@@ -12,7 +12,7 @@
 #'   plots within a group is automatically synchronized.
 #' @param width Width in pixels (optional, defaults to automatic sizing)
 #' @param height Height in pixels (optional, defaults to automatic sizing)
-#'
+#'   
 #' @return Interactive dygraph plot
 #'   
 #' @note
