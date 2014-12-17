@@ -31,17 +31,17 @@ HTMLWidgets.widget({
     }
     
     // set appropriated function in case of fixed tz
-    if (attrs.axes.x.axisLabelFormatter === undefined & x.fixedtz)
+    if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
       attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
       
-    if (attrs.axes.x.valueFormatter === undefined & x.fixedtz)
+    if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
       attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
 
-    if (attrs.axes.x.ticker === undefined & x.fixedtz)
+    if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
       attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
   
     // provide an automatic x value formatter if none is already specified
-    if (attrs.axes.x.valueFormatter === undefined & x.fixedtz != true)
+    if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
