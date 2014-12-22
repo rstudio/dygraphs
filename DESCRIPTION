@@ -1,20 +1,20 @@
 Package: dygraphs
 Type: Package
 Title: Interface to Dygraphs Interactive Time Series JavaScript Library
-Version: 0.2
-Date: 2014-08-15
+Version: 0.3
+Date: 2014-12-22
 Author: Dan Vanderkam, JJ Allaire
 Maintainer: JJ Allaire <jj@rstudio.com>
 Description: An R interface to the dygraphs JavaScript charting library.
   Provides rich facilities for charting time-series data in R, including
   highly configurable series and axis display and rich interactive 
   features like zoom/pan and series/point highlighting.
-License: GPL-3
+License: GPL-2
 Depends:
     R (>= 3.0)
 Imports:
     magrittr,
-    htmlwidgets (>= 0.3),
+    htmlwidgets (>= 0.3.2),
     zoo (>= 1.7-10),
     xts (>= 0.9-7)
 Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)
