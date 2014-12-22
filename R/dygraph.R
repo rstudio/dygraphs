@@ -4,7 +4,7 @@
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
-#'   which is covertible to \code{xts}).
+#'   which is convertible to \code{xts}).
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
@@ -61,9 +61,9 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   x$shadings <- list()
   x$events <- list()
   
-  # add attributes required for defining custom series. when a dySeries call
-  # is made it places series definition in "manual mode"; in this case we
-  # need to save the original data 
+  # Add attributes required for defining custom series. When a dySeries call
+  # is made it places series definition in "manual mode". In this case we
+  # need to save the original data.
   attr(x, "time") <- time
   attr(x, "data") <- data
   attr(x, "autoSeries") <- 2
@@ -92,7 +92,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
 #' @param width,height Must be a valid CSS unit (like \code{"100\%"},
 #'   \code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
 #'   string and have \code{"px"} appended.
-#' @param expr An expression that generates a networkD3 graph
+#' @param expr An expression that generates a dygraph
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This 
 #'   is useful if you want to save an expression in a variable.

@@ -15,7 +15,7 @@ dyHighlight(dygraph, highlightCircleSize = 3,
 highlighted points.}
 
 \item{highlightSeriesBackgroundAlpha}{Fade the background while highlighting
-series. 1=fully visible background (disable fading), 0=hiddden background
+series. 1=fully visible background (disable fading), 0=hidden background
 (show highlighted series only).}
 
 \item{highlightSeriesOpts}{When set, the options from this list are applied

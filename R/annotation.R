@@ -5,7 +5,7 @@
 #' 
 #' @param dygraph Dygraph to add an annotation to
 #' @param x Date value indicating where to place the annotation. This should be 
-#'   of class \code{POSIXct} or convertable to \code{POSIXct}.
+#'   of class \code{POSIXct} or convertible to \code{POSIXct}.
 #' @param text Text to overlay on the chart at the location of x
 #' @param tooltip Additional tooltip text to display on mouse hover
 #' @param width Width (in pixels) of the annotation flag.
@@ -28,7 +28,7 @@
 #'   
 #' @note Annotations are bound to specific series in the input data. If you have
 #'   only one series or if you define annotations immediately after a call to 
-#'   \code{\link{dySeries}} then you need not speicfy the series explicitly. 
+#'   \code{\link{dySeries}} then you need not specify the series explicitly. 
 #'   Otherwise, you should use the \code{series} parameter to indicate which
 #'   series the annotation should be bound to.
 #'   

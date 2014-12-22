@@ -245,8 +245,8 @@ HTMLWidgets.widget({
     };
   },
   
-  // add dashed line support to canvas rendering context
-  // see: http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
+  // Add dashed line support to canvas rendering context
+  // See: http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
   dashedLine: function(canvas, x, y, x2, y2, dashArray) {
     canvas.beginPath();
     if (!dashArray) dashArray=[10,5];
@@ -289,11 +289,11 @@ HTMLWidgets.widget({
       "$1"));
   },
   
-  // we deal exclusively in UTC dates within R, however dygraphs deals 
-  // exclusively in the local time zone. therefore, in order to plot date
-  // lables that make sense to the user when we are dealing with days,
+  // We deal exclusively in UTC dates within R, however dygraphs deals 
+  // exclusively in the local time zone. Therefore, in order to plot date
+  // labels that make sense to the user when we are dealing with days,
   // months or years we need to convert the UTC date value to a local time
-  // value that "looks like" the equivilant UTC value. to do this we add the
+  // value that "looks like" the equivilant UTC value. To do this we add the
   // timezone offset to the UTC date.
   normalizeDateValue: function(scale, value) {
     var date = new Date(value); 

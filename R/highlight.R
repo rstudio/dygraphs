@@ -8,7 +8,7 @@
 #' @param highlightCircleSize The size in pixels of the dot drawn over 
 #'   highlighted points.
 #' @param highlightSeriesBackgroundAlpha Fade the background while highlighting 
-#'   series. 1=fully visible background (disable fading), 0=hiddden background 
+#'   series. 1=fully visible background (disable fading), 0=hidden background 
 #'   (show highlighted series only).
 #' @param highlightSeriesOpts When set, the options from this list are applied 
 #'   to the series closest to the mouse pointer for interactive highlighting. 

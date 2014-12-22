@@ -10,11 +10,11 @@ dyShading(dygraph, from, to, color = "#EFEFEF")
 \item{dygraph}{Dygraph to add shading to}
 
 \item{from}{Date/time to shade from (must be a \code{as.POSIXct} object or
-another object convertible to \code{as.POSIXct}). convertable via
+another object convertible to \code{as.POSIXct}). convertible via
 \code{as.POSIXct}).}
 
 \item{to}{Date/time to shade to (must be a \code{as.POSIXct} object or
-another object convertible to \code{as.POSIXct}). convertable via
+another object convertible to \code{as.POSIXct}). convertible via
 \code{as.POSIXct}).}
 
 \item{color}{Color of shading. This can be of the form "#AABBCC" or

@@ -10,9 +10,8 @@ dyEvent(dygraph, date, label, labelLoc = c("top", "bottom"),
 \arguments{
 \item{dygraph}{Dygraph to add event line to}
 
-\item{date}{Date/time for the event (must be a \code{as.POSIXct} object or
-another object convertible to \code{as.POSIXct}). convertable via
-\code{as.POSIXct}).}
+\item{date}{Date/time for the event (must be a \code{POSIXct} object or
+another object convertible to \code{POSIXct} via \code{as.POSIXct}).}
 
 \item{label}{Label for event.}
 

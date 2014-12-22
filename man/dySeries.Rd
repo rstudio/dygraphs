@@ -12,7 +12,7 @@ dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
 
-\item{name}{Name of series within dataset. If no name is specified then
+\item{name}{Name of series within data set. If no name is specified then
 series are bound to implicitly based on their order within the underlying
 time series object. This parameter can also be a character vector of length
 3 that specifies a set of input column names to use as the lower, value,
@@ -49,7 +49,7 @@ used to increase the contrast or some graphs.}
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed", or
 "dotdash") or a custom pattern array where the even index is a draw and odd
 is a space in pixels. If \code{NULL} then it draws a solid line. The array
-should have an even length as any odd lengthed array could be expressed as
+should have an even length as any odd length array could be expressed as
 a smaller even length array.}
 
 \item{strokeBorderWidth}{Draw a border around graph lines to make crossing

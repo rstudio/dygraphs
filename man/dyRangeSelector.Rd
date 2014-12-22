@@ -12,7 +12,7 @@ dyRangeSelector(dygraph, dateWindow = NULL, height = 40,
 
 \item{dateWindow}{Initially zoom in on a section of the graph. Is a two
 element vector [earliest, latest], where earliest/latest objects
-convertable via \code{as.POSIXct}.}
+convertible via \code{as.POSIXct}.}
 
 \item{height}{Height, in pixels, of the range selector widget. This option
 can only be specified at Dygraph creation time.}

@@ -4,10 +4,10 @@
 #' 
 #' @param dygraph Dygraph to add shading to
 #' @param from Date/time to shade from (must be a \code{as.POSIXct} object or 
-#'   another object convertible to \code{as.POSIXct}). convertable via 
+#'   another object convertible to \code{as.POSIXct}). convertible via 
 #'   \code{as.POSIXct}).
 #' @param to Date/time to shade to (must be a \code{as.POSIXct} object or 
-#'   another object convertible to \code{as.POSIXct}). convertable via 
+#'   another object convertible to \code{as.POSIXct}). convertible via 
 #'   \code{as.POSIXct}).
 #' @param color Color of shading. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to a very light gray.

@@ -17,7 +17,7 @@ renderDygraph(expr, env = parent.frame(), quoted = FALSE)
 \code{"400px"}, \code{"auto"}) or a number, which will be coerced to a
 string and have \code{"px"} appended.}
 
-\item{expr}{An expression that generates a networkD3 graph}
+\item{expr}{An expression that generates a dygraph}
 
 \item{env}{The environment in which to evaluate \code{expr}.}
 

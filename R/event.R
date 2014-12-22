@@ -3,9 +3,8 @@
 #' Add a vertical event line to a dygraph
 #' 
 #' @param dygraph Dygraph to add event line to
-#' @param date Date/time for the event (must be a \code{as.POSIXct} object or 
-#'   another object convertible to \code{as.POSIXct}). convertable via 
-#'   \code{as.POSIXct}).
+#' @param date Date/time for the event (must be a \code{POSIXct} object or 
+#'   another object convertible to \code{POSIXct} via \code{as.POSIXct}).
 #' @param label Label for event.
 #' @param labelLoc Location for label (top or bottom).
 #' @param color Color of event line. This can be of the form "#AABBCC" or 

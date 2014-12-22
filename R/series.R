@@ -8,7 +8,7 @@
 #' @inheritParams dyOptions
 #'   
 #' @param dygraph Dygraph to add a series definition to
-#' @param name Name of series within dataset. If no name is specified then 
+#' @param name Name of series within data set. If no name is specified then 
 #'   series are bound to implicitly based on their order within the underlying 
 #'   time series object. This parameter can also be a character vector of length
 #'   3 that specifies a set of input column names to use as the lower, value,
@@ -36,7 +36,7 @@
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
 #'   "dotdash") or a custom pattern array where the even index is a draw and odd
 #'   is a space in pixels. If \code{NULL} then it draws a solid line. The array 
-#'   should have an even length as any odd lengthed array could be expressed as 
+#'   should have an even length as any odd length array could be expressed as 
 #'   a smaller even length array.
 #' @param strokeBorderWidth Draw a border around graph lines to make crossing 
 #'   lines more easily distinguishable. Useful for graphs with many lines.
@@ -85,7 +85,7 @@ dySeries <- function(dygraph,
          "of length one or three")
   }
   
-  # get the cols where this series is located and verify that they are
+  # Get the cols where this series is located and verify that they are
   # available within the underlying dataset
   cols <- which(labels %in% name)
   if (length(cols) != length(name)) {
@@ -93,7 +93,7 @@ dySeries <- function(dygraph,
          "Valid series names are: ", paste(labels[-1], collapse = ", "))
   }
   
-  # data series named here are "consumed" from the automatically generated
+  # Data series named here are "consumed" from the automatically generated
   # list of series (they'll be added back in below)
   cols <- which(dygraph$x$attrs$labels %in% name)
   dygraph$x$data <- dygraph$x$data[-c(cols)]

@@ -53,9 +53,9 @@
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
 #'   y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
 #'   to 50 (x-axis) or 30 (y-axes).
-#' @param drawGrid Whether to display gridlines in the chart.
-#' @param gridLineColor The color of the gridlines.
-#' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
+#' @param drawGrid Whether to display grid lines in the chart.
+#' @param gridLineColor The color of the grid lines.
+#' @param gridLineWidth Thickness (in pixels) of the grid lines drawn under the 
 #'   chart.
 #' @param independentTicks Only valid for y and y2, has no effect on x: This 
 #'   option defines whether the y axes should align their ticks or if they 

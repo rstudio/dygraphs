@@ -77,11 +77,11 @@ format for the values displayed on mouseover (see the
 \href{http://dygraphs.com/options.html}{dygraphs documentation} for
 additional details).}
 
-\item{drawGrid}{Whether to display gridlines in the chart.}
+\item{drawGrid}{Whether to display grid lines in the chart.}
 
-\item{gridLineColor}{The color of the gridlines.}
+\item{gridLineColor}{The color of the grid lines.}
 
-\item{gridLineWidth}{Thickness (in pixels) of the gridlines drawn under the
+\item{gridLineWidth}{Thickness (in pixels) of the grid lines drawn under the
 chart.}
 
 \item{independentTicks}{Only valid for y and y2, has no effect on x: This

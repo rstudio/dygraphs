@@ -9,7 +9,7 @@ dygraph(data, main = NULL, xlab = NULL, ylab = NULL, group = NULL,
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
-which is covertible to \code{xts}).}
+which is convertible to \code{xts}).}
 
 \item{main}{Main plot title (optional)}
 

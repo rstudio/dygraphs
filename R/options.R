@@ -24,7 +24,7 @@
 #'   option can also be set on a per-series basis.
 #' @param drawGapEdgePoints Draw points at the edges of gaps in the data. This 
 #'   improves visibility of small data segments or other data irregularities.
-#' @param connectSeparatedPoints Usually, when Dygraphs encounters a missing 
+#' @param connectSeparatedPoints Usually, when dygraphs encounters a missing 
 #'   value in a data series, it interprets this as a gap and draws it as such. 
 #'   If, instead, the missing values represents an x-value for which only a 
 #'   different series has data, then you'll want to connect the dots by setting 
@@ -34,7 +34,7 @@
 #'   on a per-series basis.
 #' @param strokePattern A custom pattern array where the even index is a draw 
 #'   and odd is a space in pixels. If null then it draws a solid line. The array
-#'   should have a even length as any odd lengthed array could be expressed as a
+#'   should have a even length as any odd length array could be expressed as a 
 #'   smaller even length array. This is used to create dashed lines. This option
 #'   can also be set on a per-series basis.
 #' @param strokeBorderWidth Draw a border around graph lines to make crossing 
@@ -44,8 +44,8 @@
 #'   \code{strokeBorderWidth} is set. This option can also be set on a 
 #'   per-series basis.
 #' @param plotter A function (or array of functions) which plot each data series
-#'   on the chart. May also be set on a per-series basis. See the
-#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for
+#'   on the chart. May also be set on a per-series basis. See the 
+#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
 #'   additional details on plotting functions.
 #' @param colors Character vector of colors for the data series. These can be of
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 
@@ -85,12 +85,12 @@
 #'   labels, both x- and y-axis. This may also be set on a per-axis basis.
 #' @param axisLabelWidth Width (in pixels) of the containing divs for x- and 
 #'   y-axis labels.
-#' @param drawGrid Whether to display gridlines in the chart. This may be set on
-#'   a per-axis basis to define the visibility of each axis' grid separately. 
+#' @param drawGrid Whether to display grid lines in the chart. This may be set 
+#'   on a per-axis basis to define the visibility of each axis' grid separately.
 #'   Defaults to \code{TRUE} for x and y, and \code{FALSE} for y2.
-#' @param gridLineColor The color of the gridlines. This option can also be set 
+#' @param gridLineColor The color of the grid lines. This option can also be set
 #'   on a per-series basis.
-#' @param gridLineWidth Thickness (in pixels) of the gridlines drawn under the 
+#' @param gridLineWidth Thickness (in pixels) of the grid lines drawn under the 
 #'   chart. This option can also be set on a per-series basis.
 #' @param titleHeight Height of the chart title, in pixels. This also controls 
 #'   the default font size of the title. If you style the title on your own, 
@@ -117,9 +117,9 @@
 #'   this to something large, like 20 or 30.
 #' @param sigFigs By default, dygraphs displays numbers with a fixed number of 
 #'   digits after the decimal point. If you'd prefer to have a fixed number of 
-#'   significant figures, set this option to that number of sig figs. A value of
-#'   2, for instance, would cause 1 to be display as 1.0 and 1234 to be 
-#'   displayed as 1.23e+3.
+#'   significant figures, set this option to that number of significant figures.
+#'   A value of 2, for instance, would cause 1 to be display as 1.0 and 1234 to
+#'   be displayed as 1.23e+3.
 #' @param panEdgeFraction A value representing the farthest a graph may be 
 #'   panned, in percent of the display. For example, a value of 0.1 means that 
 #'   the graph can only be panned 10% pased the edges of the displayed values. 
@@ -130,7 +130,7 @@
 #'   you set a zoomCallback, it will only be called after the animation is 
 #'   complete.
 #' @param timingName Set this option to log timing information. The value of the
-#'   option will be logged along with the timimg, so that you can distinguish 
+#'   option will be logged along with the timing, so that you can distinguish 
 #'   multiple dygraphs on the same page.
 #'   
 #' @return dygraph with additional options
