@@ -7,7 +7,7 @@ Author: Dan Vanderkam, JJ Allaire
 Maintainer: JJ Allaire <jj@rstudio.com>
 Description: An R interface to the dygraphs JavaScript charting library.
     Provides rich facilities for charting time-series data in R, including
-    highly configurable series and axis display and interactive
+    highly configurable series- and axis-display and interactive
     features like zoom/pan and series/point highlighting.
 License: MIT + file LICENSE
 Depends:
