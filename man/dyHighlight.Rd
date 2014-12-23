@@ -40,4 +40,12 @@ See the
 \href{http://rstudio.github.io/dygraphs/gallery-series-highlighting.html}{online
 documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
+  dyHighlight(highlightCircleSize = 5,
+              highlightSeriesBackgroundAlpha = 0.2,
+              hideOnMouseOut = FALSE)
+}
 

@@ -77,4 +77,13 @@ See the
   \href{http://rstudio.github.io/dygraphs/gallery-series-options.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
+  dySeries("mdeaths", drawPoints = TRUE, color = "blue") \%>\%
+  dySeries("fdeaths", stepPlot = TRUE, color = "red")
+}
 

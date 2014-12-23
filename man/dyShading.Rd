@@ -31,4 +31,11 @@ See the
   \href{http://rstudio.github.io/dygraphs/gallery-shaded-regions.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dyShading(from = "1920-1-1", to = "1930-1-1") \%>\%
+  dyShading(from = "1940-1-1", to = "1950-1-1")
+}
 

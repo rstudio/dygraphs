@@ -24,4 +24,10 @@ See the
 \href{http://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
 documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(discoveries, main = "Important Discoveries") \%>\%
+  dyRoller(rollPeriod = 5)
+}
 

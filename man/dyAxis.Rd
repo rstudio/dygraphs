@@ -106,4 +106,11 @@ See the
   \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dyAxis("y", label = "Temp (F)", valueRange = c(40, 60)) \%>\%
+  dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)
+}
 

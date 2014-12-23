@@ -19,6 +19,11 @@
 #' See the \href{http://rstudio.github.io/dygraphs/}{online documentation} for
 #' additional details and examples.
 #' 
+#' @examples 
+#' library(dygraphs)
+#' lungDeaths <- cbind(mdeaths, fdeaths)
+#' dygraph(lungDeaths)
+#' 
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     group = NULL, width = NULL, height = NULL) {

@@ -39,4 +39,16 @@ See the
 \href{http://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
 documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dyRangeSelector()
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dyRangeSelector(height = 20, strokeColor = "")
+}
 

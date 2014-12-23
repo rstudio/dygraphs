@@ -9,6 +9,12 @@
 #'   
 #' @return A dygraph that displays a range selector
 #'   
+#' @examples 
+#' library(dygraphs)
+#' 
+#' dygraph(discoveries, main = "Important Discoveries") %>% 
+#'   dyRoller(rollPeriod = 5)
+#' 
 #' @note See the
 #' \href{http://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
 #' documentation} for additional details and examples.

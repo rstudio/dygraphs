@@ -66,4 +66,12 @@ See the
   \href{http://rstudio.github.io/dygraphs/gallery-annotations.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(presidents, main = "Presidential Approval") \%>\%
+  dyAxis("y", valueRange = c(0, 100)) \%>\%
+  dyAnnotation("1950-7-1", text = "A", tooltip = "Korea") \%>\%
+  dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")
+}
 

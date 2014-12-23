@@ -24,4 +24,5 @@ Imports:
     htmlwidgets (>= 0.3.2),
     zoo (>= 1.7-10),
     xts (>= 0.9-7)
+Suggests: testthat
 Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)

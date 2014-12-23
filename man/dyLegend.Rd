@@ -43,4 +43,11 @@ See the
   \href{http://rstudio.github.io/dygraphs/gallery-plot-legend.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
+  dySeries("V1", label = "Temperature (F)") \%>\%
+  dyLegend(show = "always", hideOnMouseOut = FALSE)
+}
 

@@ -35,4 +35,9 @@ R interface to interactive time series plotting using the
 See the \href{http://rstudio.github.io/dygraphs/}{online documentation} for
 additional details and examples.
 }
+\examples{
+library(dygraphs)
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)
+}
 

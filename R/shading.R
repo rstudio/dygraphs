@@ -13,7 +13,14 @@
 #'   "rgb(255,100,200)" or "yellow". Defaults to a very light gray.
 #'   
 #' @return A dygraph with the specified shading
-#'   
+#'  
+#' @examples 
+#' library(dygraphs)
+#' 
+#' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+#'   dyShading(from = "1920-1-1", to = "1930-1-1") %>%
+#'   dyShading(from = "1940-1-1", to = "1950-1-1")   
+#'     
 #' @note See the
 #'   \href{http://rstudio.github.io/dygraphs/gallery-shaded-regions.html}{online
 #'   documentation} for additional details and examples.

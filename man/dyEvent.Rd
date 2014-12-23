@@ -34,4 +34,12 @@ Add a vertical event line to a dygraph
 See the \href{http://rstudio.github.io/dygraphs/gallery-event-lines.html}{online
   documentation} for additional details and examples.
 }
+\examples{
+library(dygraphs)
+
+dygraph(presidents, main = "Presidential Approval") \%>\%
+  dyAxis("y", valueRange = c(0, 100)) \%>\%
+  dyEvent(date = "1950-6-30", "Korea", labelLoc = "bottom") \%>\%
+  dyEvent(date = "1965-2-09", "Vietnam", labelLoc = "bottom")
+}
 
