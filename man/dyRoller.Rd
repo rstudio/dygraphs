@@ -4,10 +4,12 @@
 \alias{dyRoller}
 \title{dygraph rolling average period text box}
 \usage{
-dyRoller(dygraph, rollPeriod = 1)
+dyRoller(dygraph, showRoller = TRUE, rollPeriod = 1)
 }
 \arguments{
 \item{dygraph}{Dygraph to add roller to}
+
+\item{showRoller}{Whether to show the roller}
 
 \item{rollPeriod}{Number of time scale units (e.g. days, months, years) to
   average values over.}

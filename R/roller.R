@@ -4,6 +4,7 @@
 #' values are averaged over the specified number of time scale units.
 #' 
 #' @param dygraph Dygraph to add roller to
+#' @param showRoller Whether to show the roller
 #' @param rollPeriod Number of time scale units (e.g. days, months, years) to 
 #'   average values over.
 #'   
@@ -21,11 +22,12 @@
 #' 
 #' @export
 dyRoller <- function(dygraph,
+                     showRoller = TRUE,
                      rollPeriod = 1) {
   
   roller <- list()
-  roller$showRoller <- TRUE
-  roller$rollPeriod = rollPeriod
+  roller$showRoller <- showRoller
+  roller$rollPeriod <- rollPeriod
   
   # merge roller
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, roller)
