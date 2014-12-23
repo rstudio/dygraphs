@@ -16,7 +16,7 @@ HTMLWidgets.widget({
   renderValue: function(el, x, instance) {
     
     // reference to this for closures
-     var thiz = this;
+    var thiz = this;
     
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
@@ -60,7 +60,7 @@ HTMLWidgets.widget({
     if (this.queryVar("viewer_pane") === "1")
       document.body.style.fontFamily = "Arial, sans-serif";
     
-    if (instance.dygraph) { // update exisigng instance
+    if (instance.dygraph) { // update existing instance
        
       instance.dygraph.updateOptions(attrs);
     
