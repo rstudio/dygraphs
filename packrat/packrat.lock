@@ -1,6 +1,6 @@
 PackratFormat: 1.4
-PackratVersion: 0.4.2
-RVersion: 3.1.1
+PackratVersion: 0.4.2.7
+RVersion: 3.1.2
 Repos: CRAN=http://cran.rstudio.com
 
 Package: RColorBrewer
@@ -127,12 +127,12 @@ Hash: 9179db921fcb2e5be44e217042ed06bc
 
 Package: packrat
 Source: github
-Version: 0.4.2
-Hash: 63b6c33c68a4e1b024ad0b50b55638c464a920d3
+Version: 0.4.2-7
+Hash: bf1677422e700ec0e1ce0481d3a7551f511ddb0a
 GithubRepo: packrat
 GithubUsername: rstudio
 GithubRef: master
-GithubSha1: 63b6c33c68a4e1b024ad0b50b55638c464a920d3
+GithubSha1: bf1677422e700ec0e1ce0481d3a7551f511ddb0a
 
 Package: quantmod
 Source: CRAN
