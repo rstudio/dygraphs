@@ -166,8 +166,11 @@ dySeries <- function(dygraph,
   attrs$series[[series$label]] <- series$options
   
   # add color if specified 
-  if (!is.null(color))
+  if (!is.null(color)) {
+    if (length(color) == 1)
+      color[[2]] <- color[[1]]
     attrs$colors <- c(attrs$colors, color)
+  }
   
   # set attrs
   dygraph$x$attrs <- attrs
