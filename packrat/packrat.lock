@@ -50,13 +50,13 @@ Hash: e4bf0e79b15a352510aff0de905d31e2
 
 Package: dygraphs
 Source: github
-Version: 0.2
-Hash: b273ee118a33b395058e14cdff4e88a838132d6c
+Version: 0.3.3
+Hash: fec885fe3243d8d848eec3f7489ce6b7c1b35fc7
 Requires: htmlwidgets, magrittr, xts, zoo
 GithubRepo: dygraphs
 GithubUsername: rstudio
 GithubRef: master
-GithubSha1: b273ee118a33b395058e14cdff4e88a838132d6c
+GithubSha1: fec885fe3243d8d848eec3f7489ce6b7c1b35fc7
 
 Package: evaluate
 Source: CRAN
