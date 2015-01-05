@@ -35,6 +35,12 @@
 #' \href{http://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
 #' documentation} for additional details and examples.
 #' 
+#' Shiny applications can respond to changes in the \code{dateWindow}
+#' via a special date window shiny input value. For example, if the 
+#' output id of a dygraph is `series` then the current date window
+#' can be read from \code{input$series_date_window} as an array of 
+#' two date values (from and to).
+#' 
 #' @export
 dyRangeSelector <- function(dygraph,
                             dateWindow = NULL, 
