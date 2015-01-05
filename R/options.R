@@ -132,7 +132,9 @@
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timing, so that you can distinguish 
 #'   multiple dygraphs on the same page.
-#'   
+#' @param useDataTimezone Whether to use the time zone of the underlying xts
+#'  object for display. Defaults to \code{FALSE} which uses the time zone
+#'  of the client workstation.
 #' @return dygraph with additional options
 #'   
 #' @note See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
@@ -179,7 +181,8 @@ dyOptions <- function(dygraph,
                       sigFigs = NULL,
                       panEdgeFraction = NULL,
                       animatedZooms = FALSE,
-                      timingName = NULL) {
+                      timingName = NULL,
+                      useDataTimezone = FALSE) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -225,6 +228,18 @@ dyOptions <- function(dygraph,
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
    
+  # use data timezone
+  data.timezone <- attr(attr(dygraph$x, "time"),"tzone")
+  if (is.null(data.timezone)) {
+    data.timezone <- ""
+  }
+  dygraph$x$fixedtz <- useDataTimezone
+  if (useDataTimezone && (data.timezone == "")) {
+    warning("Can't use data time zone: no 'tzone' attribute in data")
+    dygraph$x$fixedtz <- FALSE
+  }
+  dygraph$x$tzone <- data.timezone
+  
   # return modified dygraph
   dygraph
 }
