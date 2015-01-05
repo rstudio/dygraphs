@@ -76,6 +76,10 @@ HTMLWidgets.widget({
     
     } else {  // create new instance
       
+      // add shiny input for date window
+      if (HTMLWidgets.shinyMode)
+        this.addDateWindowShinyInput(el.id, x);
+  
       // inject css if necessary
       if (x.css != null) {
         var style = document.createElement('style');
@@ -413,6 +417,25 @@ HTMLWidgets.widget({
           canvas.restore();
         }
       }
+    };
+  },
+  
+  addDateWindowShinyInput: function(id, x) {
+      
+    // check for an existing drawCallback
+    var prevDrawCallback = x.attrs["drawCallback"];
+    
+    // install the callback
+    x.attrs.drawCallback = function(me, initial) {
+      
+      // call existing
+      if (prevDrawCallback)
+        prevDrawCallback(me, initial);
+        
+      // fire input change
+      var range = me.xAxisRange();
+      var dateWindow = [new Date(range[0]), new Date(range[1])];
+      Shiny.onInputChange(id + "_date_window", dateWindow); 
     };
   },
   

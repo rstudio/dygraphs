@@ -11,7 +11,12 @@ shinyUI(fluidPage(
       selectInput("interval", label = "Prediction Interval",
                   choices = c("0.80", "0.90", "0.95", "0.99"),
                   selected = "0.95"),
-      checkboxInput("showgrid", label = "Show Grid", value = TRUE)
+      checkboxInput("showgrid", label = "Show Grid", value = TRUE),
+      hr(),
+      div(strong("From: "), textOutput("from", inline = TRUE)),
+      div(strong("To: "), textOutput("to", inline = TRUE)),
+      br(),
+      helpText("Click and drag to zoom in (double click to zoom back out).")
     ),
     mainPanel(
       dygraphOutput("dygraph")
