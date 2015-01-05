@@ -233,7 +233,7 @@ HTMLWidgets.widget({
         return mmnt.format('YYYY');
       }else{
         if(granularity >= Dygraph.MONTHLY){
-          return mmnt.format('MMM YYYY');
+          return mmnt.format('MMM YY');
         }else{
           var frac = mmnt.hour() * 3600 + mmnt.minute() * 60 + mmnt.second() + mmnt.millisecond();
             if (frac === 0 || granularity >= Dygraph.DAILY) {
@@ -256,13 +256,13 @@ HTMLWidgets.widget({
     return function(millis) {
       var mmnt = moment(millis).tz(tz);
         if (scale == "yearly")
-          return mmnt.format('YYYY') + ' (' + tz + ')';
+          return mmnt.format('YYYY') + ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "monthly" || scale == "quarterly")
-          return mmnt.format('MMMM, YYYY')+ ' (' + tz + ')';
+          return mmnt.format('MMMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "daily" || scale == "weekly")
-          return mmnt.format('MMMM, DD, YYYY')+ ' (' + tz + ')';
+          return mmnt.format('MMMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
-          return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + tz + ')';
+          return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
   
