@@ -6,9 +6,9 @@ dygraphs 0.4.1
   
 * Add Shiny input binding for the currently selected dateWindow
 
-* Fix bug with incorrect formatting of ISO8601 dates in some configurations
+* Fix bug with incorrect formatting of ISO8601 dates on Windows
 
-* Fix bug which caused specification of only a single custom color fail
+* Fix bug which caused specification of only a single custom color to fail
 
 * Add explicit showRoller option to dyRoller function
 
