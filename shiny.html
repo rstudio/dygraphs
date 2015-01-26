@@ -123,6 +123,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
   <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
   <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-timezones.html">Time Zones</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronization.html">Synchronization</a></li>
@@ -187,6 +188,65 @@ shinyServer(function(input, output) {
       dyOptions(drawGrid = input$showgrid)
   })
   
+})</code></pre>
+</div>
+<div id="shiny-date-input" class="section level4">
+<h4>Shiny Date Input</h4>
+<p>Shiny applications can respond to changes in the <code>dateWindow</code> via a special <code>date_window</code> input value. For example, if the output id of a dygraph is <code>series</code> then the current date window can be read from <code>input$series_date_window</code> as an array of two date values (from and to). For example, here’s another variation of the simple application from above that displays the current from/to range:</p>
+<p><strong>ui.R</strong></p>
+<pre class="r"><code>library(dygraphs)
+
+shinyUI(fluidPage(
+  
+  titlePanel(&quot;Predicted Deaths from Lung Disease (UK)&quot;),
+  
+  sidebarLayout(
+    sidebarPanel(
+      numericInput(&quot;months&quot;, label = &quot;Months to Predict&quot;, 
+                   value = 72, min = 12, max = 144, step = 12),
+      selectInput(&quot;interval&quot;, label = &quot;Prediction Interval&quot;,
+                  choices = c(&quot;0.80&quot;, &quot;0.90&quot;, &quot;0.95&quot;, &quot;0.99&quot;),
+                  selected = &quot;0.95&quot;),
+      checkboxInput(&quot;showgrid&quot;, label = &quot;Show Grid&quot;, value = TRUE),
+      hr(),
+      div(strong(&quot;From: &quot;), textOutput(&quot;from&quot;, inline = TRUE)),
+      div(strong(&quot;To: &quot;), textOutput(&quot;to&quot;, inline = TRUE)),
+      br(),
+      helpText(&quot;Click and drag to zoom in (double click to zoom back out).&quot;)
+    ),
+    mainPanel(
+      dygraphOutput(&quot;dygraph&quot;)
+    )
+  )
+))</code></pre>
+<p><strong>server.R</strong></p>
+<pre class="r"><code>library(dygraphs)
+library(datasets)
+
+shinyServer(function(input, output) {
+  
+  predicted &lt;- reactive({
+    hw &lt;- HoltWinters(ldeaths)
+    predict(hw, n.ahead = input$months, 
+            prediction.interval = TRUE,
+            level = as.numeric(input$interval))
+  })
+  
+  output$dygraph &lt;- renderDygraph({
+    dygraph(predicted(), main = &quot;Predicted Deaths/Month&quot;) %&gt;%
+      dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
+      dyOptions(drawGrid = input$showgrid)
+  })
+  
+  output$from &lt;- renderText({
+    if (!is.null(input$dygraph_date_window))
+      strftime(input$dygraph_date_window[[1]], &quot;%d %b %Y&quot;)      
+  })
+  
+  output$to &lt;- renderText({
+    if (!is.null(input$dygraph_date_window))
+      strftime(input$dygraph_date_window[[2]], &quot;%d %b %Y&quot;)
+  })  
 })</code></pre>
 </div>
 
