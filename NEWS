@@ -1,0 +1,20 @@
+dygraphs 0.4.1
+--------------------------------------------------------------------------------
+
+* Add useDataTimezone option to enable time display using the underlying
+  xts timezone rather than the timezone of the client workstation.
+  
+* Add Shiny input binding for the currently selected dateWindow
+
+* Fix bug with incorrect formatting of ISO8601 dates in some configurations
+
+* Fix bug which caused specification of only a single custom color fail
+
+* Add explicit showRoller option to dyRoller function
+
+
+dygraphs 0.3.3
+--------------------------------------------------------------------------------
+
+Initial release to CRAN
+
