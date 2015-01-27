@@ -132,33 +132,38 @@ HTMLWidgets.widget({
         d.tz(tz); 
         d.millisecond(0);
       
-          var x;
-          if (l===5) {  // seconds 
-            x = d.second();         
-            d.second(x - x % h);     
-          } else if(l===4){
-              d.second(0)
-              x = d.minute();
-              d.minute(x - x % h);
-          } else if(l===3){
-              d.second(0);
-              d.minute(0);
-              x = d.hour();
-              d.hour(x - x % h);
-           } else if(l===2){
-             d.second(0);
-             d.minute(0);
-             d.hour(0);
-          } else {
-             if (h == 7) {  // one week
-                  d.startOf('week');
-                }
-          }
+        var x;
+        if (l===5) {  // seconds 
+          x = d.second();         
+          d.second(x - x % h);     
+        } else if(l===4){
+            d.second(0)
+            x = d.minute();
+            d.minute(x - x % h);
+        } else if(l===3){
+            d.second(0);
+            d.minute(0);
+            x = d.hour();
+            d.hour(x - x % h);
+        } else if(l===2){
+            d.second(0);
+            d.minute(0);
+            d.hour(0);
+        } else {
+            if (h == 7) {  // one week
+                d.startOf('week');
+            }
+        }
           
-          
-          v = d.valueOf();
-          _=moment(v).tz(tz);
+        v = d.valueOf();
+        _=moment(v).tz(tz);
         
+        // For spacings coarser than two-hourly, we want to ignore daylight
+        // savings transitions to get consistent ticks. For finer-grained ticks,
+        // it's essential to show the DST transition in all its messiness.
+        var start_offset_min = moment(v).tz(tz).zone();
+        var check_dst = (p >= Dygraph.TICK_PLACEMENT[Dygraph.TWO_HOURLY].spacing);
+          
 	      if(a<=Dygraph.HOURLY){
 		      for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){
 			      y.push({v:v,label:n(_,a,i,r)});
@@ -167,6 +172,28 @@ HTMLWidgets.widget({
 		      }
 	      }else{
           for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){  
+            
+            // This ensures that we stay on the same hourly "rhythm" across
+            // daylight savings transitions. Without this, the ticks could get off
+            // by an hour. See tests/daylight-savings.html or issue 147.
+            if (check_dst && _.zone() != start_offset_min) {
+              var delta_min = _.zone() - start_offset_min;
+              v += delta_min * 60 * 1000;
+              _= moment(v).tz(tz);
+              start_offset_min = _.zone();
+
+              // Check whether we've backed into the previous timezone again.
+              // This can happen during a "spring forward" transition. In this case,
+              // it's best to skip this tick altogether (we may be shooting for a
+              // non-existent time like the 2AM that's skipped) and go to the next
+              // one.
+              if (moment(v + p).tz(tz).zone() != start_offset_min) {
+                v += p;
+                _= moment(v).tz(tz);
+                start_offset_min = _.zone();
+              }
+            }
+            
             (a>=Dygraph.DAILY||_.get('hour')%h===0)&&y.push({v:v,label:n(_,a,i,r)});
 			      v+=p;
 			      _=moment(v).tz(tz);
