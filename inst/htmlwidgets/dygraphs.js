@@ -31,7 +31,7 @@ HTMLWidgets.widget({
     }
     
     // set appropriated function in case of fixed tz
-  if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
+    if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
       attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
       
     if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
@@ -115,8 +115,7 @@ HTMLWidgets.widget({
       
   },
   
-
-  customDateTickerTZ : function(tz){
+  customDateTickerFixedTZ : function(tz){
     return function(t,e,a,i,r) {   
       var a=Dygraph.pickDateTickGranularity(t,e,a,i);
 	    if(a >= 0){
