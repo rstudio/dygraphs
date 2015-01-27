@@ -38,7 +38,7 @@ HTMLWidgets.widget({
       attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
 
     if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
-    attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
+      attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
   
     // provide an automatic x value formatter if none is already specified
     if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
