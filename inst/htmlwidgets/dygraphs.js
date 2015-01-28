@@ -5,6 +5,11 @@ HTMLWidgets.widget({
   type: "output",
 
   initialize: function(el, width, height) { 
+    
+    // add qt style if we are running under Qt
+    if (window.navigator.userAgent.indexOf(" Qt/") > 0)
+      el.className += " qt";
+    
     return {};
   },
 
@@ -65,10 +70,6 @@ HTMLWidgets.widget({
     // add shading and event callback if necessary
     this.addShadingCallback(x);
     this.addEventCallback(x);
-      
-    // add default font for viewer mode
-    if (this.queryVar("viewer_pane") === "1")
-      document.body.style.fontFamily = "Arial, sans-serif";
     
     if (instance.dygraph) { // update existing instance
        
