@@ -51,11 +51,11 @@ HTMLWidgets.widget({
     
     // convert time to js time
     attrs.file[0] = attrs.file[0].map(function(value) {
-      return thiz.normalizeDateValue(x.scale, value);
+      return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
     });
     if (attrs.dateWindow != null) {
       attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(x.scale, value);
+        var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
         return date.getTime();
       });
     }
@@ -102,7 +102,7 @@ HTMLWidgets.widget({
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(x.scale, annotation.x);
+          var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
           annotation.x = date.getTime();
         });
         instance.dygraph.setAnnotations(x.annotations);
@@ -111,122 +111,129 @@ HTMLWidgets.widget({
       
   },
   
-  // set of functions needed with fixed tz
   customDateTickerFixedTZ : function(tz){
-    return function(a, b, pixels, opts, dygraph, vals) {   
-      var chosen = Dygraph.pickDateTickGranularity(a, b, pixels, opts);
-      if (chosen >= 0) {
-        var formatter = (opts("axisLabelFormatter"));
-        var ticks = [];
-        var t; 
-
-        if (chosen < Dygraph.MONTHLY) {
-          // Generate one tick mark for every fixed interval of time.
-          var spacing = Dygraph.SHORT_SPACINGS[chosen];
-
-          // Find a time less than start_time which occurs on a "nice" time boundary
-          // for this granularity.
-          var g = spacing / 1000;
-          var d = moment(a);
-          d.tz(tz); 
-          d.millisecond(0);
-
+    return function(t,e,a,i,r) {   
+      var a=Dygraph.pickDateTickGranularity(t,e,a,i);
+      if(a >= 0){
+        
+        var n=i("axisLabelFormatter"),
+        o=i("labelsUTC"),
+        s=o?Dygraph.DateAccessorsUTC:Dygraph.DateAccessorsLocal;
+        l=Dygraph.TICK_PLACEMENT[a].datefield;
+        h=Dygraph.TICK_PLACEMENT[a].step;
+        p=Dygraph.TICK_PLACEMENT[a].spacing;
+        
+        var y = [];
+        var d = moment(t);
+        d.tz(tz); 
+        d.millisecond(0);
+      
+        if(l > Dygraph.DATEFIELD_M){
           var x;
-          if (g <= 60) {  // seconds 
+          if (l === Dygraph.DATEFIELD_SS) {  // seconds 
             x = d.second();         
-            d.second(x - x % g);     
-          } else {
+            d.second(x - x % h);     
+          } else if(l === Dygraph.DATEFIELD_MM){
+            d.second(0)
+            x = d.minute();
+            d.minute(x - x % h);
+          } else if(l === Dygraph.DATEFIELD_HH){
             d.second(0);
-            g /= 60; 
-            if (g <= 60) {  // minutes
-              x = d.minute();
-              d.minute(x - x % g);
-            } else {
-              d.minute(0);
-              g /= 60;
-
-              if (g <= 24) {  // days
-                x = d.hour();
-                d.hour(x - x % g);
-              } else {
-                d.hour(0);
-                g /= 24;
-
-                if (g == 7) {  // one week
-                  d.startOf('week');
-                }
-              }
+            d.minute(0);
+            x = d.hour();
+            d.hour(x - x % h);
+          } else if(l === Dygraph.DATEFIELD_D){
+            d.second(0);
+            d.minute(0);
+            d.hour(0);
+            if (h == 7) {  // one week
+                d.startOf('week');
             }
           }
-          a = d.valueOf();
-
+          
+          v = d.valueOf();
+          _=moment(v).tz(tz);
+        
           // For spacings coarser than two-hourly, we want to ignore daylight
           // savings transitions to get consistent ticks. For finer-grained ticks,
           // it's essential to show the DST transition in all its messiness.
-          var start_offset_min = moment(a).tz(tz).zone();
-          var check_dst = (spacing >= Dygraph.SHORT_SPACINGS[Dygraph.TWO_HOURLY]);
+          var start_offset_min = moment(v).tz(tz).zone();
+          var check_dst = (p >= Dygraph.TICK_PLACEMENT[Dygraph.TWO_HOURLY].spacing);
+          
+	        if(a<=Dygraph.HOURLY){
+		        for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){
+			        y.push({v:v,label:n(_,a,i,r)});
+			        v+=p;
+			        _=moment(v).tz(tz);
+		        }
+	        }else{
+            for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){  
+            
+              // This ensures that we stay on the same hourly "rhythm" across
+              // daylight savings transitions. Without this, the ticks could get off
+              // by an hour. See tests/daylight-savings.html or issue 147.
+              if (check_dst && _.zone() != start_offset_min) {
+                var delta_min = _.zone() - start_offset_min;
+                v += delta_min * 60 * 1000;
+                _= moment(v).tz(tz);
+                start_offset_min = _.zone();
 
-          for (t = a; t <= b; t += spacing) {
-            d = moment(t).tz(tz);
-
-            // This ensures that we stay on the same hourly "rhythm" across
-            // daylight savings transitions. Without this, the ticks could get off
-            // by an hour. See tests/daylight-savings.html or issue 147.
-            if (check_dst && d.zone() != start_offset_min) {
-              var delta_min = d.zone() - start_offset_min;
-              t += delta_min * 60 * 1000;
-              d = moment(t).tz(tz);
-              start_offset_min = d.zone();
-
-              // Check whether we've backed into the previous timezone again.
-              // This can happen during a "spring forward" transition. In this case,
-              // it's best to skip this tick altogether (we may be shooting for a
-              // non-existent time like the 2AM that's skipped) and go to the next
-              // one.
-              if (moment(t + spacing).tz(tz).zone() != start_offset_min) {
-                t += spacing;
-                d = moment(t).tz(tz);
-                start_offset_min = d.zone();
+                // Check whether we've backed into the previous timezone again.
+                // This can happen during a "spring forward" transition. In this case,
+                // it's best to skip this tick altogether (we may be shooting for a
+                // non-existent time like the 2AM that's skipped) and go to the next
+                // one.
+                if (moment(v + p).tz(tz).zone() != start_offset_min) {
+                  v += p;
+                  _= moment(v).tz(tz);
+                  start_offset_min = _.zone();
+                }
+              }
+            
+              (a>=Dygraph.DAILY||_.get('hour')%h===0)&&y.push({v:v,label:n(_,a,i,r)});
+			        v+=p;
+			        _=moment(v).tz(tz);
+		        }
+	        }
+	      }else{
+          var start_year = moment(t).tz(tz).year();
+          var end_year   = moment(e).tz(tz).year();
+          var start_month = moment(t).tz(tz).month();
+          
+          if(l === Dygraph.DATEFIELD_M){
+            var step_month = h;
+            for (var ii = start_year; ii <= end_year; ii++) {
+              for (var j = 0; j < 12;) {
+                var dt = moment(new Date(ii, j, 1)).tz(tz); 
+                // fix some tz bug
+                dt.year(ii);
+                dt.month(j);
+                dt.date(1);
+                dt.hour(0);
+                v = dt.valueOf();
+                y.push({v:v,label:n(moment(v).tz(tz),a,i,r)});
+                j+=step_month;
               }
             }
-
-            ticks.push({ v:t,
-                      label: formatter(d, chosen, opts, dygraph)
-                    });
-          }
-        } else {
-          // Display a tick mark on the first of a set of months of each year.
-          // Years get a tick mark iff y % year_mod == 0. This is useful for
-          // displaying a tick mark once every 10 years, say, on long time scales.
-          var months;
-          var year_mod = 1;  // e.g. to only print one point every 10 years.
-          if (chosen < Dygraph.NUM_GRANULARITIES) {
-            months = Dygraph.LONG_TICK_PLACEMENTS[chosen].months;
-            year_mod = Dygraph.LONG_TICK_PLACEMENTS[chosen].year_mod;
-          } else {
-            Dygraph.warn("Span of dates is too long");
-          }
-
-          var start_year = moment(a).tz(tz).year();
-          var end_year   = moment(b).tz(tz).year();
-          for (var i = start_year; i <= end_year; i++) {
-            if (i % year_mod !== 0) continue;
-            for (var j = 0; j < months.length; j++) {
-              var dt = moment.tz(new Date(i, months[j], 1), tz); 
-              dt.year(i);
-              t = dt.valueOf();
-              if (t < a || t > b) continue;
-              ticks.push({ v:t,
-                        label: formatter(moment(t).tz(tz), chosen, opts, dygraph)
-                      });
+          }else{
+            var step_year = h;
+            for (var ii = start_year; ii <= end_year;) {
+              var dt = moment(new Date(ii, 1, 1)).tz(tz); 
+              // fix some tz bug
+              dt.year(ii);
+              dt.month(j);
+              dt.date(1);
+              dt.hour(0);
+              v = dt.valueOf();
+              y.push({v:v,label:n(moment(v).tz(tz),a,i,r)});
+              ii+=step_year;
             }
           }
-        }
-        return ticks;
-      }else{
-      // this can happen if self.width_ is zero.
-        return [];
-      }
+	      }
+	      return y;
+	    }else{
+       return []; 
+	    }
     };
   },
 
@@ -238,7 +245,7 @@ HTMLWidgets.widget({
         return mmnt.format('YYYY');
       }else{
         if(granularity >= Dygraph.MONTHLY){
-          return mmnt.format('MMM YY');
+          return mmnt.format('MMM YYYY');
         }else{
           var frac = mmnt.hour() * 3600 + mmnt.minute() * 60 + mmnt.second() + mmnt.millisecond();
             if (frac === 0 || granularity >= Dygraph.DAILY) {
@@ -263,11 +270,11 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return mmnt.format('YYYY') + ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "monthly" || scale == "quarterly")
-          return mmnt.format('MMMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "daily" || scale == "weekly")
-          return mmnt.format('MMMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
-          return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.isoWeekday(mmnt.days()).format('dddd') + ", " + mmnt.format('MMMM DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
   
@@ -281,10 +288,10 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getMonth()] + ' ' + date.getFullYear(); 
+          return monthNames[date.getMonth()] + ', ' + date.getFullYear(); 
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getMonth()] + ' ' + 
-                           date.getDate() + ' ' + 
+          return monthNames[date.getMonth()] + ', ' + 
+                           date.getDate() + ', ' + 
                            date.getFullYear();
         else
           return date.toLocaleString();
@@ -348,8 +355,8 @@ HTMLWidgets.widget({
         
       for (var i = 0; i < x.shadings.length; i++) {
         var shading = x.shadings[i];
-        var x1 = thiz.normalizeDateValue(x.scale, shading.from).getTime();
-        var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
+        var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
+        var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
         var left = g.toDomXCoord(x1);
         var right = g.toDomXCoord(x2);
         canvas.save();
@@ -386,7 +393,7 @@ HTMLWidgets.widget({
         
         // get event and x-coordinate
         var event = x.events[i];
-        var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
+        var xPos = thiz.normalizeDateValue(x.scale, event.date, x.fixedtz).getTime();
         xPos = g.toDomXCoord(xPos);
         
         // draw line
@@ -490,9 +497,10 @@ HTMLWidgets.widget({
   // months or years we need to convert the UTC date value to a local time
   // value that "looks like" the equivilant UTC value. To do this we add the
   // timezone offset to the UTC date.
-  normalizeDateValue: function(scale, value) {
+  // Don't use in case of fixedtz
+  normalizeDateValue: function(scale, value, fixedtz) {
     var date = new Date(value); 
-    if (scale != "minute" && scale != "hourly") {
+    if (scale != "minute" && scale != "hourly" && !fixedtz) {
       var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
       date = new Date(localAsUTC);
     }
