@@ -274,7 +274,7 @@ HTMLWidgets.widget({
         else if (scale == "daily" || scale == "weekly")
           return mmnt.format('MMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
-          return mmnt.isoWeekday(mmnt.days()).format('dddd') + ", " + mmnt.format('MMMM DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('dddd, MMMM DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
   
