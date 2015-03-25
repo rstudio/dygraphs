@@ -64,14 +64,14 @@ HTMLWidgets.widget({
       attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
   
     // provide an automatic x value formatter if none is already specified
-    if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
+    if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz !== true))
       attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
     
     // convert time to js time
     attrs.file[0] = attrs.file[0].map(function(value) {
       return thiz.normalizeDateValue(x.scale, value);
     });
-    if (attrs.dateWindow != null) {
+    if (attrs.dateWindow !== null) {
       attrs.dateWindow = attrs.dateWindow.map(function(value) {
         var date = thiz.normalizeDateValue(x.scale, value);
         return date.getTime();
@@ -82,7 +82,7 @@ HTMLWidgets.widget({
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
     
     // add drawCallback for group
-    if (x.group != null)
+    if (x.group !== null)
       this.addGroupDrawCallback(x);  
       
     // add shading and event callback if necessary
@@ -286,7 +286,7 @@ HTMLWidgets.widget({
          } 
                         
        }         
-   }
+   };
   },
          
   xValueFormatterFixedTZ: function(scale, tz) {
@@ -301,7 +301,7 @@ HTMLWidgets.widget({
           return mmnt.format('MMMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
           return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
-    }
+    };
   },
   
   xValueFormatter: function(scale) {
@@ -321,7 +321,7 @@ HTMLWidgets.widget({
                            date.getFullYear();
         else
           return date.toLocaleString();
-    }
+    };
   },
   
   groups: {},
