@@ -1,3 +1,26 @@
+
+// polyfill indexOf for IE8
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function(elt /*, from*/) {
+    var len = this.length >>> 0;
+
+    var from = Number(arguments[1]) || 0;
+    from = (from < 0)
+         ? Math.ceil(from)
+         : Math.floor(from);
+    if (from < 0)
+      from += len;
+
+    for (; from < len; from++) {
+      if (from in this &&
+          this[from] === elt)
+        return from;
+    }
+    return -1;
+  };
+}
+
+
 HTMLWidgets.widget({
 
   name: "dygraphs",
@@ -65,17 +88,16 @@ HTMLWidgets.widget({
     // add shading and event callback if necessary
     this.addShadingCallback(x);
     this.addEventCallback(x);
+    this.addZoomCallback(x, instance);
       
-    // add default font for viewer mode
-    if (this.queryVar("viewer_pane") === "1")
-      document.body.style.fontFamily = "Arial, sans-serif";
     
-    if (instance.dygraph) { // update existing instance
-       
-      instance.dygraph.updateOptions(attrs);
-    
-    } else {  // create new instance
+    // if there is no existing instance perform one-time initialization
+    if (!instance.dygraph) {
       
+      // add default font for viewer mode
+      if (this.queryVar("viewer_pane") === "1")
+        document.body.style.fontFamily = "Arial, sans-serif";
+
       // add shiny input for date window
       if (HTMLWidgets.shinyMode)
         this.addDateWindowShinyInput(el.id, x);
@@ -91,12 +113,30 @@ HTMLWidgets.widget({
         document.getElementsByTagName("head")[0].appendChild(style);
       }
       
-      // create the instance and add it to it's group (if any)
-      instance.dygraph = new Dygraph(el, attrs.file, attrs);
-      if (x.group != null)
-        this.groups[x.group].push(instance.dygraph);
+    } else {
+      
+        // retain the userDateWindow
+        if (instance.dygraph.userDateWindow != null)
+          attrs.dateWindow = instance.dygraph.xAxisRange();
+      
+        // remove it from groups if it's there
+        if (x.group !== null && this.groups[x.group] !== null) {
+          var index = this.groups[x.group].indexOf(instance.dygraph);
+          if (index != -1)
+            this.groups[x.group].splice(index, 1);
+        }
+        
+        // destroy the existing dygraph 
+        instance.dygraph.destroy();
+        instance.dygraph = null;
     }
-     
+    
+    // create the instance and add it to it's group (if any)
+    instance.dygraph = new Dygraph(el, attrs.file, attrs);
+    instance.dygraph.userDateWindow = attrs.dateWindow;
+    if (x.group !== null)
+      this.groups[x.group].push(instance.dygraph);
+    
     // set annotations
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
@@ -289,6 +329,42 @@ HTMLWidgets.widget({
           return date.toLocaleString();
     }
   },
+  
+  addZoomCallback: function(x, instance) {
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing zoomCallback
+    var prevZoomCallback = attrs["zoomCallback"];
+    
+    attrs.zoomCallback = function(minDate, maxDate, yRanges) {
+      
+      // call existing
+      if (prevZoomCallback)
+        prevZoomCallback(minDate, maxDate, yRanges);
+        
+      // record user date window (or lack thereof)
+      var me = instance.dygraph;
+      if (me.xAxisExtremes()[0] != minDate ||
+          me.xAxisExtremes()[1] != maxDate) {
+         me.userDateWindow = [minDate, maxDate];
+      } else {
+         me.userDateWindow = null;
+      }
+      
+      // record in group if necessary
+      if (x.group !== null && thiz.groups[x.group] !== null) {
+        var group = thiz.groups[x.group];
+        for(var i = 0; i<group.length; i++)
+          group[i].userDateWindow = me.userDateWindow;
+      }
+    };
+  },
+  
   
   groups: {},
   
