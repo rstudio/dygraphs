@@ -103,7 +103,7 @@ HTMLWidgets.widget({
         this.addDateWindowShinyInput(el.id, x);
   
       // inject css if necessary
-      if (x.css !== null) {
+      if (x.css != null) {
         var style = document.createElement('style');
         style.type = 'text/css';
         if (style.styleSheet) 
