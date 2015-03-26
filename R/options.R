@@ -197,7 +197,8 @@ dyOptions <- function(dygraph,
   options$strokeBorderWidth <- strokeBorderWidth
   options$strokeBorderColor <- strokeBorderColor
   options$plotter <- JS(plotter)
-  options$colors <- colors
+  if (!is.null(colors))
+    options$colors <- as.list(colors)
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
   options$drawXAxis <- drawXAxis
