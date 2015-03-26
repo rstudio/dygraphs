@@ -46,11 +46,11 @@ HTMLWidgets.widget({
     
     // convert time to js time
     attrs.file[0] = attrs.file[0].map(function(value) {
-      return thiz.normalizeDateValue(x.scale, value);
+      return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
     });
     if (attrs.dateWindow != null) {
       attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(x.scale, value);
+        var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
         return date.getTime();
       });
     }
@@ -101,7 +101,7 @@ HTMLWidgets.widget({
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(x.scale, annotation.x);
+          var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
           annotation.x = date.getTime();
         });
         instance.dygraph.setAnnotations(x.annotations);
@@ -237,7 +237,7 @@ HTMLWidgets.widget({
         return mmnt.format('YYYY');
       }else{
         if(granularity >= Dygraph.MONTHLY){
-          return mmnt.format('MMM YY');
+          return mmnt.format('MMM YYYY');
         }else{
           var frac = mmnt.hour() * 3600 + mmnt.minute() * 60 + mmnt.second() + mmnt.millisecond();
             if (frac === 0 || granularity >= Dygraph.DAILY) {
@@ -262,11 +262,11 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return mmnt.format('YYYY') + ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "monthly" || scale == "quarterly")
-          return mmnt.format('MMMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "daily" || scale == "weekly")
-          return mmnt.format('MMMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
-          return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('dddd, MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
   
@@ -280,10 +280,10 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getMonth()] + ' ' + date.getFullYear(); 
+          return monthNames[date.getMonth()] + ', ' + date.getFullYear(); 
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getMonth()] + ' ' + 
-                           date.getDate() + ' ' + 
+          return monthNames[date.getMonth()] + ', ' + 
+                           date.getDate() + ', ' + 
                            date.getFullYear();
         else
           return date.toLocaleString();
@@ -347,8 +347,8 @@ HTMLWidgets.widget({
         
       for (var i = 0; i < x.shadings.length; i++) {
         var shading = x.shadings[i];
-        var x1 = thiz.normalizeDateValue(x.scale, shading.from).getTime();
-        var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
+        var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
+        var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
         var left = g.toDomXCoord(x1);
         var right = g.toDomXCoord(x2);
         canvas.save();
@@ -385,7 +385,7 @@ HTMLWidgets.widget({
         
         // get event and x-coordinate
         var event = x.events[i];
-        var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
+        var xPos = thiz.normalizeDateValue(x.scale, event.date, x.fixedtz).getTime();
         xPos = g.toDomXCoord(xPos);
         
         // draw line
@@ -489,9 +489,10 @@ HTMLWidgets.widget({
   // months or years we need to convert the UTC date value to a local time
   // value that "looks like" the equivilant UTC value. To do this we add the
   // timezone offset to the UTC date.
-  normalizeDateValue: function(scale, value) {
+  // Don't use in case of fixedtz
+  normalizeDateValue: function(scale, value, fixedtz) {
     var date = new Date(value); 
-    if (scale != "minute" && scale != "hourly") {
+    if (scale != "minute" && scale != "hourly" && scale != "seconds" && !fixedtz) {
       var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
       date = new Date(localAsUTC);
     }
