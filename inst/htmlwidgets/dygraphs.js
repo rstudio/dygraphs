@@ -138,7 +138,7 @@ HTMLWidgets.widget({
       this.groups[x.group].push(instance.dygraph);
     
     // set annotations
-    if (x.annotations !== null) {
+    if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
           var date = thiz.normalizeDateValue(x.scale, annotation.x);
