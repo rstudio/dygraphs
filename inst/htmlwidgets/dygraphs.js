@@ -120,7 +120,7 @@ HTMLWidgets.widget({
           attrs.dateWindow = instance.dygraph.xAxisRange();
       
         // remove it from groups if it's there
-        if (x.group !== null && this.groups[x.group] !== null) {
+        if (x.group != null && this.groups[x.group] != null) {
           var index = this.groups[x.group].indexOf(instance.dygraph);
           if (index != -1)
             this.groups[x.group].splice(index, 1);
@@ -134,7 +134,7 @@ HTMLWidgets.widget({
     // create the instance and add it to it's group (if any)
     instance.dygraph = new Dygraph(el, attrs.file, attrs);
     instance.dygraph.userDateWindow = attrs.dateWindow;
-    if (x.group !== null)
+    if (x.group != null)
       this.groups[x.group].push(instance.dygraph);
     
     // set annotations
