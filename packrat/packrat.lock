@@ -1,6 +1,6 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.2.7
-RVersion: 3.1.2
+RVersion: 3.1.3
 Repos: CRAN=http://cran.rstudio.com
 
 Package: RColorBrewer
@@ -50,13 +50,13 @@ Hash: e4bf0e79b15a352510aff0de905d31e2
 
 Package: dygraphs
 Source: github
-Version: 0.4.1
-Hash: f9e5f021851df74e621b3e8be4ff234ac012f243
+Version: 0.4.2.1
+Hash: 07144b071774737e933b933b53aa71ad87f16af3
 Requires: htmlwidgets, magrittr, xts, zoo
 GithubRepo: dygraphs
 GithubUsername: rstudio
 GithubRef: master
-GithubSha1: f9e5f021851df74e621b3e8be4ff234ac012f243
+GithubSha1: 07144b071774737e933b933b53aa71ad87f16af3
 
 Package: evaluate
 Source: CRAN
