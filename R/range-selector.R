@@ -7,8 +7,7 @@
 #' @param dateWindow Initially zoom in on a section of the graph. Is a two 
 #'   element vector [earliest, latest], where earliest/latest objects 
 #'   convertible via \code{as.POSIXct}.
-#' @param height Height, in pixels, of the range selector widget. This option 
-#'   can only be specified at Dygraph creation time.
+#' @param height Height, in pixels, of the range selector widget.
 #' @param fillColor The range selector mini plot fill color. This can be of the 
 #'   form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify ""
 #'   to turn off fill.
