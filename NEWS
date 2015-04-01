@@ -6,6 +6,8 @@ dygraphs 0.4.3
   
 * Fix an axis value issue that occurred with seconds and useDataTimezone
 
+* Fix issue where dygraph in ioslides didn't display on slide entry
+
 dygraphs 0.4.2
 --------------------------------------------------------------------------------
 
