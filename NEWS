@@ -1,3 +1,11 @@
+dygraphs 0.4.3
+--------------------------------------------------------------------------------
+
+* Support dynamic updating (i.e. for Shiny reactive outputs) for all dygraphs
+  properties (destroy and rebuild the entire dygraph on renderValue)
+  
+* Fix an axis value issue that occurred with seconds and useDataTimezone
+
 dygraphs 0.4.2
 --------------------------------------------------------------------------------
 
