@@ -94,6 +94,15 @@ HTMLWidgets.widget({
     // if there is no existing instance perform one-time initialization
     if (!instance.dygraph) {
       
+      // subscribe to custom shown event (fired by ioslides to trigger
+      // shiny reactivity but we can use it as well). this is necessary
+      // because if a dygraph starts out as display:none it has height
+      // and width == 0 and this doesn't change when it becomes visible
+      $(el).closest('slide').on('shown', function() {
+        if (instance.dygraph)
+          instance.dygraph.resize();  
+      });
+      
       // add default font for viewer mode
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";

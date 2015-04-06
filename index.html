@@ -12,7 +12,7 @@
 
 <title>dygraphs for R</title>
 
-<script src="libs/jquery-1.11.0/jquery.min.js"></script>
+<script src="libs/jquery-1.11.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="libs/bootstrap-2.3.2/css/flatly.min.css" rel="stylesheet" />
 <link href="libs/bootstrap-2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/moment-2.8.4/moment.js"></script>
 <script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/dygraphs-binding-0.4.2.1/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.4.2.2/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -161,8 +161,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 <div id="installation" class="section level3">
 <h3>Installation</h3>
-<p>You can install the <strong>dygraphs</strong> package from CRAN as follows:</p>
-<pre class="r"><code>install.packages(&quot;dygraphs&quot;)</code></pre>
+<p>You can install the <strong>dygraphs</strong> package from GitHub as follows:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/dygraphs&quot;)</code></pre>
 <p>You can use dygraphs at the R console, within R Markdown documents, and within Shiny applications. See the usage documentation linked to from the sidebar for more details. There are a few demos of dygraphs below as well as quite a few others in the gallery of examples.</p>
 </div>
 <div id="demos" class="section level3">
@@ -171,8 +171,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>library(dygraphs)
 lungDeaths &lt;- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)</code></pre>
-<p><div id="htmlwidget-3078" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3078">{ "x": {
+<p><div id="htmlwidget-7649" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7649">{ "x": {
  "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -195,8 +195,8 @@ dygraph(lungDeaths)</code></pre>
 <p>Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).</p>
 <p>You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a <code>dyRangeSelector</code> onto our original graph:</p>
 <pre class="r"><code>dygraph(lungDeaths) %&gt;% dyRangeSelector()</code></pre>
-<p><div id="htmlwidget-2577" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2577">{ "x": {
+<p><div id="htmlwidget-7246" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7246">{ "x": {
  "attrs": {
  "labels": [ "month", "mdeaths", "fdeaths" ],
 "legend": "auto",
@@ -227,8 +227,8 @@ dygraph(lungDeaths)</code></pre>
   dySeries(&quot;fdeaths&quot;, label = &quot;Female&quot;) %&gt;%
   dyOptions(stackedGraph = TRUE) %&gt;%
   dyRangeSelector(height = 20)</code></pre>
-<p><div id="htmlwidget-5523" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-5523">{ "x": {
+<p><div id="htmlwidget-3660" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3660">{ "x": {
  "attrs": {
  "labels": [ "month", "Male", "Female" ],
 "legend": "auto",
@@ -302,8 +302,8 @@ dygraph(predicted, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
   dyAxis(&quot;x&quot;, drawGrid = FALSE) %&gt;%
   dySeries(c(&quot;lwr&quot;, &quot;fit&quot;, &quot;upr&quot;), label = &quot;Deaths&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set1&quot;))</code></pre>
-<p><div id="htmlwidget-564" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-564">{ "x": {
+<p><div id="htmlwidget-6665" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-6665">{ "x": {
  "attrs": {
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
