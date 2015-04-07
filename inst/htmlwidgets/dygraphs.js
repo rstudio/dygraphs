@@ -366,7 +366,7 @@ HTMLWidgets.widget({
       }
       
       // record in group if necessary
-      if (x.group !== null && thiz.groups[x.group] !== null) {
+      if (x.group != null && thiz.groups[x.group] != null) {
         var group = thiz.groups[x.group];
         for(var i = 0; i<group.length; i++)
           group[i].userDateWindow = me.userDateWindow;
