@@ -8,7 +8,11 @@ Authors@R: c(
        comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
     person("JJ", "Allaire", role = c("aut", "cre"),
        comment = "R interface", email = "jj@rstudio.com"),
-    person(family = "RStudio", role = "cph")
+    person(family = "RStudio", role = "cph"),
+    person(family = "jQuery Foundation", role = "cph",
+           comment = "jQuery library"),
+    person(family = "jQuery contributors", role = c("ctb", "cph"),
+           comment = "jQuery library; authors listed in inst/htmlwidgets/lib/jquery/AUTHORS.txt"),
     )
 Maintainer: JJ Allaire <jj@rstudio.com>
 Description: An R interface to the dygraphs JavaScript charting library
