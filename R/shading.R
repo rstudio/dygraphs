@@ -11,6 +11,7 @@
 #'   \code{as.POSIXct}).
 #' @param color Color of shading. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to a very light gray.
+#' @param axis Axis to apply shading.  Choices are "x" or "y".
 #'   
 #' @return A dygraph with the specified shading
 #'  
@@ -19,20 +20,25 @@
 #' 
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
 #'   dyShading(from = "1920-1-1", to = "1930-1-1") %>%
-#'   dyShading(from = "1940-1-1", to = "1950-1-1")   
+#'   dyShading(from = "1940-1-1", to = "1950-1-1")
+#'   
+#' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+#'   dyShading(from = "48", to = "52", axis = "y") %>%
+#'   dyShading(from = "50", to = "50.1", axis = "y", color = "black")
 #'     
 #' @note See the
 #'   \href{http://rstudio.github.io/dygraphs/gallery-shaded-regions.html}{online
 #'   documentation} for additional details and examples.
 #'   
 #' @export
-dyShading <- function(dygraph, from, to, color = "#EFEFEF") {
+dyShading <- function(dygraph, from, to, color = "#EFEFEF", axis = "x") {
   
   # create shading
   shading <- list()
-  shading$from <- asISO8601Time(from)
-  shading$to <- asISO8601Time(to)
+  shading$from <- ifelse(axis == "x", asISO8601Time(from), from)
+  shading$to <- ifelse(axis == "x", asISO8601Time(to), to)
   shading$color <- color
+  shading$axis <- axis
  
   # add it to list of shadings
   dygraph$x$shadings[[length(dygraph$x$shadings) + 1]] <- shading
