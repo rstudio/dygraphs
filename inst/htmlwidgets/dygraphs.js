@@ -432,14 +432,23 @@ HTMLWidgets.widget({
         
       for (var i = 0; i < x.shadings.length; i++) {
         var shading = x.shadings[i];
-        var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
-        var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
-        var left = g.toDomXCoord(x1);
-        var right = g.toDomXCoord(x2);
-        canvas.save();
-        canvas.fillStyle = shading.color;
-        canvas.fillRect(left, area.y, right - left, area.h);
-        canvas.restore();
+        if (shading.axis == "x") {
+          var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
+          var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
+          var left = g.toDomXCoord(x1);
+          var right = g.toDomXCoord(x2);
+          canvas.save();
+          canvas.fillStyle = shading.color;
+          canvas.fillRect(left, area.y, right - left, area.h);
+          canvas.restore();
+        } else if (shading.axis == "y") {
+          var bottom = g.toDomYCoord(shading.from);
+          var top = g.toDomYCoord(shading.to);
+          canvas.save();
+          canvas.fillStyle = shading.color;
+          canvas.fillRect(area.x, bottom, area.w, top - bottom);
+          canvas.restore();  
+        }
       }
     };
   },
