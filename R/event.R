@@ -3,15 +3,19 @@
 #' Add a vertical event line to a dygraph
 #' 
 #' @param dygraph Dygraph to add event line to
-#' @param date Date/time for the event (must be a \code{POSIXct} object or 
-#'   another object convertible to \code{POSIXct} via \code{as.POSIXct}).
+#' @param pos If axis is "x", Date/time for the event 
+#'   (must be a \code{POSIXct} object or 
+#'   another object convertible to \code{POSIXct} via \code{as.POSIXct}); if
+#'   axis is "y", numeric location of event.
 #' @param label Label for event.
-#' @param labelLoc Location for label (top or bottom).
+#' @param labelLoc Location for label.  If axis is "x", top or bottom; if 
+#'   axis is "y", left or right.
 #' @param color Color of event line. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
-#' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
-#'   "dotdash") or a custom pattern array where the even index is a draw and odd
+#' @param strokePattern A predefined stroke pattern type ("dotted", "dashed",
+#'   "dotdash", or "solid") or a custom pattern array where the even index is a draw and odd
 #'   is a space in pixels.
+#' @param axis Axis to add event.  Choices are "x" or "y".
 #'   
 #' @return A dygraph with the specified event line.
 #'   
@@ -23,24 +27,28 @@
 #' 
 #' dygraph(presidents, main = "Presidential Approval") %>%
 #'   dyAxis("y", valueRange = c(0, 100)) %>%
-#'   dyEvent(date = "1950-6-30", "Korea", labelLoc = "bottom") %>%
-#'   dyEvent(date = "1965-2-09", "Vietnam", labelLoc = "bottom")   
+#'   dyEvent("1950-6-30", "Korea", labelLoc = "bottom") %>%
+#'   dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom") %>% 
+#'   dyEvent(max(presidents, na.rm = TRUE), "Max", axis = "y",
+#'           strokePattern = "solid", color = "blue")
 #'  
 #' @export
 dyEvent <- function(dygraph, 
-                    date, 
+                    pos,
                     label, 
-                    labelLoc = c("top", "bottom"),
+                    labelLoc = c("top", "bottom", "left", "right"),
                     color = "black", 
-                    strokePattern = "dashed") {
+                    strokePattern = "dashed", 
+                    axis = "x") {
   
   # create event
   event <- list()
-  event$date <- asISO8601Time(date)
-  event$label <- label
+  event$pos = ifelse(axis == "x", asISO8601Time(pos), pos)
+  if (!missing(label) && !is.null(label)) event$label <- label
   event$labelLoc <- match.arg(labelLoc)
   event$color <- color
   event$strokePattern <- resolveStrokePattern(strokePattern)
+  event$axis <- axis
  
   # add it to list of events
   dygraph$x$events[[length(dygraph$x$events) + 1]] <- event
