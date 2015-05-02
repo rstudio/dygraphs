@@ -36,6 +36,8 @@ resolveStrokePattern <- function(strokePattern) {
       strokePattern <- c(7, 3)
     else if (strokePattern == "dotdash")
       strokePattern <- c(7, 2, 2, 2)
+    else if (strokePattern == "solid")
+      strokePattern <- c(1, 0)
     else
       stop("Invalid stroke pattern: valid values are dotted, ",
            "dashed, and dotdash")
