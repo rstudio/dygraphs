@@ -4,7 +4,7 @@
 \alias{dyEvent}
 \title{dygraph event line}
 \usage{
-dyEvent(dygraph, date, label, labelLoc = c("top", "bottom"),
+dyEvent(dygraph, date, label = NULL, labelLoc = c("top", "bottom"),
   color = "black", strokePattern = "dashed")
 }
 \arguments{
@@ -13,7 +13,7 @@ dyEvent(dygraph, date, label, labelLoc = c("top", "bottom"),
 \item{date}{Date/time for the event (must be a \code{POSIXct} object or
 another object convertible to \code{POSIXct} via \code{as.POSIXct})}
 
-\item{label}{Optional label for event.}
+\item{label}{Label for event. Defaults to blank.}
 
 \item{labelLoc}{Location for label (top or bottom)}
 
@@ -22,7 +22,7 @@ another object convertible to \code{POSIXct} via \code{as.POSIXct})}
 
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed",
   "dotdash", or "solid") or a custom pattern array where the even index is
-  a draw and odd is a space in pixels.}
+  a draw and odd is a space in pixels. Defaults to dashed.}
 }
 \value{
 A dygraph with the specified event line.

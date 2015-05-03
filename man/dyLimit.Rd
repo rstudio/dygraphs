@@ -4,15 +4,15 @@
 \alias{dyLimit}
 \title{dygraph limit line}
 \usage{
-dyLimit(dygraph, limit, label, labelLoc = c("left", "right"),
+dyLimit(dygraph, limit, label = NULL, labelLoc = c("left", "right"),
   color = "black", strokePattern = "dashed")
 }
 \arguments{
 \item{dygraph}{Dygraph to add limit line to}
 
-\item{limit}{numeric position of limit.}
+\item{limit}{Numeric position of limit.}
 
-\item{label}{Optional label for limit.}
+\item{label}{Label for limit. Defaults to blank.}
 
 \item{labelLoc}{Location for label (left or right).}
 
@@ -21,7 +21,7 @@ dyLimit(dygraph, limit, label, labelLoc = c("left", "right"),
 
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed",
   "dotdash", or "solid") or a custom pattern array where the even index is
-  a draw and odd is a space in pixels.}
+  a draw and odd is a space in pixels. Defaults to dashed.}
 }
 \value{
 A dygraph with the specified limit line.
@@ -38,7 +38,7 @@ library(dygraphs)
 
 dygraph(presidents, main = "Presidential Approval") \%>\%
   dyAxis("y", valueRange = c(0, 100)) \%>\%
-  dyLimit(max(presidents, na.rm = TRUE), "Max", axis = "y",
+  dyLimit(max(presidents, na.rm = TRUE), "Max",
           strokePattern = "solid", color = "blue")
 }
 
