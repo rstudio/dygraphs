@@ -154,8 +154,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
   dyEvent(date = &quot;1950-6-30&quot;, &quot;Korea&quot;, labelLoc = &quot;bottom&quot;) %&gt;%
   dyEvent(date = &quot;1965-2-09&quot;, &quot;Vietnam&quot;, labelLoc = &quot;bottom&quot;)</code></pre>
-<p><div id="htmlwidget-3078" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3078">{ "x": {
+<p><div id="htmlwidget-2647" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2647">{ "x": {
  "attrs": {
  "title": "Quarterly Presidential Approval Ratings",
 "labels": [ "quarter", "V1" ],
@@ -203,9 +203,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre><code>## [1] &quot;MSFT&quot;</code></pre>
 <pre class="r"><code>dygraph(MSFT[, 4], main = &quot;Microsoft Share Price&quot;) %&gt;% 
   dySeries(&quot;MSFT.Close&quot;, label = &quot;MSFT&quot;) %&gt;%
-  dyLimit(MSFT[1, 4], color = &quot;red&quot;)</code></pre>
-<p><div id="htmlwidget-2577" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2577">{ "x": {
+  dyLimit(as.numeric(MSFT[1, 4]), color = &quot;red&quot;)</code></pre>
+<p><div id="htmlwidget-2767" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2767">{ "x": {
  "attrs": {
  "title": "Microsoft Share Price",
 "labels": [ "day", "MSFT" ],
@@ -226,9 +226,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 "shadings": [],
 "events": [
  {
- "pos": { : {
- "MSFT.Close":             40.79 
-} },
+ "pos":             40.79,
 "labelLoc": "left",
 "color": "red",
 "strokePattern": [                 7,                 3 ],

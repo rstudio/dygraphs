@@ -33,7 +33,7 @@ library(quantmod, quietly = TRUE)
 quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
 dygraph(MSFT[, 4], main = "Microsoft Share Price") %>% 
   dySeries("MSFT.Close", label = "MSFT") %>%
-  dyLimit(MSFT[1, 4], color = "red")
+  dyLimit(as.numeric(MSFT[1, 4]), color = "red")
 ```
 
 Note that limit lines are a feature of the development version of dygraphs so are not yet available on CRAN. To install the development version:
