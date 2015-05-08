@@ -1,5 +1,5 @@
 PackratFormat: 1.4
-PackratVersion: 0.4.2.7
+PackratVersion: 0.4.3
 RVersion: 3.1.3
 Repos: CRAN=http://cran.rstudio.com
 
@@ -126,13 +126,9 @@ Version: 0.2
 Hash: 9179db921fcb2e5be44e217042ed06bc
 
 Package: packrat
-Source: github
-Version: 0.4.2-7
-Hash: bf1677422e700ec0e1ce0481d3a7551f511ddb0a
-GithubRepo: packrat
-GithubUsername: rstudio
-GithubRef: master
-GithubSha1: bf1677422e700ec0e1ce0481d3a7551f511ddb0a
+Source: CRAN
+Version: 0.4.3
+Hash: 16c72d5c802629fae5a4abca901e0199
 
 Package: quantmod
 Source: CRAN
