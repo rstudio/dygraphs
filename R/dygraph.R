@@ -54,7 +54,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$ylabel <- ylab
   attrs$labels <- names(data)
   attrs$legend <- "auto"
-  attrs$retainDateWindow <- TRUE
+  attrs$retainDateWindow <- FALSE
   attrs$axes$x <- list() 
   attrs$axes$x$pixelsPerLabel <- 50
    

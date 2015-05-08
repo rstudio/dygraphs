@@ -187,7 +187,7 @@ dyOptions <- function(dygraph,
                       animatedZooms = FALSE,
                       timingName = NULL,
                       useDataTimezone = FALSE,
-                      retainDateWindow = TRUE) {
+                      retainDateWindow = FALSE) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph

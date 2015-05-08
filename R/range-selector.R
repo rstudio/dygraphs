@@ -49,7 +49,7 @@ dyRangeSelector <- function(dygraph,
                             fillColor = " #A7B1C4",
                             strokeColor = "#808FAB", 
                             keepMouseZoom = TRUE,
-                            retainDateWindow = TRUE) {
+                            retainDateWindow = FALSE) {
   
   selector <- list()
   selector$showRangeSelector = TRUE
