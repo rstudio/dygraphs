@@ -124,10 +124,12 @@ HTMLWidgets.widget({
       
     } else {
       
-        // retain the userDateWindow
-        if (instance.dygraph.userDateWindow != null)
+        // retain the userDateWindow if requested
+        if (instance.dygraph.userDateWindow != null
+            && attrs.retainDateWindow == true) {
           attrs.dateWindow = instance.dygraph.xAxisRange();
-      
+        }
+            
         // remove it from groups if it's there
         if (x.group != null && this.groups[x.group] != null) {
           var index = this.groups[x.group].indexOf(instance.dygraph);

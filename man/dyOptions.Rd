@@ -17,7 +17,8 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
   digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
   maxNumberWidth = 6, sigFigs = NULL, panEdgeFraction = NULL,
-  animatedZooms = FALSE, timingName = NULL, useDataTimezone = FALSE)
+  animatedZooms = FALSE, timingName = NULL, useDataTimezone = FALSE,
+  retainDateWindow = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -194,6 +195,10 @@ multiple dygraphs on the same page.}
 \item{useDataTimezone}{Whether to use the time zone of the underlying xts
 object for display. Defaults to \code{FALSE} which uses the time zone
 of the client workstation.}
+
+\item{retainDateWindow}{Whether to retain the user's current date
+ window (zoom level) when updating an existing dygraph with new data
+ and/or options.}
 }
 \value{
 dygraph with additional options

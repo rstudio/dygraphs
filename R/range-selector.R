@@ -3,6 +3,8 @@
 #' Add a range selector to the bottom of the chart that allows users to pan and 
 #' zoom to various date ranges.
 #' 
+#' @inheritParams dyOptions
+#' 
 #' @param dygraph Dygraph to add range selector to
 #' @param dateWindow Initially zoom in on a section of the graph. Is a two 
 #'   element vector [earliest, latest], where earliest/latest objects 
@@ -46,7 +48,8 @@ dyRangeSelector <- function(dygraph,
                             height = 40,
                             fillColor = " #A7B1C4",
                             strokeColor = "#808FAB", 
-                            keepMouseZoom = TRUE) {
+                            keepMouseZoom = TRUE,
+                            retainDateWindow = TRUE) {
   
   selector <- list()
   selector$showRangeSelector = TRUE
@@ -58,6 +61,8 @@ dyRangeSelector <- function(dygraph,
   selector$rangeSelectorHeight <- height
   selector$rangeSelectorPlotFillColor <- fillColor
   selector$rangeSelectorPlotStrokeColor <- strokeColor
+  if (!missing(retainDateWindow))
+    selector$retainDateWindow <- retainDateWindow
   
   if(keepMouseZoom)
     selector$interactionModel= JS("Dygraph.Interaction.defaultModel")

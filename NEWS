@@ -7,6 +7,10 @@ dygraphs 0.4.4 (Unreleased)
 
 * Add dyLimit function for drawing horizontal limit lines
 
+* Add retainDateWindow option for more flexibility as to whether
+  the user data window (zoom level) is retained when updating
+  data and/or options for an existing dygraph.
+
 
 dygraphs 0.4.3
 --------------------------------------------------------------------------------

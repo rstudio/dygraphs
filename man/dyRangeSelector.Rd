@@ -5,7 +5,8 @@
 \title{dygraph interactive range selection and zooming}
 \usage{
 dyRangeSelector(dygraph, dateWindow = NULL, height = 40,
-  fillColor = " #A7B1C4", strokeColor = "#808FAB", keepMouseZoom = TRUE)
+  fillColor = " #A7B1C4", strokeColor = "#808FAB", keepMouseZoom = TRUE,
+  retainDateWindow = TRUE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add range selector to}
@@ -25,6 +26,10 @@ the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
 "" to turn off stroke.}
 
 \item{keepMouseZoom}{Keep mouse zoom when adding a range selector}
+
+\item{retainDateWindow}{Whether to retain the user's current date
+ window (zoom level) when updating an existing dygraph with new data
+ and/or options.}
 }
 \value{
 A dygraph that displays a range selector
