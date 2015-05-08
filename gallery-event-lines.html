@@ -154,8 +154,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
   dyEvent(date = &quot;1950-6-30&quot;, &quot;Korea&quot;, labelLoc = &quot;bottom&quot;) %&gt;%
   dyEvent(date = &quot;1965-2-09&quot;, &quot;Vietnam&quot;, labelLoc = &quot;bottom&quot;)</code></pre>
-<p><div id="htmlwidget-3078" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-3078">{ "x": {
+<p><div id="htmlwidget-315" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-315">{ "x": {
  "attrs": {
  "title": "Quarterly Presidential Approval Ratings",
 "labels": [ "quarter", "V1" ],
@@ -196,35 +196,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 ] 
 },"evals": [  ] }</script></p>
 <p>Note that we specify that our event labels go at the bottom of the graph so they don’t interfere with the legend, and set the y-axis <code>valueRange</code> to ensure that there is adequate room at the bottom for the labels.</p>
+<div id="limit-lines" class="section level4">
+<h4>Limit Lines</h4>
 <p>Related to event lines are limit lines, which can be used to highlight data levels. For example, one could use limit lines to highlight the initial value of a stock price series.</p>
-<pre class="r"><code>library(quantmod)</code></pre>
-<pre><code>## Loading required package: xts
-## Loading required package: zoo
-## 
-## Attaching package: &#39;zoo&#39;
-## 
-## The following objects are masked from &#39;package:base&#39;:
-## 
-##     as.Date, as.Date.numeric
-## 
-## Loading required package: TTR
-## Version 0.4-0 included new data defaults. See ?getSymbols.</code></pre>
-<pre class="r"><code>getSymbols(&quot;MSFT&quot;, from = &quot;2014-06-01&quot;, auto.assign=TRUE)</code></pre>
-<pre><code>##     As of 0.4-0, &#39;getSymbols&#39; uses env=parent.frame() and
-##  auto.assign=TRUE by default.
-## 
-##  This  behavior  will be  phased out in 0.5-0  when the call  will
-##  default to use auto.assign=FALSE. getOption(&quot;getSymbols.env&quot;) and 
-##  getOptions(&quot;getSymbols.auto.assign&quot;) are now checked for alternate defaults
-## 
-##  This message is shown once per session and may be disabled by setting 
-##  options(&quot;getSymbols.warning4.0&quot;=FALSE). See ?getSymbol for more details</code></pre>
+<pre class="r"><code>quantmod::getSymbols(&quot;MSFT&quot;, from = &quot;2014-06-01&quot;, auto.assign=TRUE)</code></pre>
 <pre><code>## [1] &quot;MSFT&quot;</code></pre>
 <pre class="r"><code>dygraph(MSFT[, 4], main = &quot;Microsoft Share Price&quot;) %&gt;% 
   dySeries(&quot;MSFT.Close&quot;, label = &quot;MSFT&quot;) %&gt;%
   dyLimit(MSFT[1, 4], color = &quot;red&quot;)</code></pre>
-<p><div id="htmlwidget-2577" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2577">{ "x": {
+<p><div id="htmlwidget-7889" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-7889">{ "x": {
  "attrs": {
  "title": "Microsoft Share Price",
 "labels": [ "day", "MSFT" ],
@@ -259,6 +240,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 [             40.79,             40.29,             40.32,             41.21,             41.48,             41.27,             41.11,             40.86,             40.58,             41.23,              41.5,             41.68,             41.65,             41.51,             41.68,             41.99,             41.75,             42.03,             41.72,             42.25,              41.7,             41.87,              41.9,              41.8,             41.99,             41.78,             41.67,             41.69,             42.09,             42.14,             42.45,             44.08,             44.53,             44.69,             44.84,             44.83,             44.87,              44.4,              44.5,             43.97,             43.89,             43.58,             43.16,             42.86,             43.37,             43.08,             42.74,             43.23,              43.2,              43.2,             43.52,             44.08,             44.27,             44.79,             45.11,             45.33,             44.95,             45.22,             45.15,             45.17,             45.01,             44.87,             44.88,             45.43,             45.09,             44.96,             45.26,             45.91,             46.47,             46.76,             46.84,                47,              46.7,             46.24,             46.76,             46.52,             46.68,             47.52,             47.06,             46.56,             47.08,             46.04,             46.41,             46.44,             46.36,              45.9,             45.76,             46.09,             46.09,             45.53,             46.78,             45.85,             44.03,             43.65,             43.73,             43.22,             42.74,             43.63,             44.08,             44.88,             44.38,             45.02,             46.13,             45.91,             46.49,             46.62,             46.05,             46.95,             47.44,             47.57,             47.86,              48.7,             48.68,             48.89,             48.87,             48.78,             49.61,             49.58,             49.46,             48.74,             48.22,              48.7,             47.98,             47.59,             47.47,             47.75,             47.81,             48.62,             48.46,             48.08,             48.84,             48.42,              47.7,             47.59,              46.9,             47.17,             46.95,             46.67,             45.16,             45.74,             47.52,             47.66,             47.98,             48.45,             48.14,             47.88,             47.45,             47.02,             46.45,             46.76,             46.33,             45.65,             46.23,             47.59,             47.19,              46.6,             46.36,             45.96,             45.48,             46.24,             46.39,             45.92,             47.13,             47.18,             47.01,             42.66,             41.19,             42.01,              40.4,             41.28,              41.6,             41.84,             42.45,             42.41,             42.36,              42.6,             42.38,             43.09,             43.87,             43.58,             43.53,              43.5,             43.86,             44.15,             44.09,             43.99,             44.06,             43.85,             43.88,             43.28,             43.06,             43.11,             42.36,             42.85,             42.03,             41.98,             41.02,             41.38,             41.56,              41.7,              42.5,             42.29,             42.88,             42.86,              42.9,             41.46,             41.21,             40.97,             40.96,             40.66,             40.72,             40.29,             41.55,             41.53,             41.42,             41.48,             41.72,             41.76,             41.65,             42.26,             42.16,             41.62,             42.91,             42.64,             42.99,             43.34,             47.87,             48.03,             49.16,             49.06,             48.64,             48.66,             48.24,              47.6,             46.28,              46.7 ] 
 ] 
 },"evals": [  ] }</script></p>
+<p>Note that limit lines are a feature of the development version of dygraphs so are not yet available on CRAN. To install the development version:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/dygraphs&quot;)</code></pre>
+</div>
 
 
 </div>  

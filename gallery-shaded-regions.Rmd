@@ -30,22 +30,32 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 Note that we also changed the color of the series to black so that it contrast well with the custom background colors.
 
+#### Horizontal Shading
+
 It is also possible to add horizontal shading to a chart. In the example below,
 shading is used to show the one standard deviation range for a stock return 
 series.
 
+```{r, echo=FALSE, include=FALSE}
+options("getSymbols.warning4.0"=FALSE)
+library(quantmod, quietly = TRUE)
+```
+
 ```{r}
-library(quantmod)
-getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
+quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
 ret = ROC(MSFT[, 4])
 mn = mean(ret, na.rm = TRUE)
 std = sd(ret, na.rm = TRUE)
 dygraph(ret, main = "Microsoft Share Price") %>% 
   dySeries("MSFT.Close", label = "MSFT") %>%
-  dyLimit(mn, color = "red", strokePattern = "solid") %>%
   dyShading(from = mn - std, to = mn + std, axis = "y")
 ```
 
+Note that horizontal shading is a feature of the development version of dygraphs so is not yet available on CRAN. To install the development version:
+
+```r
+devtools::install_github("rstudio/dygraphs")
+```
 
 
 
