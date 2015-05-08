@@ -17,4 +17,14 @@ dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
 
 Note that we specify that our event labels go at the bottom of the graph so they don't interfere with the legend, and set the y-axis `valueRange` to ensure that there is adequate room at the bottom for the labels.
 
+Related to event lines are limit lines, which can be used to highlight data 
+levels. For example, one could use limit lines to highlight the initial value of
+a stock price series.
 
+```{r}
+library(quantmod)
+getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
+dygraph(MSFT[, 4], main = "Microsoft Share Price") %>% 
+  dySeries("MSFT.Close", label = "MSFT") %>%
+  dyLimit(MSFT[1, 4], color = "red")
+```
