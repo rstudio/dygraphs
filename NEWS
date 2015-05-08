@@ -3,6 +3,10 @@ dygraphs 0.4.4 (Unreleased)
 
 * Correct serialization of dates with year < 1000
 
+* Add axis argument to dyShading for horizontal shading
+
+* Add dyLimit function for drawing horizontal limit lines
+
 
 dygraphs 0.4.3
 --------------------------------------------------------------------------------
