@@ -478,18 +478,31 @@ HTMLWidgets.widget({
         
         // get event and x-coordinate
         var event = x.events[i];
-        var xPos = thiz.normalizeDateValue(x.scale, event.date, x.fixedtz).getTime();
-        xPos = g.toDomXCoord(xPos);
         
         // draw line
         canvas.save();
         canvas.strokeStyle = event.color;
-        thiz.dashedLine(canvas, 
-                        xPos, 
-                        area.y, 
-                        xPos, 
-                        area.y + area.h,
-                        event.strokePattern);
+        if (event.axis == "x") {
+          var xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
+          xPos = g.toDomXCoord(xPos);
+          
+          // draw line
+          thiz.dashedLine(canvas, 
+                          xPos, 
+                          area.y, 
+                          xPos, 
+                          area.y + area.h,
+                          event.strokePattern);
+        } else if (event.axis == "y") {
+          yPos = g.toDomYCoord(event.pos);
+          
+          thiz.dashedLine(canvas, 
+                          area.x, 
+                          yPos, 
+                          area.x + area.w, 
+                          yPos,
+                          event.strokePattern);
+        }
         canvas.restore();
         
         // draw label
@@ -497,15 +510,24 @@ HTMLWidgets.widget({
           canvas.save();
           thiz.setFontSize(canvas, 12);
           var size = canvas.measureText(event.label);
-          var tx = xPos - 4;
-          var ty;
-          if (event.labelLoc == "top")
-            ty = area.y + size.width + 10;
-          else
-            ty = area.y + area.h - 10;
-          canvas.translate(tx,ty);
-          canvas.rotate(3 * Math.PI / 2);
-          canvas.translate(-tx,-ty);
+          if (event.axis == "x") {
+            var tx = xPos - 4;
+            var ty;
+            if (event.labelLoc == "top")
+              ty = area.y + size.width + 10;
+            else
+              ty = area.y + area.h - 10;
+            canvas.translate(tx, ty);
+            canvas.rotate(3 * Math.PI / 2);
+            canvas.translate(-tx,-ty);
+          } else if (event.axis == "y") {
+            var ty = yPos - 4;
+            var tx;
+            if (event.labelLoc == "right")
+              tx = area.x + area.w - size.width - 10;
+            else
+              tx = area.x + 10;
+          }
           canvas.fillText(event.label, tx, ty);
           canvas.restore();
         }
