@@ -402,9 +402,14 @@ HTMLWidgets.widget({
       var range = me.xAxisRange();
       for (var j = 0; j < group.length; j++) {
         if (group[j] == me) continue;
-        group[j].updateOptions({
-          dateWindow: range
-        });
+        // update group range only if it's different (prevents
+        // infinite recursion in updateOptions)
+        var peerRange = group[j].xAxisRange();
+        if (peerRange[0] != range[0] || peerRange[1] != range[1]) {
+          group[j].updateOptions({
+            dateWindow: range
+          });
+        }
       }
       blockRedraw = false;
     };

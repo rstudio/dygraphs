@@ -10,6 +10,9 @@ dygraphs 0.4.4 (Unreleased)
 * Add retainDateWindow option for more flexibility as to whether
   the user data window (zoom level) is retained when updating
   data and/or options for an existing dygraph.
+  
+* Fix infinite redraw issue which occurred with shiny uiOutput
+  and grouped dygraphs.
 
 
 dygraphs 0.4.3
