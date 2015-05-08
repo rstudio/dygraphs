@@ -22,7 +22,7 @@
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/moment-2.8.4/moment.js"></script>
 <script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/dygraphs-binding-0.4.4/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.4.4.1/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -161,6 +161,7 @@ dygraph(p, main = &quot;Predicted Lung Deaths (UK)&quot;) %&gt;%
  "title": "Predicted Lung Deaths (UK)",
 "labels": [ "month", "Deaths" ],
 "legend": "auto",
+"retainDateWindow": false,
 "axes": {
  "x": {
  "pixelsPerLabel":                50 
@@ -269,6 +270,7 @@ dygraph(all, &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
  "title": "Deaths from Lung Disease (UK)",
 "labels": [ "month", "Actual", "Predicted" ],
 "legend": "auto",
+"retainDateWindow": false,
 "axes": {
  "x": {
  "pixelsPerLabel":                50 
@@ -526,6 +528,7 @@ dygraph(stocks, main = &quot;Microsoft and HP Share Prices&quot;) %&gt;%
  "title": "Microsoft and HP Share Prices",
 "labels": [ "day", "MSFT", "HPQ" ],
 "legend": "auto",
+"retainDateWindow": false,
 "axes": {
  "x": {
  "pixelsPerLabel":                50 

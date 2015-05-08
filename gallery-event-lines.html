@@ -22,7 +22,7 @@
 <script src="libs/dygraphs-1.0.1/dygraph-combined.js"></script>
 <script src="libs/moment-2.8.4/moment.js"></script>
 <script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/dygraphs-binding-0.4.4/dygraphs.js"></script>
+<script src="libs/dygraphs-binding-0.4.4.1/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -154,12 +154,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
   dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
   dyEvent(date = &quot;1950-6-30&quot;, &quot;Korea&quot;, labelLoc = &quot;bottom&quot;) %&gt;%
   dyEvent(date = &quot;1965-2-09&quot;, &quot;Vietnam&quot;, labelLoc = &quot;bottom&quot;)</code></pre>
-<p><div id="htmlwidget-2647" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2647">{ "x": {
+<p><div id="htmlwidget-3078" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-3078">{ "x": {
  "attrs": {
  "title": "Quarterly Presidential Approval Ratings",
 "labels": [ "quarter", "V1" ],
 "legend": "auto",
+"retainDateWindow": false,
 "axes": {
  "x": {
  "pixelsPerLabel":                50 
@@ -204,12 +205,13 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>dygraph(MSFT[, 4], main = &quot;Microsoft Share Price&quot;) %&gt;% 
   dySeries(&quot;MSFT.Close&quot;, label = &quot;MSFT&quot;) %&gt;%
   dyLimit(as.numeric(MSFT[1, 4]), color = &quot;red&quot;)</code></pre>
-<p><div id="htmlwidget-2767" style="width:624px;height:336px;" class="dygraphs"></div>
-<script type="application/json" data-for="htmlwidget-2767">{ "x": {
+<p><div id="htmlwidget-2577" style="width:624px;height:336px;" class="dygraphs"></div>
+<script type="application/json" data-for="htmlwidget-2577">{ "x": {
  "attrs": {
  "title": "Microsoft Share Price",
 "labels": [ "day", "MSFT" ],
 "legend": "auto",
+"retainDateWindow": false,
 "axes": {
  "x": {
  "pixelsPerLabel":                50 

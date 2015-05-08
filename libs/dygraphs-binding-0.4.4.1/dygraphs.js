@@ -124,10 +124,12 @@ HTMLWidgets.widget({
       
     } else {
       
-        // retain the userDateWindow
-        if (instance.dygraph.userDateWindow != null)
+        // retain the userDateWindow if requested
+        if (instance.dygraph.userDateWindow != null
+            && attrs.retainDateWindow == true) {
           attrs.dateWindow = instance.dygraph.xAxisRange();
-      
+        }
+            
         // remove it from groups if it's there
         if (x.group != null && this.groups[x.group] != null) {
           var index = this.groups[x.group].indexOf(instance.dygraph);
@@ -400,9 +402,14 @@ HTMLWidgets.widget({
       var range = me.xAxisRange();
       for (var j = 0; j < group.length; j++) {
         if (group[j] == me) continue;
-        group[j].updateOptions({
-          dateWindow: range
-        });
+        // update group range only if it's different (prevents
+        // infinite recursion in updateOptions)
+        var peerRange = group[j].xAxisRange();
+        if (peerRange[0] != range[0] || peerRange[1] != range[1]) {
+          group[j].updateOptions({
+            dateWindow: range
+          });
+        }
       }
       blockRedraw = false;
     };
