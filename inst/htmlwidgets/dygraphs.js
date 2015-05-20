@@ -107,10 +107,6 @@ HTMLWidgets.widget({
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";
 
-      // add shiny input for date window
-      if (HTMLWidgets.shinyMode)
-        this.addDateWindowShinyInput(el.id, x);
-  
       // inject css if necessary
       if (x.css != null) {
         var style = document.createElement('style');
@@ -141,6 +137,10 @@ HTMLWidgets.widget({
         instance.dygraph.destroy();
         instance.dygraph = null;
     }
+    
+    // add shiny input for date window
+    if (HTMLWidgets.shinyMode)
+      this.addDateWindowShinyInput(el.id, x);
     
     // create the instance and add it to it's group (if any)
     instance.dygraph = new Dygraph(el, attrs.file, attrs);

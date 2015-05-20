@@ -13,6 +13,9 @@ dygraphs 0.4.4 (Unreleased)
   
 * Fix infinite redraw issue which occurred with shiny uiOutput
   and grouped dygraphs.
+  
+* Fix failure to update shiny date range input after graph is 
+  re-rendered based on new data or options.
 
 
 dygraphs 0.4.3
