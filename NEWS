@@ -1,4 +1,4 @@
-dygraphs 0.4.4 (Unreleased)
+dygraphs 0.4.5
 --------------------------------------------------------------------------------
 
 * Correct serialization of dates with year < 1000
