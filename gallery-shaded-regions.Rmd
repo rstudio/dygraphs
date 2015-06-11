@@ -51,12 +51,6 @@ dygraph(ret, main = "Microsoft Share Price") %>%
   dyShading(from = mn - std, to = mn + std, axis = "y")
 ```
 
-Note that horizontal shading is a feature of the development version of dygraphs so is not yet available on CRAN. To install the development version:
-
-```r
-devtools::install_github("rstudio/dygraphs")
-```
-
 
 
 

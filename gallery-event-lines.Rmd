@@ -1,10 +1,12 @@
 ---
-title: "Event Lines"
+title: "Event and Limit Lines"
 ---
 
 ```{r, include=FALSE}
 library(dygraphs)
 ```
+
+#### Event Lines
 
 Event lines are a useful way to note points within a time series where noteworthy events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings: 
 
@@ -36,11 +38,6 @@ dygraph(MSFT[, 4], main = "Microsoft Share Price") %>%
   dyLimit(as.numeric(MSFT[1, 4]), color = "red")
 ```
 
-Note that limit lines are a feature of the development version of dygraphs so are not yet available on CRAN. To install the development version:
-
-```r
-devtools::install_github("rstudio/dygraphs")
-```
 
 
 
