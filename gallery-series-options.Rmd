@@ -9,7 +9,7 @@ library(dygraphs)
 
 #### Series Colors
 
-You can specify an alternate color palette for series lines using the `colors` option. For example, to choose a palette from [RColorBrewer](http://cran.rstudio.com/web/packages/RColorBrewer/index.html):
+You can specify an alternate color palette for series lines using the `colors` option. For example, to choose a palette from [RColorBrewer](https://cran.rstudio.com/web/packages/RColorBrewer/index.html):
 
 
 ```{r}

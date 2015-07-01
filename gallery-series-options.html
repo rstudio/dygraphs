@@ -151,7 +151,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="series-colors" class="section level4">
 <h4>Series Colors</h4>
-<p>You can specify an alternate color palette for series lines using the <code>colors</code> option. For example, to choose a palette from <a href="http://cran.rstudio.com/web/packages/RColorBrewer/index.html">RColorBrewer</a>:</p>
+<p>You can specify an alternate color palette for series lines using the <code>colors</code> option. For example, to choose a palette from <a href="https://cran.rstudio.com/web/packages/RColorBrewer/index.html">RColorBrewer</a>:</p>
 <pre class="r"><code>lungDeaths &lt;- cbind(ldeaths, mdeaths, fdeaths)
 dygraph(lungDeaths, main = &quot;Deaths from Lung Disease (UK)&quot;) %&gt;%
   dyOptions(colors = RColorBrewer::brewer.pal(3, &quot;Set2&quot;))</code></pre>

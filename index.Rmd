@@ -4,7 +4,7 @@ title: "dygraphs for R"
 
 The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilities for charting time-series data in R, including:
 
-- Automatically plots [xts](http://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
+- Automatically plots [xts](https://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
 - Highly configurable axis and series display (including optional second Y-axis).
 - Rich interactive features including [zoom/pan](gallery-range-selector.html) and series/point [highlighting](gallery-series-highlighting.html).
 - Display [upper/lower bars](gallery-upper-lower-bars.html) (e.g. prediction intervals) around series.
