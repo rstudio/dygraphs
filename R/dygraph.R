@@ -5,6 +5,8 @@
 #' 
 #' @param data Time series data (must be an \link[xts]{xts} object or an object 
 #'   which is convertible to \code{xts}).
+#' @param periodicity Periodicity of data (automatically detected via
+#'   \link[xts:periodicity]{xts::periodicity} if not specified).
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
@@ -25,15 +27,17 @@
 #' dygraph(lungDeaths)
 #' 
 #' @export
-dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
+dygraph <- function(data, periodicity = NULL, 
+                    main = NULL, xlab = NULL, ylab = NULL,
                     group = NULL, width = NULL, height = NULL) {
   
   # convert data to xts
   if (!xts::is.xts(data))
     data <- xts::as.xts(data)
   
-  # check periodicity 
-  periodicity <- xts::periodicity(data)
+  # auto-detect periodicity if not otherwise specified
+  if (is.null(periodicity))
+    periodicity <- xts::periodicity(data)
    
   # extract time
   time <- time(data)
