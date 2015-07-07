@@ -44,6 +44,12 @@ HTMLWidgets.widget({
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
+    
+    // convert non-arrays to arrays
+    for (var index = 0; index < attrs.file.length; index++) {
+      if (!$.isArray(attrs.file[index]))
+        attrs.file[index] = [].concat(attrs.file[index]);
+    }
         
     // resolve "auto" legend behavior
     if (x.attrs.legend == "auto") {
