@@ -4,12 +4,15 @@
 \alias{dygraph}
 \title{dygraph interactive plot for time series data}
 \usage{
-dygraph(data, main = NULL, xlab = NULL, ylab = NULL, group = NULL,
-  width = NULL, height = NULL)
+dygraph(data, periodicity = NULL, main = NULL, xlab = NULL, ylab = NULL,
+  group = NULL, width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Time series data (must be an \link[xts]{xts} object or an object
 which is convertible to \code{xts}).}
+
+\item{periodicity}{Periodicity of data (automatically detected via
+\link[xts:periodicity]{xts::periodicity} if not specified).}
 
 \item{main}{Main plot title (optional)}
 

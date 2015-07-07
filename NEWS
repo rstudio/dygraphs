@@ -1,3 +1,9 @@
+dygraphs 0.4.6 (Unreleased)
+--------------------------------------------------------------------------------
+
+* Allow explicit specification of series periodicity when creating a dygraph 
+
+
 dygraphs 0.4.5
 --------------------------------------------------------------------------------
 
