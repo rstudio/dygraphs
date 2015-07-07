@@ -36,9 +36,14 @@ dygraph <- function(data, periodicity = NULL,
     data <- xts::as.xts(data)
   
   # auto-detect periodicity if not otherwise specified
-  if (is.null(periodicity))
-    periodicity <- xts::periodicity(data)
-   
+  if (is.null(periodicity)) {
+    if (nrow(data) < 2) {
+      periodicity <- defaultPeriodicity(data)
+    } else {
+      periodicity <- xts::periodicity(data)
+    }
+  }
+  
   # extract time
   time <- time(data)
   

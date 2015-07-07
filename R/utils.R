@@ -45,3 +45,15 @@ resolveStrokePattern <- function(strokePattern) {
   strokePattern
 }
 
+defaultPeriodicity <- function (data) {
+  periodicity <- structure(
+    list(difftime = structure(0, units = "secs", class = "difftime"),
+         frequency = 0,
+         start = start(data),
+         end = end(data),
+         units = "secs",
+         scale = "seconds",
+         label = "second"),
+    class = "periodicity")
+}
+
