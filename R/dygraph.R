@@ -27,9 +27,9 @@
 #' dygraph(lungDeaths)
 #' 
 #' @export
-dygraph <- function(data, periodicity = NULL, 
-                    main = NULL, xlab = NULL, ylab = NULL,
-                    group = NULL, width = NULL, height = NULL) {
+dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
+                    periodicity = NULL, group = NULL, 
+                    width = NULL, height = NULL) {
   
   # convert data to xts
   if (!xts::is.xts(data))
