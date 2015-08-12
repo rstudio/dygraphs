@@ -135,6 +135,10 @@
 #' @param useDataTimezone Whether to use the time zone of the underlying xts
 #'  object for display. Defaults to \code{FALSE} which uses the time zone
 #'  of the client workstation.
+#' @param retainDateWindow Whether to retain the user's current date
+#'  window (zoom level) when updating an existing dygraph with new data
+#'  and/or options.
+#' 
 #' @return dygraph with additional options
 #'   
 #' @note See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
@@ -182,7 +186,8 @@ dyOptions <- function(dygraph,
                       panEdgeFraction = NULL,
                       animatedZooms = FALSE,
                       timingName = NULL,
-                      useDataTimezone = FALSE) {
+                      useDataTimezone = FALSE,
+                      retainDateWindow = FALSE) {
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -197,7 +202,8 @@ dyOptions <- function(dygraph,
   options$strokeBorderWidth <- strokeBorderWidth
   options$strokeBorderColor <- strokeBorderColor
   options$plotter <- JS(plotter)
-  options$colors <- colors
+  if (!is.null(colors))
+    options$colors <- as.list(colors)
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
   options$drawXAxis <- drawXAxis
@@ -224,6 +230,8 @@ dyOptions <- function(dygraph,
   options$panEdgeFraction <- panEdgeFraction
   options$animatedZooms <- animatedZooms
   options$timingName <- timingName
+  if (!missing(retainDateWindow))
+    options$retainDateWindow <- retainDateWindow
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)

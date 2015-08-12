@@ -1,3 +1,26 @@
+
+// polyfill indexOf for IE8
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function(elt /*, from*/) {
+    var len = this.length >>> 0;
+
+    var from = Number(arguments[1]) || 0;
+    from = (from < 0)
+         ? Math.ceil(from)
+         : Math.floor(from);
+    if (from < 0)
+      from += len;
+
+    for (; from < len; from++) {
+      if (from in this &&
+          this[from] === elt)
+        return from;
+    }
+    return -1;
+  };
+}
+
+
 HTMLWidgets.widget({
 
   name: "dygraphs",
@@ -26,6 +49,12 @@ HTMLWidgets.widget({
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
+    
+    // convert non-arrays to arrays
+    for (var index = 0; index < attrs.file.length; index++) {
+      if (!$.isArray(attrs.file[index]))
+        attrs.file[index] = [].concat(attrs.file[index]);
+    }
         
     // resolve "auto" legend behavior
     if (x.attrs.legend == "auto") {
@@ -51,11 +80,11 @@ HTMLWidgets.widget({
     
     // convert time to js time
     attrs.file[0] = attrs.file[0].map(function(value) {
-      return thiz.normalizeDateValue(x.scale, value);
+      return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
     });
     if (attrs.dateWindow != null) {
       attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(x.scale, value);
+        var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
         return date.getTime();
       });
     }
@@ -70,17 +99,24 @@ HTMLWidgets.widget({
     // add shading and event callback if necessary
     this.addShadingCallback(x);
     this.addEventCallback(x);
-    
-    if (instance.dygraph) { // update existing instance
-       
-      instance.dygraph.updateOptions(attrs);
-    
-    } else {  // create new instance
+    this.addZoomCallback(x, instance);
+
+    // if there is no existing instance perform one-time initialization
+    if (!instance.dygraph) {
       
-      // add shiny input for date window
-      if (HTMLWidgets.shinyMode)
-        this.addDateWindowShinyInput(el.id, x);
-  
+      // subscribe to custom shown event (fired by ioslides to trigger
+      // shiny reactivity but we can use it as well). this is necessary
+      // because if a dygraph starts out as display:none it has height
+      // and width == 0 and this doesn't change when it becomes visible
+      $(el).closest('slide').on('shown', function() {
+        if (instance.dygraph)
+          instance.dygraph.resize();  
+      });
+      
+      // add default font for viewer mode
+      if (this.queryVar("viewer_pane") === "1")
+        document.body.style.fontFamily = "Arial, sans-serif";
+
       // inject css if necessary
       if (x.css != null) {
         var style = document.createElement('style');
@@ -92,17 +128,41 @@ HTMLWidgets.widget({
         document.getElementsByTagName("head")[0].appendChild(style);
       }
       
-      // create the instance and add it to it's group (if any)
-      instance.dygraph = new Dygraph(el, attrs.file, attrs);
-      if (x.group != null)
-        this.groups[x.group].push(instance.dygraph);
+    } else {
+      
+        // retain the userDateWindow if requested
+        if (instance.dygraph.userDateWindow != null
+            && attrs.retainDateWindow == true) {
+          attrs.dateWindow = instance.dygraph.xAxisRange();
+        }
+            
+        // remove it from groups if it's there
+        if (x.group != null && this.groups[x.group] != null) {
+          var index = this.groups[x.group].indexOf(instance.dygraph);
+          if (index != -1)
+            this.groups[x.group].splice(index, 1);
+        }
+        
+        // destroy the existing dygraph 
+        instance.dygraph.destroy();
+        instance.dygraph = null;
     }
-     
+    
+    // add shiny input for date window
+    if (HTMLWidgets.shinyMode)
+      this.addDateWindowShinyInput(el.id, x);
+    
+    // create the instance and add it to it's group (if any)
+    instance.dygraph = new Dygraph(el, attrs.file, attrs);
+    instance.dygraph.userDateWindow = attrs.dateWindow;
+    if (x.group != null)
+      this.groups[x.group].push(instance.dygraph);
+    
     // set annotations
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
         x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(x.scale, annotation.x);
+          var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
           annotation.x = date.getTime();
         });
         instance.dygraph.setAnnotations(x.annotations);
@@ -238,7 +298,7 @@ HTMLWidgets.widget({
         return mmnt.format('YYYY');
       }else{
         if(granularity >= Dygraph.MONTHLY){
-          return mmnt.format('MMM YY');
+          return mmnt.format('MMM YYYY');
         }else{
           var frac = mmnt.hour() * 3600 + mmnt.minute() * 60 + mmnt.second() + mmnt.millisecond();
             if (frac === 0 || granularity >= Dygraph.DAILY) {
@@ -263,11 +323,11 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return mmnt.format('YYYY') + ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "monthly" || scale == "quarterly")
-          return mmnt.format('MMMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else if (scale == "daily" || scale == "weekly")
-          return mmnt.format('MMMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('MMM, DD, YYYY')+ ' (' + mmnt.zoneAbbr() + ')';
         else
-          return mmnt.format('MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
+          return mmnt.format('dddd, MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
   
@@ -281,15 +341,51 @@ HTMLWidgets.widget({
         if (scale == "yearly")
           return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getMonth()] + ' ' + date.getFullYear(); 
+          return monthNames[date.getMonth()] + ', ' + date.getFullYear(); 
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getMonth()] + ' ' + 
-                           date.getDate() + ' ' + 
+          return monthNames[date.getMonth()] + ', ' + 
+                           date.getDate() + ', ' + 
                            date.getFullYear();
         else
           return date.toLocaleString();
     }
   },
+  
+  addZoomCallback: function(x, instance) {
+    
+    // alias this
+    var thiz = this;
+    
+    // get attrs
+    var attrs = x.attrs;
+    
+    // check for an existing zoomCallback
+    var prevZoomCallback = attrs["zoomCallback"];
+    
+    attrs.zoomCallback = function(minDate, maxDate, yRanges) {
+      
+      // call existing
+      if (prevZoomCallback)
+        prevZoomCallback(minDate, maxDate, yRanges);
+        
+      // record user date window (or lack thereof)
+      var me = instance.dygraph;
+      if (me.xAxisExtremes()[0] != minDate ||
+          me.xAxisExtremes()[1] != maxDate) {
+         me.userDateWindow = [minDate, maxDate];
+      } else {
+         me.userDateWindow = null;
+      }
+      
+      // record in group if necessary
+      if (x.group != null && thiz.groups[x.group] != null) {
+        var group = thiz.groups[x.group];
+        for(var i = 0; i<group.length; i++)
+          group[i].userDateWindow = me.userDateWindow;
+      }
+    };
+  },
+  
   
   groups: {},
   
@@ -316,9 +412,14 @@ HTMLWidgets.widget({
       var range = me.xAxisRange();
       for (var j = 0; j < group.length; j++) {
         if (group[j] == me) continue;
-        group[j].updateOptions({
-          dateWindow: range
-        });
+        // update group range only if it's different (prevents
+        // infinite recursion in updateOptions)
+        var peerRange = group[j].xAxisRange();
+        if (peerRange[0] != range[0] || peerRange[1] != range[1]) {
+          group[j].updateOptions({
+            dateWindow: range
+          });
+        }
       }
       blockRedraw = false;
     };
@@ -348,13 +449,21 @@ HTMLWidgets.widget({
         
       for (var i = 0; i < x.shadings.length; i++) {
         var shading = x.shadings[i];
-        var x1 = thiz.normalizeDateValue(x.scale, shading.from).getTime();
-        var x2 = thiz.normalizeDateValue(x.scale, shading.to).getTime();
-        var left = g.toDomXCoord(x1);
-        var right = g.toDomXCoord(x2);
         canvas.save();
         canvas.fillStyle = shading.color;
-        canvas.fillRect(left, area.y, right - left, area.h);
+        if (shading.axis == "x") {
+          var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
+          var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
+          var left = g.toDomXCoord(x1);
+          var right = g.toDomXCoord(x2);
+          
+          canvas.fillRect(left, area.y, right - left, area.h);
+        } else if (shading.axis == "y") {
+          var bottom = g.toDomYCoord(shading.from);
+          var top = g.toDomYCoord(shading.to);
+
+          canvas.fillRect(area.x, bottom, area.w, top - bottom);
+        }
         canvas.restore();
       }
     };
@@ -386,18 +495,31 @@ HTMLWidgets.widget({
         
         // get event and x-coordinate
         var event = x.events[i];
-        var xPos = thiz.normalizeDateValue(x.scale, event.date).getTime();
-        xPos = g.toDomXCoord(xPos);
         
         // draw line
         canvas.save();
         canvas.strokeStyle = event.color;
-        thiz.dashedLine(canvas, 
-                        xPos, 
-                        area.y, 
-                        xPos, 
-                        area.y + area.h,
-                        event.strokePattern);
+        if (event.axis == "x") {
+          var xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
+          xPos = g.toDomXCoord(xPos);
+          
+          // draw line
+          thiz.dashedLine(canvas, 
+                          xPos, 
+                          area.y, 
+                          xPos, 
+                          area.y + area.h,
+                          event.strokePattern);
+        } else if (event.axis == "y") {
+          yPos = g.toDomYCoord(event.pos);
+          
+          thiz.dashedLine(canvas, 
+                          area.x, 
+                          yPos, 
+                          area.x + area.w, 
+                          yPos,
+                          event.strokePattern);
+        }
         canvas.restore();
         
         // draw label
@@ -405,15 +527,24 @@ HTMLWidgets.widget({
           canvas.save();
           thiz.setFontSize(canvas, 12);
           var size = canvas.measureText(event.label);
-          var tx = xPos - 4;
-          var ty;
-          if (event.labelLoc == "top")
-            ty = area.y + size.width + 10;
-          else
-            ty = area.y + area.h - 10;
-          canvas.translate(tx,ty);
-          canvas.rotate(3 * Math.PI / 2);
-          canvas.translate(-tx,-ty);
+          if (event.axis == "x") {
+            var tx = xPos - 4;
+            var ty;
+            if (event.labelLoc == "top")
+              ty = area.y + size.width + 10;
+            else
+              ty = area.y + area.h - 10;
+            canvas.translate(tx, ty);
+            canvas.rotate(3 * Math.PI / 2);
+            canvas.translate(-tx,-ty);
+          } else if (event.axis == "y") {
+            var ty = yPos - 4;
+            var tx;
+            if (event.labelLoc == "right")
+              tx = area.x + area.w - size.width - 10;
+            else
+              tx = area.x + 10;
+          }
           canvas.fillText(event.label, tx, ty);
           canvas.restore();
         }
@@ -490,9 +621,10 @@ HTMLWidgets.widget({
   // months or years we need to convert the UTC date value to a local time
   // value that "looks like" the equivilant UTC value. To do this we add the
   // timezone offset to the UTC date.
-  normalizeDateValue: function(scale, value) {
+  // Don't use in case of fixedtz
+  normalizeDateValue: function(scale, value, fixedtz) {
     var date = new Date(value); 
-    if (scale != "minute" && scale != "hourly") {
+    if (scale != "minute" && scale != "hourly" && scale != "seconds" && !fixedtz) {
       var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
       date = new Date(localAsUTC);
     }

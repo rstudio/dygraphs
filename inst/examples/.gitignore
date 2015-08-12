@@ -1,2 +1,4 @@
 *.html
 shinyapps/
+examples.Rmd
+examples_files/

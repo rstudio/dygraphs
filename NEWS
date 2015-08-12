@@ -1,3 +1,46 @@
+dygraphs 0.4.6 (Unreleased)
+--------------------------------------------------------------------------------
+
+* Allow explicit specification of series periodicity when creating a dygraph 
+
+
+dygraphs 0.4.5
+--------------------------------------------------------------------------------
+
+* Correct serialization of dates with year < 1000
+
+* Add axis argument to dyShading for horizontal shading
+
+* Add dyLimit function for drawing horizontal limit lines
+
+* Add retainDateWindow option for more flexibility as to whether
+  the user data window (zoom level) is retained when updating
+  data and/or options for an existing dygraph.
+  
+* Fix infinite redraw issue which occurred with shiny uiOutput
+  and grouped dygraphs.
+  
+* Fix failure to update shiny date range input after graph is 
+  re-rendered based on new data or options.
+
+
+dygraphs 0.4.3
+--------------------------------------------------------------------------------
+
+* Support dynamic updating (i.e. for Shiny reactive outputs) for all dygraphs
+  properties (destroy and rebuild the entire dygraph on renderValue)
+  
+* Fix an axis value issue that occurred with seconds and useDataTimezone
+
+* Fix issue where dygraph in ioslides didn't display on slide entry
+
+
+dygraphs 0.4.2
+--------------------------------------------------------------------------------
+
+* Fix bug with specification of multiple series colors
+
+
 dygraphs 0.4.1
 --------------------------------------------------------------------------------
 

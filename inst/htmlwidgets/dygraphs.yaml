@@ -1,4 +1,8 @@
 dependencies:
+  - name: jquery
+    version: 1.11.1
+    src: "htmlwidgets/lib/jquery"
+    script: jquery.min.js
   - name: dygraphs
     version: 1.1.0
     src: "htmlwidgets/lib/dygraphs"

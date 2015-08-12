@@ -1,17 +1,21 @@
 Package: dygraphs
 Type: Package
 Title: Interface to Dygraphs Interactive Time Series Charting Library
-Version: 0.4.1
-Date: 2014-12-23
+Version: 0.4.6
+Date: 2015-06-11
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
        comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
     person("JJ", "Allaire", role = c("aut", "cre"),
        comment = "R interface", email = "jj@rstudio.com"),
-    person(family = "RStudio", role = "cph")
+    person(family = "RStudio", role = "cph"),
+    person(family = "jQuery Foundation", role = "cph",
+           comment = "jQuery library"),
+    person(family = "jQuery contributors", role = c("ctb", "cph"),
+           comment = "jQuery library; authors listed in inst/htmlwidgets/lib/jquery/AUTHORS.txt")
     )
 Maintainer: JJ Allaire <jj@rstudio.com>
-Description: An R interface to the dygraphs JavaScript charting library
+Description: An R interface to the 'dygraphs' JavaScript charting library
     (a copy of which is included in the package). Provides rich facilities
     for charting time-series data in R, including highly configurable 
     series- and axis-display and interactive features like zoom/pan and 
