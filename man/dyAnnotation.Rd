@@ -12,8 +12,9 @@ dyAnnotation(dygraph, x, text, tooltip = NULL, width = NULL,
 \arguments{
 \item{dygraph}{Dygraph to add an annotation to}
 
-\item{x}{Date value indicating where to place the annotation. This should be
-of class \code{POSIXct} or convertible to \code{POSIXct}.}
+\item{x}{Either numeric or date value indicating where to place the
+annotation. For date value, this should be of class \code{POSIXct} or
+convertible to \code{POSIXct}.}
 
 \item{text}{Text to overlay on the chart at the location of x}
 

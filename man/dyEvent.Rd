@@ -4,14 +4,16 @@
 \alias{dyEvent}
 \title{dygraph event line}
 \usage{
-dyEvent(dygraph, date, label = NULL, labelLoc = c("top", "bottom"),
+dyEvent(dygraph, x, label = NULL, labelLoc = c("top", "bottom"),
   color = "black", strokePattern = "dashed")
 }
 \arguments{
 \item{dygraph}{Dygraph to add event line to}
 
-\item{date}{Date/time for the event (must be a \code{POSIXct} object or
-another object convertible to \code{POSIXct} via \code{as.POSIXct})}
+\item{x}{Either numeric or date/time for the event, depending on the format
+of the x-axis of the dygraph. (For date/time must be a \code{POSIXct}
+object or another object convertible to \code{POSIXct} via
+\code{as.POSIXct})}
 
 \item{label}{Label for event. Defaults to blank.}
 

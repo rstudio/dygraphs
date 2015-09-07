@@ -27,7 +27,7 @@ HTMLWidgets.widget({
 
   type: "output",
 
-  initialize: function(el, width, height) { 
+  initialize: function(el, width, height) {
     return {};
   },
 
@@ -37,20 +37,20 @@ HTMLWidgets.widget({
   },
 
   renderValue: function(el, x, instance) {
-    
+
     // reference to this for closures
     var thiz = this;
-    
+
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
-    
+
     // convert non-arrays to arrays
     for (var index = 0; index < attrs.file.length; index++) {
       if (!$.isArray(attrs.file[index]))
         attrs.file[index] = [].concat(attrs.file[index]);
     }
-        
+
     // resolve "auto" legend behavior
     if (x.attrs.legend == "auto") {
       if (x.data.length <= 2)
@@ -58,57 +58,60 @@ HTMLWidgets.widget({
       else
         x.attrs.legend = "always";
     }
-    
-    // set appropriated function in case of fixed tz
-    if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
-      attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
-      
-    if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
-      attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
 
-    if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
-      attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
-  
-    // provide an automatic x value formatter if none is already specified
-    if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
-      attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
-    
-    // convert time to js time
-    attrs.file[0] = attrs.file[0].map(function(value) {
-      return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
-    });
-    if (attrs.dateWindow != null) {
-      attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
-        return date.getTime();
+    if (x.format == "date")
+    {
+      // set appropriated function in case of fixed tz
+      if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
+        attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
+
+      if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
+        attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
+
+      if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
+        attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
+
+      // provide an automatic x value formatter if none is already specified
+      if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
+        attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
+
+      // convert time to js time
+      attrs.file[0] = attrs.file[0].map(function(value) {
+        return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
       });
+      if (attrs.dateWindow != null) {
+        attrs.dateWindow = attrs.dateWindow.map(function(value) {
+          var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
+          return date.getTime();
+        });
+      }
     }
-    
+
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
-    
+
     // add drawCallback for group
     if (x.group != null)
-      this.addGroupDrawCallback(x);  
-      
+      this.addGroupDrawCallback(x);
+
     // add shading and event callback if necessary
     this.addShadingCallback(x);
     this.addEventCallback(x);
     this.addZoomCallback(x, instance);
-      
-    
+
+
     // if there is no existing instance perform one-time initialization
     if (!instance.dygraph) {
-      
+
       // subscribe to custom shown event (fired by ioslides to trigger
       // shiny reactivity but we can use it as well). this is necessary
       // because if a dygraph starts out as display:none it has height
       // and width == 0 and this doesn't change when it becomes visible
       $(el).closest('slide').on('shown', function() {
         if (instance.dygraph)
-          instance.dygraph.resize();  
+          instance.dygraph.resize();
       });
-      
+
       // add default font for viewer mode
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";
@@ -117,64 +120,66 @@ HTMLWidgets.widget({
       if (x.css != null) {
         var style = document.createElement('style');
         style.type = 'text/css';
-        if (style.styleSheet) 
+        if (style.styleSheet)
           style.styleSheet.cssText = x.css;
-        else 
+        else
           style.appendChild(document.createTextNode(x.css));
         document.getElementsByTagName("head")[0].appendChild(style);
       }
-      
+
     } else {
-      
+
         // retain the userDateWindow if requested
         if (instance.dygraph.userDateWindow != null
             && attrs.retainDateWindow == true) {
           attrs.dateWindow = instance.dygraph.xAxisRange();
         }
-            
+
         // remove it from groups if it's there
         if (x.group != null && this.groups[x.group] != null) {
           var index = this.groups[x.group].indexOf(instance.dygraph);
           if (index != -1)
             this.groups[x.group].splice(index, 1);
         }
-        
-        // destroy the existing dygraph 
+
+        // destroy the existing dygraph
         instance.dygraph.destroy();
         instance.dygraph = null;
     }
-    
+
     // add shiny input for date window
     if (HTMLWidgets.shinyMode)
       this.addDateWindowShinyInput(el.id, x);
-    
+
     // create the instance and add it to it's group (if any)
     instance.dygraph = new Dygraph(el, attrs.file, attrs);
     instance.dygraph.userDateWindow = attrs.dateWindow;
     if (x.group != null)
       this.groups[x.group].push(instance.dygraph);
-    
+
     // set annotations
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
-        x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
-          annotation.x = date.getTime();
-        });
+        if (x.format == "date") {
+          x.annotations.map(function(annotation) {
+            var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
+            annotation.x = date.getTime();
+          });
+        }
         instance.dygraph.setAnnotations(x.annotations);
-      }); 
+      });
     }
-      
+
   },
-  
+
   // set of functions needed with fixed tz
   customDateTickerFixedTZ : function(tz){
-    return function(a, b, pixels, opts, dygraph, vals) {   
+    return function(a, b, pixels, opts, dygraph, vals) {
       var chosen = Dygraph.pickDateTickGranularity(a, b, pixels, opts);
       if (chosen >= 0) {
         var formatter = (opts("axisLabelFormatter"));
         var ticks = [];
-        var t; 
+        var t;
 
         if (chosen < Dygraph.MONTHLY) {
           // Generate one tick mark for every fixed interval of time.
@@ -184,16 +189,16 @@ HTMLWidgets.widget({
           // for this granularity.
           var g = spacing / 1000;
           var d = moment(a);
-          d.tz(tz); 
+          d.tz(tz);
           d.millisecond(0);
 
           var x;
-          if (g <= 60) {  // seconds 
-            x = d.second();         
-            d.second(x - x % g);     
+          if (g <= 60) {  // seconds
+            x = d.second();
+            d.second(x - x % g);
           } else {
             d.second(0);
-            g /= 60; 
+            g /= 60;
             if (g <= 60) {  // minutes
               x = d.minute();
               d.minute(x - x % g);
@@ -268,7 +273,7 @@ HTMLWidgets.widget({
           for (var i = start_year; i <= end_year; i++) {
             if (i % year_mod !== 0) continue;
             for (var j = 0; j < months.length; j++) {
-              var dt = moment.tz(new Date(i, months[j], 1), tz); 
+              var dt = moment.tz(new Date(i, months[j], 1), tz);
               dt.year(i);
               t = dt.valueOf();
               if (t < a || t > b) continue;
@@ -287,7 +292,7 @@ HTMLWidgets.widget({
   },
 
   xAxisLabelFormatterFixedTZ : function(tz){
-  
+
     return function dateAxisFormatter(date, granularity){
       var mmnt = moment(date).tz(tz);
       if (granularity >= Dygraph.DECADAL){
@@ -306,14 +311,14 @@ HTMLWidgets.widget({
                return mmnt.format('HH:mm');
              }
             }
-         } 
-                        
-       }         
+         }
+
+       }
    }
   },
-         
+
   xValueFormatterFixedTZ: function(scale, tz) {
-                   
+
     return function(millis) {
       var mmnt = moment(millis).tz(tz);
         if (scale == "yearly")
@@ -326,44 +331,44 @@ HTMLWidgets.widget({
           return mmnt.format('dddd, MMMM, DD, YYYY HH:mm:ss')+ ' (' + mmnt.zoneAbbr() + ')';
     }
   },
-  
+
   xValueFormatter: function(scale) {
-    
-    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                      
+
     return function(millis) {
       var date = new Date(millis);
         if (scale == "yearly")
           return date.getFullYear();
         else if (scale == "monthly" || scale == "quarterly")
-          return monthNames[date.getMonth()] + ', ' + date.getFullYear(); 
+          return monthNames[date.getMonth()] + ', ' + date.getFullYear();
         else if (scale == "daily" || scale == "weekly")
-          return monthNames[date.getMonth()] + ', ' + 
-                           date.getDate() + ', ' + 
+          return monthNames[date.getMonth()] + ', ' +
+                           date.getDate() + ', ' +
                            date.getFullYear();
         else
           return date.toLocaleString();
     }
   },
-  
+
   addZoomCallback: function(x, instance) {
-    
+
     // alias this
     var thiz = this;
-    
+
     // get attrs
     var attrs = x.attrs;
-    
+
     // check for an existing zoomCallback
     var prevZoomCallback = attrs["zoomCallback"];
-    
+
     attrs.zoomCallback = function(minDate, maxDate, yRanges) {
-      
+
       // call existing
       if (prevZoomCallback)
         prevZoomCallback(minDate, maxDate, yRanges);
-        
+
       // record user date window (or lack thereof)
       var me = instance.dygraph;
       if (me.xAxisExtremes()[0] != minDate ||
@@ -372,7 +377,7 @@ HTMLWidgets.widget({
       } else {
          me.userDateWindow = null;
       }
-      
+
       // record in group if necessary
       if (x.group != null && thiz.groups[x.group] != null) {
         var group = thiz.groups[x.group];
@@ -381,27 +386,27 @@ HTMLWidgets.widget({
       }
     };
   },
-  
-  
+
+
   groups: {},
-  
+
   addGroupDrawCallback: function(x) {
-    
+
     // get attrs
     var attrs = x.attrs;
-    
+
     // check for an existing drawCallback
     var prevDrawCallback = attrs["drawCallback"];
-    
+
     this.groups[x.group] = this.groups[x.group] || [];
     var group = this.groups[x.group];
     var blockRedraw = false;
     attrs.drawCallback = function(me, initial) {
-      
+
       // call existing
       if (prevDrawCallback)
         prevDrawCallback(me, initial);
-      
+
       // sync peers in group
       if (blockRedraw || initial) return;
       blockRedraw = true;
@@ -420,29 +425,29 @@ HTMLWidgets.widget({
       blockRedraw = false;
     };
   },
-  
+
   addShadingCallback: function(x) {
-    
+
     // bail if no shadings
     if (x.shadings.length == 0)
       return;
-    
+
     // alias this
     var thiz = this;
-    
+
     // get attrs
     var attrs = x.attrs;
-    
+
     // check for an existing underlayCallback
     var prevUnderlayCallback = attrs["underlayCallback"];
-    
+
     // install callback
     attrs.underlayCallback = function(canvas, area, g) {
-      
+
       // call existing
       if (prevUnderlayCallback)
         prevUnderlayCallback(canvas, area, g);
-        
+
       for (var i = 0; i < x.shadings.length; i++) {
         var shading = x.shadings[i];
         canvas.save();
@@ -452,7 +457,7 @@ HTMLWidgets.widget({
           var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
           var left = g.toDomXCoord(x1);
           var right = g.toDomXCoord(x2);
-          
+
           canvas.fillRect(left, area.y, right - left, area.h);
         } else if (shading.axis == "y") {
           var bottom = g.toDomYCoord(shading.from);
@@ -464,60 +469,65 @@ HTMLWidgets.widget({
       }
     };
   },
-  
+
   addEventCallback: function(x) {
-    
+
     // bail if no evets
     if (x.events.length == 0)
       return;
-    
+
     // alias this
     var thiz = this;
-    
+
     // get attrs
     var attrs = x.attrs;
-    
+
     // check for an existing underlayCallback
     var prevUnderlayCallback = attrs["underlayCallback"];
-    
+
     // install callback
     attrs.underlayCallback = function(canvas, area, g) {
-      
+
       // call existing
       if (prevUnderlayCallback)
         prevUnderlayCallback(canvas, area, g);
-        
+
       for (var i = 0; i < x.events.length; i++) {
-        
+
         // get event and x-coordinate
         var event = x.events[i];
-        
+
         // draw line
         canvas.save();
         canvas.strokeStyle = event.color;
         if (event.axis == "x") {
-          var xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
-          xPos = g.toDomXCoord(xPos);
-          
+          var xPos;
+          if (jQuery.isNumeric(event.pos)) {
+            xPos = g.toDomXCoord(event.pos);
+          } else {
+            xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
+            xPos = g.toDomXCoord(xPos);
+          }
+
           // draw line
-          thiz.dashedLine(canvas, 
-                          xPos, 
-                          area.y, 
-                          xPos, 
+          thiz.dashedLine(canvas,
+                          xPos,
+                          area.y,
+                          xPos,
                           area.y + area.h,
                           event.strokePattern);
         } else if (event.axis == "y") {
           yPos = g.toDomYCoord(event.pos);
-          
-          thiz.dashedLine(canvas, 
-                          area.x, 
-                          yPos, 
-                          area.x + area.w, 
+
+          thiz.dashedLine(canvas,
+                          area.x,
+                          yPos,
+                          area.x + area.w,
                           yPos,
                           event.strokePattern);
         }
         canvas.restore();
-        
+
         // draw label
         if (event.label != null) {
           canvas.save();
@@ -547,26 +557,26 @@ HTMLWidgets.widget({
       }
     };
   },
-  
+
   addDateWindowShinyInput: function(id, x) {
-      
+
     // check for an existing drawCallback
     var prevDrawCallback = x.attrs["drawCallback"];
-    
+
     // install the callback
     x.attrs.drawCallback = function(me, initial) {
-      
+
       // call existing
       if (prevDrawCallback)
         prevDrawCallback(me, initial);
-        
+
       // fire input change
       var range = me.xAxisRange();
       var dateWindow = [new Date(range[0]), new Date(range[1])];
-      Shiny.onInputChange(id + "_date_window", dateWindow); 
+      Shiny.onInputChange(id + "_date_window", dateWindow);
     };
   },
-  
+
   // Add dashed line support to canvas rendering context
   // See: http://stackoverflow.com/questions/4576724/dotted-stroke-in-canvas
   dashedLine: function(canvas, x, y, x2, y2, dashArray) {
@@ -592,7 +602,7 @@ HTMLWidgets.widget({
     }
     canvas.stroke();
   },
-  
+
   setFontSize: function(canvas, size) {
     var cFont = canvas.font;
     var parts = cFont.split(' ');
@@ -601,7 +611,7 @@ HTMLWidgets.widget({
     else if (parts.length === 3)
       canvas.font = parts[0] + ' ' + size + 'px ' + parts[2];
   },
-  
+
   // Returns the value of a GET variable
   queryVar: function(name) {
     return decodeURI(window.location.search.replace(
@@ -610,8 +620,8 @@ HTMLWidgets.widget({
                  "(?:\\=([^&]*))?)?.*$", "i"),
       "$1"));
   },
-  
-  // We deal exclusively in UTC dates within R, however dygraphs deals 
+
+  // We deal exclusively in UTC dates within R, however dygraphs deals
   // exclusively in the local time zone. Therefore, in order to plot date
   // labels that make sense to the user when we are dealing with days,
   // months or years we need to convert the UTC date value to a local time
@@ -619,13 +629,12 @@ HTMLWidgets.widget({
   // timezone offset to the UTC date.
   // Don't use in case of fixedtz
   normalizeDateValue: function(scale, value, fixedtz) {
-    var date = new Date(value); 
+    var date = new Date(value);
     if (scale != "minute" && scale != "hourly" && scale != "seconds" && !fixedtz) {
       var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
       date = new Date(localAsUTC);
     }
     return date;
   }
-  
-});
 
+});

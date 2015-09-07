@@ -31,30 +31,57 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     periodicity = NULL, group = NULL, 
                     width = NULL, height = NULL) {
   
-  # convert data to xts
-  if (!xts::is.xts(data))
-    data <- xts::as.xts(data)
-  
-  # auto-detect periodicity if not otherwise specified
-  if (is.null(periodicity)) {
-    if (nrow(data) < 2) {
-      periodicity <- defaultPeriodicity(data)
-    } else {
-      periodicity <- xts::periodicity(data)
-    }
+  # Test whether x-axis are dates or numeric
+  if (xts::xtsible(data))
+  {
+    format <- "date"
+    if (!xts::is.xts(data))
+      data <- xts::as.xts(data)
+  }
+  else if (is.list(data) && is.numeric(data[[1]]))
+  {
+    if (is.null(names(data)))
+      stop("For numeric values, 'data' must be a named list or data frame")
+    format <- "numeric"
+  }
+  else
+  {
+    stop("Unsupported type passed to argument 'data'.")
   }
   
-  # extract time
-  time <- time(data)
+#   # convert data to xts
+#   if (!xts::is.xts(data))
+#     data <- xts::as.xts(data)
   
-  # get data as a named list
-  data <- zoo::coredata(data)
-  data <- unclass(as.data.frame(data))
-   
-  # merge time back into list and convert to JS friendly string
-  timeColumn <- list()
-  timeColumn[[periodicity$label]] <- asISO8601Time(time)
-  data <- append(timeColumn, data)
+  if (format == "date")
+  {
+    # auto-detect periodicity if not otherwise specified
+    if (is.null(periodicity)) {
+      if (nrow(data) < 2) {
+        periodicity <- defaultPeriodicity(data)
+      } else {
+        periodicity <- xts::periodicity(data)
+      }
+    }
+    
+    # extract time
+    time <- time(data)
+    
+    # get data as a named list
+    data <- zoo::coredata(data)
+    data <- unclass(as.data.frame(data))
+    
+    # merge time back into list and convert to JS friendly string
+    timeColumn <- list()
+    timeColumn[[periodicity$label]] <- asISO8601Time(time)
+    data <- append(timeColumn, data)
+  }
+  else
+  {
+    # Convert data to list if it was data frame
+    data <- as.list(data)
+  }
+  
   
   # create native dygraph attrs object
   attrs <- list()
@@ -70,16 +97,17 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # create x (dygraph attrs + some side data)
   x <- list()
   x$attrs <- attrs
-  x$scale <- periodicity$scale
+  x$scale <- if (format == "date") periodicity$scale else NULL
   x$group <- group
   x$annotations <- list()
   x$shadings <- list()
   x$events <- list()
+  x$format <- format # Add format for further processing here
   
   # Add attributes required for defining custom series. When a dySeries call
   # is made it places series definition in "manual mode". In this case we
   # need to save the original data.
-  attr(x, "time") <- time
+  attr(x, "time") <- if (format == "date") time else NULL
   attr(x, "data") <- data
   attr(x, "autoSeries") <- 2
   
@@ -96,7 +124,6 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
     htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE)
   )
 }
-
 
 #' Shiny bindings for dygraph
 #' 
