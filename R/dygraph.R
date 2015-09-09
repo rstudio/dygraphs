@@ -3,10 +3,11 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
-#' @param data Time series data (must be an \link[xts]{xts} object or an object 
-#'   which is convertible to \code{xts}).
-#' @param periodicity Periodicity of data (automatically detected via
-#'   \link[xts:periodicity]{xts::periodicity} if not specified).
+#' @param data Either Time series data or numeric data (For time series, this
+#'   must be an \link[xts]{xts} object or an object which is convertible to
+#'   \code{xts}. For numeric data, this must be a named list or data frame).
+#' @param periodicity Periodicity of time series data (automatically detected
+#'   via \link[xts:periodicity]{xts::periodicity} if not specified).
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
@@ -26,35 +27,33 @@
 #' lungDeaths <- cbind(mdeaths, fdeaths)
 #' dygraph(lungDeaths)
 #' 
+#' indoConc <- Indometh[Indometh$Subject == 1, c("time", "conc")]
+#' dygraph(indoConc)
+#' 
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     periodicity = NULL, group = NULL, 
                     width = NULL, height = NULL) {
   
   # Test whether x-axis are dates or numeric
-  if (xts::xtsible(data))
-  {
-    format <- "date"
+  if (xts::xtsible(data)) {
+    
     if (!xts::is.xts(data))
       data <- xts::as.xts(data)
-  }
-  else if (is.list(data) && is.numeric(data[[1]]))
-  {
+    format <- "date"
+    
+  } else if (is.list(data) && is.numeric(data[[1]])) {
+    
     if (is.null(names(data)))
       stop("For numeric values, 'data' must be a named list or data frame")
     format <- "numeric"
-  }
-  else
-  {
+    
+  } else {
     stop("Unsupported type passed to argument 'data'.")
   }
   
-#   # convert data to xts
-#   if (!xts::is.xts(data))
-#     data <- xts::as.xts(data)
-  
-  if (format == "date")
-  {
+  if (format == "date") {
+    
     # auto-detect periodicity if not otherwise specified
     if (is.null(periodicity)) {
       if (nrow(data) < 2) {
@@ -75,13 +74,10 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
     timeColumn <- list()
     timeColumn[[periodicity$label]] <- asISO8601Time(time)
     data <- append(timeColumn, data)
-  }
-  else
-  {
+  } else {
     # Convert data to list if it was data frame
     data <- as.list(data)
   }
-  
   
   # create native dygraph attrs object
   attrs <- list()
