@@ -8,9 +8,9 @@ dygraph(data, main = NULL, xlab = NULL, ylab = NULL, periodicity = NULL,
   group = NULL, width = NULL, height = NULL)
 }
 \arguments{
-\item{data}{Either Time series data or numeric data (For time series, this
+\item{data}{Either time series data or numeric data. (For time series, this
 must be an \link[xts]{xts} object or an object which is convertible to
-\code{xts}. For numeric data, this must be a named list or data frame).}
+\code{xts}. For numeric data, this must be a named list or data frame)}
 
 \item{main}{Main plot title (optional)}
 

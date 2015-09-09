@@ -459,8 +459,6 @@ HTMLWidgets.widget({
             x1 = thiz.normalizeDateValue(x.scale, x1, x.fixedtz).getTime();
             x2 = thiz.normalizeDateValue(x.scale, x2, x.fixedtz).getTime();
           }
-          //var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
-          //var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
           var left = g.toDomXCoord(x1);
           var right = g.toDomXCoord(x2);
 

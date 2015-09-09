@@ -77,7 +77,7 @@
 #' 
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>%
 #'   dyAxis("y", label = "Temp (F)", valueRange = c(40, 60)) %>%
-#'   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)  
+#'   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)
 #'     
 #' @export
 dyAxis <- function(dygraph,
