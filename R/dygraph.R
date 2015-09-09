@@ -3,10 +3,11 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
-#' @param data Time series data (must be an \link[xts]{xts} object or an object 
-#'   which is convertible to \code{xts}).
-#' @param periodicity Periodicity of data (automatically detected via
-#'   \link[xts:periodicity]{xts::periodicity} if not specified).
+#' @param data Either time series data or numeric data. (For time series, this
+#'   must be an \link[xts]{xts} object or an object which is convertible to
+#'   \code{xts}. For numeric data, this must be a named list or data frame)
+#' @param periodicity Periodicity of time series data (automatically detected
+#'   via \link[xts:periodicity]{xts::periodicity} if not specified).
 #' @param main Main plot title (optional)
 #' @param xlab X axis label
 #' @param ylab Y axis label
@@ -26,35 +27,57 @@
 #' lungDeaths <- cbind(mdeaths, fdeaths)
 #' dygraph(lungDeaths)
 #' 
+#' indoConc <- Indometh[Indometh$Subject == 1, c("time", "conc")]
+#' dygraph(indoConc)
+#' 
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     periodicity = NULL, group = NULL, 
                     width = NULL, height = NULL) {
   
-  # convert data to xts
-  if (!xts::is.xts(data))
-    data <- xts::as.xts(data)
-  
-  # auto-detect periodicity if not otherwise specified
-  if (is.null(periodicity)) {
-    if (nrow(data) < 2) {
-      periodicity <- defaultPeriodicity(data)
-    } else {
-      periodicity <- xts::periodicity(data)
-    }
+  # Test whether x-axis are dates or numeric
+  if (xts::xtsible(data)) {
+    
+    if (!xts::is.xts(data))
+      data <- xts::as.xts(data)
+    format <- "date"
+    
+  } else if (is.list(data) && is.numeric(data[[1]])) {
+    
+    if (is.null(names(data)))
+      stop("For numeric values, 'data' must be a named list or data frame")
+    format <- "numeric"
+    
+  } else {
+    stop("Unsupported type passed to argument 'data'.")
   }
   
-  # extract time
-  time <- time(data)
-  
-  # get data as a named list
-  data <- zoo::coredata(data)
-  data <- unclass(as.data.frame(data))
-   
-  # merge time back into list and convert to JS friendly string
-  timeColumn <- list()
-  timeColumn[[periodicity$label]] <- asISO8601Time(time)
-  data <- append(timeColumn, data)
+  if (format == "date") {
+    
+    # auto-detect periodicity if not otherwise specified
+    if (is.null(periodicity)) {
+      if (nrow(data) < 2) {
+        periodicity <- defaultPeriodicity(data)
+      } else {
+        periodicity <- xts::periodicity(data)
+      }
+    }
+    
+    # extract time
+    time <- time(data)
+    
+    # get data as a named list
+    data <- zoo::coredata(data)
+    data <- unclass(as.data.frame(data))
+    
+    # merge time back into list and convert to JS friendly string
+    timeColumn <- list()
+    timeColumn[[periodicity$label]] <- asISO8601Time(time)
+    data <- append(timeColumn, data)
+  } else {
+    # Convert data to list if it was data frame
+    data <- as.list(data)
+  }
   
   # create native dygraph attrs object
   attrs <- list()
@@ -70,16 +93,17 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   # create x (dygraph attrs + some side data)
   x <- list()
   x$attrs <- attrs
-  x$scale <- periodicity$scale
+  x$scale <- if (format == "date") periodicity$scale else NULL
   x$group <- group
   x$annotations <- list()
   x$shadings <- list()
   x$events <- list()
+  x$format <- format # Add format for further processing here
   
   # Add attributes required for defining custom series. When a dySeries call
   # is made it places series definition in "manual mode". In this case we
   # need to save the original data.
-  attr(x, "time") <- time
+  attr(x, "time") <- if (format == "date") time else NULL
   attr(x, "data") <- data
   attr(x, "autoSeries") <- 2
   
@@ -96,7 +120,6 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
     htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE)
   )
 }
-
 
 #' Shiny bindings for dygraph
 #' 

@@ -3,11 +3,11 @@
 #' Specify that a region of a dygraph be drawn with a background shading
 #' 
 #' @param dygraph Dygraph to add shading to
-#' @param from Date/time to shade from (must be a \code{as.POSIXct} object or 
-#'   another object convertible to \code{as.POSIXct}). convertible via 
+#' @param from Date/time or numeric to shade from (for date/time this must be a
+#'   \code{as.POSIXct} object or another object convertible via
 #'   \code{as.POSIXct}).
-#' @param to Date/time to shade to (must be a \code{as.POSIXct} object or 
-#'   another object convertible to \code{as.POSIXct}). convertible via 
+#' @param to Date/time or numeric to shade to (for date/time this must be a
+#'   \code{as.POSIXct} object or another object convertible via
 #'   \code{as.POSIXct}).
 #' @param color Color of shading. This can be of the form "#AABBCC" or 
 #'   "rgb(255,100,200)" or "yellow". Defaults to a very light gray.
@@ -35,8 +35,10 @@ dyShading <- function(dygraph, from, to, color = "#EFEFEF", axis = "x") {
   
   # create shading
   shading <- list()
-  shading$from <- ifelse(axis == "x", asISO8601Time(from), from)
-  shading$to <- ifelse(axis == "x", asISO8601Time(to), to)
+  shading$from <- ifelse(axis == "x" && dygraph$x$format == "date",
+                         asISO8601Time(from), from)
+  shading$to <- ifelse(axis == "x" && dygraph$x$format == "date",
+                       asISO8601Time(to), to)
   shading$color <- color
   shading$axis <- axis
  

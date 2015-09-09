@@ -4,21 +4,22 @@
 \alias{dygraph}
 \title{dygraph interactive plot for time series data}
 \usage{
-dygraph(data, periodicity = NULL, main = NULL, xlab = NULL, ylab = NULL,
+dygraph(data, main = NULL, xlab = NULL, ylab = NULL, periodicity = NULL,
   group = NULL, width = NULL, height = NULL)
 }
 \arguments{
-\item{data}{Time series data (must be an \link[xts]{xts} object or an object
-which is convertible to \code{xts}).}
-
-\item{periodicity}{Periodicity of data (automatically detected via
-\link[xts:periodicity]{xts::periodicity} if not specified).}
+\item{data}{Either time series data or numeric data. (For time series, this
+must be an \link[xts]{xts} object or an object which is convertible to
+\code{xts}. For numeric data, this must be a named list or data frame)}
 
 \item{main}{Main plot title (optional)}
 
 \item{xlab}{X axis label}
 
 \item{ylab}{Y axis label}
+
+\item{periodicity}{Periodicity of time series data (automatically detected
+via \link[xts:periodicity]{xts::periodicity} if not specified).}
 
 \item{group}{Group to associate this plot with. The x-axis zoom level of
 plots within a group is automatically synchronized.}
@@ -42,5 +43,8 @@ additional details and examples.
 library(dygraphs)
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths)
+
+indoConc <- Indometh[Indometh$Subject == 1, c("time", "conc")]
+dygraph(indoConc)
 }
 
