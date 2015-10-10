@@ -53,6 +53,9 @@
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
 #'   y-label. Larger values will yield a sparser axis with fewer ticks. Defaults
 #'   to 50 (x-axis) or 30 (y-axes).
+#' @param drawAxis Whether to draw the axis. Setting this to false also
+#'   prevents axis ticks from being drawn and reclaims the space for the chart
+#'   grid/lines.
 #' @param drawGrid Whether to display grid lines in the chart.
 #' @param gridLineColor The color of the grid lines.
 #' @param gridLineWidth Thickness (in pixels) of the grid lines drawn under the 
@@ -97,6 +100,7 @@ dyAxis <- function(dygraph,
                    axisLabelWidth = NULL,
                    axisLabelFormatter = NULL,
                    valueFormatter = NULL,
+                   drawAxis = NULL,
                    drawGrid = NULL,
                    gridLineColor = NULL,
                    gridLineWidth = NULL,
@@ -137,6 +141,9 @@ dyAxis <- function(dygraph,
   axis$options$axisLabelColor <- axisLabelColor
   axis$options$axisLabelFontSize <- axisLabelFontSize
   
+  if (!is.null(drawAxis))
+    axis$options$drawAxis <- drawAxis
+
   if (!is.null(axisLabelWidth))
     axis$options$axisLabelWidth <- axisLabelWidth
   

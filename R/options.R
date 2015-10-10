@@ -58,12 +58,6 @@
 #'   series colors, as in hue/saturation/value (0.0-1.0, default 0.5).
 #' @param colorSaturation If custom colors are not specified, saturation of the 
 #'   automatically-generated data series colors (0.0-1.0, default 0.5).
-#' @param drawXAxis Whether to draw the x-axis. Setting this to false also 
-#'   prevents x-axis ticks from being drawn and reclaims the space for the chart
-#'   grid/lines.
-#' @param drawYAxis Whether to draw the y-axis. Setting this to false also 
-#'   prevents y-axis ticks from being drawn and reclaims the space for the chart
-#'   grid/lines.
 #' @param includeZero Usually, dygraphs will use the range of the data plus some
 #'   padding to set the range of the y-axis. If this option is set, the y-axis 
 #'   will always include zero, typically as the lowest value. This can be used 
@@ -206,8 +200,6 @@ dyOptions <- function(dygraph,
     options$colors <- as.list(colors)
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
-  options$drawXAxis <- drawXAxis
-  options$drawYAxis <- drawYAxis
   options$includeZero <- includeZero
   options$drawAxesAtZero <- drawAxesAtZero
   options$logscale <- logscale
