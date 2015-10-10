@@ -65,8 +65,8 @@ HTMLWidgets.widget({
     }
     
     // set appropriated function in case of fixed tz
-    if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
-      attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
+    if (attrs.axes.x.axisLabelFormatter === undefined)
+      attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatter(x.fixedtz && x.tzone);
       
     if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
       attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
@@ -290,15 +290,18 @@ HTMLWidgets.widget({
     };
   },
 
-  xAxisLabelFormatterFixedTZ : function(tz){
+  xAxisLabelFormatter : function(tz){
   
     return function dateAxisFormatter(date, granularity){
-      var mmnt = moment(date).tz(tz);
+      var mmnt = tz ? moment(date).tz(tz) : moment(date);
+      if (!mmnt) {
+        return date;
+      }
       if (granularity >= Dygraph.DECADAL){
         return mmnt.format('YYYY');
       }else{
         if(granularity >= Dygraph.MONTHLY){
-          return mmnt.format('MMM YYYY');
+          return mmnt.format('MMM YY');
         }else{
           var frac = mmnt.hour() * 3600 + mmnt.minute() * 60 + mmnt.second() + mmnt.millisecond();
             if (frac === 0 || granularity >= Dygraph.DAILY) {
