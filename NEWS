@@ -5,6 +5,8 @@ dygraphs 0.5
 
 * Add support for show='follow' to dyLegend
 
+* Add labelsUTC option to dyOptions
+
 * Change default x axis label width to 60 (necessitated by changes to default
   dygraphs 1.1 x-axis year formatting)
 
