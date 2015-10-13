@@ -34,7 +34,7 @@
 #'   
 #' @export
 dyLegend <- function(dygraph,
-                     show = c("auto", "always", "onmouseover", "never"),
+                     show = c("auto", "always", "onmouseover", "never", "follow"),
                      width = 250,
                      showZeroValues = TRUE,
                      labelsDiv = NULL,
