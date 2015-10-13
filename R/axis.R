@@ -153,7 +153,7 @@ dyAxis <- function(dygraph,
   attrs$axes[[axis$name]] <- axis$options  
   
   # return modified dygraph
-  dygraph$x$attrs <- attrs
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, attrs)
   dygraph
 }
 

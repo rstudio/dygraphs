@@ -206,8 +206,8 @@ dyOptions <- function(dygraph,
     options$colors <- as.list(colors)
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
-  options$drawXAxis <- drawXAxis
-  options$drawYAxis <- drawYAxis
+  options$axes$x$drawAxis <- drawXAxis
+  options$axes$y$drawAxis <- drawYAxis
   options$includeZero <- includeZero
   options$drawAxesAtZero <- drawAxesAtZero
   options$logscale <- logscale
