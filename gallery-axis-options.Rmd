@@ -26,7 +26,7 @@ Here's another example that customizes some other axes properties:
 
 ```{r}
 dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
-  dyAxis("x", pixelsPerLabel = 50, drawGrid = FALSE) %>%
+  dyAxis("x", drawGrid = FALSE) %>%
   dyAxis("y", label = "Passengers (Thousands)") %>%
   dyOptions(includeZero = TRUE, 
             axisLineColor = "navy", 
@@ -35,12 +35,10 @@ dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
 
 Here we use a number of options to customize axis display:
 
-1) The `pixelsPerLabel` option reduced the default spacing between labels on the x-axis (this is sometimes necessary if the default label spacing results in too few labels).
+1) The `drawGrid` option turns off the grid for the x axis
 
-2) The `drawGrid` option turns off the grid for the x axis
+2) The `includeZero` option ensures that the y axis is scaled from zero rather than the low-end of it's range of values.
 
-3) The `includeZero` option ensures that the y axis is scaled from zero rather than the low-end of it's range of values.
-
-4) The `axisLineColor` and `gridLineColor` options change the colors of axis and grid lines respectively.
+3) The `axisLineColor` and `gridLineColor` options change the colors of axis and grid lines respectively.
 
 There are many more options available that affect axis display. See the documentation on `dyAxis` and `dyOptions` for more details.

@@ -28,6 +28,11 @@ HTMLWidgets.widget({
   type: "output",
 
   initialize: function(el, width, height) { 
+    
+    // add qt style if we are running under Qt
+    if (window.navigator.userAgent.indexOf(" Qt/") > 0)
+      el.className += " qt";
+    
     return {};
   },
 
@@ -44,6 +49,12 @@ HTMLWidgets.widget({
     // get dygraph attrs and populate file field
     var attrs = x.attrs;
     attrs.file = x.data;
+    
+    // convert non-arrays to arrays
+    for (var index = 0; index < attrs.file.length; index++) {
+      if (!$.isArray(attrs.file[index]))
+        attrs.file[index] = [].concat(attrs.file[index]);
+    }
         
     // resolve "auto" legend behavior
     if (x.attrs.legend == "auto") {
@@ -89,8 +100,7 @@ HTMLWidgets.widget({
     this.addShadingCallback(x);
     this.addEventCallback(x);
     this.addZoomCallback(x, instance);
-      
-    
+
     // if there is no existing instance perform one-time initialization
     if (!instance.dygraph) {
       
@@ -107,10 +117,6 @@ HTMLWidgets.widget({
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";
 
-      // add shiny input for date window
-      if (HTMLWidgets.shinyMode)
-        this.addDateWindowShinyInput(el.id, x);
-  
       // inject css if necessary
       if (x.css != null) {
         var style = document.createElement('style');
@@ -141,6 +147,10 @@ HTMLWidgets.widget({
         instance.dygraph.destroy();
         instance.dygraph = null;
     }
+    
+    // add shiny input for date window
+    if (HTMLWidgets.shinyMode)
+      this.addDateWindowShinyInput(el.id, x);
     
     // create the instance and add it to it's group (if any)
     instance.dygraph = new Dygraph(el, attrs.file, attrs);
