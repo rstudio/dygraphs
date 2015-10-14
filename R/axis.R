@@ -138,7 +138,7 @@ dyAxis <- function(dygraph,
   axis$options$axisLabelFontSize <- axisLabelFontSize
   
   if (!is.null(axisLabelWidth))
-    attrs[[sprintf("%sAxisLabelWidth", axis$name)]] <- axisLabelWidth
+    axis$options$axisLabelWidth <- axisLabelWidth
   
   axis$options$axisLabelFormatter <- JS(axisLabelFormatter)
   axis$options$valueFormatter <- JS(valueFormatter)
@@ -153,7 +153,7 @@ dyAxis <- function(dygraph,
   attrs$axes[[axis$name]] <- axis$options  
   
   # return modified dygraph
-  dygraph$x$attrs <- attrs
+  dygraph$x$attrs <- mergeLists(dygraph$x$attrs, attrs)
   dygraph
 }
 

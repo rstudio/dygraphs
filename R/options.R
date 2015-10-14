@@ -108,6 +108,9 @@
 #' @param labelsKMB Show K/M/B for thousands/millions/billions on y-axis.
 #' @param labelsKMG2 Show k/M/G for kilo/Mega/Giga on y-axis. This is different 
 #'   than \code{labelsKMB} in that it uses base 2, not 10.
+#' @param labelsUTC Show date/time labels according to UTC (instead of local 
+#'   time). Note that this option cannot is incompatible with
+#'   \code{useDataTimezone} (you must use one or the other).
 #' @param maxNumberWidth When displaying numbers in normal (not scientific) 
 #'   mode, large numbers will be displayed with many trailing zeros (e.g. 
 #'   100000000 instead of 1e9). This can lead to unwieldy y-axis labels. If 
@@ -118,7 +121,7 @@
 #' @param sigFigs By default, dygraphs displays numbers with a fixed number of 
 #'   digits after the decimal point. If you'd prefer to have a fixed number of 
 #'   significant figures, set this option to that number of significant figures.
-#'   A value of 2, for instance, would cause 1 to be display as 1.0 and 1234 to
+#'   A value of 2, for instance, would cause 1 to be display as 1.0 and 1234 to 
 #'   be displayed as 1.23e+3.
 #' @param panEdgeFraction A value representing the farthest a graph may be 
 #'   panned, in percent of the display. For example, a value of 0.1 means that 
@@ -132,13 +135,14 @@
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timing, so that you can distinguish 
 #'   multiple dygraphs on the same page.
-#' @param useDataTimezone Whether to use the time zone of the underlying xts
-#'  object for display. Defaults to \code{FALSE} which uses the time zone
-#'  of the client workstation.
-#' @param retainDateWindow Whether to retain the user's current date
-#'  window (zoom level) when updating an existing dygraph with new data
-#'  and/or options.
-#' 
+#' @param useDataTimezone Whether to use the time zone of the underlying xts 
+#'   object for display. Defaults to \code{FALSE} which uses the time zone of 
+#'   the client workstation. Note that this option is incompatible with 
+#'   \code{labelsUTC} (you must use one or other other).
+#' @param retainDateWindow Whether to retain the user's current date window 
+#'   (zoom level) when updating an existing dygraph with new data and/or 
+#'   options.
+#'   
 #' @return dygraph with additional options
 #'   
 #' @note See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
@@ -172,7 +176,7 @@ dyOptions <- function(dygraph,
                       axisLineWidth = 0.3,
                       axisLabelColor = "black",
                       axisLabelFontSize = 14,
-                      axisLabelWidth = 50,
+                      axisLabelWidth = 60,
                       drawGrid = TRUE,
                       gridLineColor = NULL,
                       gridLineWidth = 0.3,
@@ -181,6 +185,7 @@ dyOptions <- function(dygraph,
                       digitsAfterDecimal = 2,
                       labelsKMB = FALSE,
                       labelsKMG2 = FALSE,
+                      labelsUTC = FALSE,
                       maxNumberWidth = 6,
                       sigFigs = NULL,
                       panEdgeFraction = NULL,
@@ -188,6 +193,11 @@ dyOptions <- function(dygraph,
                       timingName = NULL,
                       useDataTimezone = FALSE,
                       retainDateWindow = FALSE) {
+  
+  # validate that labelsUTC and useDataTimezone aren't specified together
+  if (!missing(labelsUTC) && !missing(useDataTimezone))
+    stop("You cannot specify both labelsUTC and useDateTimezone (choose one)")
+  
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
@@ -206,8 +216,8 @@ dyOptions <- function(dygraph,
     options$colors <- as.list(colors)
   options$colorValue <- colorValue
   options$colorSaturation <- colorSaturation
-  options$drawXAxis <- drawXAxis
-  options$drawYAxis <- drawYAxis
+  options$axes$x$drawAxis <- drawXAxis
+  options$axes$y$drawAxis <- drawYAxis
   options$includeZero <- includeZero
   options$drawAxesAtZero <- drawAxesAtZero
   options$logscale <- logscale
@@ -225,6 +235,7 @@ dyOptions <- function(dygraph,
   options$digitsAfterDecimal <- digitsAfterDecimal
   options$labelsKMB <- labelsKMB
   options$labelsKMG2 <- labelsKMG2
+  options$labelsUTC <- labelsUTC
   options$maxNumberWidth <- maxNumberWidth
   options$sigFigs <- sigFigs
   options$panEdgeFraction <- panEdgeFraction

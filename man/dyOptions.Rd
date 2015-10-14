@@ -13,12 +13,12 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   drawYAxis = TRUE, includeZero = FALSE, drawAxesAtZero = FALSE,
   logscale = FALSE, axisTickSize = 3, axisLineColor = "black",
   axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
-  axisLabelWidth = 50, drawGrid = TRUE, gridLineColor = NULL,
+  axisLabelWidth = 60, drawGrid = TRUE, gridLineColor = NULL,
   gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
   digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
-  maxNumberWidth = 6, sigFigs = NULL, panEdgeFraction = NULL,
-  animatedZooms = FALSE, timingName = NULL, useDataTimezone = FALSE,
-  retainDateWindow = FALSE)
+  labelsUTC = FALSE, maxNumberWidth = 6, sigFigs = NULL,
+  panEdgeFraction = NULL, animatedZooms = FALSE, timingName = NULL,
+  useDataTimezone = FALSE, retainDateWindow = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -163,6 +163,10 @@ show up as '0.00') will be displayed in scientific notation.}
 \item{labelsKMG2}{Show k/M/G for kilo/Mega/Giga on y-axis. This is different
 than \code{labelsKMB} in that it uses base 2, not 10.}
 
+\item{labelsUTC}{Show date/time labels according to UTC (instead of local
+time). Note that this option cannot is incompatible with
+\code{useDataTimezone} (you must use one or the other).}
+
 \item{maxNumberWidth}{When displaying numbers in normal (not scientific)
 mode, large numbers will be displayed with many trailing zeros (e.g.
 100000000 instead of 1e9). This can lead to unwieldy y-axis labels. If
@@ -193,12 +197,13 @@ option will be logged along with the timing, so that you can distinguish
 multiple dygraphs on the same page.}
 
 \item{useDataTimezone}{Whether to use the time zone of the underlying xts
-object for display. Defaults to \code{FALSE} which uses the time zone
-of the client workstation.}
+object for display. Defaults to \code{FALSE} which uses the time zone of
+the client workstation. Note that this option is incompatible with
+\code{labelsUTC} (you must use one or other other).}
 
-\item{retainDateWindow}{Whether to retain the user's current date
- window (zoom level) when updating an existing dygraph with new data
- and/or options.}
+\item{retainDateWindow}{Whether to retain the user's current date window
+  (zoom level) when updating an existing dygraph with new data and/or
+  options.}
 }
 \value{
 dygraph with additional options
