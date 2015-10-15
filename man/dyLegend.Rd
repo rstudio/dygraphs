@@ -4,8 +4,8 @@
 \alias{dyLegend}
 \title{dygraph legend}
 \usage{
-dyLegend(dygraph, show = c("auto", "always", "onmouseover", "never"),
-  width = 250, showZeroValues = TRUE, labelsDiv = NULL,
+dyLegend(dygraph, show = c("auto", "always", "onmouseover", "follow",
+  "never"), width = 250, showZeroValues = TRUE, labelsDiv = NULL,
   labelsSeparateLines = FALSE, hideOnMouseOut = TRUE)
 }
 \arguments{
@@ -13,9 +13,10 @@ dyLegend(dygraph, show = c("auto", "always", "onmouseover", "never"),
 
 \item{show}{When to display the legend. Specify "always" to always show the
 legend. Specify "onmouseover" to only display it when a user mouses over
-the chart. The default behavior is "auto", which results in "always" when
-more than one series is plotted and "onmouseover" when only a single series
-is plotted.}
+the chart. Specify "follow" to have the legend show as overlay to the chart
+which follows the mouse. The default behavior is "auto", which results in
+"always" when more than one series is plotted and "onmouseover" when only a
+single series is plotted.}
 
 \item{width}{Width (in pixels) of the div which shows the legend.}
 

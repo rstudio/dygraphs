@@ -88,7 +88,7 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attrs$legend <- "auto"
   attrs$retainDateWindow <- FALSE
   attrs$axes$x <- list() 
-  attrs$axes$x$pixelsPerLabel <- 50
+  attrs$axes$x$pixelsPerLabel <- 60
    
   # create x (dygraph attrs + some side data)
   x <- list()

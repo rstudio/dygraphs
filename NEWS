@@ -1,5 +1,14 @@
-dygraphs 0.4.6 (Unreleased)
+dygraphs 0.5
 --------------------------------------------------------------------------------
+
+* Update embedded dygraphs to version 1.1
+
+* Add support for show='follow' to dyLegend
+
+* Add labelsUTC option to dyOptions
+
+* Change default x axis label width to 60 (necessitated by changes to default
+  dygraphs 1.1 x-axis year formatting)
 
 * Allow explicit specification of series periodicity when creating a dygraph 
 
