@@ -27,9 +27,9 @@ the form "#AABBCC" or "rgb(255,100,200)" or "yellow". You can also specify
 
 \item{keepMouseZoom}{Keep mouse zoom when adding a range selector}
 
-\item{retainDateWindow}{Whether to retain the user's current date
- window (zoom level) when updating an existing dygraph with new data
- and/or options.}
+\item{retainDateWindow}{Whether to retain the user's current date window
+  (zoom level) when updating an existing dygraph with new data and/or
+  options.}
 }
 \value{
 A dygraph that displays a range selector
