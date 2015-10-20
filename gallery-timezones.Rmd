@@ -25,14 +25,21 @@ If we plots this using the default dygraph behavior you'll notice that the serie
 dygraph(series)
 ```
 
-However, if we specify the `useDataTimezone` option then it will be plotted using GMT and will adhere exactly to the day boundaries:
+However, by specifying the `labelsUTC` option the series will be displayed in UTC time rather than in the local timezone of the client:
+
+```{r}
+dygraph(series) %>% 
+  dyOptions(labelsUTC = TRUE)
+```
+
+If you'd like to force the series to be rendered using an arbitrary time zone you can use the `useDataTimezone` option to specify that whatever timezone is used in the underlying **xts** object should be carried through to the client display. 
+
+In this example we specify `useDataTimezone` and the units are displayed in GMT because that was the time zone used when constructuring the time series:
 
 ```{r}
 dygraph(series) %>% 
   dyOptions(useDataTimezone = TRUE)
 ```
-
-
 
 
 
