@@ -45,6 +45,7 @@ resolveStrokePattern <- function(strokePattern) {
   strokePattern
 }
 
+#' @importFrom stats end start
 defaultPeriodicity <- function (data) {
   periodicity <- structure(
     list(difftime = structure(0, units = "secs", class = "difftime"),
