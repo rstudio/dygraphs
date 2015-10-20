@@ -17,6 +17,14 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
   dyLegend(show = "always", hideOnMouseOut = FALSE)
 ```
 
+Here we enable "follow" mode which will show the legend overlaid on the plot (near the mouse) only when the mouse is over a point:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries("V1", label = "Temperature (F)") %>%
+  dyLegend(show = "follow")
+```
+
 When you have several data series sometime the legend mouse-over wraps to a second line. To avoid this you can set the legend width to something wider than the default of 250 pixels. For example:
 
 ```{r}
