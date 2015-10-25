@@ -14,6 +14,7 @@
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed",
 #'   "dotdash", or "solid") or a custom pattern array where the even index is 
 #'   a draw and odd is a space in pixels. Defaults to dashed.
+#' @param date (deprecated) See argument \code{x}.
 #'   
 #' @return A dygraph with the specified event line.
 #'   
@@ -34,7 +35,14 @@ dyEvent <- function(dygraph,
                     label = NULL, 
                     labelLoc = c("top", "bottom"),
                     color = "black", 
-                    strokePattern = "dashed") {
+                    strokePattern = "dashed",
+                    date) {
+  
+  # Check usage of deprecated argument 'date'
+  if (!missing(date)) {
+    x <- date
+    warning("Argument 'date' is deprecated, please use argument 'x' instead")
+  }
   
   # create event
   event <- list()
