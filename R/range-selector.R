@@ -56,7 +56,6 @@ dyRangeSelector <- function(dygraph,
   if (!is.null(dateWindow)) {
     if (length(dateWindow) != 2)
       stop("dateWindow must be vector of length 2 that is convertible to POSIXct")
-    # TODO: Rename dateWindow argument?
     if (dygraph$x$format == "date")
       selector$dateWindow <- sapply(USE.NAMES = FALSE, dateWindow, asISO8601Time)
     else
