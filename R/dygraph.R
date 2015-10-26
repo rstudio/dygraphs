@@ -3,11 +3,11 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
-#' @param data Either time series data or numeric data. (For time series, this 
+#' @param data Either time series data or numeric data. For time series, this 
 #'   must be an \link[xts]{xts} object or an object which is convertible to 
 #'   \code{xts}. For numeric data, this must be a named list or data frame,
 #'   where the first element/column provides x-axis values and all subsequent
-#'   elements/columns provide one or more series of y-values)
+#'   elements/columns provide one or more series of y-values.
 #' @param periodicity Periodicity of time series data (automatically detected
 #'   via \link[xts:periodicity]{xts::periodicity} if not specified).
 #' @param main Main plot title (optional)
