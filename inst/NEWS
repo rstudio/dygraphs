@@ -1,3 +1,10 @@
+dygraphs 0.6 (unreleased)
+--------------------------------------------------------------------------------
+
+* Add support for plotting data with a numeric x-axis (previously only time series
+  data was accepted).
+
+
 dygraphs 0.5
 --------------------------------------------------------------------------------
 
