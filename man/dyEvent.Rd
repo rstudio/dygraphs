@@ -4,14 +4,16 @@
 \alias{dyEvent}
 \title{dygraph event line}
 \usage{
-dyEvent(dygraph, date, label = NULL, labelLoc = c("top", "bottom"),
-  color = "black", strokePattern = "dashed")
+dyEvent(dygraph, x, label = NULL, labelLoc = c("top", "bottom"),
+  color = "black", strokePattern = "dashed", date)
 }
 \arguments{
 \item{dygraph}{Dygraph to add event line to}
 
-\item{date}{Date/time for the event (must be a \code{POSIXct} object or
-another object convertible to \code{POSIXct} via \code{as.POSIXct})}
+\item{x}{Either numeric or date/time for the event, depending on the format
+of the x-axis of the dygraph. (For date/time must be a \code{POSIXct}
+object or another object convertible to \code{POSIXct} via
+\code{as.POSIXct})}
 
 \item{label}{Label for event. Defaults to blank.}
 
@@ -21,8 +23,10 @@ another object convertible to \code{POSIXct} via \code{as.POSIXct})}
 "rgb(255,100,200)" or "yellow". Defaults to black.}
 
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed",
-  "dotdash", or "solid") or a custom pattern array where the even index is
-  a draw and odd is a space in pixels. Defaults to dashed.}
+"dotdash", or "solid") or a custom pattern array where the even index is
+a draw and odd is a space in pixels. Defaults to dashed.}
+
+\item{date}{(deprecated) See argument \code{x}.}
 }
 \value{
 A dygraph with the specified event line.

@@ -64,30 +64,34 @@ HTMLWidgets.widget({
         x.attrs.legend = "always";
     }
     
-    // set appropriated function in case of fixed tz
-    if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
-      attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
+    if (x.format == "date") {
       
-    if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
-      attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
-
-    if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
-      attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
+      // set appropriated function in case of fixed tz
+      if ((attrs.axes.x.axisLabelFormatter === undefined) && x.fixedtz)
+        attrs.axes.x.axisLabelFormatter = this.xAxisLabelFormatterFixedTZ(x.tzone);
+        
+      if ((attrs.axes.x.valueFormatter === undefined) && x.fixedtz)
+        attrs.axes.x.valueFormatter = this.xValueFormatterFixedTZ(x.scale, x.tzone);
   
-    // provide an automatic x value formatter if none is already specified
-    if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
-      attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
+      if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
+        attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
     
-    // convert time to js time
-    attrs.file[0] = attrs.file[0].map(function(value) {
-      return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
-    });
-    if (attrs.dateWindow != null) {
-      attrs.dateWindow = attrs.dateWindow.map(function(value) {
-        var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
-        return date.getTime();
+      // provide an automatic x value formatter if none is already specified
+      if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
+        attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
+      
+      // convert time to js time
+      attrs.file[0] = attrs.file[0].map(function(value) {
+        return thiz.normalizeDateValue(x.scale, value, x.fixedtz);
       });
+      if (attrs.dateWindow != null) {
+        attrs.dateWindow = attrs.dateWindow.map(function(value) {
+          var date = thiz.normalizeDateValue(x.scale, value, x.fixedtz);
+          return date.getTime();
+        });
+      }
     }
+    
     
     // transpose array
     attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
@@ -161,10 +165,12 @@ HTMLWidgets.widget({
     // set annotations
     if (x.annotations != null) {
       instance.dygraph.ready(function() {
-        x.annotations.map(function(annotation) {
-          var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
-          annotation.x = date.getTime();
-        });
+        if (x.format == "date") {
+          x.annotations.map(function(annotation) {
+            var date = thiz.normalizeDateValue(x.scale, annotation.x, x.fixedtz);
+            annotation.x = date.getTime();
+          });
+        }
         instance.dygraph.setAnnotations(x.annotations);
       }); 
     }
@@ -459,8 +465,12 @@ HTMLWidgets.widget({
         canvas.save();
         canvas.fillStyle = shading.color;
         if (shading.axis == "x") {
-          var x1 = thiz.normalizeDateValue(x.scale, shading.from, x.fixedtz).getTime();
-          var x2 = thiz.normalizeDateValue(x.scale, shading.to, x.fixedtz).getTime();
+          var x1 = shading.from;
+          var x2 = shading.to;
+          if (x.format == "date") {
+            x1 = thiz.normalizeDateValue(x.scale, x1, x.fixedtz).getTime();
+            x2 = thiz.normalizeDateValue(x.scale, x2, x.fixedtz).getTime();
+          }
           var left = g.toDomXCoord(x1);
           var right = g.toDomXCoord(x2);
           
@@ -507,8 +517,13 @@ HTMLWidgets.widget({
         canvas.save();
         canvas.strokeStyle = event.color;
         if (event.axis == "x") {
-          var xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
-          xPos = g.toDomXCoord(xPos);
+          var xPos;
+          if (jQuery.isNumeric(event.pos)) {
+            xPos = g.toDomXCoord(event.pos);
+          } else {
+            xPos = thiz.normalizeDateValue(x.scale, event.pos, x.fixedtz).getTime();
+            xPos = g.toDomXCoord(xPos);
+          }
           
           // draw line
           thiz.dashedLine(canvas, 

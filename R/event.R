@@ -3,8 +3,10 @@
 #' Add a vertical event line to a dygraph
 #' 
 #' @param dygraph Dygraph to add event line to
-#' @param date Date/time for the event (must be a \code{POSIXct} object or 
-#'   another object convertible to \code{POSIXct} via \code{as.POSIXct})
+#' @param x Either numeric or date/time for the event, depending on the format
+#'   of the x-axis of the dygraph. (For date/time must be a \code{POSIXct}
+#'   object or another object convertible to \code{POSIXct} via
+#'   \code{as.POSIXct})
 #' @param label Label for event. Defaults to blank.
 #' @param labelLoc Location for label (top or bottom)
 #' @param color Color of event line. This can be of the form "#AABBCC" or 
@@ -12,6 +14,7 @@
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed",
 #'   "dotdash", or "solid") or a custom pattern array where the even index is 
 #'   a draw and odd is a space in pixels. Defaults to dashed.
+#' @param date (deprecated) See argument \code{x}.
 #'   
 #' @return A dygraph with the specified event line.
 #'   
@@ -28,15 +31,22 @@
 #'  
 #' @export
 dyEvent <- function(dygraph, 
-                    date,
+                    x,
                     label = NULL, 
                     labelLoc = c("top", "bottom"),
                     color = "black", 
-                    strokePattern = "dashed") {
+                    strokePattern = "dashed",
+                    date) {
+  
+  # Check usage of deprecated argument 'date'
+  if (!missing(date)) {
+    x <- date
+    warning("Argument 'date' is deprecated, please use argument 'x' instead")
+  }
   
   # create event
   event <- list()
-  event$pos <- asISO8601Time(date)
+  event$pos <- ifelse(dygraph$x$format == "date", asISO8601Time(x), x)
   event$label <- label
   event$labelLoc <- match.arg(labelLoc)
   event$color <- color

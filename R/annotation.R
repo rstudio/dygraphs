@@ -4,8 +4,9 @@
 #' Define a text annotation for a data-point on a dygraph chart.
 #' 
 #' @param dygraph Dygraph to add an annotation to
-#' @param x Date value indicating where to place the annotation. This should be 
-#'   of class \code{POSIXct} or convertible to \code{POSIXct}.
+#' @param x Either numeric or date value indicating where to place the
+#'   annotation. For date value, this should be of class \code{POSIXct} or
+#'   convertible to \code{POSIXct}.
 #' @param text Text to overlay on the chart at the location of x
 #' @param tooltip Additional tooltip text to display on mouse hover
 #' @param width Width (in pixels) of the annotation flag.
@@ -65,8 +66,9 @@ dyAnnotation <- function(dygraph,
                          dblClickHandler = NULL,
                          series = NULL) {
   
-  # convert x to date format then to a suitable time value
-  x <- asISO8601Time(x)
+  # convert x to date format then to a suitable time value if it is date format
+  if (dygraph$x$format == "date")
+    x <- asISO8601Time(x)
   
   # validate series if specified
   if (!is.null(series) && ! series %in% dygraph$x$attrs$labels) {
