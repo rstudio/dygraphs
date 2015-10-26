@@ -2,7 +2,8 @@
 title: "Event and Limit Lines"
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE)
 library(dygraphs)
 ```
 
@@ -13,8 +14,8 @@ Event lines are a useful way to note points within a time series where noteworth
 ```{r}
 dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
   dyAxis("y", valueRange = c(0, 100)) %>%
-  dyEvent(date = "1950-6-30", "Korea", labelLoc = "bottom") %>%
-  dyEvent(date = "1965-2-09", "Vietnam", labelLoc = "bottom")
+  dyEvent("1950-6-30", "Korea", labelLoc = "bottom") %>%
+  dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom")
 ```
 
 Note that we specify that our event labels go at the bottom of the graph so they don't interfere with the legend, and set the y-axis `valueRange` to ensure that there is adequate room at the bottom for the labels.

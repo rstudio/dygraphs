@@ -2,7 +2,8 @@
 title: "Shaded Regions"
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE)
 library(dygraphs)
 ```
 

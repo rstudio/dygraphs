@@ -1,7 +1,11 @@
 PackratFormat: 1.4
 PackratVersion: 0.4.4.24
 RVersion: 3.2.2
-Repos: CRAN=https://cran.rstudio.com
+Repos: CRAN=https://cran.rstudio.com,
+    BioCsoft=http://bioconductor.org/packages/3.1/bioc,
+    BioCann=http://bioconductor.org/packages/3.1/data/annotation,
+    BioCexp=http://bioconductor.org/packages/3.1/data/experiment,
+    BioCextra=http://bioconductor.org/packages/3.1/extra
 
 Package: BH
 Source: CRAN
@@ -75,8 +79,8 @@ Hash: de202f956596a476d09304e3a2ebf1e5
 
 Package: dygraphs
 Source: source
-Version: 0.5
-Hash: d6e4ad53fa94382b3de50248f2203fef
+Version: 0.5.1
+Hash: 95d057e5f7cfe41165d01323d897996b
 Requires: htmlwidgets, magrittr, xts, zoo
 SourcePath: ~/packages/dygraphs
 
