@@ -14,6 +14,11 @@
 #'   y-axis separately. If either limit is unspecified, it will be calculated 
 #'   automatically (e.g. \code{c(NULL, 30)} to automatically calculate just the 
 #'   lower bound).
+#' @param logscale When set for the y-axis or x-axis, the graph shows that axis
+#'   in log scale. Any values less than or equal to zero are not displayed.
+#'   Showing log scale with ranges that go below zero will result in an
+#'   unviewable graph. Not compatible with showZero. connectSeparatedPoints is
+#'   ignored. This is ignored for date-based x-axes.
 #' @param ticker This lets you specify an arbitrary JavaScript function to 
 #'   generate tick marks on an axis. The tick marks are an array of (value, 
 #'   label) pairs. The built-in functions go to great lengths to choose good 
@@ -47,7 +52,7 @@
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #' @param valueFormatter JavaScript function to call to provide a custom display
-#'   format for the values displayed on mouseover (see the
+#'   format for the values displayed on mouseover (see the 
 #'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
@@ -71,7 +76,7 @@
 #' @note See the 
 #'   \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online 
 #'   documentation} for additional details and examples.
-#'  
+#'   
 #' @examples
 #' library(dygraphs)
 #' 
@@ -84,6 +89,7 @@ dyAxis <- function(dygraph,
                    name, 
                    label = NULL, 
                    valueRange = NULL,
+                   logscale = NULL,
                    ticker = NULL,
                    rangePad = NULL,
                    labelWidth = NULL,
@@ -113,6 +119,7 @@ dyAxis <- function(dygraph,
   axis$label <- label
   axis$options <- list()
   axis$options$valueRange <- valueRange
+  axis$options$logscale <- logscale
    
   axis$options$ticker <- JS(ticker)
   if (!is.null(axisHeight)) {
