@@ -4,8 +4,8 @@
 \alias{dyAxis}
 \title{dygraph axis}
 \usage{
-dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
-  rangePad = NULL, labelWidth = NULL, labelHeight = NULL,
+dyAxis(dygraph, name, label = NULL, valueRange = NULL, logscale = NULL,
+  ticker = NULL, rangePad = NULL, labelWidth = NULL, labelHeight = NULL,
   axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
   pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
   axisLabelWidth = NULL, axisLabelFormatter = NULL, valueFormatter = NULL,
@@ -24,6 +24,12 @@ dyAxis(dygraph, name, label = NULL, valueRange = NULL, ticker = NULL,
 y-axis separately. If either limit is unspecified, it will be calculated
 automatically (e.g. \code{c(NULL, 30)} to automatically calculate just the
 lower bound).}
+
+\item{logscale}{When set for the y-axis or x-axis, the graph shows that axis
+in log scale. Any values less than or equal to zero are not displayed.
+Showing log scale with ranges that go below zero will result in an
+unviewable graph. Not compatible with showZero. connectSeparatedPoints is
+ignored. This is ignored for date-based x-axes.}
 
 \item{ticker}{This lets you specify an arbitrary JavaScript function to
 generate tick marks on an axis. The tick marks are an array of (value,
