@@ -119,7 +119,14 @@ dyAxis <- function(dygraph,
   axis$label <- label
   axis$options <- list()
   axis$options$valueRange <- valueRange
-  axis$options$logscale <- logscale
+  
+  if (!is.null(logscale)) {
+    if (identical(name, "x"))
+      axis$options$logscale <- logscale
+    else
+      attrs$logscale <- logscale
+  }
+  
    
   axis$options$ticker <- JS(ticker)
   if (!is.null(axisHeight)) {
