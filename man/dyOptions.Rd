@@ -5,20 +5,20 @@
 \title{dygraph options}
 \usage{
 dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
-  fillAlpha = 0.15, stepPlot = FALSE, drawPoints = FALSE, pointSize = 1,
-  drawGapEdgePoints = FALSE, connectSeparatedPoints = FALSE,
-  strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
-  strokeBorderColor = "white", plotter = NULL, colors = NULL,
-  colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
-  drawYAxis = TRUE, includeZero = FALSE, drawAxesAtZero = FALSE,
-  logscale = FALSE, axisTickSize = 3, axisLineColor = "black",
-  axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
-  axisLabelWidth = 60, drawGrid = TRUE, gridLineColor = NULL,
-  gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
-  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
-  labelsUTC = FALSE, maxNumberWidth = 6, sigFigs = NULL,
-  panEdgeFraction = NULL, animatedZooms = FALSE, timingName = NULL,
-  useDataTimezone = FALSE, retainDateWindow = FALSE)
+  fillAlpha = 0.15, stepPlot = FALSE, stemPlot = FALSE,
+  drawPoints = FALSE, pointSize = 1, drawGapEdgePoints = FALSE,
+  connectSeparatedPoints = FALSE, strokeWidth = 1, strokePattern = NULL,
+  strokeBorderWidth = NULL, strokeBorderColor = "white", plotter = NULL,
+  colors = NULL, colorValue = 0.5, colorSaturation = 1,
+  drawXAxis = TRUE, drawYAxis = TRUE, includeZero = FALSE,
+  drawAxesAtZero = FALSE, logscale = FALSE, axisTickSize = 3,
+  axisLineColor = "black", axisLineWidth = 0.3, axisLabelColor = "black",
+  axisLabelFontSize = 14, axisLabelWidth = 60, drawGrid = TRUE,
+  gridLineColor = NULL, gridLineWidth = 0.3, titleHeight = NULL,
+  rightGap = 5, digitsAfterDecimal = 2, labelsKMB = FALSE,
+  labelsKMG2 = FALSE, labelsUTC = FALSE, maxNumberWidth = 6,
+  sigFigs = NULL, panEdgeFraction = NULL, animatedZooms = FALSE,
+  timingName = NULL, useDataTimezone = FALSE, retainDateWindow = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -36,6 +36,9 @@ means that the fill will not be drawn, whereas a value of 1.0 means that
 the fill will be as dark as the line of the series itself.}
 
 \item{stepPlot}{When set, display the graph as a step plot instead of a line
+plot. This option can also be set on a per-series basis.}
+
+\item{stemPlot}{When set, display the graph as a stem plot instead of a line
 plot. This option can also be set on a per-series basis.}
 
 \item{drawPoints}{Draw a small dot at each point, in addition to a line going

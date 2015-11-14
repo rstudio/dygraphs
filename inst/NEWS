@@ -6,6 +6,7 @@ dygraphs 0.6 (unreleased)
 
 * Add new logscale option for numeric x-axis.
 
+* Add stemPlot option to dyOptions and dySeries
 
 dygraphs 0.5
 --------------------------------------------------------------------------------

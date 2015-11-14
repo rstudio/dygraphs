@@ -5,7 +5,7 @@
 \title{dygraph data series}
 \usage{
 dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
-  stepPlot = NULL, fillGraph = NULL, drawPoints = NULL,
+  stepPlot = NULL, stemPlot = NULL, fillGraph = NULL, drawPoints = NULL,
   pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
   strokeBorderWidth = NULL, strokeBorderColor = NULL, plotter = NULL)
 }
@@ -30,6 +30,9 @@ specification cannot be mixed.}
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
 \item{stepPlot}{When set, display the graph as a step plot instead of a line
+plot.}
+
+\item{stemPlot}{When set, display the graph as a stem plot instead of a line
 plot.}
 
 \item{fillGraph}{Should the area underneath the graph be filled? This option

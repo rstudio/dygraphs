@@ -23,6 +23,8 @@
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot.
+#' @param stemPlot When set, display the graph as a stem plot instead of a line
+#'   plot.
 #' @param fillGraph Should the area underneath the graph be filled? This option 
 #'   is not compatible with error bars.
 #' @param drawPoints Draw a small dot at each point, in addition to a line going
@@ -69,6 +71,7 @@ dySeries <- function(dygraph,
                      color = NULL,
                      axis = "y", 
                      stepPlot = NULL,
+                     stemPlot = NULL,
                      fillGraph = NULL,
                      drawPoints = NULL,
                      pointSize = NULL,
@@ -108,6 +111,9 @@ dySeries <- function(dygraph,
   dygraph$x$data <- dygraph$x$data[-c(cols)]
   dygraph$x$attrs$labels <- dygraph$x$attrs$labels[-c(cols)]
    
+  # Resolve stemPlot into a custom plotter if necessary
+  plotter <- resolveStemPlot(stemPlot, plotter)
+  
   # create series object
   series <- list()
   series$name <- name
@@ -224,9 +230,42 @@ toMultiSeries <- function(lower, value, upper) {
   series
 }
 
-
-
-
+# provide a custom plotter if stemPlot has been specified
+resolveStemPlot <- function(stemPlot, plotter) {
+  
+  # check for stemPlot argument
+  if (isTRUE(stemPlot)) {
+    
+    # verify that a custom plotter hasn't been specified
+    if (!is.null(plotter)) {
+      stop("stemPlot provides it's own plotter so is incompatible with ",
+           "specifying a custom plotter", call. = FALSE)
+    }
+    
+    # provide custom plotter JS
+    "function stemPlotter(e) { 
+       var ctx = e.drawingContext; 
+       var points = e.points; 
+       var y_bottom = e.dygraph.toDomYCoord(0);
+       ctx.fillStyle = e.color; 
+       for (var i = 0; i < points.length; i++) { 
+          var p = points[i]; 
+          var center_x = p.canvasx;
+          var center_y = p.canvasy; 
+          ctx.beginPath(); 
+          ctx.moveTo(center_x, y_bottom); 
+          ctx.lineTo(center_x, center_y); 
+          ctx.stroke();
+          ctx.beginPath(); 
+          ctx.arc(center_x, center_y, 3, 0, 2*Math.PI); 
+          ctx.stroke();
+       }
+    }"
+  } else {
+    # no custom plotter
+    NULL
+  }
+}
 
 
 

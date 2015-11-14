@@ -14,6 +14,8 @@
 #'   the fill will be as dark as the line of the series itself.
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot. This option can also be set on a per-series basis.
+#' @param stemPlot When set, display the graph as a stem plot instead of a line
+#'   plot. This option can also be set on a per-series basis.
 #' @param drawPoints Draw a small dot at each point, in addition to a line going
 #'   through the point. This makes the individual data points easier to see, but
 #'   can increase visual clutter in the chart. This option can also be set on a 
@@ -154,6 +156,7 @@ dyOptions <- function(dygraph,
                       fillGraph = FALSE,
                       fillAlpha = 0.15,
                       stepPlot = FALSE,
+                      stemPlot = FALSE,
                       drawPoints = FALSE,
                       pointSize = 1.0,
                       drawGapEdgePoints = FALSE,
@@ -197,6 +200,9 @@ dyOptions <- function(dygraph,
   # validate that labelsUTC and useDataTimezone aren't specified together
   if (!missing(labelsUTC) && !missing(useDataTimezone))
     stop("You cannot specify both labelsUTC and useDateTimezone (choose one)")
+  
+  # Resolve stemPlot into a custom plotter if necessary
+  plotter <- resolveStemPlot(stemPlot, plotter)
   
   options <- list()
   options$stackedGraph <- stackedGraph
