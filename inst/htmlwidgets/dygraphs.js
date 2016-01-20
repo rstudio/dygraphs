@@ -117,6 +117,12 @@ HTMLWidgets.widget({
           instance.dygraph.resize();  
       });
       
+      // do the same for reveal.js
+      $(el).closest('section.slide').on('shown', function() {
+        if (instance.dygraph)
+          instance.dygraph.resize();  
+      });
+      
       // add default font for viewer mode
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";
