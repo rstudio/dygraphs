@@ -262,8 +262,8 @@ resolveStemPlot <- function(stemPlot, plotter) {
        }
     }"
   } else {
-    # no custom plotter
-    NULL
+    # specified plotter
+    plotter
   }
 }
 
