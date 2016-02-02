@@ -123,6 +123,19 @@ HTMLWidgets.widget({
           instance.dygraph.resize();  
       });
       
+      // redraw on R Markdown {.tabset} tab visibility changed
+      var tab = $(el).closest('div.tabbed-pane');
+      if (tab !== null) {
+        var tabID = tab.attr('id');
+        var tabAnchor = $('a[data-toggle="tab"][href="#' + tabID + '"]');
+        if (tabAnchor !== null) {
+          tabAnchor.on('shown.bs.tab', function() {
+            if (instance.dygraph)
+              instance.dygraph.resize();  
+          });
+        }
+      }
+
       // add default font for viewer mode
       if (this.queryVar("viewer_pane") === "1")
         document.body.style.fontFamily = "Arial, sans-serif";
