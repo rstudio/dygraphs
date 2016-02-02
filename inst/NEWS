@@ -1,5 +1,4 @@
-
-dygraphs 0.7 (unreleased)
+dygraphs 0.7
 --------------------------------------------------------------------------------
 
 * Ensure that dygraphs are shown properly in R Markdown tabsets 

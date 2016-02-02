@@ -1,14 +1,18 @@
 Package: dygraphs
 Type: Package
 Title: Interface to Dygraphs Interactive Time Series Charting Library
-Version: 0.6.1
-Date: 2015-12-21
+Version: 0.7
+Date: 2016-02-02
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
        comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
     person("JJ", "Allaire", role = c("aut", "cre"),
        comment = "R interface", email = "jj@rstudio.com"),
     person(family = "RStudio", role = "cph"),
+    person("Jonathan", "Owen", role = c("aut", "cph")),
+    person("Daniel", "Gromer", role = c("aut", "cph")),
+    person("Petr", "Shevtsov", role = c("aut", "cph")),
+    person("Benoit", "Thieurmel", role = c("aut", "cph")),
     person(family = "jQuery Foundation", role = "cph",
            comment = "jQuery library"),
     person(family = "jQuery contributors", role = c("ctb", "cph"),
