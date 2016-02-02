@@ -4,6 +4,10 @@ dygraphs 0.7 (unreleased)
 
 * Ensure that dygraphs are shown properly in R Markdown tabsets 
 
+* Ensure that dygraphs are shown properly in reveal.js presentations
+
+* Fix bug which prevented custom plotters from working in dySeries
+
 
 dygraphs 0.6
 --------------------------------------------------------------------------------
