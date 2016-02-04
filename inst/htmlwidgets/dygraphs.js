@@ -124,7 +124,7 @@ HTMLWidgets.widget({
       });
       
       // redraw on R Markdown {.tabset} tab visibility changed
-      var tab = $(el).closest('div.tabbed-pane');
+      var tab = $(el).closest('div.tab-pane');
       if (tab !== null) {
         var tabID = tab.attr('id');
         var tabAnchor = $('a[data-toggle="tab"][href="#' + tabID + '"]');
