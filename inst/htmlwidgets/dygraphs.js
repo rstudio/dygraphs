@@ -21,6 +21,26 @@ if (!Array.prototype.indexOf) {
 }
 
 
+// jquery plugin for element size changed detection
+(function ($) {
+$.fn.sizeChanged = function (handler) {
+  var previous = {
+    width: this.width(),
+    height: this.height()
+  };
+  var thiz = this;
+  setInterval(function () {
+    if (previous.width !== thiz.width() || previous.height !== thiz.height()) {
+      handler();
+      previous.width = thiz.width();
+      previous.height = thiz.height();
+    }
+  }, 100);
+
+  return thiz;
+};
+}(jQuery));
+
 HTMLWidgets.widget({
 
   name: "dygraphs",
@@ -135,6 +155,13 @@ HTMLWidgets.widget({
           });
         }
       }
+      
+      // proactively detect element size changed and redraw for that as well
+      // (required for some flexbox layouts)
+      $(el).sizeChanged(function() {
+        if (instance.dygraph)
+          instance.dygraph.resize();  
+      });
 
       // add default font for viewer mode
       if (this.queryVar("viewer_pane") === "1")
