@@ -1,7 +1,9 @@
-dygraphs 0.8 (unreleased)
+dygraphs 0.8
 --------------------------------------------------------------------------------
 
-* Call resize whenever parent size changes
+* Manage visibility of dygraphs in all types of boostrap tab panes
+
+* Call widget.resize whenever parent size changes
 
 
 dygraphs 0.7
