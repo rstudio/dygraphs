@@ -18,6 +18,14 @@ dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
   dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom")
 ```
 
+This is equivalent to 
+
+```{r, echo=TRUE, eval=FALSE}
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
+  dyAxis("y", valueRange = c(0, 100)) %>%
+  dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom")
+```
+
 Note that we specify that our event labels go at the bottom of the graph so they don't interfere with the legend, and set the y-axis `valueRange` to ensure that there is adequate room at the bottom for the labels.
 
 #### Limit Lines
