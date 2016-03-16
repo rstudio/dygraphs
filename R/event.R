@@ -28,6 +28,10 @@
 #'   dyAxis("y", valueRange = c(0, 100)) %>%
 #'   dyEvent("1950-6-30", "Korea", labelLoc = "bottom") %>%
 #'   dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom")
+
+#' dygraph(presidents, main = "Presidential Approval") %>%
+#'   dyAxis("y", valueRange = c(0, 100)) %>%
+#'   dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom") 
 #'  
 #' @export
 dyEvent <- function(dygraph, 
@@ -44,17 +48,26 @@ dyEvent <- function(dygraph,
     warning("Argument 'date' is deprecated, please use argument 'x' instead")
   }
   
-  # create event
-  event <- list()
-  event$pos <- ifelse(dygraph$x$format == "date", asISO8601Time(x), x)
-  event$label <- label
-  event$labelLoc <- match.arg(labelLoc)
-  event$color <- color
-  event$strokePattern <- resolveStrokePattern(strokePattern)
-  event$axis <- "x"
+  # create events
+  if (!is.null(label) && length(x) != length(label))
+    stop("Length of 'x' and 'label' does not match")
+  events <-
+    lapply(
+      seq_along(x), function(i)
+      {
+        list(
+          pos = ifelse(dygraph$x$format == "date", asISO8601Time(x[i]), x[i])
+         ,label = ifelse(is.null(label),NULL, label[i] )
+         ,labelLoc = match.arg(labelLoc, c("top", "bottom"))
+         ,color = color
+         ,strokePattern = resolveStrokePattern(strokePattern)
+         ,axis = "x"
+        )
+      }
+    )
  
   # add it to list of events
-  dygraph$x$events[[length(dygraph$x$events) + 1]] <- event
+  dygraph$x$events <- c(dygraph$x$events, events)
   
   # return modified dygraph
   dygraph
