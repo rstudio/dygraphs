@@ -44,17 +44,26 @@ dyEvent <- function(dygraph,
     warning("Argument 'date' is deprecated, please use argument 'x' instead")
   }
   
-  # create event
-  event <- list()
-  event$pos <- ifelse(dygraph$x$format == "date", asISO8601Time(x), x)
-  event$label <- label
-  event$labelLoc <- match.arg(labelLoc)
-  event$color <- color
-  event$strokePattern <- resolveStrokePattern(strokePattern)
-  event$axis <- "x"
+  # create events
+  if (!is.null(label) && length(x) != length(label))
+    stop("Length of 'x' and 'label' does not match")
+  events <-
+    lapply(
+      seq_along(x), function(i)
+      {
+        list(
+          pos = ifelse(dygraph$x$format == "date", asISO8601Time(x[i]), x[i])
+         ,label = ifelse(is.null(label),NULL, label[i] )
+         ,labelLoc = match.arg(labelLoc, c("top", "bottom"))
+         ,color = color
+         ,strokePattern = resolveStrokePattern(strokePattern)
+         ,axis = "x"
+        )
+      }
+    )
  
   # add it to list of events
-  dygraph$x$events[[length(dygraph$x$events) + 1]] <- event
+  dygraph$x$events <- c(dygraph$x$events, events)
   
   # return modified dygraph
   dygraph
