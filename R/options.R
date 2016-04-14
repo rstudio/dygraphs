@@ -134,6 +134,9 @@
 #'   also set a drawCallback, it will be called several times on each zoom. If 
 #'   you set a zoomCallback, it will only be called after the animation is 
 #'   complete.
+#' @param mobileDisableYTouch Set this option to automatically disable touch
+#'   events on the Y axis for mobile devices (since this interferes with 
+#'   swiping/scrolling on mobile devices).
 #' @param timingName Set this option to log timing information. The value of the
 #'   option will be logged along with the timing, so that you can distinguish 
 #'   multiple dygraphs on the same page.
@@ -193,6 +196,7 @@ dyOptions <- function(dygraph,
                       sigFigs = NULL,
                       panEdgeFraction = NULL,
                       animatedZooms = FALSE,
+                      mobileDisableYTouch = TRUE,
                       timingName = NULL,
                       useDataTimezone = FALSE,
                       retainDateWindow = FALSE) {
@@ -246,6 +250,7 @@ dyOptions <- function(dygraph,
   options$sigFigs <- sigFigs
   options$panEdgeFraction <- panEdgeFraction
   options$animatedZooms <- animatedZooms
+  options$mobileDisableYTouch <- mobileDisableYTouch
   options$timingName <- timingName
   if (!missing(retainDateWindow))
     options$retainDateWindow <- retainDateWindow

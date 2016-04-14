@@ -5,6 +5,8 @@ dygraphs 0.9 (unreleased)
 
 * Don't do sizeChanged polling (no longer required)
 
+* Option to disable y-axis touch events on mobile devices
+
 
 dygraphs 0.8
 --------------------------------------------------------------------------------
