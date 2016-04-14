@@ -3,6 +3,8 @@ dygraphs 0.9 (unreleased)
 
 * Handle vector data in dyEvent
 
+* Don't do sizeChanged polling (no longer required)
+
 
 dygraphs 0.8
 --------------------------------------------------------------------------------
