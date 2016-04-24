@@ -18,7 +18,8 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   rightGap = 5, digitsAfterDecimal = 2, labelsKMB = FALSE,
   labelsKMG2 = FALSE, labelsUTC = FALSE, maxNumberWidth = 6,
   sigFigs = NULL, panEdgeFraction = NULL, animatedZooms = FALSE,
-  timingName = NULL, useDataTimezone = FALSE, retainDateWindow = FALSE)
+  mobileDisableYTouch = TRUE, timingName = NULL, useDataTimezone = FALSE,
+  retainDateWindow = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -194,6 +195,10 @@ windows. Applies to programmatic and interactive zooms. Note that if you
 also set a drawCallback, it will be called several times on each zoom. If 
 you set a zoomCallback, it will only be called after the animation is 
 complete.}
+
+\item{mobileDisableYTouch}{Set this option to automatically disable touch
+events on the Y axis for mobile devices (since this interferes with 
+swiping/scrolling on mobile devices).}
 
 \item{timingName}{Set this option to log timing information. The value of the
 option will be logged along with the timing, so that you can distinguish 
