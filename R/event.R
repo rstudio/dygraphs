@@ -55,9 +55,13 @@ dyEvent <- function(dygraph,
     lapply(
       seq_along(x), function(i)
       {
+        if (is.null(label))
+          eventLabel <- NULL
+        else
+          eventLabel <- label[i]
         list(
           pos = ifelse(dygraph$x$format == "date", asISO8601Time(x[i]), x[i])
-         ,label = ifelse(is.null(label),NULL, label[i] )
+         ,label = eventLabel
          ,labelLoc = match.arg(labelLoc, c("top", "bottom"))
          ,color = color
          ,strokePattern = resolveStrokePattern(strokePattern)
