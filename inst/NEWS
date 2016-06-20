@@ -3,6 +3,8 @@ dygraphs 1.1.1.0 (unreleased)
 
 * Properly handle NULL dyEvent label (#112)
 
+* Handle milliseconds in time events (#85)
+
 
 dygraphs 0.9
 --------------------------------------------------------------------------------
