@@ -3,6 +3,8 @@
 #' R interface to interactive time series plotting using the 
 #' \href{http://dygraphs.com}{dygraphs} JavaScript library.
 #' 
+#' @inheritParams htmlwidgets::createWidget
+#' 
 #' @param data Either time series data or numeric data. For time series, this 
 #'   must be an \link[xts]{xts} object or an object which is convertible to 
 #'   \code{xts}. For numeric data, this must be a named list or data frame,
@@ -35,7 +37,7 @@
 #' @export
 dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
                     periodicity = NULL, group = NULL, 
-                    width = NULL, height = NULL) {
+                    elementId = NULL, width = NULL, height = NULL) {
   
   # Test whether x-axis are dates or numeric
   if (xts::xtsible(data)) {
@@ -119,7 +121,8 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
     x = x,
     width = width,
     height = height,
-    htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE)
+    htmlwidgets::sizingPolicy(viewer.padding = 10, browser.fill = TRUE),
+    elementId = elementId
   )
 }
 

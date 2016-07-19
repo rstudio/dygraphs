@@ -5,6 +5,11 @@ dygraphs 1.1.1.0 (unreleased)
 
 * Handle milliseconds in time events (#85)
 
+* Add elementId parameter to dygraph function to specify explicit elementId
+
+* Implement factory method so dygraph is addressable from widget instance:
+  e.g. HTMLWidgets.getInstance(document.getElementById('mywidget')).dygraph
+
 
 dygraphs 0.9
 --------------------------------------------------------------------------------

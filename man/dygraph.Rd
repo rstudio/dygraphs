@@ -5,7 +5,7 @@
 \title{dygraph interactive plot for time series data}
 \usage{
 dygraph(data, main = NULL, xlab = NULL, ylab = NULL, periodicity = NULL,
-  group = NULL, width = NULL, height = NULL)
+  group = NULL, elementId = NULL, width = NULL, height = NULL)
 }
 \arguments{
 \item{data}{Either time series data or numeric data. For time series, this 
@@ -25,6 +25,10 @@ via \link[xts:periodicity]{xts::periodicity} if not specified).}
 
 \item{group}{Group to associate this plot with. The x-axis zoom level of 
 plots within a group is automatically synchronized.}
+
+\item{elementId}{Use an explicit element ID for the widget (rather than an
+automatically generated one). Useful if you have other JavaScript that
+needs to explicitly discover and interact with a specific widget instance.}
 
 \item{width}{Width in pixels (optional, defaults to automatic sizing)}
 
