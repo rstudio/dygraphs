@@ -29,7 +29,7 @@ Depends:
     R (>= 3.0)
 Imports:
     magrittr,
-    htmlwidgets (>= 0.3.2),
+    htmlwidgets (>= 0.6),
     zoo (>= 1.7-10),
     xts (>= 0.9-7)
 Suggests:
