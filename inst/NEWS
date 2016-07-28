@@ -1,6 +1,8 @@
 dygraphs 1.1.1.0 (unreleased)
 --------------------------------------------------------------------------------
 
+* New dyPlugin function for including dygraphs plugins
+
 * Properly handle NULL dyEvent label (#112)
 
 * Handle milliseconds in time events (#85)

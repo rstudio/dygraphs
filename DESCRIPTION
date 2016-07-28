@@ -1,7 +1,7 @@
 Package: dygraphs
 Type: Package
 Title: Interface to 'Dygraphs' Interactive Time Series Charting Library
-Version: 0.9
+Version: 0.9.1
 Date: 2016-04-24
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
@@ -30,6 +30,7 @@ Depends:
 Imports:
     magrittr,
     htmlwidgets (>= 0.6),
+    htmltools (>= 0.3.5),
     zoo (>= 1.7-10),
     xts (>= 0.9-7)
 Suggests:

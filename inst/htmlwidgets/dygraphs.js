@@ -116,6 +116,22 @@ HTMLWidgets.widget({
           };
         }
     
+        // create plugins
+        if (x.plugins) {
+          attrs.plugins = [];
+          for (var plugin in x.plugins) {
+            if (x.plugins.hasOwnProperty(plugin)) {
+              
+              // get plugin options
+              var options = x.plugins[plugin];
+              
+              // create plugin and add to dygraph
+              var p = new Dygraph.Plugins[plugin](options);
+              attrs.plugins.push(p);
+            }
+          }
+        }
+    
         // if there is no existing dygraph perform initialization
         if (!dygraph) {
           
