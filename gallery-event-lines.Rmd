@@ -1,5 +1,5 @@
 ---
-title: "Event and Limit Lines"
+title: "Events and Limits"
 ---
 
 ```{r setup, include=FALSE}
