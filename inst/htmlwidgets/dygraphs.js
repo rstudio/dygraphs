@@ -608,6 +608,7 @@ HTMLWidgets.widget({
                 else
                   tx = area.x + 10;
               }
+              canvas.fillStyle = event.color;
               canvas.fillText(event.label, tx, ty);
               canvas.restore();
             }

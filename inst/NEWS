@@ -4,6 +4,8 @@ dygraphs 1.1.1.1 (unreleased)
 
 * Create shiny input binding after dygraph is created (#121)
 
+* Reflect color in dyEvent text label (#122)
+
 
 dygraphs 1.1.1.0
 --------------------------------------------------------------------------------
