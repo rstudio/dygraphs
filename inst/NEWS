@@ -1,5 +1,5 @@
 
-dygraphs 1.1.1.1
+dygraphs 1.1.1-1
 --------------------------------------------------------------------------------
 
 * Create shiny input binding after dygraph is created (#121)
