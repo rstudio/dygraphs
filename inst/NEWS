@@ -1,4 +1,11 @@
 
+dygraphs 1.1.1.2 (unreleased)
+--------------------------------------------------------------------------------
+
+* Fix for shiny input binding regression introduced in move to instance
+  bound widgets (#123)
+
+
 dygraphs 1.1.1-1
 --------------------------------------------------------------------------------
 
