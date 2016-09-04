@@ -1,5 +1,18 @@
 #' Candlestick plotter for dygraph chart
 #'
+#' Draw a candlestick chart.
+#'
+#' @param dygraph Dygraph to draw chart on
+#'
+#' @return Dygraph with specified candlestick plotter
+#'
+#' @examples
+#' library(xts)
+#' data(sample_matrix)
+#' library(dygraphs)
+#' dygraph(sample <- matrix) %>%
+#'   dyCandlestick()
+#'
 #' @export
 dyCandlestick <- function(dygraph) {
   name <- "candlestickPlotter"
