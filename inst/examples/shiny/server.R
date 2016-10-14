@@ -27,7 +27,6 @@ shinyServer(function(input, output) {
   })
   
   output$clicked <- renderText({
-	print(input$dygraph_click)
 	if (!is.null(input$dygraph_click))
 		strftime(input$dygraph_click$x, "%d %b %Y")
   })
