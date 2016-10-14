@@ -17,12 +17,10 @@ shinyServer(function(input, output) {
   })
   
   output$from <- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[1]], "%d %b %Y")      
+    strftime(req(input$dygraph_date_window[[1]]), "%d %b %Y")      
   })
   
   output$to <- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[2]], "%d %b %Y")
+    strftime(req(input$dygraph_date_window[[2]]), "%d %b %Y")
   })  
 })
