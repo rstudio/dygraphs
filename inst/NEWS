@@ -1,5 +1,9 @@
+dygraphs 1.1.1.3 (unreleased)
+--------------------------------------------------------------------------------
 
-dygraphs 1.1.1.2 (unreleased)
+* Added callbacks that react when the user clicks on the graph
+
+dygraphs 1.1.1.2
 --------------------------------------------------------------------------------
 
 * Fix for shiny input binding regression introduced in move to instance
