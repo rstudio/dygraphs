@@ -203,24 +203,28 @@ HTMLWidgets.widget({
         if (x.group != null)
           groups[x.group].push(dygraph);
         
-		// add callback
-		var prevClickCallback = dygraph.getOption("clickCallback")
+        // add callback
+        if (x.fixedtz) {
+          dygraph.shinyValueFormatter = this.xValueFormatterFixedTZ('seconds', x.tzone);
+        } else {
+          dygraph.shinyValueFormatter = this.xValueFormatter('seconds');
+        }
+        var prevClickCallback = dygraph.getOption("clickCallback")
         dygraph.updateOptions({
           clickCallback: function(e, x, points) {
             // call existing
             if (prevClickCallback)
               prevClickCallback(e, x, points);
-			// fire input change
+            // fire input change
             Shiny.onInputChange(el.id + "_click", {
-				x: new Date(x),
-				x_closest_point: new Date(points[0].xval),
-				y_closest_point: points[0].yval,
-				'.nonce': Math.random() // Force reactivity if click hasn't changed
-			}); 
-            
+              date: this.shinyValueFormatter(x),
+              x_closest_point: this.shinyValueFormatter(points[0].xval),
+              y_closest_point: points[0].yval,
+              '.nonce': Math.random() // Force reactivity if click hasn't changed
+            });             
           }
-        });		
-		
+        });
+
         // add shiny input for date window
         if (HTMLWidgets.shinyMode)
           this.addDateWindowShinyInput(el.id);
@@ -289,13 +293,13 @@ HTMLWidgets.widget({
               var start_offset_min = moment(v).tz(tz).zone();
               var check_dst = (p >= Dygraph.TICK_PLACEMENT[Dygraph.TWO_HOURLY].spacing);
               
-    	        if(a<=Dygraph.HOURLY){
-    		        for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){
-    			        y.push({v:v,label:n(_,a,i,r)});
-    			        v+=p;
-    			        _=moment(v).tz(tz);
-    		        }
-    	        }else{
+              if(a<=Dygraph.HOURLY){
+                for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){
+                  y.push({v:v,label:n(_,a,i,r)});
+                  v+=p;
+                  _=moment(v).tz(tz);
+                }
+              }else{
                 for(t>v&&(v+=p,_=moment(v).tz(tz));e>=v;){  
                 
                   // This ensures that we stay on the same hourly "rhythm" across
@@ -320,11 +324,11 @@ HTMLWidgets.widget({
                   }
                 
                   (a>=Dygraph.DAILY||_.get('hour')%h===0)&&y.push({v:v,label:n(_,a,i,r)});
-    			        v+=p;
-    			        _=moment(v).tz(tz);
-    		        }
-    	        }
-    	      }else{
+                  v+=p;
+                  _=moment(v).tz(tz);
+                }
+              }
+            }else{
               var start_year = moment(t).tz(tz).year();
               var end_year   = moment(e).tz(tz).year();
               var start_month = moment(t).tz(tz).month();
@@ -358,11 +362,11 @@ HTMLWidgets.widget({
                   ii+=step_year;
                 }
               }
-    	      }
-    	      return y;
-    	    }else{
+            }
+            return y;
+          }else{
            return []; 
-    	    }
+          }
         };
       },
     
@@ -647,7 +651,7 @@ HTMLWidgets.widget({
               prevDrawCallback(me, initial);
             // fire input change
             var range = dygraph.xAxisRange();
-            var dateWindow = [new Date(range[0]), new Date(range[1])];
+            var dateWindow = [this.shinyValueFormatter(range[0]), this.shinyValueFormatter(range[1])];
             Shiny.onInputChange(id + "_date_window", dateWindow); 
           }
         });

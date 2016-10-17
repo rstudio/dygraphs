@@ -17,19 +17,22 @@ shinyServer(function(input, output) {
   })
   
   output$from <- renderText({
-    strftime(req(input$dygraph_date_window[[1]]), "%d %b %Y")      
+    format(strptime(req(input$dygraph_date_window[[1]]), '%m/%d/%Y, %I:%M:%S %p'), '%Y/%m/%d %H:%M:%S') 
   })
   
   output$to <- renderText({
-    strftime(req(input$dygraph_date_window[[2]]), "%d %b %Y")
+    format(strptime(req(input$dygraph_date_window[[2]]), "%m/%d/%Y, %I:%M:%S %p"), '%Y/%m/%d %H:%M:%S')
   })
   
   output$clicked <- renderText({
-    strftime(req(input$dygraph_click$x), "%d %b %Y")
+    format(strptime(req(input$dygraph_click$date), '%m/%d/%Y, %I:%M:%S %p'), '%Y/%m/%d %H:%M:%S')
   })
 
   output$point <- renderText({
-    paste0('X = ', strftime(req(input$dygraph_click$x_closest_point), "%d %b %Y"), 
-         '; Y = ', req(input$dygraph_click$y_closest_point))
+    paste0(
+      'X = ', format(strptime(req(input$dygraph_click$x_closest_point), '%m/%d/%Y, %I:%M:%S %p'), '%Y/%m/%d %H:%M:%S'),
+      '; Y = ', req(input$dygraph_click$y_closest_point)
+     )
   })
+  
 })

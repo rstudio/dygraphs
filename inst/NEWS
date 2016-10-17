@@ -1,3 +1,9 @@
+dygraphs 1.1.1.4 (unreleased)
+--------------------------------------------------------------------------------
+
+* Fixed bug where callbacks return incorrect dates to due to timezones
+
+
 dygraphs 1.1.1.3 (unreleased)
 --------------------------------------------------------------------------------
 
