@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
   })
   
   output$clicked <- renderText({
-    format(strptime(req(input$dygraph_click$x), '%m/%d/%Y, %I:%M:%S %p'), '%Y/%m/%d %H:%M:%S')
+    format(strptime(req(input$dygraph_click$date), '%m/%d/%Y, %I:%M:%S %p'), '%Y/%m/%d %H:%M:%S')
   })
 
   output$point <- renderText({

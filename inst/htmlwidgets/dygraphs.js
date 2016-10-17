@@ -217,7 +217,7 @@ HTMLWidgets.widget({
               prevClickCallback(e, x, points);
             // fire input change
             Shiny.onInputChange(el.id + "_click", {
-              x: this.shinyValueFormatter(x),
+              date: this.shinyValueFormatter(x),
               x_closest_point: this.shinyValueFormatter(points[0].xval),
               y_closest_point: points[0].yval,
               '.nonce': Math.random() // Force reactivity if click hasn't changed
