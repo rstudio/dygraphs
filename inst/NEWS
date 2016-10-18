@@ -3,6 +3,8 @@ dygraphs 1.1.1.3 (unreleased)
 
 * Added callbacks that react when the user clicks on the graph
 
+* Support for non-date values in shiny input bindings (#132)
+
 
 dygraphs 1.1.1.2 
 --------------------------------------------------------------------------------
