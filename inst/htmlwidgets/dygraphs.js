@@ -202,27 +202,12 @@ HTMLWidgets.widget({
         dygraph.userDateWindow = attrs.dateWindow;
         if (x.group != null)
           groups[x.group].push(dygraph);
-        
-        // add callback
-        var prevClickCallback = dygraph.getOption("clickCallback")
-        dygraph.updateOptions({
-          clickCallback: function(e, x, points) {
-            // call existing
-            if (prevClickCallback)
-              prevClickCallback(e, x, points);
-			      // fire input change
-            Shiny.onInputChange(el.id + "_click", {
-      				x: new Date(x),
-      				x_closest_point: new Date(points[0].xval),
-      				y_closest_point: points[0].yval,
-      				'.nonce': Math.random() // Force reactivity if click hasn't changed
-			      }); 
-          }
-        });
-		
-        // add shiny input for date window
-        if (HTMLWidgets.shinyMode)
+   	
+        // add shiny inputs for date window and click
+        if (HTMLWidgets.shinyMode) {
+          this.addClickShinyInput(el.id);
           this.addDateWindowShinyInput(el.id);
+        }
         
         // set annotations
         if (x.annotations != null) {
@@ -648,6 +633,28 @@ HTMLWidgets.widget({
             var range = dygraph.xAxisRange();
             var dateWindow = [new Date(range[0]), new Date(range[1])];
             Shiny.onInputChange(id + "_date_window", dateWindow); 
+          }
+        });
+      },
+      
+      addClickShinyInput: function(id) {
+        
+        var prevClickCallback = dygraph.getOption("clickCallback")
+        
+        dygraph.updateOptions({
+          clickCallback: function(e, x, points) {
+            
+            // call existing
+            if (prevClickCallback)
+              prevClickCallback(e, x, points);
+              
+			      // fire input change
+            Shiny.onInputChange(el.id + "_click", {
+      				x: new Date(x),
+      				x_closest_point: new Date(points[0].xval),
+      				y_closest_point: points[0].yval,
+      				'.nonce': Math.random() // Force reactivity if click hasn't changed
+			      }); 
           }
         });
       },
