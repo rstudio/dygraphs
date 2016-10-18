@@ -60,10 +60,21 @@ shinyServer(function(input, output) {
 ```
 
 
-#### Shiny Date Input
+#### Shiny Inputs
 
-Shiny applications can respond to changes in the `dateWindow` via a special `date_window` input value. For example, if the output id of a dygraph is `series` then the current date window
-can be read from `input$series_date_window` as an array of two date values (from and to). For example, here's another variation of the simple application from above that displays the current from/to range:
+Two Shiny input bindings are made available by dygraphs to allow dynamic responses to user actions:
+
+1. A `date_window` input binding which responds to changes in the selected/zoomed `dateWindow`.
+
+2. A `click` input binding which responds to mouse clicks and makes available the value on the x-axis that the click corresponds to as well as the closest x,y point to the click.
+
+Note that the `click` input binding is currently only available in the development version of the dygraphs package. You can install this version as follows:
+
+```{r, eval= FALSE}
+devtools::install_github("rstudio/dygraphs")
+```
+
+The names of the input bindings are the shiny ID combined with the name of the input (e.g. `mydygraph_data_window` or `mydygraph_click`). For example, here's another variation of the simple application from above that displays the current from/to range as well as responds to click events:
 
 **ui.R**
 ```r
@@ -84,6 +95,8 @@ shinyUI(fluidPage(
       hr(),
       div(strong("From: "), textOutput("from", inline = TRUE)),
       div(strong("To: "), textOutput("to", inline = TRUE)),
+      div(strong("Date clicked: "), textOutput("clicked", inline = TRUE)),
+      div(strong("Nearest point clicked: "), textOutput("point", inline = TRUE)),
       br(),
       helpText("Click and drag to zoom in (double click to zoom back out).")
     ),
@@ -116,14 +129,21 @@ shinyServer(function(input, output) {
   })
   
   output$from <- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[1]], "%d %b %Y")      
+    strftime(req(input$dygraph_date_window[[1]]), "%d %b %Y")      
   })
   
   output$to <- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[2]], "%d %b %Y")
-  })  
+    strftime(req(input$dygraph_date_window[[2]]), "%d %b %Y")
+  })
+  
+  output$clicked <- renderText({
+    strftime(req(input$dygraph_click$x), "%d %b %Y")
+  })
+
+  output$point <- renderText({
+    paste0('X = ', strftime(req(input$dygraph_click$x_closest_point), "%d %b %Y"), 
+         '; Y = ', req(input$dygraph_click$y_closest_point))
+  })
 })
 ```
 

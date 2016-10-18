@@ -256,9 +256,16 @@ shinyServer(function(input, output) {
   
 })</code></pre>
 </div>
-<div id="shiny-date-input" class="section level4">
-<h4>Shiny Date Input</h4>
-<p>Shiny applications can respond to changes in the <code>dateWindow</code> via a special <code>date_window</code> input value. For example, if the output id of a dygraph is <code>series</code> then the current date window can be read from <code>input$series_date_window</code> as an array of two date values (from and to). For example, here’s another variation of the simple application from above that displays the current from/to range:</p>
+<div id="shiny-inputs" class="section level4">
+<h4>Shiny Inputs</h4>
+<p>Two Shiny input bindings are made available by dygraphs to allow dynamic responses to user actions:</p>
+<ol style="list-style-type: decimal">
+<li><p>A <code>date_window</code> input binding which responds to changes in the selected/zoomed <code>dateWindow</code>.</p></li>
+<li><p>A <code>click</code> input binding which responds to mouse clicks and makes available the value on the x-axis that the click corresponds to as well as the closest x,y point to the click.</p></li>
+</ol>
+<p>Note that the <code>click</code> input binding is currently only available in the development version of the dygraphs package. You can install this version as follows:</p>
+<pre class="r"><code>devtools::install_github(&quot;rstudio/dygraphs&quot;)</code></pre>
+<p>The names of the input bindings are the shiny ID combined with the name of the input (e.g. <code>mydygraph_data_window</code> or <code>mydygraph_click</code>). For example, here’s another variation of the simple application from above that displays the current from/to range as well as responds to click events:</p>
 <p><strong>ui.R</strong></p>
 <pre class="r"><code>library(dygraphs)
 
@@ -277,6 +284,8 @@ shinyUI(fluidPage(
       hr(),
       div(strong(&quot;From: &quot;), textOutput(&quot;from&quot;, inline = TRUE)),
       div(strong(&quot;To: &quot;), textOutput(&quot;to&quot;, inline = TRUE)),
+      div(strong(&quot;Date clicked: &quot;), textOutput(&quot;clicked&quot;, inline = TRUE)),
+      div(strong(&quot;Nearest point clicked: &quot;), textOutput(&quot;point&quot;, inline = TRUE)),
       br(),
       helpText(&quot;Click and drag to zoom in (double click to zoom back out).&quot;)
     ),
@@ -305,14 +314,21 @@ shinyServer(function(input, output) {
   })
   
   output$from &lt;- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[1]], &quot;%d %b %Y&quot;)      
+    strftime(req(input$dygraph_date_window[[1]]), &quot;%d %b %Y&quot;)      
   })
   
   output$to &lt;- renderText({
-    if (!is.null(input$dygraph_date_window))
-      strftime(input$dygraph_date_window[[2]], &quot;%d %b %Y&quot;)
-  })  
+    strftime(req(input$dygraph_date_window[[2]]), &quot;%d %b %Y&quot;)
+  })
+  
+  output$clicked &lt;- renderText({
+    strftime(req(input$dygraph_click$x), &quot;%d %b %Y&quot;)
+  })
+
+  output$point &lt;- renderText({
+    paste0(&#39;X = &#39;, strftime(req(input$dygraph_click$x_closest_point), &quot;%d %b %Y&quot;), 
+         &#39;; Y = &#39;, req(input$dygraph_click$y_closest_point))
+  })
 })</code></pre>
 </div>
 
