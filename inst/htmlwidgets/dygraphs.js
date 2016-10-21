@@ -75,9 +75,16 @@ HTMLWidgets.widget({
           if ((attrs.axes.x.ticker === undefined) && x.fixedtz)
             attrs.axes.x.ticker = this.customDateTickerFixedTZ(x.tzone);
         
+          if ((this.shinyValueFormatter === undefined) && x.fixedtz)
+            this.shinyValueFormatter = this.xValueFormatterFixedTZ('seconds', x.tzone);
+            
           // provide an automatic x value formatter if none is already specified
           if ((attrs.axes.x.valueFormatter === undefined) && (x.fixedtz != true))
             attrs.axes.x.valueFormatter = this.xValueFormatter(x.scale);
+
+          if ((this.shinyValueFormatter === undefined) && x.fixedtz != true) {
+            this.shinyValueFormatter = this.xValueFormatter('seconds');
+          }
           
           // convert time to js time
           attrs.file[0] = attrs.file[0].map(function(value) {
@@ -90,7 +97,6 @@ HTMLWidgets.widget({
             });
           }
         }
-        
         
         // transpose array
         attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
@@ -202,7 +208,10 @@ HTMLWidgets.widget({
         dygraph.userDateWindow = attrs.dateWindow;
         if (x.group != null)
           groups[x.group].push(dygraph);
-   	
+        
+        // add shinyValueFormatter so that plugins can access this for a consistent interface
+        dygraph.shinyValueFormatter = this.shinyValueFormatter;
+        
         // add shiny inputs for date window and click
         if (HTMLWidgets.shinyMode) {
           var isDate = x.format == "date";
@@ -408,7 +417,12 @@ HTMLWidgets.widget({
                                date.getDate() + ', ' + 
                                date.getFullYear();
             else
-              return date.toLocaleString();
+              return monthNames[date.getMonth()] + ' ' + 
+                               date.getDate() + ', ' + 
+                               date.getFullYear() + ' ' +
+                               date.getHours() + ':' +
+                               date.getMinutes() + ':' +
+                               date.getSeconds();
         }
       },
       
@@ -623,6 +637,8 @@ HTMLWidgets.widget({
           
         // check for an existing drawCallback
         var prevDrawCallback = dygraph.getOption("drawCallback");
+        // store formatter function
+        var shinyValueFormatter = this.shinyValueFormatter;
         
         // install the callback
         dygraph.updateOptions({
@@ -633,7 +649,7 @@ HTMLWidgets.widget({
             // fire input change
             var range = dygraph.xAxisRange();
             if (isDate)
-              range = [new Date(range[0]), new Date(range[1])];
+              range = [shinyValueFormatter(range[0]), shinyValueFormatter(range[1])];
             Shiny.onInputChange(id + "_date_window", range); 
           }
         });
@@ -641,7 +657,10 @@ HTMLWidgets.widget({
       
       addClickShinyInput: function(id, isDate) {
         
+        // check for an existing clickCallBackk
         var prevClickCallback = dygraph.getOption("clickCallback")
+        // store formatter function
+        var shinyValueFormatter = this.shinyValueFormatter;
         
         dygraph.updateOptions({
           clickCallback: function(e, x, points) {
@@ -650,13 +669,13 @@ HTMLWidgets.widget({
             if (prevClickCallback)
               prevClickCallback(e, x, points);
               
-			      // fire input change
+            // fire input change
             Shiny.onInputChange(el.id + "_click", {
-      				x: isDate ? new Date(x) : x,
-      				x_closest_point: isDate ? new Date(points[0].xval) : points[0].xval,
-      				y_closest_point: points[0].yval,
-      				'.nonce': Math.random() // Force reactivity if click hasn't changed
-			      }); 
+              x: isDate ? shinyValueFormatter(x) : x,
+              x_closest_point: isDate ? shinyValueFormatter(points[0].xval) : points[0].xval,
+              y_closest_point: points[0].yval,
+              '.nonce': Math.random() // Force reactivity if click hasn't changed
+            }); 
           }
         });
       },
