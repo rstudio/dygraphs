@@ -5,6 +5,8 @@ dygraphs 1.1.1.3 (unreleased)
 
 * Support for non-date values in shiny input bindings (#132)
 
+* Don't call shiny input bindings if they aren't yet available 
+
 
 dygraphs 1.1.1.2 
 --------------------------------------------------------------------------------

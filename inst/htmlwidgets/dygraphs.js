@@ -634,7 +634,8 @@ HTMLWidgets.widget({
             var range = dygraph.xAxisRange();
             if (isDate)
               range = [new Date(range[0]), new Date(range[1])];
-            Shiny.onInputChange(id + "_date_window", range); 
+            if (Shiny.onInputChange) // may note be ready yet in case of static render
+              Shiny.onInputChange(id + "_date_window", range); 
           }
         });
       },
@@ -651,12 +652,14 @@ HTMLWidgets.widget({
               prevClickCallback(e, x, points);
               
 			      // fire input change
-            Shiny.onInputChange(el.id + "_click", {
-      				x: isDate ? new Date(x) : x,
-      				x_closest_point: isDate ? new Date(points[0].xval) : points[0].xval,
-      				y_closest_point: points[0].yval,
-      				'.nonce': Math.random() // Force reactivity if click hasn't changed
-			      }); 
+			      if (Shiny.onInputChange) { // may note be ready yet in case of static render
+              Shiny.onInputChange(el.id + "_click", {
+        				x: isDate ? new Date(x) : x,
+        				x_closest_point: isDate ? new Date(points[0].xval) : points[0].xval,
+        				y_closest_point: points[0].yval,
+        				'.nonce': Math.random() // Force reactivity if click hasn't changed
+  			      }); 
+			      }
           }
         });
       },
