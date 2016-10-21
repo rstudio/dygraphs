@@ -32,8 +32,9 @@ Imports:
     htmlwidgets (>= 0.6),
     htmltools (>= 0.3.5),
     zoo (>= 1.7-10),
-    xts (>= 0.9-7)
+    xts (>= 0.9-7),
+    shiny (>= 0.10.2.1)
 Suggests:
     testthat
-Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)
+Enhances: rmarkdown (>= 0.3.3)
 RoxygenNote: 5.0.1

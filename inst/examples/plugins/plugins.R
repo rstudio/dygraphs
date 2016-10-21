@@ -35,7 +35,6 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
   )
 }
 
-
 # Our plugin wrapper functions can now be incorporated directly into a dygraph
 # pipeline along with other dygraphs functions:
 
@@ -43,7 +42,7 @@ library(dygraphs)
 dygraph(ldeaths) %>% 
   dyRangeSelector() %>% 
   dyUnzoom() %>% 
-  dyCrosshair(direction = "vertical")
+  dyCrosshair(direction = "vertical") %>%
 
 
 
