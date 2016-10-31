@@ -1,0 +1,20 @@
+---
+title: "Roll Periods"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+
+In order to smooth out the display of a series you can specify a `rollPeriod`. This will result in each plotted point representing an average of the number of timestamps specified in the roll period. The roll period will be displayed in a text box at the bottom-left of the plot so that viewers of the plot are aware of the averaging and so that they can change it if they like.
+
+The `dyRoller` function adds a roller with a specified roll period:
+
+```{r}
+dygraph(discoveries, main = "Important Discoveries") %>% 
+  dyRoller(rollPeriod = 5)
+```
+
+
+

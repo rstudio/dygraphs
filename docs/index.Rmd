@@ -1,0 +1,72 @@
+---
+title: "dygraphs for R"
+---
+
+The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilities for charting time-series data in R, including:
+
+- Automatically plots [xts](https://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
+- Highly configurable axis and series display (including optional second Y-axis).
+- Rich interactive features including [zoom/pan](gallery-range-selector.html) and series/point [highlighting](gallery-series-highlighting.html).
+- Display [upper/lower bars](gallery-upper-lower-bars.html) (e.g. prediction intervals) around series.
+- Various graph overlays including [shaded regions](gallery-shaded-regions.html), [event lines](gallery-event-lines.html), and point [annotations](gallery-annotations.html).
+- Use at the R console just like conventional R plots (via RStudio Viewer).
+- Seamless embedding within [R Markdown](r-markdown.html) documents and [Shiny](shiny.html) web applications.
+
+### Installation
+
+You can install the **dygraphs** package from CRAN as follows:
+
+```{r, eval=FALSE}
+install.packages("dygraphs")
+```
+
+You can use dygraphs at the R console, within R Markdown documents, and within Shiny applications. See the usage documentation linked to from the sidebar for more details. There are a few demos of dygraphs below as well as quite a few others in the gallery of examples.
+
+### Demos
+
+Here's a simple dygraph created from a multiple time series object:
+
+```{r}
+library(dygraphs)
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)
+```
+
+Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).
+
+You can customize dygraphs by piping additional commands onto the original dygraph object. Here we pipe a `dyRangeSelector` onto our original graph:
+
+```{r}
+dygraph(lungDeaths) %>% dyRangeSelector()
+```
+
+Note that this example uses the `%>%` (or "pipe") operator from the [magrittr](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) package to compose the dygraph with the range selector. You use a similar syntax to customize axes, series, and other options. For example:
+
+```{r}
+dygraph(lungDeaths) %>%
+  dySeries("mdeaths", label = "Male") %>%
+  dySeries("fdeaths", label = "Female") %>%
+  dyOptions(stackedGraph = TRUE) %>%
+  dyRangeSelector(height = 20)
+```
+
+Many options for customizing series and axis display are available. It's even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here's an example that illustrates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom palette for series colors:
+
+
+```{r}
+hw <- HoltWinters(ldeaths)
+predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
+  dyAxis("x", drawGrid = FALSE) %>%
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+  dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
+```
+
+The *Gallery* linked to from the sidebar includes many more examples of the various features available to customize dygraphs.
+
+
+
+
+
+

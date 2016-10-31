@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Plugins</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.7/htmlwidgets.js"></script>
+<link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="site_libs/moment-2.8.4/moment.js"></script>
+<script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="site_libs/dygraphs-binding-1.1.1.3/dygraphs.js"></script>
+<script src="site_libs/Dygraph.Plugins.Unzoom-1.0/unzoom.js"></script>
+<script src="site_libs/Dygraph.Plugins.Crosshair-1.0/crosshair.js"></script>
+
+<style type = "text/css">
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
+  }
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="row-fluid">
+
+<div class="col-md-3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
+  <li><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
+  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-timezones.html">Time Zones</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Events and Limits</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
+  <li><a href="gallery-plugins.html">Plugins</a></li>
+</ul>
+  
+</div>
+  
+<div class="col-md-9">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Plugins</h1>
+
+</div>
+
+
+<p>You can use dygraphs plugins to customize the appearance of dygraphs as well as add new interactive behaviors. Plugins are extensions to the core dygraphs JavaScript library and are also written in JavaScript. For additional information on creating dygraphs plugins see <a href="https://github.com/danvk/dygraphs/tree/master/src/plugins" class="uri">https://github.com/danvk/dygraphs/tree/master/src/plugins</a>.</p>
+<p>Once you’ve created a dygraphs plugin you can use the <code>dyPlugin</code> function to create an R wrapper function for it. Examples of R wrappers for two simple dygraphs plugins are provided below.</p>
+<div id="simple-example" class="section level4">
+<h4>Simple Example</h4>
+<p>The “Unzoom” dygraphs plugin adds a “Reset Zoom” button to the graph when it’s displaying in a zoomed state (this is a bit more discoverable than the default double-click gesture for unzooming). The JavaScript source code for the Unzoom plugin is here: <a href="https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/unzoom.js" class="uri">https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/unzoom.js</a>.</p>
+<p>Here’s how you’d create an R function to wrap the unzoom plugin:</p>
+<pre class="r"><code>dyUnzoom &lt;-function(dygraph) {
+  dyPlugin(
+    dygraph = dygraph,
+    name = &quot;Unzoom&quot;,
+    path = system.file(&quot;examples/plugins/unzoom.js&quot;, package = &quot;dygraphs&quot;)
+  )
+}</code></pre>
+<p>The plugin can now be used directly within a dygraph pipeline along with other dygraphs functions:</p>
+<pre class="r"><code>dygraph(ldeaths) %&gt;% 
+  dyRangeSelector() %&gt;% 
+  dyUnzoom() </code></pre>
+<div id="htmlwidget-176239a057b931f6e238" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-176239a057b931f6e238">{"x":{"attrs":{"labels":["month","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}},"showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel"},"scale":"monthly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1974-01-01T00:00:00.000Z","1974-02-01T00:00:00.000Z","1974-03-01T00:00:00.000Z","1974-04-01T00:00:00.000Z","1974-05-01T00:00:00.000Z","1974-06-01T00:00:00.000Z","1974-07-01T00:00:00.000Z","1974-08-01T00:00:00.000Z","1974-09-01T00:00:00.000Z","1974-10-01T00:00:00.000Z","1974-11-01T00:00:00.000Z","1974-12-01T00:00:00.000Z","1975-01-01T00:00:00.000Z","1975-02-01T00:00:00.000Z","1975-03-01T00:00:00.000Z","1975-04-01T00:00:00.000Z","1975-05-01T00:00:00.000Z","1975-06-01T00:00:00.000Z","1975-07-01T00:00:00.000Z","1975-08-01T00:00:00.000Z","1975-09-01T00:00:00.000Z","1975-10-01T00:00:00.000Z","1975-11-01T00:00:00.000Z","1975-12-01T00:00:00.000Z","1976-01-01T00:00:00.000Z","1976-02-01T00:00:00.000Z","1976-03-01T00:00:00.000Z","1976-04-01T00:00:00.000Z","1976-05-01T00:00:00.000Z","1976-06-01T00:00:00.000Z","1976-07-01T00:00:00.000Z","1976-08-01T00:00:00.000Z","1976-09-01T00:00:00.000Z","1976-10-01T00:00:00.000Z","1976-11-01T00:00:00.000Z","1976-12-01T00:00:00.000Z","1977-01-01T00:00:00.000Z","1977-02-01T00:00:00.000Z","1977-03-01T00:00:00.000Z","1977-04-01T00:00:00.000Z","1977-05-01T00:00:00.000Z","1977-06-01T00:00:00.000Z","1977-07-01T00:00:00.000Z","1977-08-01T00:00:00.000Z","1977-09-01T00:00:00.000Z","1977-10-01T00:00:00.000Z","1977-11-01T00:00:00.000Z","1977-12-01T00:00:00.000Z","1978-01-01T00:00:00.000Z","1978-02-01T00:00:00.000Z","1978-03-01T00:00:00.000Z","1978-04-01T00:00:00.000Z","1978-05-01T00:00:00.000Z","1978-06-01T00:00:00.000Z","1978-07-01T00:00:00.000Z","1978-08-01T00:00:00.000Z","1978-09-01T00:00:00.000Z","1978-10-01T00:00:00.000Z","1978-11-01T00:00:00.000Z","1978-12-01T00:00:00.000Z","1979-01-01T00:00:00.000Z","1979-02-01T00:00:00.000Z","1979-03-01T00:00:00.000Z","1979-04-01T00:00:00.000Z","1979-05-01T00:00:00.000Z","1979-06-01T00:00:00.000Z","1979-07-01T00:00:00.000Z","1979-08-01T00:00:00.000Z","1979-09-01T00:00:00.000Z","1979-10-01T00:00:00.000Z","1979-11-01T00:00:00.000Z","1979-12-01T00:00:00.000Z"],[3035,2552,2704,2554,2014,1655,1721,1524,1596,2074,2199,2512,2933,2889,2938,2497,1870,1726,1607,1545,1396,1787,2076,2837,2787,3891,3179,2011,1636,1580,1489,1300,1356,1653,2013,2823,3102,2294,2385,2444,1748,1554,1498,1361,1346,1564,1640,2293,2815,3137,2679,1969,1870,1633,1529,1366,1357,1570,1535,2491,3084,2605,2573,2143,1693,1504,1461,1354,1333,1492,1781,1915]],"plugins":{"Unzoom":"{}"}},"evals":["attrs.interactionModel","plugins.Unzoom"],"jsHooks":[]}</script>
+<p>Try zooming the dygraph and note that a “Reset Zoom” button now appears when the graph is in the zoomed state.</p>
+</div>
+<div id="plugin-options" class="section level4">
+<h4>Plugin Options</h4>
+<p>The dyCrosshair plugin draws a crosshair line over the point closest to the mouse when the user hovers over the graph (see the JavaScript source code for the plugin here: <a href="https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/unzoom.js" class="uri">https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/unzoom.js</a>). The plugin includes a “direction” option that is provided as an argument to the R wrapper function and then forwarded to the plugin using the “options” argument to <code>dyPlugin</code>.</p>
+<pre class="r"><code>dyCrosshair &lt;- function(dygraph, 
+                        direction = c(&quot;both&quot;, &quot;horizontal&quot;, &quot;vertical&quot;)) {
+  dyPlugin(
+    dygraph = dygraph,
+    name = &quot;Crosshair&quot;,
+    path = system.file(&quot;examples/plugins/crosshair.js&quot;, 
+                       package = &quot;dygraphs&quot;),
+    options = list(direction = match.arg(direction))
+  )
+}</code></pre>
+<p>The plugin can now be used just like any other dygraphs function and can even be composed with other plugins:</p>
+<pre class="r"><code>dygraph(ldeaths) %&gt;% 
+  dyRangeSelector() %&gt;% 
+  dyUnzoom() %&gt;% 
+  dyCrosshair(direction = &quot;vertical&quot;)</code></pre>
+<div id="htmlwidget-1807119fe3c6483919cb" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1807119fe3c6483919cb">{"x":{"attrs":{"labels":["month","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}},"showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel"},"scale":"monthly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1974-01-01T00:00:00.000Z","1974-02-01T00:00:00.000Z","1974-03-01T00:00:00.000Z","1974-04-01T00:00:00.000Z","1974-05-01T00:00:00.000Z","1974-06-01T00:00:00.000Z","1974-07-01T00:00:00.000Z","1974-08-01T00:00:00.000Z","1974-09-01T00:00:00.000Z","1974-10-01T00:00:00.000Z","1974-11-01T00:00:00.000Z","1974-12-01T00:00:00.000Z","1975-01-01T00:00:00.000Z","1975-02-01T00:00:00.000Z","1975-03-01T00:00:00.000Z","1975-04-01T00:00:00.000Z","1975-05-01T00:00:00.000Z","1975-06-01T00:00:00.000Z","1975-07-01T00:00:00.000Z","1975-08-01T00:00:00.000Z","1975-09-01T00:00:00.000Z","1975-10-01T00:00:00.000Z","1975-11-01T00:00:00.000Z","1975-12-01T00:00:00.000Z","1976-01-01T00:00:00.000Z","1976-02-01T00:00:00.000Z","1976-03-01T00:00:00.000Z","1976-04-01T00:00:00.000Z","1976-05-01T00:00:00.000Z","1976-06-01T00:00:00.000Z","1976-07-01T00:00:00.000Z","1976-08-01T00:00:00.000Z","1976-09-01T00:00:00.000Z","1976-10-01T00:00:00.000Z","1976-11-01T00:00:00.000Z","1976-12-01T00:00:00.000Z","1977-01-01T00:00:00.000Z","1977-02-01T00:00:00.000Z","1977-03-01T00:00:00.000Z","1977-04-01T00:00:00.000Z","1977-05-01T00:00:00.000Z","1977-06-01T00:00:00.000Z","1977-07-01T00:00:00.000Z","1977-08-01T00:00:00.000Z","1977-09-01T00:00:00.000Z","1977-10-01T00:00:00.000Z","1977-11-01T00:00:00.000Z","1977-12-01T00:00:00.000Z","1978-01-01T00:00:00.000Z","1978-02-01T00:00:00.000Z","1978-03-01T00:00:00.000Z","1978-04-01T00:00:00.000Z","1978-05-01T00:00:00.000Z","1978-06-01T00:00:00.000Z","1978-07-01T00:00:00.000Z","1978-08-01T00:00:00.000Z","1978-09-01T00:00:00.000Z","1978-10-01T00:00:00.000Z","1978-11-01T00:00:00.000Z","1978-12-01T00:00:00.000Z","1979-01-01T00:00:00.000Z","1979-02-01T00:00:00.000Z","1979-03-01T00:00:00.000Z","1979-04-01T00:00:00.000Z","1979-05-01T00:00:00.000Z","1979-06-01T00:00:00.000Z","1979-07-01T00:00:00.000Z","1979-08-01T00:00:00.000Z","1979-09-01T00:00:00.000Z","1979-10-01T00:00:00.000Z","1979-11-01T00:00:00.000Z","1979-12-01T00:00:00.000Z"],[3035,2552,2704,2554,2014,1655,1721,1524,1596,2074,2199,2512,2933,2889,2938,2497,1870,1726,1607,1545,1396,1787,2076,2837,2787,3891,3179,2011,1636,1580,1489,1300,1356,1653,2013,2823,3102,2294,2385,2444,1748,1554,1498,1361,1346,1564,1640,2293,2815,3137,2679,1969,1870,1633,1529,1366,1357,1570,1535,2491,3084,2605,2573,2143,1693,1504,1461,1354,1333,1492,1781,1915]],"plugins":{"Unzoom":"{}","Crosshair":{"direction":"vertical"}}},"evals":["attrs.interactionModel","plugins.Unzoom"],"jsHooks":[]}</script>
+<p>If you hover over the graph you’ll see a vertical crosshair drawn at the current position of the mouse.</p>
+</div>
+<div id="distributing-plugins" class="section level4">
+<h4>Distributing Plugins</h4>
+<p>Plugins for the dygraphs R package consist of a JavaScript source file and an R function that wraps it. If you want to distribute a plugin to other users you should create an R package that includes the JavaScript source file and the R function wrapper. The full path to the plugin’s JavaScript source file should be passed to <code>dyPlugin</code> using the <code>system.file</code> function as illustrated in both of the examples above.</p>
+<p>If you’ve created a plugin that you think is of broad interest to other users please feel free to submit a pull request to incorporate it directly into the <a href="https://github.com/rstudio/dygraphs">dygraphs</a> package.</p>
+</div>
+
+
+</div>  
+</div>
+
+<script>
+
+// manage active state of toc based on current page
+$(document).ready(function () {
+    // active menu
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
+    $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+<!-- Fork me on Github Button -->
+
+<a id="github-link" href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+<style type="text/css">
+.nav>li>a {
+  padding: 3px 3px;
+}
+
+.nav>li.nav-header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #b4bcc2;
+  font-weight: bold;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.nav>li.active>a {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+.nav>h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

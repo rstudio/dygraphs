@@ -15,6 +15,8 @@ shinyUI(fluidPage(
       hr(),
       div(strong("From: "), textOutput("from", inline = TRUE)),
       div(strong("To: "), textOutput("to", inline = TRUE)),
+      div(strong("Date clicked: "), textOutput("clicked", inline = TRUE)),
+      div(strong("Nearest point clicked: "), textOutput("point", inline = TRUE)),
       br(),
       helpText("Click and drag to zoom in (double click to zoom back out).")
     ),

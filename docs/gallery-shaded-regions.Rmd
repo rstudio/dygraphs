@@ -1,0 +1,57 @@
+---
+title: "Shaded Regions"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE)
+library(dygraphs)
+```
+
+You can add a shading effect to the graph background for one or more time ranges. This is useful for highlighting periods of time with special properties (e.g. holding periods for securities).
+
+For example, the following code adds a shading effect to the 1920's and 1940's for the New Haven Temperatures graph:
+
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyShading(from = "1920-1-1", to = "1930-1-1") %>%
+  dyShading(from = "1940-1-1", to = "1950-1-1")
+```
+
+Note that the `from` and `to` parameters must be of type `POSIXct` (or objects that are directly convertible to POSIXct).
+
+You may want to modify the color of the shading to make it more or less subtle. Here's a version of the previous graph with custom colors for each shading:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries(label = "Temp (F)", color = "black") %>%
+  dyShading(from = "1920-1-1", to = "1930-1-1", color = "#FFE6E6") %>%
+  dyShading(from = "1940-1-1", to = "1950-1-1", color = "#CCEBD6")
+```
+
+Note that we also changed the color of the series to black so that it contrast well with the custom background colors.
+
+#### Horizontal Shading
+
+It is also possible to add horizontal shading to a chart. In the example below,
+shading is used to show the one standard deviation range for a stock return 
+series.
+
+```{r, echo=FALSE, include=FALSE}
+options("getSymbols.warning4.0"=FALSE)
+library(quantmod, quietly = TRUE)
+```
+
+```{r}
+quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
+ret = ROC(MSFT[, 4])
+mn = mean(ret, na.rm = TRUE)
+std = sd(ret, na.rm = TRUE)
+dygraph(ret, main = "Microsoft Share Price") %>% 
+  dySeries("MSFT.Close", label = "MSFT") %>%
+  dyShading(from = mn - std, to = mn + std, axis = "y")
+```
+
+
+
+

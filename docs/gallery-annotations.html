@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Annotations</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.7/htmlwidgets.js"></script>
+<link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="site_libs/moment-2.8.4/moment.js"></script>
+<script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="site_libs/dygraphs-binding-1.1.1.3/dygraphs.js"></script>
+
+<style type = "text/css">
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
+  }
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="row-fluid">
+
+<div class="col-md-3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
+  <li><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
+  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-timezones.html">Time Zones</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Events and Limits</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
+  <li><a href="gallery-plugins.html">Plugins</a></li>
+</ul>
+  
+</div>
+  
+<div class="col-md-9">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Annotations</h1>
+
+</div>
+
+
+<p>You can add annotations to individual points within a plot. To minimize their visual footprint annotations are typically short abbreviations (e.g. “A”, “B”, “C”) which are elaborated upon in a tooltip or with adjacent explanatory text.</p>
+<p>For example, in the following graph we annotate the dates which saw the first deployment of US combat troops to Korea and Vietnam:</p>
+<pre class="r"><code>dygraph(presidents, main = &quot;Quarterly Presidential Approval Ratings&quot;) %&gt;%
+  dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
+  dyAnnotation(&quot;1950-7-1&quot;, text = &quot;A&quot;, tooltip = &quot;Korea&quot;) %&gt;%
+  dyAnnotation(&quot;1965-1-1&quot;, text = &quot;B&quot;, tooltip = &quot;Vietnam&quot;)</code></pre>
+<div id="htmlwidget-92d047913115f005f9ad" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92d047913115f005f9ad">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60},"y":{"valueRange":[0,100]}},"title":"Quarterly Presidential Approval Ratings","labels":["quarter","V1"],"legend":"auto","retainDateWindow":false},"scale":"quarterly","annotations":[{"x":"1950-07-01T00:00:00.000Z","shortText":"A","text":"Korea","attachAtBottom":false,"series":"V1"},{"x":"1965-01-01T00:00:00.000Z","shortText":"B","text":"Vietnam","attachAtBottom":false,"series":"V1"}],"shadings":[],"events":[],"format":"date","data":[["1945-01-01T00:00:00.000Z","1945-04-01T00:00:00.000Z","1945-07-01T00:00:00.000Z","1945-10-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1946-04-01T00:00:00.000Z","1946-07-01T00:00:00.000Z","1946-10-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1947-04-01T00:00:00.000Z","1947-07-01T00:00:00.000Z","1947-10-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1948-04-01T00:00:00.000Z","1948-07-01T00:00:00.000Z","1948-10-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1949-04-01T00:00:00.000Z","1949-07-01T00:00:00.000Z","1949-10-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1950-04-01T00:00:00.000Z","1950-07-01T00:00:00.000Z","1950-10-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1951-04-01T00:00:00.000Z","1951-07-01T00:00:00.000Z","1951-10-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1952-04-01T00:00:00.000Z","1952-07-01T00:00:00.000Z","1952-10-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1953-04-01T00:00:00.000Z","1953-07-01T00:00:00.000Z","1953-10-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1954-04-01T00:00:00.000Z","1954-07-01T00:00:00.000Z","1954-10-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1955-04-01T00:00:00.000Z","1955-07-01T00:00:00.000Z","1955-10-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1956-04-01T00:00:00.000Z","1956-07-01T00:00:00.000Z","1956-10-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1957-04-01T00:00:00.000Z","1957-07-01T00:00:00.000Z","1957-10-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1958-04-01T00:00:00.000Z","1958-07-01T00:00:00.000Z","1958-10-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1959-04-01T00:00:00.000Z","1959-07-01T00:00:00.000Z","1959-10-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1960-04-01T00:00:00.000Z","1960-07-01T00:00:00.000Z","1960-10-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1961-04-01T00:00:00.000Z","1961-07-01T00:00:00.000Z","1961-10-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1962-04-01T00:00:00.000Z","1962-07-01T00:00:00.000Z","1962-10-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1963-04-01T00:00:00.000Z","1963-07-01T00:00:00.000Z","1963-10-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1964-04-01T00:00:00.000Z","1964-07-01T00:00:00.000Z","1964-10-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1965-04-01T00:00:00.000Z","1965-07-01T00:00:00.000Z","1965-10-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1966-04-01T00:00:00.000Z","1966-07-01T00:00:00.000Z","1966-10-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1967-04-01T00:00:00.000Z","1967-07-01T00:00:00.000Z","1967-10-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1968-04-01T00:00:00.000Z","1968-07-01T00:00:00.000Z","1968-10-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1969-04-01T00:00:00.000Z","1969-07-01T00:00:00.000Z","1969-10-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1970-04-01T00:00:00.000Z","1970-07-01T00:00:00.000Z","1970-10-01T00:00:00.000Z","1971-01-01T00:00:00.000Z","1971-04-01T00:00:00.000Z","1971-07-01T00:00:00.000Z","1971-10-01T00:00:00.000Z","1972-01-01T00:00:00.000Z","1972-04-01T00:00:00.000Z","1972-07-01T00:00:00.000Z","1972-10-01T00:00:00.000Z","1973-01-01T00:00:00.000Z","1973-04-01T00:00:00.000Z","1973-07-01T00:00:00.000Z","1973-10-01T00:00:00.000Z","1974-01-01T00:00:00.000Z","1974-04-01T00:00:00.000Z","1974-07-01T00:00:00.000Z","1974-10-01T00:00:00.000Z"],[null,87,82,75,63,50,43,32,35,60,54,55,36,39,null,null,69,57,57,51,45,37,46,39,36,24,32,23,25,32,null,32,59,74,75,60,71,61,71,57,71,68,79,73,76,71,67,75,79,62,63,57,60,49,48,52,57,62,61,66,71,62,61,57,72,83,71,78,79,71,62,74,76,64,62,57,80,73,69,69,71,64,69,62,63,46,56,44,44,52,38,46,36,49,35,44,59,65,65,56,66,53,61,52,51,48,54,49,49,61,null,null,68,44,40,27,28,25,24,24]]},"evals":[],"jsHooks":[]}</script>
+<p>There’s a very important aspect of this example to note: the <strong>actual</strong> dates of the two events are not used for the annotation. Rather, dates that align with the quarterly boundaries of the time series are used (this is because dygraphs will only include annotations that exactly match one of it’s x-axis values).</p>
+<p>Note that if you want to print a larger annotation and attach it to the x-axis rather than individual points you can use the <code>attachAtBottom</code> and <code>width</code> parameters as follows:</p>
+<pre class="r"><code>presAnnotation &lt;- function(dygraph, x, text) {
+  dygraph %&gt;%
+    dyAnnotation(x, text, attachAtBottom = TRUE, width = 60)
+}
+
+dygraph(presidents, main = &quot;Quarterly Presidential Approval Ratings&quot;) %&gt;%
+  dyAxis(&quot;y&quot;, valueRange = c(0, 100)) %&gt;%
+  presAnnotation(&quot;1950-7-1&quot;, text = &quot;Korea&quot;) %&gt;%
+  presAnnotation(&quot;1965-1-1&quot;, text = &quot;Vietnam&quot;)</code></pre>
+<div id="htmlwidget-91f7a1bff56042520c54" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-91f7a1bff56042520c54">{"x":{"attrs":{"axes":{"x":{"pixelsPerLabel":60},"y":{"valueRange":[0,100]}},"title":"Quarterly Presidential Approval Ratings","labels":["quarter","V1"],"legend":"auto","retainDateWindow":false},"scale":"quarterly","annotations":[{"x":"1950-07-01T00:00:00.000Z","shortText":"Korea","width":60,"attachAtBottom":true,"series":"V1"},{"x":"1965-01-01T00:00:00.000Z","shortText":"Vietnam","width":60,"attachAtBottom":true,"series":"V1"}],"shadings":[],"events":[],"format":"date","data":[["1945-01-01T00:00:00.000Z","1945-04-01T00:00:00.000Z","1945-07-01T00:00:00.000Z","1945-10-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1946-04-01T00:00:00.000Z","1946-07-01T00:00:00.000Z","1946-10-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1947-04-01T00:00:00.000Z","1947-07-01T00:00:00.000Z","1947-10-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1948-04-01T00:00:00.000Z","1948-07-01T00:00:00.000Z","1948-10-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1949-04-01T00:00:00.000Z","1949-07-01T00:00:00.000Z","1949-10-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1950-04-01T00:00:00.000Z","1950-07-01T00:00:00.000Z","1950-10-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1951-04-01T00:00:00.000Z","1951-07-01T00:00:00.000Z","1951-10-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1952-04-01T00:00:00.000Z","1952-07-01T00:00:00.000Z","1952-10-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1953-04-01T00:00:00.000Z","1953-07-01T00:00:00.000Z","1953-10-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1954-04-01T00:00:00.000Z","1954-07-01T00:00:00.000Z","1954-10-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1955-04-01T00:00:00.000Z","1955-07-01T00:00:00.000Z","1955-10-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1956-04-01T00:00:00.000Z","1956-07-01T00:00:00.000Z","1956-10-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1957-04-01T00:00:00.000Z","1957-07-01T00:00:00.000Z","1957-10-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1958-04-01T00:00:00.000Z","1958-07-01T00:00:00.000Z","1958-10-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1959-04-01T00:00:00.000Z","1959-07-01T00:00:00.000Z","1959-10-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1960-04-01T00:00:00.000Z","1960-07-01T00:00:00.000Z","1960-10-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1961-04-01T00:00:00.000Z","1961-07-01T00:00:00.000Z","1961-10-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1962-04-01T00:00:00.000Z","1962-07-01T00:00:00.000Z","1962-10-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1963-04-01T00:00:00.000Z","1963-07-01T00:00:00.000Z","1963-10-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1964-04-01T00:00:00.000Z","1964-07-01T00:00:00.000Z","1964-10-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1965-04-01T00:00:00.000Z","1965-07-01T00:00:00.000Z","1965-10-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1966-04-01T00:00:00.000Z","1966-07-01T00:00:00.000Z","1966-10-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1967-04-01T00:00:00.000Z","1967-07-01T00:00:00.000Z","1967-10-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1968-04-01T00:00:00.000Z","1968-07-01T00:00:00.000Z","1968-10-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1969-04-01T00:00:00.000Z","1969-07-01T00:00:00.000Z","1969-10-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1970-04-01T00:00:00.000Z","1970-07-01T00:00:00.000Z","1970-10-01T00:00:00.000Z","1971-01-01T00:00:00.000Z","1971-04-01T00:00:00.000Z","1971-07-01T00:00:00.000Z","1971-10-01T00:00:00.000Z","1972-01-01T00:00:00.000Z","1972-04-01T00:00:00.000Z","1972-07-01T00:00:00.000Z","1972-10-01T00:00:00.000Z","1973-01-01T00:00:00.000Z","1973-04-01T00:00:00.000Z","1973-07-01T00:00:00.000Z","1973-10-01T00:00:00.000Z","1974-01-01T00:00:00.000Z","1974-04-01T00:00:00.000Z","1974-07-01T00:00:00.000Z","1974-10-01T00:00:00.000Z"],[null,87,82,75,63,50,43,32,35,60,54,55,36,39,null,null,69,57,57,51,45,37,46,39,36,24,32,23,25,32,null,32,59,74,75,60,71,61,71,57,71,68,79,73,76,71,67,75,79,62,63,57,60,49,48,52,57,62,61,66,71,62,61,57,72,83,71,78,79,71,62,74,76,64,62,57,80,73,69,69,71,64,69,62,63,46,56,44,44,52,38,46,36,49,35,44,59,65,65,56,66,53,61,52,51,48,54,49,49,61,null,null,68,44,40,27,28,25,24,24]]},"evals":[],"jsHooks":[]}</script>
+<p>This example also demonstrates another concept: writing a helper function to define common graph element options in a single place. The <code>presAnnotation</code> function takes a dygraph and then modifies it to include an annotation with the requisite layout behavior.</p>
+
+
+</div>  
+</div>
+
+<script>
+
+// manage active state of toc based on current page
+$(document).ready(function () {
+    // active menu
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
+    $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+<!-- Fork me on Github Button -->
+
+<a id="github-link" href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+<style type="text/css">
+.nav>li>a {
+  padding: 3px 3px;
+}
+
+.nav>li.nav-header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #b4bcc2;
+  font-weight: bold;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.nav>li.active>a {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+.nav>h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
