@@ -202,10 +202,13 @@ HTMLWidgets.widget({
         dygraph.userDateWindow = attrs.dateWindow;
         if (x.group != null)
           groups[x.group].push(dygraph);
-        
-        // add shiny input for date window
-        if (HTMLWidgets.shinyMode)
-          this.addDateWindowShinyInput(el.id);
+   	
+        // add shiny inputs for date window and click
+        if (HTMLWidgets.shinyMode) {
+          var isDate = x.format == "date";
+          this.addClickShinyInput(el.id, isDate);
+          this.addDateWindowShinyInput(el.id, isDate);
+        }
         
         // set annotations
         if (x.annotations != null) {
@@ -616,7 +619,7 @@ HTMLWidgets.widget({
         };
       },
       
-      addDateWindowShinyInput: function(id) {
+      addDateWindowShinyInput: function(id, isDate) {
           
         // check for an existing drawCallback
         var prevDrawCallback = dygraph.getOption("drawCallback");
@@ -629,8 +632,34 @@ HTMLWidgets.widget({
               prevDrawCallback(me, initial);
             // fire input change
             var range = dygraph.xAxisRange();
-            var dateWindow = [new Date(range[0]), new Date(range[1])];
-            Shiny.onInputChange(id + "_date_window", dateWindow); 
+            if (isDate)
+              range = [new Date(range[0]), new Date(range[1])];
+            if (Shiny.onInputChange) // may note be ready yet in case of static render
+              Shiny.onInputChange(id + "_date_window", range); 
+          }
+        });
+      },
+      
+      addClickShinyInput: function(id, isDate) {
+        
+        var prevClickCallback = dygraph.getOption("clickCallback")
+        
+        dygraph.updateOptions({
+          clickCallback: function(e, x, points) {
+            
+            // call existing
+            if (prevClickCallback)
+              prevClickCallback(e, x, points);
+              
+			      // fire input change
+			      if (Shiny.onInputChange) { // may note be ready yet in case of static render
+              Shiny.onInputChange(el.id + "_click", {
+        				x: isDate ? new Date(x) : x,
+        				x_closest_point: isDate ? new Date(points[0].xval) : points[0].xval,
+        				y_closest_point: points[0].yval,
+        				'.nonce': Math.random() // Force reactivity if click hasn't changed
+  			      }); 
+			      }
           }
         });
       },

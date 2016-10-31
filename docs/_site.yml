@@ -1,0 +1,14 @@
+name: dygraphs
+output_dir: "."
+output:
+  html_document:
+    fig_width: 6.5
+    fig_height: 3.5
+    theme: flatly
+    highlight: textmate
+    mathjax: null
+    includes:
+      in_header: include/in_header.html
+      before_body: include/before_body.html
+      after_body: include/after_body.html
+

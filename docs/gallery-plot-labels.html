@@ -13,18 +13,21 @@
 
 <title>Plot Labels</title>
 
-<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="libs/htmlwidgets-0.7/htmlwidgets.js"></script>
-<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
-<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
-<script src="libs/moment-2.8.4/moment.js"></script>
-<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
-<script src="libs/dygraphs-binding-1.1.1.2/dygraphs.js"></script>
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.7/htmlwidgets.js"></script>
+<link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="site_libs/moment-2.8.4/moment.js"></script>
+<script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="site_libs/dygraphs-binding-1.1.1.3/dygraphs.js"></script>
 
 <style type = "text/css">
 body {
@@ -76,10 +79,6 @@ pre {
 <link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="libs/highlight/textmate.css"
-      type="text/css" />
-<script src="libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,7 +153,6 @@ button.code-folding-btn:focus {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -219,8 +217,8 @@ $(document).ready(function () {
 <pre class="r"><code>dygraph(discoveries, 
         main = &quot;Important Discoveries&quot;, 
         ylab = &quot;Discoveries / Year&quot;)</code></pre>
-<div id="htmlwidget-4e418d0e777bcf5e8b2b" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4e418d0e777bcf5e8b2b">{"x":{"attrs":{"title":"Important Discoveries","ylabel":"Discoveries / Year","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1860-01-01T00:00:00.000Z","1861-01-01T00:00:00.000Z","1862-01-01T00:00:00.000Z","1863-01-01T00:00:00.000Z","1864-01-01T00:00:00.000Z","1865-01-01T00:00:00.000Z","1866-01-01T00:00:00.000Z","1867-01-01T00:00:00.000Z","1868-01-01T00:00:00.000Z","1869-01-01T00:00:00.000Z","1870-01-01T00:00:00.000Z","1871-01-01T00:00:00.000Z","1872-01-01T00:00:00.000Z","1873-01-01T00:00:00.000Z","1874-01-01T00:00:00.000Z","1875-01-01T00:00:00.000Z","1876-01-01T00:00:00.000Z","1877-01-01T00:00:00.000Z","1878-01-01T00:00:00.000Z","1879-01-01T00:00:00.000Z","1880-01-01T00:00:00.000Z","1881-01-01T00:00:00.000Z","1882-01-01T00:00:00.000Z","1883-01-01T00:00:00.000Z","1884-01-01T00:00:00.000Z","1885-01-01T00:00:00.000Z","1886-01-01T00:00:00.000Z","1887-01-01T00:00:00.000Z","1888-01-01T00:00:00.000Z","1889-01-01T00:00:00.000Z","1890-01-01T00:00:00.000Z","1891-01-01T00:00:00.000Z","1892-01-01T00:00:00.000Z","1893-01-01T00:00:00.000Z","1894-01-01T00:00:00.000Z","1895-01-01T00:00:00.000Z","1896-01-01T00:00:00.000Z","1897-01-01T00:00:00.000Z","1898-01-01T00:00:00.000Z","1899-01-01T00:00:00.000Z","1900-01-01T00:00:00.000Z","1901-01-01T00:00:00.000Z","1902-01-01T00:00:00.000Z","1903-01-01T00:00:00.000Z","1904-01-01T00:00:00.000Z","1905-01-01T00:00:00.000Z","1906-01-01T00:00:00.000Z","1907-01-01T00:00:00.000Z","1908-01-01T00:00:00.000Z","1909-01-01T00:00:00.000Z","1910-01-01T00:00:00.000Z","1911-01-01T00:00:00.000Z","1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z"],[5,3,0,2,0,3,2,3,6,1,2,1,2,1,3,3,3,5,2,4,4,0,2,3,7,12,3,10,9,2,3,7,7,2,3,3,6,2,4,3,5,2,2,4,0,4,2,5,2,3,3,6,5,8,3,6,6,0,5,2,2,2,6,3,4,4,2,2,4,7,5,3,3,0,2,2,2,1,3,4,2,2,1,1,1,2,1,4,4,3,2,1,4,1,1,1,0,0,2,0]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e9d662a6bc0d897a0e3d" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e9d662a6bc0d897a0e3d">{"x":{"attrs":{"title":"Important Discoveries","ylabel":"Discoveries / Year","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1860-01-01T00:00:00.000Z","1861-01-01T00:00:00.000Z","1862-01-01T00:00:00.000Z","1863-01-01T00:00:00.000Z","1864-01-01T00:00:00.000Z","1865-01-01T00:00:00.000Z","1866-01-01T00:00:00.000Z","1867-01-01T00:00:00.000Z","1868-01-01T00:00:00.000Z","1869-01-01T00:00:00.000Z","1870-01-01T00:00:00.000Z","1871-01-01T00:00:00.000Z","1872-01-01T00:00:00.000Z","1873-01-01T00:00:00.000Z","1874-01-01T00:00:00.000Z","1875-01-01T00:00:00.000Z","1876-01-01T00:00:00.000Z","1877-01-01T00:00:00.000Z","1878-01-01T00:00:00.000Z","1879-01-01T00:00:00.000Z","1880-01-01T00:00:00.000Z","1881-01-01T00:00:00.000Z","1882-01-01T00:00:00.000Z","1883-01-01T00:00:00.000Z","1884-01-01T00:00:00.000Z","1885-01-01T00:00:00.000Z","1886-01-01T00:00:00.000Z","1887-01-01T00:00:00.000Z","1888-01-01T00:00:00.000Z","1889-01-01T00:00:00.000Z","1890-01-01T00:00:00.000Z","1891-01-01T00:00:00.000Z","1892-01-01T00:00:00.000Z","1893-01-01T00:00:00.000Z","1894-01-01T00:00:00.000Z","1895-01-01T00:00:00.000Z","1896-01-01T00:00:00.000Z","1897-01-01T00:00:00.000Z","1898-01-01T00:00:00.000Z","1899-01-01T00:00:00.000Z","1900-01-01T00:00:00.000Z","1901-01-01T00:00:00.000Z","1902-01-01T00:00:00.000Z","1903-01-01T00:00:00.000Z","1904-01-01T00:00:00.000Z","1905-01-01T00:00:00.000Z","1906-01-01T00:00:00.000Z","1907-01-01T00:00:00.000Z","1908-01-01T00:00:00.000Z","1909-01-01T00:00:00.000Z","1910-01-01T00:00:00.000Z","1911-01-01T00:00:00.000Z","1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z"],[5,3,0,2,0,3,2,3,6,1,2,1,2,1,3,3,3,5,2,4,4,0,2,3,7,12,3,10,9,2,3,7,7,2,3,3,6,2,4,3,5,2,2,4,0,4,2,5,2,3,3,6,5,8,3,6,6,0,5,2,2,2,6,3,4,4,2,2,4,7,5,3,3,0,2,2,2,1,3,4,2,2,1,1,1,2,1,4,4,3,2,1,4,1,1,1,0,0,2,0]]},"evals":[],"jsHooks":[]}</script>
 <p>It’s also possible to specify labels as part of a <code>dyAxis</code> definition. For example:</p>
 <pre class="r"><code>dygraph(discoveries, main = &quot;Important Discoveries&quot;) %&gt;%
   dyAxis(&quot;y&quot;, label = &quot;Discoveries / Year&quot;)</code></pre>
@@ -281,8 +279,11 @@ $(document).ready(function () {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
