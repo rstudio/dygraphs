@@ -10,7 +10,7 @@
 #' library(xts)
 #' data(sample_matrix)
 #' library(dygraphs)
-#' dygraph(sample <- matrix) %>%
+#' dygraph(sample_matrix) %>%
 #'   dyCandlestick()
 #'
 #' @export
