@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>CSS Styling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/htmlwidgets-0.7/htmlwidgets.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.2/dygraphs.js"></script>
+
+<style type = "text/css">
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
+  }
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="row-fluid">
+
+<div class="col-md-3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
+  <li><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
+  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-timezones.html">Time Zones</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Events and Limits</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
+  <li><a href="gallery-plugins.html">Plugins</a></li>
+</ul>
+  
+</div>
+  
+<div class="col-md-9">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">CSS Styling</h1>
+
+</div>
+
+
+<p>You can use CSS to customize the typefaces used in dygraph labels. In this example we’ll use CSS to make the main label bold and to reduce the size of the typefaces used on the axes:</p>
+<pre class="css"><code>.dygraph-title {
+  color: navy;
+  font-weight: bold;
+}
+.dygraph-axis-label {
+  font-size: 11px;
+}</code></pre>
+<pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
+  dyCSS(&quot;dygraph.css&quot;)</code></pre>
+<div id="htmlwidget-4e418d0e777bcf5e8b2b" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4e418d0e777bcf5e8b2b">{"x":{"attrs":{"title":"New Haven Temperatures","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1971-01-01T00:00:00.000Z"],[49.9,52.3,49.4,51.1,49.4,47.9,49.8,50.9,49.3,51.9,50.8,49.6,49.3,50.6,48.4,50.7,50.9,50.6,51.5,52.8,51.8,51.1,49.8,50.2,50.4,51.6,51.8,50.9,48.8,51.7,51,50.6,51.7,51.5,52.1,51.3,51,54,51.4,52.7,53.1,54.6,52,52,50.9,52.6,50.2,52.6,51.6,51.9,50.5,50.9,51.7,51.4,51.7,50.8,51.9,51.8,51.9,53]],"css":".dygraph-title {\n  color: navy;\n  font-weight: bold;\n}\n.dygraph-axis-label {\n  font-size: 11px;\n}"},"evals":[],"jsHooks":[]}</script>
+<div id="css-classes" class="section level4">
+<h4>CSS Classes</h4>
+<p>The CSS classes for the chart labels are:</p>
+<ul>
+<li>Title: <code>.dygraph-label .dygraph-title</code></li>
+<li>x-axis label: <code>.dygraph-label .dygraph-xlabel</code></li>
+<li>y-axis label: <code>.dygraph-label .dygraph-ylabel</code></li>
+<li>y2-axis label: <code>.dygraph-label .dygraph-y2label</code></li>
+</ul>
+<p>The axis labels also get CSS classes:</p>
+<ul>
+<li>x-axis: <code>.dygraph-axis-label .dygraph-axis-label-x</code></li>
+<li>y-axis: <code>.dygraph-axis-label .dygraph-axis-label-y</code></li>
+<li>y2-axis: <code>.dygraph-axis-label .dygraph-axis-label-y .dygraph-axis-label-y2</code></li>
+</ul>
+<p>The legend has the .dygraph-legend class. When using <code>highlightSeriesOpts</code>, the selected series’ &lt;span&gt; gets a <code>.highlight</code> class. This can be used to show only a single series in the legend.</p>
+<p>The full reference to the various CSS classes used throughout a dygraph is here: <a href="http://dygraphs.com/css.html" class="uri">http://dygraphs.com/css.html</a>.</p>
+</div>
+<div id="applying-styles-globally" class="section level4">
+<h4>Applying Styles Globally</h4>
+<p>If you are creating an R Markdown document or Shiny application, you may want to apply your dygraphs CSS globally to the page or application rather than attaching it to each plot. See these links for documentation on how to do this:</p>
+<ul>
+<li><p>R Markdown: <a href="http://rmarkdown.rstudio.com/html_document_format.html#custom-css" class="uri">http://rmarkdown.rstudio.com/html_document_format.html#custom-css</a></p></li>
+<li><p>Shiny: <a href="http://shiny.rstudio.com/articles/css.html#add-css-to-the-header-with-includecss" class="uri">http://shiny.rstudio.com/articles/css.html#add-css-to-the-header-with-includecss</a></p></li>
+</ul>
+</div>
+
+
+</div>  
+</div>
+
+<script>
+
+// manage active state of toc based on current page
+$(document).ready(function () {
+    // active menu
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
+    $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+<!-- Fork me on Github Button -->
+
+<a id="github-link" href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+<style type="text/css">
+.nav>li>a {
+  padding: 3px 3px;
+}
+
+.nav>li.nav-header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #b4bcc2;
+  font-weight: bold;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.nav>li.active>a {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+.nav>h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+
+</body>
+</html>

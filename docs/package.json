@@ -1,0 +1,16 @@
+{
+  "name": "dygraphs",
+  "devDependencies": {
+    "phantomjs": "^1.9.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstudio/dygraphs.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rstudio/dygraphs/issues"
+  },
+  "homepage": "https://github.com/rstudio/dygraphs#readme",
+  "description": "R interface to dygraphs"
+}

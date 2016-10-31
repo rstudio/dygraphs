@@ -1,0 +1,25 @@
+---
+title: "Plot Labels"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+
+You can add labels to a dygraph using the `main`, `ylab` and `xlab` arguments. For example:
+
+```{r}
+dygraph(discoveries, 
+        main = "Important Discoveries", 
+        ylab = "Discoveries / Year")
+```
+
+It's also possible to specify labels as part of a `dyAxis` definition. For example:
+
+```{r, results='hide'}
+dygraph(discoveries, main = "Important Discoveries") %>%
+  dyAxis("y", label = "Discoveries / Year")
+```
+
+The appearance of labels can be customized extensively using CSS. See the [CSS Label Styling](gallery-css-styling.html) article for additional details.

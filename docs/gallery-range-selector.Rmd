@@ -1,0 +1,51 @@
+---
+title: "Range Selector"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+```
+
+You can add range selector to the bottom of a dygraph that provides a straightforward interface for panning and zooming. For example:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector()
+```
+
+You can also specify an initial date range for the range selector:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(dateWindow = c("1920-01-01", "1960-01-01"))
+```
+
+Note that the `dateWindow` parameter should be a two-element vector of `POSIXct` (or objects that can unambiguously converted to POSIXct).
+
+Several other options affect the appearance of the range selector:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dyRangeSelector(height = 20, strokeColor = "")
+```
+
+#### Shiny Date Input
+
+Shiny applications can respond to changes in the `dateWindow` via a special `date_window` input value. For example, if the output id of a dygraph is `series` then the current date window
+can be read from `input$series_date_window` as an array of two date values (from and to). 
+
+Note that when using the data window input variable you should always check for `NULL` before accessing it, for example:
+
+```
+output$from <- renderText({
+  if (!is.null(input$dygraph_date_window))
+    strftime(input$dygraph_date_window[[1]], "%d %b %Y")      
+})
+```
+
+See the documentation on [using dygraphs with Shiny](shiny.html#shiny-date-input) for a more complete example.
+
+
+
+
+

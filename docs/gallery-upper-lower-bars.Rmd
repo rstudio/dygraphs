@@ -1,0 +1,43 @@
+---
+title: "Upper/Lower Bars"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+library(quantmod)
+options(getSymbols.warning4.0 = FALSE)
+```
+
+You can plot error bars (or any other high/low oriented data) along with a series by simply specifying the lower, value, and upper series together in the `dySeries` name parameter. For example:
+
+```{r}
+hw <- HoltWinters(ldeaths)
+p <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(p, main = "Predicted Lung Deaths (UK)") %>%
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths")
+```
+
+Here's how you would plot the actual and predicted series on the same graph:
+
+```{r}
+hw <- HoltWinters(ldeaths)
+p <- predict(hw, n.ahead = 36, prediction.interval = TRUE)
+all <- cbind(ldeaths, p)
+
+dygraph(all, "Deaths from Lung Disease (UK)") %>%
+  dySeries("ldeaths", label = "Actual") %>%
+  dySeries(c("p.lwr", "p.fit", "p.upr"), label = "Predicted")
+```
+
+Finally, here's an example that plots multiple series each of which have upper and lower bars:
+
+```{r}
+library(quantmod)
+getSymbols(c("MSFT", "HPQ"), from = "2014-06-01", auto.assign=TRUE)
+stocks <- cbind(MSFT[,2:4], HPQ[,2:4])
+dygraph(stocks, main = "Microsoft and HP Share Prices") %>% 
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") %>%
+  dySeries(c("HPQ.Low", "HPQ.Close", "HPQ.High"), label = "HPQ")
+```
+

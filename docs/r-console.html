@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Using at the R Console</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type = "text/css">
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 180px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 160;
+  }
+}
+
+</style>
+
+<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="libs/highlight/textmate.css"
+      type="text/css" />
+<script src="libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="row-fluid">
+
+<div class="col-md-3">
+  
+<ul class="nav nav-list well sidebar-nav sidebar-nav-fixed">
+  
+  <h4>dygraphs for R</h4>
+  
+  <li><a href="index.html">Home</a></li>
+  
+  <li class="nav-header">Using</li>
+  <li><a href="r-console.html">R Console</a></li>
+  <li><a href="r-markdown.html">R Markdown</a></li>
+  <li><a href="shiny.html">Shiny</a></li>
+  
+  <li class="nav-header">Gallery</li>
+  <li><a href="gallery-series-options.html">Series Options</a></li>
+  <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
+  <li><a href="gallery-axis-options.html">Axis Options</a></li>
+  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
+  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
+  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-timezones.html">Time Zones</a></li>
+  <li><a href="gallery-css-styling.html">CSS Styling</a></li>
+  <li><a href="gallery-range-selector.html">Range Selector</a></li>
+  <li><a href="gallery-synchronization.html">Synchronization</a></li>
+  <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
+  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-event-lines.html">Events and Limits</a></li>
+  <li><a href="gallery-annotations.html">Annotations</a></li>
+  <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
+  <li><a href="gallery-plugins.html">Plugins</a></li>
+</ul>
+  
+</div>
+  
+<div class="col-md-9">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Using at the R Console</h1>
+
+</div>
+
+
+<p>You can use <code>dygraph</code> at the R console just like any other plotting function. For example, here’s the code used to plot the <code>nhtemp</code> time series with R graphics along with the code to plot it using dygraphs:</p>
+<pre class="r"><code>plot(nhtemp, main = &quot;New Haven Temperatures&quot;, ylab = &quot;Temp (F)&quot;)
+dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;, ylab = &quot;Temp (F)&quot;) </code></pre>
+<p>In the default R console the dygraph will appear in an external browser window.</p>
+<div id="rstudio-viewer" class="section level4">
+<h4>RStudio Viewer</h4>
+<p>If you call <code>dygraph</code> within RStudio then it’s output appears within the <em>Viewer</em> pane, a special pane dedicated to displaying web content. The Viewer pane works exactly like the Plots pane, and includes history, zoom, and options for exporting it’s contents to image files, the clipboard, or standalone HTML. Here’s what the output of the previous call looks like in the Viewer pane:</p>
+<div class="figure">
+<img src="images/rstudio-viewer-pane.png" alt="RStudio Viewer Pane" />
+<p class="caption">RStudio Viewer Pane</p>
+</div>
+<p>Note that plotting to the RStudio Viewer relies on a very recent version of RStudio (v0.98.1056 or higher) so you should download the <a href="http://www.rstudio.com/products/rstudio/">latest release</a> of RStudio before trying this out.</p>
+</div>
+
+
+</div>  
+</div>
+
+<script>
+
+// manage active state of toc based on current page
+$(document).ready(function () {
+    // active menu
+    href = window.location.pathname;
+    href = href.substr(href.lastIndexOf('/') + 1);
+    if (href == "")
+      href = "index.html";
+    $('a[href="' + href + '"]').parent().addClass('active');
+});
+
+</script>
+
+<!-- Fork me on Github Button -->
+
+<a id="github-link" href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+
+
+<style type="text/css">
+.nav>li>a {
+  padding: 3px 3px;
+}
+
+.nav>li.nav-header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #b4bcc2;
+  font-weight: bold;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.nav>li.active>a {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+.nav>h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
+</style>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+
+</body>
+</html>

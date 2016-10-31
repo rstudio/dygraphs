@@ -1,0 +1,45 @@
+---
+title: "Time Zones"
+---
+
+```{r, include=FALSE}
+library(dygraphs)
+library(xts)
+```
+
+By default **dygraphs** displays time-series using the time zone of the client workstation. However, you can also choose to use the time zone defined within the underlying **xts** object using the `useDataTimezone` option.
+
+For example, consider the following time-series than includes randomly generated values for each 3 hour period of the first day of 2015 (the series is defined using the GMT time zone):
+
+```{r}
+library(xts)
+datetimes <- seq.POSIXt(as.POSIXct("2015-01-01", tz="GMT"),
+                        as.POSIXct("2015-01-02", tz="GMT"), by="3 hours")
+values <- rnorm(length(datetimes))
+series <- xts(values, order.by = datetimes, tz="GMT")
+```
+
+If we plots this using the default dygraph behavior you'll notice that the series doesn't adhere to the day boundaries exactly because it's plotted using your web browser's current time zone:
+
+```{r}
+dygraph(series)
+```
+
+However, by specifying the `labelsUTC` option the series will be displayed in UTC time rather than in the local timezone of the client:
+
+```{r}
+dygraph(series) %>% 
+  dyOptions(labelsUTC = TRUE)
+```
+
+If you'd like to force the series to be rendered using an arbitrary time zone you can use the `useDataTimezone` option to specify that whatever timezone is used in the underlying **xts** object should be carried through to the client display. 
+
+In this example we specify `useDataTimezone` and the units are displayed in GMT because that was the time zone used when constructuring the time series:
+
+```{r}
+dygraph(series) %>% 
+  dyOptions(useDataTimezone = TRUE)
+```
+
+
+
