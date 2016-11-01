@@ -131,6 +131,11 @@ HTMLWidgets.widget({
             }
           }
         }
+
+        // custom plotter
+        if (x.plotter) {
+          attrs.plotter = Dygraph.Plotters[x.plotter];
+        }
     
         // if there is no existing dygraph perform initialization
         if (!dygraph) {
@@ -657,6 +662,7 @@ HTMLWidgets.widget({
         				x: isDate ? new Date(x) : x,
         				x_closest_point: isDate ? new Date(points[0].xval) : points[0].xval,
         				y_closest_point: points[0].yval,
+        				series_name: points[0].name,
         				'.nonce': Math.random() // Force reactivity if click hasn't changed
   			      }); 
 			      }

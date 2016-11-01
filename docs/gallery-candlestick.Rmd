@@ -1,9 +1,15 @@
 ---
-title: "Candlestick charts"
+title: "Candlestick Charts"
 ---
 
-```{r, include=FALSE}
+```{r setup, include=FALSE}
 library(dygraphs)
+```
+
+**NOTE:** Candlestick charts are currently only available in the development version of dygraphs. You can install the development version as follows:
+
+```{r, eval=FALSE}
+devtools::install_github("rstudio/dygraphs")
 ```
 
 You can create candlestick/OHLC charts with `dyCandlestick` function. For example:
@@ -11,20 +17,17 @@ You can create candlestick/OHLC charts with `dyCandlestick` function. For exampl
 ```{r message=FALSE}
 library(xts)
 data(sample_matrix)
-a <- tail(sample_matrix, n = 32)
-dygraph(a) %>%
+m <- tail(sample_matrix, n = 32)
+dygraph(m) %>%
   dyCandlestick()
 ```
 
-Candlestick chart uses the first four data series to plot, the rest data series (if
+Candlestick charts use the first four data series to plot, the rest of the data series (if
 any) are rendered with line plotter:
 
 ```{r message=FALSE}
-library(xts)
-data(sample_matrix)
-a <- tail(sample_matrix, n = 32)
-a <- cbind(a, apply(a[, 1:3], 1, mean))
-colnames(a)[5] <- "Mean"
-dygraph(a) %>%
+m <- cbind(m, apply(m[, 1:3], 1, mean))
+colnames(m)[5] <- "Mean"
+dygraph(m) %>%
   dyCandlestick()
 ```
