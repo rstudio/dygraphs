@@ -75,5 +75,5 @@
     }
   };
   candlestickPlotter._getPrices = getPrices; // for testing
-  Dygraph.Plotters.candlestickPlotter = candlestickPlotter;
+  Dygraph.Plotters.CandlestickPlotter = candlestickPlotter;
 })();

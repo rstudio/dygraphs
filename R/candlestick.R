@@ -15,11 +15,11 @@
 #'
 #' @export
 dyCandlestick <- function(dygraph) {
-  name <- "candlestickPlotter"
+  name <- "CandlestickPlotter"
   version <- "1.0"
   path <- system.file("plugins/candlestick.js", package = "dygraphs")
   path <- normalizePath(path)
-  plotterDependency <- htmlDependency(paste0("Dygraph.Plotters", name),
+  plotterDependency <- htmlDependency(paste0("Dygraph.Plotters.", name),
                                      version,
                                      src = dirname(path),
                                      script = basename(path),
