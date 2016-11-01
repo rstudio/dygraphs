@@ -1,11 +1,12 @@
 ---
-title: "Plot Labels"
+title: "Labels & Legends"
 ---
 
 ```{r, include=FALSE}
 library(dygraphs)
 ```
 
+#### Labels
 
 You can add labels to a dygraph using the `main`, `ylab` and `xlab` arguments. For example:
 
@@ -23,3 +24,33 @@ dygraph(discoveries, main = "Important Discoveries") %>%
 ```
 
 The appearance of labels can be customized extensively using CSS. See the [CSS Label Styling](gallery-css-styling.html) article for additional details.
+
+#### Legends
+
+There are several options available for customizing the appearance and behavior of the plot legend. By default the legend always appears when there are multiple series and only appears on mouseover when there is a single series. By default the legend shows point values when the mouse is over the graph but not when the mouse leaves. 
+
+Here we override both of these defaults ensuring that the legend is always visible and that point values are still displayed even after the mouse leaves the plot:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries("V1", label = "Temperature (F)") %>%
+  dyLegend(show = "always", hideOnMouseOut = FALSE)
+```
+
+Here we enable "follow" mode which will show the legend overlaid on the plot (near the mouse) only when the mouse is over a point:
+
+```{r}
+dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+  dySeries("V1", label = "Temperature (F)") %>%
+  dyLegend(show = "follow")
+```
+
+When you have several data series sometime the legend mouse-over wraps to a second line. To avoid this you can set the legend width to something wider than the default of 250 pixels. For example:
+
+```{r}
+lungDeaths <- cbind(ldeaths,mdeaths,fdeaths)
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyLegend(width = 400)
+```
+
+

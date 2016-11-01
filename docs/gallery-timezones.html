@@ -54,7 +54,7 @@ pre {
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
-  width: 180px;
+  width: 190px;
 }
 
 .sidebar-nav h4 {
@@ -70,13 +70,11 @@ pre {
 
 @media (max-width: 980px) {
   .sidebar-nav-fixed {
-    width: 160;
+    width: 190px;
   }
 }
 
 </style>
-
-<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -185,17 +183,14 @@ $(document).ready(function () {
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
-  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
-  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-plot-labels.html">Labels &amp; Legends</a></li>
   <li><a href="gallery-timezones.html">Time Zones</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronization.html">Synchronization</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-annotations.html">Annotation/Shading</a></li>
   <li><a href="gallery-event-lines.html">Events and Limits</a></li>
-  <li><a href="gallery-annotations.html">Annotations</a></li>
   <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
   <li><a href="gallery-plugins.html">Plugins</a></li>
 </ul>
@@ -224,19 +219,19 @@ values &lt;- rnorm(length(datetimes))</code></pre>
 <pre class="r"><code>series &lt;- xts(values, order.by = datetimes, tz=&quot;GMT&quot;)</code></pre>
 <p>If we plots this using the default dygraph behavior you’ll notice that the series doesn’t adhere to the day boundaries exactly because it’s plotted using your web browser’s current time zone:</p>
 <pre class="r"><code>dygraph(series)</code></pre>
-<div id="htmlwidget-c1ae41a1dfbe91759cc6" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c1ae41a1dfbe91759cc6">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[-0.934728453662541,-1.86271620429063,-1.84901678233974,-1.8094863955018,0.00249130247459724,1.25351919657233,1.25890780884603,-1.40847557517345,-0.784720342510574]]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-afb035eca866c22a3b74" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-afb035eca866c22a3b74">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[0.200280523831842,-1.86271620429063,-1.84901678233974,-1.8094863955018,-1.79704386392078,-1.8094863955018,-1.79704386392078,-1.76093259980884,-1.74951014410558]]},"evals":[],"jsHooks":[]}</script>
 <p>However, by specifying the <code>labelsUTC</code> option the series will be displayed in UTC time rather than in the local timezone of the client:</p>
 <pre class="r"><code>dygraph(series) %&gt;% 
   dyOptions(labelsUTC = TRUE)</code></pre>
-<div id="htmlwidget-840136791bd172bbdebc" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-840136791bd172bbdebc">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":true,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":true,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[-0.934728453662541,-1.86271620429063,-1.84901678233974,-1.8094863955018,0.00249130247459724,1.25351919657233,1.25890780884603,-1.40847557517345,-0.784720342510574]],"fixedtz":false,"tzone":"GMT"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c16802e9376405ba4a8f" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c16802e9376405ba4a8f">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":true,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":true,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[0.200280523831842,-1.86271620429063,-1.84901678233974,-1.8094863955018,-1.79704386392078,-1.8094863955018,-1.79704386392078,-1.76093259980884,-1.74951014410558]],"fixedtz":false,"tzone":"GMT"},"evals":[],"jsHooks":[]}</script>
 <p>If you’d like to force the series to be rendered using an arbitrary time zone you can use the <code>useDataTimezone</code> option to specify that whatever timezone is used in the underlying <strong>xts</strong> object should be carried through to the client display.</p>
 <p>In this example we specify <code>useDataTimezone</code> and the units are displayed in GMT because that was the time zone used when constructuring the time series:</p>
 <pre class="r"><code>dygraph(series) %&gt;% 
   dyOptions(useDataTimezone = TRUE)</code></pre>
-<div id="htmlwidget-cbc978b450bf784d2a5e" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cbc978b450bf784d2a5e">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":true,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[-0.934728453662541,-1.86271620429063,-1.84901678233974,-1.8094863955018,0.00249130247459724,1.25351919657233,1.25890780884603,-1.40847557517345,-0.784720342510574]],"fixedtz":true,"tzone":"GMT"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f9fb507a57754538ee94" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f9fb507a57754538ee94">{"x":{"attrs":{"labels":["hour","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60,"drawAxis":true},"y":{"drawAxis":true}},"stackedGraph":false,"fillGraph":false,"fillAlpha":0.15,"stepPlot":false,"drawPoints":false,"pointSize":1,"drawGapEdgePoints":false,"connectSeparatedPoints":false,"strokeWidth":1,"strokeBorderColor":"white","colorValue":0.5,"colorSaturation":1,"includeZero":false,"drawAxesAtZero":false,"logscale":false,"axisTickSize":3,"axisLineColor":"black","axisLineWidth":0.3,"axisLabelColor":"black","axisLabelFontSize":14,"axisLabelWidth":60,"drawGrid":true,"gridLineWidth":0.3,"rightGap":5,"digitsAfterDecimal":2,"labelsKMB":false,"labelsKMG2":false,"labelsUTC":false,"maxNumberWidth":6,"animatedZooms":false,"mobileDisableYTouch":true},"scale":"hourly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2015-01-01T00:00:00.000Z","2015-01-01T03:00:00.000Z","2015-01-01T06:00:00.000Z","2015-01-01T09:00:00.000Z","2015-01-01T12:00:00.000Z","2015-01-01T15:00:00.000Z","2015-01-01T18:00:00.000Z","2015-01-01T21:00:00.000Z","2015-01-02T00:00:00.000Z"],[0.200280523831842,-1.86271620429063,-1.84901678233974,-1.8094863955018,-1.79704386392078,-1.8094863955018,-1.79704386392078,-1.76093259980884,-1.74951014410558]],"fixedtz":true,"tzone":"GMT"},"evals":[],"jsHooks":[]}</script>
 
 
 </div>  

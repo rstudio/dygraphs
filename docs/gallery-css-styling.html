@@ -54,7 +54,7 @@ pre {
 .sidebar-nav-fixed {
   position:fixed;
   top: 30px;
-  width: 180px;
+  width: 190px;
 }
 
 .sidebar-nav h4 {
@@ -70,13 +70,11 @@ pre {
 
 @media (max-width: 980px) {
   .sidebar-nav-fixed {
-    width: 160;
+    width: 190px;
   }
 }
 
 </style>
-
-<link rel="stylesheet" href="libs/font-awesome-4.1.0/css/font-awesome.min.css"/>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -185,17 +183,14 @@ $(document).ready(function () {
   <li><a href="gallery-series-options.html">Series Options</a></li>
   <li><a href="gallery-series-highlighting.html">Series Highlighting</a></li>
   <li><a href="gallery-axis-options.html">Axis Options</a></li>
-  <li><a href="gallery-second-y-axis.html">Second Y Axis</a></li>
-  <li><a href="gallery-plot-labels.html">Plot Labels</a></li>
-  <li><a href="gallery-plot-legend.html">Plot Legend</a></li>
+  <li><a href="gallery-plot-labels.html">Labels &amp; Legends</a></li>
   <li><a href="gallery-timezones.html">Time Zones</a></li>
   <li><a href="gallery-css-styling.html">CSS Styling</a></li>
   <li><a href="gallery-range-selector.html">Range Selector</a></li>
   <li><a href="gallery-synchronization.html">Synchronization</a></li>
   <li><a href="gallery-roll-periods.html">Roll Periods</a></li>
-  <li><a href="gallery-shaded-regions.html">Shaded Regions</a></li>
+  <li><a href="gallery-annotations.html">Annotation/Shading</a></li>
   <li><a href="gallery-event-lines.html">Events and Limits</a></li>
-  <li><a href="gallery-annotations.html">Annotations</a></li>
   <li><a href="gallery-upper-lower-bars.html">Upper/Lower Bars</a></li>
   <li><a href="gallery-plugins.html">Plugins</a></li>
 </ul>
@@ -223,8 +218,8 @@ $(document).ready(function () {
 }</code></pre>
 <pre class="r"><code>dygraph(nhtemp, main = &quot;New Haven Temperatures&quot;) %&gt;%
   dyCSS(&quot;dygraph.css&quot;)</code></pre>
-<div id="htmlwidget-1e78c6b7d5593c7f201c" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1e78c6b7d5593c7f201c">{"x":{"attrs":{"title":"New Haven Temperatures","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1971-01-01T00:00:00.000Z"],[49.9,52.3,49.4,51.1,49.4,47.9,49.8,50.9,49.3,51.9,50.8,49.6,49.3,50.6,48.4,50.7,50.9,50.6,51.5,52.8,51.8,51.1,49.8,50.2,50.4,51.6,51.8,50.9,48.8,51.7,51,50.6,51.7,51.5,52.1,51.3,51,54,51.4,52.7,53.1,54.6,52,52,50.9,52.6,50.2,52.6,51.6,51.9,50.5,50.9,51.7,51.4,51.7,50.8,51.9,51.8,51.9,53]],"css":".dygraph-title {\n  color: navy;\n  font-weight: bold;\n}\n.dygraph-axis-label {\n  font-size: 11px;\n}"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3c06bed3b287f621375b" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c06bed3b287f621375b">{"x":{"attrs":{"title":"New Haven Temperatures","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1971-01-01T00:00:00.000Z"],[49.9,52.3,49.4,51.1,49.4,47.9,49.8,50.9,49.3,51.9,50.8,49.6,49.3,50.6,48.4,50.7,50.9,50.6,51.5,52.8,51.8,51.1,49.8,50.2,50.4,51.6,51.8,50.9,48.8,51.7,51,50.6,51.7,51.5,52.1,51.3,51,54,51.4,52.7,53.1,54.6,52,52,50.9,52.6,50.2,52.6,51.6,51.9,50.5,50.9,51.7,51.4,51.7,50.8,51.9,51.8,51.9,53]],"css":".dygraph-title {\n  color: navy;\n  font-weight: bold;\n}\n.dygraph-axis-label {\n  font-size: 11px;\n}"},"evals":[],"jsHooks":[]}</script>
 <div id="css-classes" class="section level4">
 <h4>CSS Classes</h4>
 <p>The CSS classes for the chart labels are:</p>
