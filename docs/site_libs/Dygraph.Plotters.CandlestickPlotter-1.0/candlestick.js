@@ -63,11 +63,11 @@
       ctx.stroke();
       var bodyY;
       if (price.open > price.close) {
-        ctx.fillStyle ='rgba(244,44,44,1.0)';
+        ctx.fillStyle ='#5cb85c';
         bodyY = area.h * price.openY + area.y;
       }
       else {
-        ctx.fillStyle ='rgba(44,244,44,1.0)';
+        ctx.fillStyle ='#d9534f';
         bodyY = area.h * price.closeY  + area.y;
       }
       var bodyHeight = area.h * Math.abs(price.openY - price.closeY);
