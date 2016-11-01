@@ -63,11 +63,11 @@
       ctx.stroke();
       var bodyY;
       if (price.open > price.close) {
-        ctx.fillStyle ='#5cb85c';
+        ctx.fillStyle ='#d9534f';
         bodyY = area.h * price.openY + area.y;
       }
       else {
-        ctx.fillStyle ='#d9534f';
+        ctx.fillStyle ='#5cb85c';
         bodyY = area.h * price.closeY  + area.y;
       }
       var bodyHeight = area.h * Math.abs(price.openY - price.closeY);
