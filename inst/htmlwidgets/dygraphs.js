@@ -131,6 +131,11 @@ HTMLWidgets.widget({
             }
           }
         }
+
+        // custom plotter
+        if (x.plotter) {
+          attrs.plotter = Dygraph.Plotters[x.plotter];
+        }
     
         // if there is no existing dygraph perform initialization
         if (!dygraph) {
