@@ -4,7 +4,7 @@
 \alias{dyDependency}
 \title{Add an external JavaScript asset as a dygraph dependency}
 \usage{
-dyDependency(dygraph, type, name, path, version = "1.0")
+dyDependency(dygraph, type, name, path, version = "1.0", all.files = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add dependency to}
@@ -16,6 +16,8 @@ dyDependency(dygraph, type, name, path, version = "1.0")
 \item{path}{Path to dependency JavaScript file}
 
 \item{version}{Dependency version (e.g. version of package which provides the dependency)}
+
+\item{all.files}{Whether all files under the path directory are dependency files}
 }
 \value{
 A dygraph with the specified dependency added.

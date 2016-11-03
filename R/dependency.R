@@ -5,20 +5,21 @@
 #' @param name Name of dependency
 #' @param path Path to dependency JavaScript file
 #' @param version Dependency version (e.g. version of package which provides the dependency)
+#' @param all.files Whether all files under the path directory are dependency files
 #'
 #' @return A dygraph with the specified dependency added.
 #'
 #' @importFrom htmltools htmlDependency
 #'
 #' @export
-dyDependency <- function(dygraph, type, name, path, version = "1.0") {
+dyDependency <- function(dygraph, type, name, path, version = "1.0", all.files = FALSE) {
   # create an html dependency for the js file
   path <- normalizePath(path)
   assetDependency <- htmlDependency(depName(type, name),
                                     version,
                                     src = dirname(path),
                                     script = basename(path),
-                                    all_files = FALSE)
+                                    all_files = all.files)
 
   # add javascript to the dependencies
   if (is.null(dygraph$dependencies)) {
