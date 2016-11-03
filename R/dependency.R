@@ -30,12 +30,7 @@ dyDependency <- function(dygraph, type, name, path, version = "1.0") {
   dygraph
 }
 
-#' Make up a htmlDependency name based on asset type and name
-#'
-#' @param type Type of asset (valid options are: 'plugins', 'plotter' or 'dataHandler')
-#' @param name Name of asset
-#'
-#' @return A htmlDependency name.
+# Make up a htmlDependency name based on asset type and name
 depName <- function(type, name) {
   switch(type,
          plugins = paste0("Dygraph.Plugins.", name),
