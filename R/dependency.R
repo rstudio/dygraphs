@@ -1,42 +1,19 @@
-#' Add an external JavaScript asset as a dygraph dependency
+#' Add external assets as a dygraph dependency
 #'
 #' @param dygraph Dygraph to add dependency to
-#' @param type Type of dependency (valid options are: 'plugins', 'plotter' or 'dataHandler')
-#' @param name Name of dependency
-#' @param path Path to dependency JavaScript file
-#' @param version Dependency version (e.g. version of package which provides the dependency)
-#' @param all.files Whether all files under the path directory are dependency files
+#' @param dependency An HTML dependency
 #'
 #' @return A dygraph with the specified dependency added.
 #'
-#' @importFrom htmltools htmlDependency
-#'
 #' @export
-dyDependency <- function(dygraph, type, name, path, version = "1.0", all.files = FALSE) {
-  # create an html dependency for the js file
-  path <- normalizePath(path)
-  assetDependency <- htmlDependency(depName(type, name),
-                                    version,
-                                    src = dirname(path),
-                                    script = basename(path),
-                                    all_files = all.files)
-
-  # add javascript to the dependencies
+dyDependency <- function(dygraph, dependency) {
   if (is.null(dygraph$dependencies)) {
     dygraph$dependencies <- list()
   }
-  dygraph$dependencies[[length(dygraph$dependencies) + 1]] <- assetDependency
+  dygraph$dependencies[[length(dygraph$dependencies) + 1]] <- dependency
 
   # return dygraph
   dygraph
-}
-
-# Make up a htmlDependency name based on asset type and name
-depName <- function(type, name) {
-  switch(type,
-         plugins = paste0("Dygraph.Plugins.", name),
-         plotter = paste0("Dygraph.Plotters.", name),
-         dataHandler = paste0("Dygraph.DataHandlers.", name))
 }
 
 #' Include a dygraph plugin
@@ -47,6 +24,7 @@ depName <- function(type, name) {
 #' @param options Named list of options to pass to plugin constructor
 #' @param version Plugin version (e.g. version of package which provides the plugin)
 #'
+#' @importFrom htmltools htmlDependency
 #' @return A dygraph with the specified plugin enabled.
 #'
 #' @details
@@ -63,11 +41,14 @@ depName <- function(type, name) {
 #'
 #' @export
 dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
-  dygraph <- dyDependency(dygraph = dygraph,
-                          type = 'plugins',
-                          name = name,
-                          path = path,
-                          version = version)
+  path <- normalizePath(path)
+  pluginDependency <- htmlDependency(paste0("Dygraph.Plugins.", name),
+                                     version,
+                                     src = dirname(path),
+                                     script = basename(path),
+                                     all_files = FALSE)
+  dygraph <- dyDependency(dygraph, pluginDependency)
+
   # add the plugin and it's options (will be evaluated by renderValue)
   if (is.null(dygraph$x$plugins)) {
     dygraph$x$plugins <- list()
@@ -88,15 +69,19 @@ dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
 #' @param path Path to plotter JavaScript file
 #' @param version Plotter version (e.g. version of package which provides the plotter)
 #'
+#' @importFrom htmltools htmlDependency
 #' @return A dygraph with the specified plotter enabled.
 #'
 #' @export
 dyPlotter <- function(dygraph, name, path, version = "1.0") {
-  dygraph <- dyDependency(dygraph = dygraph,
-                          type = 'plotter',
-                          name = name,
-                          path = path,
-                          version = version)
+  path <- normalizePath(path)
+  plotterDependency <- htmlDependency(paste0("Dygraph.Plotters.", name),
+                                      version,
+                                      src = dirname(path),
+                                      script = basename(path),
+                                      all_files = FALSE)
+  dygraph <- dyDependency(dygraph, plotterDependency)
+
   dygraph$x$plotter <- name
 
   # return dygraph

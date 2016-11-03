@@ -2,27 +2,19 @@
 % Please edit documentation in R/dependency.R
 \name{dyDependency}
 \alias{dyDependency}
-\title{Add an external JavaScript asset as a dygraph dependency}
+\title{Add external assets as a dygraph dependency}
 \usage{
-dyDependency(dygraph, type, name, path, version = "1.0", all.files = FALSE)
+dyDependency(dygraph, dependency)
 }
 \arguments{
 \item{dygraph}{Dygraph to add dependency to}
 
-\item{type}{Type of dependency (valid options are: 'plugins', 'plotter' or 'dataHandler')}
-
-\item{name}{Name of dependency}
-
-\item{path}{Path to dependency JavaScript file}
-
-\item{version}{Dependency version (e.g. version of package which provides the dependency)}
-
-\item{all.files}{Whether all files under the path directory are dependency files}
+\item{dependency}{An HTML dependency}
 }
 \value{
 A dygraph with the specified dependency added.
 }
 \description{
-Add an external JavaScript asset as a dygraph dependency
+Add external assets as a dygraph dependency
 }
 
