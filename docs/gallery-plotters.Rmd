@@ -1,0 +1,62 @@
+---
+title: "Plotters"
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+You can use dygraphs plotters to customize the appearance of dygraphs.
+
+Once you've created a dygraphs plotter you can use the `dyPlotter` function to create
+an R wrapper function for it. Examples of R wrappers for two simple dygraphs plotters
+are provided below.
+
+#### Bar Chart
+
+This plotter draws a bar plot rather a line plot.
+
+Here's how you'd create an R function to wrap the Bar Chart plotter:
+
+```{r}
+dyBarChart <- function(dygraph) {
+  dyPlotter(dygraph = dygraph,
+            name = "BarChart",
+            path = system.file("examples/plotters/barchart.js",
+                               package = "dygraphs"))
+}
+```
+
+The plotter can now be used directly within a dygraph pipeline along with other
+dygraphs functions:
+
+```{r}
+dygraph(ldeaths) %>%
+  dyRangeSelector() %>%
+  dyBarChart()
+```
+
+#### Multi-column Bar Chart
+
+This plotter draws multiple column bar chart.
+
+Here's how you'd create an R function to wrap the Bar Chart plotter:
+
+```{r}
+dyMultiColumn <- function(dygraph) {
+  dyPlotter(dygraph = dygraph,
+            name = "MultiColumn",
+            path = system.file("examples/plotters/multicolumn.js",
+                               package = "dygraphs"))
+}
+```
+
+The plotter can now be used directly within a dygraph pipeline along with other
+dygraphs functions:
+
+```{r}
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths) %>%
+  dyRangeSelector() %>%
+  dyMultiColumn()
+```
