@@ -6,7 +6,21 @@
 \usage{
 dyCandlestick(dygraph)
 }
+\arguments{
+\item{dygraph}{Dygraph to draw chart on}
+}
+\value{
+Dygraph with specified candlestick plotter
+}
 \description{
-Candlestick plotter for dygraph chart
+Draw a candlestick chart.
+}
+\examples{
+library(xts)
+data(sample_matrix)
+library(dygraphs)
+dygraph(sample_matrix) \%>\%
+  dyCandlestick()
+
 }
 
