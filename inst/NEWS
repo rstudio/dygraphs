@@ -3,6 +3,8 @@ dygraphs 1.1.1.3 (unreleased)
 
 * Added dyCandlestick for creating candlestick/OHLC style charts 
 
+* Added dyPlotter for defining custom plotters
+
 * Added Shiny callbacks that react when the user clicks on the graph
 
 * Support for non-date values in shiny input bindings (#132)
