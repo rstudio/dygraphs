@@ -1,5 +1,5 @@
 ---
-title: "Plotters"
+title: "Custom Plotters"
 ---
 
 ```{r setup, include=FALSE}
