@@ -1,18 +1,18 @@
 #' Add an external JavaScript asset as a dygraph dependency
 #'
-#' @param dygraph Dygraph to add asset to
-#' @param type Type of asset (valid options are: 'plugins', 'plotter' or 'dataHandler')
-#' @param name Name of asset
-#' @param path Path to asset JavaScript file
-#' @param version Asset version (e.g. version of package which provides the asset)
+#' @param dygraph Dygraph to add dependency to
+#' @param type Type of dependency (valid options are: 'plugins', 'plotter' or 'dataHandler')
+#' @param name Name of dependency
+#' @param path Path to dependency JavaScript file
+#' @param version Dependency version (e.g. version of package which provides the dependency)
 #'
-#' @return A dygraph with the specified asset added.
+#' @return A dygraph with the specified dependency added.
 #'
 #' @importFrom htmltools htmlDependency
 #'
 #' @export
-dyAsset <- function(dygraph, type, name, path, version = "1.0") {
-  # create an html dependency for the asset js file
+dyDependency <- function(dygraph, type, name, path, version = "1.0") {
+  # create an html dependency for the js file
   path <- normalizePath(path)
   assetDependency <- htmlDependency(depName(type, name),
                                     version,
@@ -20,7 +20,7 @@ dyAsset <- function(dygraph, type, name, path, version = "1.0") {
                                     script = basename(path),
                                     all_files = FALSE)
 
-  # add the asset javascript to the dependencies
+  # add javascript to the dependencies
   if (is.null(dygraph$dependencies)) {
     dygraph$dependencies <- list()
   }
@@ -67,11 +67,11 @@ depName <- function(type, name) {
 #'
 #' @export
 dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
-  dygraph <- dyAsset(dygraph = dygraph,
-                     type = 'plugins',
-                     name = name,
-                     path = path,
-                     version = version)
+  dygraph <- dyDependency(dygraph = dygraph,
+                          type = 'plugins',
+                          name = name,
+                          path = path,
+                          version = version)
   # add the plugin and it's options (will be evaluated by renderValue)
   if (is.null(dygraph$x$plugins)) {
     dygraph$x$plugins <- list()
@@ -96,11 +96,11 @@ dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
 #'
 #' @export
 dyPlotter <- function(dygraph, name, path, version = "1.0") {
-  dygraph <- dyAsset(dygraph = dygraph,
-                     type = 'plotter',
-                     name = name,
-                     path = path,
-                     version = version)
+  dygraph <- dyDependency(dygraph = dygraph,
+                          type = 'plotter',
+                          name = name,
+                          path = path,
+                          version = version)
   dygraph$x$plotter <- name
 
   # return dygraph
