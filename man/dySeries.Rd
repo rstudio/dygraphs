@@ -77,7 +77,7 @@ within the underlying data are plotted.
 }
 \note{
 See the 
-  \href{http://rstudio.github.io/dygraphs/gallery-series-options.html}{online
+  \href{https://rstudio.github.io/dygraphs/gallery-series-options.html}{online
   documentation} for additional details and examples.
 }
 \examples{

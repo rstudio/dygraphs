@@ -18,7 +18,7 @@
 #'   
 #' @return A dygraph with the specified event line.
 #'   
-#' @note See the \href{http://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
 #'   documentation} for additional details and examples.
 #'   
 #' @examples 
@@ -93,7 +93,7 @@ dyEvent <- function(dygraph,
 #'   
 #' @return A dygraph with the specified limit line.
 #'   
-#' @note See the \href{http://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
 #'   documentation} for additional details and examples.
 #'   
 #' @examples 

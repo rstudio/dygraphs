@@ -23,7 +23,7 @@ values are averaged over the specified number of time scale units.
 }
 \note{
 See the
-\href{http://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
+\href{https://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
 documentation} for additional details and examples.
 }
 \examples{

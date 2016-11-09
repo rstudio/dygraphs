@@ -27,7 +27,7 @@
 #'   dyShading(from = "50", to = "50.1", axis = "y", color = "black")
 #'     
 #' @note See the
-#'   \href{http://rstudio.github.io/dygraphs/gallery-shaded-regions.html}{online
+#'   \href{https://rstudio.github.io/dygraphs/gallery-annotations.html}{online
 #'   documentation} for additional details and examples.
 #'   
 #' @export

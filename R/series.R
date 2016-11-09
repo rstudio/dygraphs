@@ -61,7 +61,7 @@
 #'   dySeries("fdeaths", stepPlot = TRUE, color = "red")   
 #'   
 #' @note See the 
-#'   \href{http://rstudio.github.io/dygraphs/gallery-series-options.html}{online
+#'   \href{https://rstudio.github.io/dygraphs/gallery-series-options.html}{online
 #'   documentation} for additional details and examples.
 #'   
 #' @export

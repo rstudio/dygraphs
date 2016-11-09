@@ -22,7 +22,7 @@ website for additional details on which styles are available.
 }
 \note{
 See the 
-  \href{http://rstudio.github.io/dygraphs/gallery-css-styling.html}{CSS 
+  \href{https://rstudio.github.io/dygraphs/gallery-css-styling.html}{CSS 
   Styling} article on the dygraphs for R website for additional details.
   
   Note that CSS styles are global so will affect all dygraphs on a given web

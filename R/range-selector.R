@@ -33,7 +33,7 @@
 #'   dyRangeSelector(height = 20, strokeColor = "")     
 #'
 #' @note See the
-#' \href{http://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
+#' \href{https://rstudio.github.io/dygraphs/gallery-range-selector.html}{online
 #' documentation} for additional details and examples.
 #' 
 #' Shiny applications can respond to changes in the \code{dateWindow}

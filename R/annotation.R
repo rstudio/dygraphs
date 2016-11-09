@@ -37,7 +37,7 @@
 #'   \code{\link{dyCallbacks}}).
 #'   
 #' @note See the
-#'   \href{http://rstudio.github.io/dygraphs/gallery-annotations.html}{online
+#'   \href{https://rstudio.github.io/dygraphs/gallery-annotations.html}{online
 #'   documentation} for additional details and examples.
 #'   
 #' @return Dygraph with specified annotation

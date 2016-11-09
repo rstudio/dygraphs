@@ -35,7 +35,7 @@ A dygraph with the specified event line.
 Add a vertical event line to a dygraph
 }
 \note{
-See the \href{http://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
   documentation} for additional details and examples.
 }
 \examples{

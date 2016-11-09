@@ -29,7 +29,7 @@
 #'               hideOnMouseOut = FALSE)   
 #'  
 #' @note See the
-#' \href{http://rstudio.github.io/dygraphs/gallery-series-highlighting.html}{online
+#' \href{https://rstudio.github.io/dygraphs/gallery-series-highlighting.html}{online
 #' documentation} for additional details and examples.
 #' 
 #' @export

@@ -220,7 +220,7 @@ dygraph with additional options
 Add options to a dygraph plot.
 }
 \note{
-See the \href{http://rstudio.github.io/dygraphs/}{online documentation}
+See the \href{https://rstudio.github.io/dygraphs/}{online documentation}
   for additional details and examples.
 }
 

@@ -30,7 +30,7 @@ Specify that a region of a dygraph be drawn with a background shading
 }
 \note{
 See the
-  \href{http://rstudio.github.io/dygraphs/gallery-shaded-regions.html}{online
+  \href{https://rstudio.github.io/dygraphs/gallery-annotations.html}{online
   documentation} for additional details and examples.
 }
 \examples{

@@ -109,7 +109,7 @@ specified explicitly.
 }
 \note{
 See the 
-  \href{http://rstudio.github.io/dygraphs/gallery-axis-options.html}{online 
+  \href{https://rstudio.github.io/dygraphs/gallery-axis-options.html}{online 
   documentation} for additional details and examples.
 }
 \examples{

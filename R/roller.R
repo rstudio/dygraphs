@@ -17,7 +17,7 @@
 #'   dyRoller(rollPeriod = 5)
 #' 
 #' @note See the
-#' \href{http://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
+#' \href{https://rstudio.github.io/dygraphs/gallery-roll-periods.html}{online
 #' documentation} for additional details and examples.
 #' 
 #' @export

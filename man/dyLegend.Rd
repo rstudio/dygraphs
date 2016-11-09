@@ -41,7 +41,7 @@ Configure options for the dygraph series legend.
 }
 \note{
 See the 
-  \href{http://rstudio.github.io/dygraphs/gallery-plot-legend.html}{online
+  \href{https://rstudio.github.io/dygraphs/gallery-plot-labels.html}{online
   documentation} for additional details and examples.
 }
 \examples{

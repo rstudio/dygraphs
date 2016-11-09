@@ -4,11 +4,11 @@ The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) Ja
 
 - Automatically plots [xts](http://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
 - Highly configurable axis and series display (including optional second Y-axis).
-- Rich interactive features including [zoom/pan](http://rstudio.github.io/dygraphs/gallery-range-selector.html) and series/point [highlighting](http://rstudio.github.io/dygraphs/gallery-series-highlighting.html).
-- Display [upper/lower bars](http://rstudio.github.io/dygraphs/gallery-upper-lower-bars.html) (e.g. prediction intervals) around series.
-- Various graph overlays including [shaded regions](http://rstudio.github.io/dygraphs/gallery-shaded-regions.html), [event lines](http://rstudio.github.io/dygraphs/gallery-event-lines.html), and point [annotations](http://rstudio.github.io/dygraphs/gallery-annotations.html).
+- Rich interactive features including [zoom/pan](https://rstudio.github.io/dygraphs/gallery-range-selector.html) and series/point [highlighting](https://rstudio.github.io/dygraphs/gallery-series-highlighting.html).
+- Display [upper/lower bars](https://rstudio.github.io/dygraphs/gallery-upper-lower-bars.html) (e.g. prediction intervals) around series.
+- Various graph overlays including [shaded regions](https://rstudio.github.io/dygraphs/gallery-shaded-regions.html), [event lines](https://rstudio.github.io/dygraphs/gallery-event-lines.html), and point [annotations](https://rstudio.github.io/dygraphs/gallery-annotations.html).
 - Use at the R console just like conventional R plots (via RStudio Viewer).
-- Seamless embedding within [R Markdown](http://rstudio.github.io/dygraphs/r-markdown.html) documents and [Shiny](http://rstudio.github.io/dygraphs/shiny.html) web applications.
+- Seamless embedding within [R Markdown](https://rstudio.github.io/dygraphs/r-markdown.html) documents and [Shiny](https://rstudio.github.io/dygraphs/shiny.html) web applications.
 
 #### Installation
 

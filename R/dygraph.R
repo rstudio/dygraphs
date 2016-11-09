@@ -23,7 +23,7 @@
 #' @return Interactive dygraph plot
 #'   
 #' @note
-#' See the \href{http://rstudio.github.io/dygraphs/}{online documentation} for
+#' See the \href{https://rstudio.github.io/dygraphs/}{online documentation} for
 #' additional details and examples.
 #' 
 #' @examples 
