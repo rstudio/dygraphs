@@ -68,12 +68,6 @@ Two Shiny input bindings are made available by dygraphs to allow dynamic respons
 
 2. A `click` input binding which responds to mouse clicks and makes available the value on the x-axis that the click corresponds to as well as the closest x,y point to the click.
 
-Note that the `click` input binding is currently only available in the development version of the dygraphs package. You can install this version as follows:
-
-```{r, eval= FALSE}
-devtools::install_github("rstudio/dygraphs")
-```
-
 The names of the input bindings are the shiny ID combined with the name of the input (e.g. `mydygraph_data_window` or `mydygraph_click`). For example, here's another variation of the simple application from above that displays the current from/to range as well as responds to click events:
 
 **ui.R**

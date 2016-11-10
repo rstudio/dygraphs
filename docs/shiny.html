@@ -258,8 +258,6 @@ shinyServer(function(input, output) {
 <li><p>A <code>date_window</code> input binding which responds to changes in the selected/zoomed <code>dateWindow</code>.</p></li>
 <li><p>A <code>click</code> input binding which responds to mouse clicks and makes available the value on the x-axis that the click corresponds to as well as the closest x,y point to the click.</p></li>
 </ol>
-<p>Note that the <code>click</code> input binding is currently only available in the development version of the dygraphs package. You can install this version as follows:</p>
-<pre class="r"><code>devtools::install_github(&quot;rstudio/dygraphs&quot;)</code></pre>
 <p>The names of the input bindings are the shiny ID combined with the name of the input (e.g. <code>mydygraph_data_window</code> or <code>mydygraph_click</code>). For example, here’s another variation of the simple application from above that displays the current from/to range as well as responds to click events:</p>
 <p><strong>ui.R</strong></p>
 <pre class="r"><code>library(dygraphs)

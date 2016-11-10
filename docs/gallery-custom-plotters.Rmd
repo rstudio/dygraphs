@@ -12,13 +12,6 @@ Once you've created a dygraphs plotter you can use the `dyPlotter` function to c
 an R wrapper function for it. Examples of R wrappers for two simple dygraphs plotters
 are provided below.
 
-**NOTE:** Custom plotters are currently only available in the development version of dygraphs. You can install the development version as follows:
-
-```{r, eval=FALSE}
-devtools::install_github("rstudio/dygraphs")
-```
-
-
 #### Bar Chart
 
 This plotter draws a bar plot rather a line plot.

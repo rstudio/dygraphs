@@ -6,12 +6,6 @@ title: "Candlestick Charts"
 library(dygraphs)
 ```
 
-**NOTE:** Candlestick charts are currently only available in the development version of dygraphs. You can install the development version as follows:
-
-```{r, eval=FALSE}
-devtools::install_github("rstudio/dygraphs")
-```
-
 You can create candlestick/OHLC charts with `dyCandlestick` function. For example:
 
 ```{r message=FALSE}
