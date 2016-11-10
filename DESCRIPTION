@@ -19,12 +19,15 @@ Authors@R: c(
            comment = "jQuery library; authors listed in inst/htmlwidgets/lib/jquery/AUTHORS.txt")
     )
 Maintainer: JJ Allaire <jj@rstudio.com>
+URL: https://github.com/rstudio/dygraphs
+BugReports: https://github.com/rstudio/dygraphs/issues
 Description: An R interface to the 'dygraphs' JavaScript charting library
     (a copy of which is included in the package). Provides rich facilities
     for charting time-series data in R, including highly configurable
     series- and axis-display and interactive features like zoom/pan and
     series/point highlighting.
 License: MIT + file LICENSE
+
 Depends:
     R (>= 3.0)
 Imports:
