@@ -16,3 +16,7 @@ dependencies:
     version: 0.2.5
     src: "htmlwidgets/lib/timezone"
     script: 'moment-timezone-with-data.js'
+  - name: moment-fquarter
+    version: 1.0.0
+    src: "htmlwidgets/lib/fquarter"
+    script: moment-fquarter.min.js
