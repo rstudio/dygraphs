@@ -136,6 +136,11 @@ HTMLWidgets.widget({
         if (x.plotter) {
           attrs.plotter = Dygraph.Plotters[x.plotter];
         }
+
+        // custom data handler
+        if (x.dataHandler) {
+          attrs.dataHandler = Dygraph.DataHandlers[x.dataHandler];
+        }
     
         // if there is no existing dygraph perform initialization
         if (!dygraph) {
