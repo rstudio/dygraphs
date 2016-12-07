@@ -4,7 +4,7 @@
 #'
 #' @param dygraph Dygraph to draw chart on
 #' @param compress If true, compress data yearly, quarterly, monthly, weekly or daily
-#' according to overal amount of bars and/or current zoom level.
+#' according to overall amount of bars and/or current zoom level.
 #'
 #' @return Dygraph with specified candlestick plotter
 #'
