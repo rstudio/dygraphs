@@ -87,3 +87,30 @@ dyPlotter <- function(dygraph, name, path, version = "1.0") {
   # return dygraph
   dygraph
 }
+
+#' Include a dygraph data handler
+#'
+#' @param dygraph Dygraph to add data handler to
+#' @param name Name of data handler
+#' @param path Path to data handler JavaScript file
+#' @param version Data handler version (e.g. version of package which provides the
+#' data handler)
+#'
+#' @importFrom htmltools htmlDependency
+#' @return A dygraph with the specified data handler enabled.
+#'
+#' @export
+dyDataHandler <- function(dygraph, name, path, version = "1.0") {
+  path <- normalizePath(path)
+  dataHandlerDependency <- htmlDependency(paste0("Dygraph.DataHandlers.", name),
+                                          version,
+                                          src = dirname(path),
+                                          script = basename(path),
+                                          all_files = FALSE)
+  dygraph <- dyDependency(dygraph, dataHandlerDependency)
+
+  dygraph$x$dataHandler <- name
+
+  # return dygraph
+  dygraph
+}

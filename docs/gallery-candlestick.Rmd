@@ -25,3 +25,14 @@ colnames(m)[5] <- "Mean"
 dygraph(m) %>%
   dyCandlestick()
 ```
+
+You can also use `compress` function argument to compress chart data annually,
+quarterly, monthly, weekly or daily depending on the current chart zoom level to
+prevent chart bars overflow:
+
+```{r message=FALSE}
+library(xts)
+data(sample_matrix)
+dygraph(sample_matrix) %>%
+  dyCandlestick(compress = TRUE)
+```

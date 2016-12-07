@@ -4,10 +4,13 @@
 \alias{dyCandlestick}
 \title{Candlestick plotter for dygraph chart}
 \usage{
-dyCandlestick(dygraph)
+dyCandlestick(dygraph, compress = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to draw chart on}
+
+\item{compress}{If true, compress data yearly, quarterly, monthly, weekly or daily
+according to overall amount of bars and/or current zoom level.}
 }
 \value{
 Dygraph with specified candlestick plotter
