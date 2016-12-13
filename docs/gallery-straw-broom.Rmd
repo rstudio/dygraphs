@@ -1,0 +1,49 @@
+---
+title: "Straw Broom Charts"
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+You can create straw broom charts with `dyRebase` function. For example:
+
+```{r, eval=FALSE}
+library(quantmod)
+
+tickers <- c("AAPL", "MSFT")
+getSymbols(tickers)
+closePrices <- do.call(merge, lapply(tickers, function(x) Cl(get(x))))
+dateWindow <- c("2008-01-01", "2009-01-01")
+
+dygraph(closePrices, main = "Value", group = "stock") %>%
+  dyRebase(value = 100) %>%
+  dyRangeSelector(dateWindow = dateWindow)
+
+dygraph(closePrices, main = "Percent", group = "stock") %>%
+  dyRebase(percent = TRUE) %>%
+  dyRangeSelector(dateWindow = dateWindow)
+
+dygraph(closePrices, main = "None", group = "stock") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+```
+
+```{r, echo=FALSE, fig.height=2.0}
+library(quantmod)
+
+tickers <- c("AAPL", "MSFT")
+getSymbols(tickers)
+closePrices <- do.call(merge, lapply(tickers, function(x) Cl(get(x))))
+dateWindow <- c("2008-01-01", "2009-01-01")
+
+dygraph(closePrices, main = "Value", group = "stock") %>%
+  dyRebase(value = 100) %>%
+  dyRangeSelector(dateWindow = dateWindow)
+
+dygraph(closePrices, main = "Percent", group = "stock") %>%
+  dyRebase(percent = TRUE) %>%
+  dyRangeSelector(dateWindow = dateWindow)
+
+dygraph(closePrices, main = "None", group = "stock") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+```
