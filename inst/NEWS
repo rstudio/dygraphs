@@ -1,7 +1,7 @@
 dygraphs 1.1.1.4 (unreleased)
 --------------------------------------------------------------------------------
 
-* Added dyRebase from creating straw broom charts
+* Added dyRebase for creating straw broom charts
 
 * Updated dyCandlestick with parameter to compress data by time periods
 
