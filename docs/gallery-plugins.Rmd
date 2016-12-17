@@ -13,7 +13,7 @@ Once you've created a dygraphs plugin you can use the `dyPlugin` function to cre
 
 #### Simple Example
 
-The "Unzoom" dygraphs plugin adds a "Reset Zoom" button to the graph when it's displaying in a zoomed state (this is a bit more discoverable than the default double-click gesture for unzooming). The JavaScript source code for the Unzoom plugin is here: <https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/unzoom.js>.
+The "Unzoom" dygraphs plugin adds a "Reset Zoom" button to the graph when it's displaying in a zoomed state (this is a bit more discoverable than the default double-click gesture for unzooming). The JavaScript source code for the Unzoom plugin is here: <https://github.com/rstudio/dygraphs/blob/master/inst/plugins/unzoom.js>.
 
 Here's how you'd create an R function to wrap the unzoom plugin:
 
@@ -22,7 +22,7 @@ dyUnzoom <-function(dygraph) {
   dyPlugin(
     dygraph = dygraph,
     name = "Unzoom",
-    path = system.file("examples/plugins/unzoom.js", package = "dygraphs")
+    path = system.file("plugins/unzoom.js", package = "dygraphs")
   )
 }
 ```
@@ -39,7 +39,7 @@ Try zooming the dygraph and note that a "Reset Zoom" button now appears when the
 
 #### Plugin Options
 
-The dyCrosshair plugin draws a crosshair line over the point closest to the mouse when the user hovers over the graph (see the JavaScript source code for the plugin here: <https://github.com/rstudio/dygraphs/blob/master/inst/examples/plugins/crosshair.js>). The plugin includes a "direction" option that is provided as an argument to the R wrapper function and then forwarded to the plugin using the "options" argument to `dyPlugin`.
+The dyCrosshair plugin draws a crosshair line over the point closest to the mouse when the user hovers over the graph (see the JavaScript source code for the plugin here: <https://github.com/rstudio/dygraphs/blob/master/inst/plugins/crosshair.js>). The plugin includes a "direction" option that is provided as an argument to the R wrapper function and then forwarded to the plugin using the "options" argument to `dyPlugin`.
 
 ```{r}
 dyCrosshair <- function(dygraph, 
@@ -47,7 +47,7 @@ dyCrosshair <- function(dygraph,
   dyPlugin(
     dygraph = dygraph,
     name = "Crosshair",
-    path = system.file("examples/plugins/crosshair.js", 
+    path = system.file("plugins/crosshair.js", 
                        package = "dygraphs"),
     options = list(direction = match.arg(direction))
   )
