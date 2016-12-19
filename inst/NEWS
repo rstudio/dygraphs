@@ -7,6 +7,8 @@ dygraphs 1.1.1.4 (unreleased)
 
 * Handle display of quarterly scales via moment-quarter plugin
 
+* Make dyUnzoom and dyCrosshair available as package functions
+
 
 dygraphs 1.1.1.3
 --------------------------------------------------------------------------------
