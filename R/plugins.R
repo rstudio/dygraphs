@@ -43,7 +43,7 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
   dyPlugin(
     dygraph = dygraph,
     name = "Crosshair",
-    path = system.file("examples/plugins/crosshair.js", package = "dygraphs"),
+    path = system.file("plugins/crosshair.js", package = "dygraphs"),
     options = list(direction = match.arg(direction))
   )
 }
