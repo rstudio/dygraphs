@@ -1,6 +1,9 @@
 dygraphs 1.1.1.4 (unreleased)
 --------------------------------------------------------------------------------
 
+* Added dyRibbon for creating horizontal band of colors to visualize categorical
+  variables
+
 * Added dyRebase for creating straw broom charts
 
 * Updated dyCandlestick with parameter to compress data by time periods
