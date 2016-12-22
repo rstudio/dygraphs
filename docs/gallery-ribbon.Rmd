@@ -1,0 +1,69 @@
+---
+title: "Colored Ribbons"
+---
+
+Ribbon is a horizontal band of colors that runs through the chart. It can be useful
+to visualize categorical variables
+(http://en.wikipedia.org/wiki/Categorical_variable) that change over time (along the
+x-axis). For example multiple states of economy like "bust", "recession", "recovery",
+"boom" can be encoded as `[0, 1, 2, 3]` respectively (or normalized as `[0, 0.33, 0.66,
+1]`) and assigned colors `["red", "orange", "green", "purple"]`.
+
+The following chart contains a colored ribon at the bottom. The position of ribbon is
+set with `top` and `bottom` parameters of `dyRibbon` function, `0` means the very
+bottom of chart while `1` represents a very top.
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+```{r}
+library(quantmod)
+
+getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
+
+difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
+decreasing <- which(difference < 0)
+increasing <- which(difference > 0)
+
+dyData <- SPY[, "SPY.Close"]
+
+ribbonData <- rep(0, nrow(dyData))
+ribbonData[decreasing] <- 0.5
+ribbonData[increasing] <- 1
+
+dygraph(dyData) %>%
+    dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
+```
+
+It is also possible to feed ribbon with data using a parser written in JavaScript.
+Parser has the following signature `function (rawData, dygraphInstance)` and must
+return an array. The following example uses such parser to make up a ribbon, also it
+uses custom palette:
+
+```{r}
+parser <- "function(rawData) {
+  var openIdx = 1;
+  var closeIdx = 4;
+  var ribbonData = [];
+
+  for (var i = 0; i < rawData.length; i++) {
+    var row = rawData[i];
+    var open = row[openIdx];
+    var close = row[closeIdx];
+
+    if (open < close) {
+        ribbonData.push(0.5);
+    } else if (open > close) {
+        ribbonData.push(1);
+    } else {
+        ribbonData.push(0);
+    }
+  }
+  return ribbonData;
+}"
+
+dygraph(SPY[, c("SPY.Open", "SPY.High", "SPY.Low", "SPY.Close")]) %>%
+    dyRibbon(parser = parser,
+             palette = c("#efefef", "#ffe6e6", "#ccebd6"))
+```
