@@ -11,7 +11,7 @@
 
 
 
-<title>Using in R Markdown</title>
+<title>Colored Ribbons</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,6 +29,7 @@
 <script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
 <script src="site_libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
 <script src="site_libs/dygraphs-binding-1.1.1.3/dygraphs.js"></script>
+<script src="site_libs/Dygraph.Plugins.Ribbon-1.0/ribbon.js"></script>
 
 <style type = "text/css">
 body {
@@ -208,33 +209,58 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Using in R Markdown</h1>
+<h1 class="title toc-ignore">Colored Ribbons</h1>
 
 </div>
 
 
-<p>You can use dygraphs within <a href="http://rmarkdown.rstudio.com">R Markdown</a> documents just like any other R plotting function. However, rather than a PNG file being included in your document, the JavaScript required to render your dygraph is included.</p>
-<p>Note that since dygraphs are web-based (they use HTML, CSS, and JavaScript) they can only be included in HTML based R Markdown formats (i.e. they can’t be used in PDF or Word documents).</p>
-<div id="figure-size" class="section level4">
-<h4>Figure Size</h4>
-<p>By default, dygraphs that appear within R Markdown documents respect the default figure size of the document. This means that their size will be the same as that of other standard plots.</p>
-<p>Figure sizes are specified in inches and can be included as a global option of the document output format. For example:</p>
-<pre class="r"><code>---
-title: "My Document"
-output:
-  html_document:
-    fig_width: 6
-    fig_height: 4
----
-</code></pre>
-<p>You can also specify figure sizes on a per-chunk basis. For example, to create a dygraph that is smaller than the default (7x5) you could do this:</p>
-<pre class="r"><code>&#96;&#96;&#96;{r, fig.width=6, fig.height=2.5}
-dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
-&#96;&#96;&#96;
-</code></pre>
-<div id="htmlwidget-f695f63cd0395ce7ff50" style="width:576px;height:240px;" class="dygraphs html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f695f63cd0395ce7ff50">{"x":{"attrs":{"title":"New Haven Temperatures","ylabel":"Temp (F)","labels":["year","V1"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1912-01-01T00:00:00.000Z","1913-01-01T00:00:00.000Z","1914-01-01T00:00:00.000Z","1915-01-01T00:00:00.000Z","1916-01-01T00:00:00.000Z","1917-01-01T00:00:00.000Z","1918-01-01T00:00:00.000Z","1919-01-01T00:00:00.000Z","1920-01-01T00:00:00.000Z","1921-01-01T00:00:00.000Z","1922-01-01T00:00:00.000Z","1923-01-01T00:00:00.000Z","1924-01-01T00:00:00.000Z","1925-01-01T00:00:00.000Z","1926-01-01T00:00:00.000Z","1927-01-01T00:00:00.000Z","1928-01-01T00:00:00.000Z","1929-01-01T00:00:00.000Z","1930-01-01T00:00:00.000Z","1931-01-01T00:00:00.000Z","1932-01-01T00:00:00.000Z","1933-01-01T00:00:00.000Z","1934-01-01T00:00:00.000Z","1935-01-01T00:00:00.000Z","1936-01-01T00:00:00.000Z","1937-01-01T00:00:00.000Z","1938-01-01T00:00:00.000Z","1939-01-01T00:00:00.000Z","1940-01-01T00:00:00.000Z","1941-01-01T00:00:00.000Z","1942-01-01T00:00:00.000Z","1943-01-01T00:00:00.000Z","1944-01-01T00:00:00.000Z","1945-01-01T00:00:00.000Z","1946-01-01T00:00:00.000Z","1947-01-01T00:00:00.000Z","1948-01-01T00:00:00.000Z","1949-01-01T00:00:00.000Z","1950-01-01T00:00:00.000Z","1951-01-01T00:00:00.000Z","1952-01-01T00:00:00.000Z","1953-01-01T00:00:00.000Z","1954-01-01T00:00:00.000Z","1955-01-01T00:00:00.000Z","1956-01-01T00:00:00.000Z","1957-01-01T00:00:00.000Z","1958-01-01T00:00:00.000Z","1959-01-01T00:00:00.000Z","1960-01-01T00:00:00.000Z","1961-01-01T00:00:00.000Z","1962-01-01T00:00:00.000Z","1963-01-01T00:00:00.000Z","1964-01-01T00:00:00.000Z","1965-01-01T00:00:00.000Z","1966-01-01T00:00:00.000Z","1967-01-01T00:00:00.000Z","1968-01-01T00:00:00.000Z","1969-01-01T00:00:00.000Z","1970-01-01T00:00:00.000Z","1971-01-01T00:00:00.000Z"],[49.9,52.3,49.4,51.1,49.4,47.9,49.8,50.9,49.3,51.9,50.8,49.6,49.3,50.6,48.4,50.7,50.9,50.6,51.5,52.8,51.8,51.1,49.8,50.2,50.4,51.6,51.8,50.9,48.8,51.7,51,50.6,51.7,51.5,52.1,51.3,51,54,51.4,52.7,53.1,54.6,52,52,50.9,52.6,50.2,52.6,51.6,51.9,50.5,50.9,51.7,51.4,51.7,50.8,51.9,51.8,51.9,53]]},"evals":[],"jsHooks":[]}</script>
-</div>
+<p>Ribbon is a horizontal band of colors that runs through the chart. It can be useful to visualize categorical variables (<a href="http://en.wikipedia.org/wiki/Categorical_variable" class="uri">http://en.wikipedia.org/wiki/Categorical_variable</a>) that change over time (along the x-axis). For example multiple states of economy like “bust”, “recession”, “recovery”, “boom” can be encoded as <code>[0, 1, 2, 3]</code> respectively (or normalized as <code>[0, 0.33, 0.66, 1]</code>) and assigned colors <code>[&quot;red&quot;, &quot;orange&quot;, &quot;green&quot;, &quot;purple&quot;]</code>.</p>
+<p>The following chart contains a colored ribon at the bottom. The position of ribbon is set with <code>top</code> and <code>bottom</code> parameters of <code>dyRibbon</code> function, <code>0</code> means the very bottom of chart while <code>1</code> represents a very top.</p>
+<pre class="r"><code>library(quantmod)
+
+getSymbols(&quot;SPY&quot;, from = &quot;2016-12-01&quot;, auto.assign=TRUE)</code></pre>
+<pre><code>## [1] &quot;SPY&quot;</code></pre>
+<pre class="r"><code>difference &lt;- SPY[, &quot;SPY.Open&quot;] - SPY[, &quot;SPY.Close&quot;]
+decreasing &lt;- which(difference &lt; 0)
+increasing &lt;- which(difference &gt; 0)
+
+dyData &lt;- SPY[, &quot;SPY.Close&quot;]
+
+ribbonData &lt;- rep(0, nrow(dyData))
+ribbonData[decreasing] &lt;- 0.5
+ribbonData[increasing] &lt;- 1
+
+dygraph(dyData) %&gt;%
+    dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)</code></pre>
+<div id="htmlwidget-29be36d15e39919a71be" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-29be36d15e39919a71be">{"x":{"attrs":{"labels":["day","SPY.Close"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"daily","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2016-12-01T00:00:00.000Z","2016-12-02T00:00:00.000Z","2016-12-05T00:00:00.000Z","2016-12-06T00:00:00.000Z","2016-12-07T00:00:00.000Z","2016-12-08T00:00:00.000Z","2016-12-09T00:00:00.000Z","2016-12-12T00:00:00.000Z","2016-12-13T00:00:00.000Z","2016-12-14T00:00:00.000Z","2016-12-15T00:00:00.000Z","2016-12-16T00:00:00.000Z","2016-12-19T00:00:00.000Z","2016-12-20T00:00:00.000Z","2016-12-21T00:00:00.000Z"],[219.570007,219.679993,221,221.699997,224.600006,225.149994,226.509995,226.25,227.759995,225.880005,226.809998,225.039993,225.529999,226.399994,225.770004]],"plugins":{"Ribbon":{"data":[1,0.5,0.5,0.5,0.5,0.5,0.5,1,0.5,1,0.5,1,0.5,0.5,1],"parser":null,"options":{"palette":null,"top":0.1,"bottom":0.02}}}},"evals":[],"jsHooks":[]}</script>
+<p>It is also possible to feed ribbon with data using a parser written in JavaScript. Parser has the following signature <code>function (rawData, dygraphInstance)</code> and must return an array. The following example uses such parser to make up a ribbon, also it uses custom palette:</p>
+<pre class="r"><code>parser &lt;- &quot;function(rawData) {
+  var openIdx = 1;
+  var closeIdx = 4;
+  var ribbonData = [];
+
+  for (var i = 0; i &lt; rawData.length; i++) {
+    var row = rawData[i];
+    var open = row[openIdx];
+    var close = row[closeIdx];
+
+    if (open &lt; close) {
+        ribbonData.push(0.5);
+    } else if (open &gt; close) {
+        ribbonData.push(1);
+    } else {
+        ribbonData.push(0);
+    }
+  }
+  return ribbonData;
+}&quot;
+
+dygraph(SPY[, c(&quot;SPY.Open&quot;, &quot;SPY.High&quot;, &quot;SPY.Low&quot;, &quot;SPY.Close&quot;)]) %&gt;%
+    dyRibbon(parser = parser,
+             palette = c(&quot;#efefef&quot;, &quot;#ffe6e6&quot;, &quot;#ccebd6&quot;))</code></pre>
+<div id="htmlwidget-b6bc0127d5121cc4be2d" style="width:624px;height:336px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b6bc0127d5121cc4be2d">{"x":{"attrs":{"labels":["day","SPY.Open","SPY.High","SPY.Low","SPY.Close"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}}},"scale":"daily","annotations":[],"shadings":[],"events":[],"format":"date","data":[["2016-12-01T00:00:00.000Z","2016-12-02T00:00:00.000Z","2016-12-05T00:00:00.000Z","2016-12-06T00:00:00.000Z","2016-12-07T00:00:00.000Z","2016-12-08T00:00:00.000Z","2016-12-09T00:00:00.000Z","2016-12-12T00:00:00.000Z","2016-12-13T00:00:00.000Z","2016-12-14T00:00:00.000Z","2016-12-15T00:00:00.000Z","2016-12-16T00:00:00.000Z","2016-12-19T00:00:00.000Z","2016-12-20T00:00:00.000Z","2016-12-21T00:00:00.000Z"],[220.729996,219.669998,220.649994,221.220001,221.520004,224.570007,225.410004,226.399994,227.020004,227.410004,226.160004,226.009995,225.25,226.149994,226.25],[220.729996,220.25,221.399994,221.740005,224.669998,225.699997,226.529999,226.960007,228.339996,228.229996,227.809998,226.080002,226.020004,226.570007,226.449997],[219.149994,219.259995,220.419998,220.660004,221.380005,224.259995,225.369995,225.759995,227,225.369995,225.889999,224.669998,225.080002,225.880005,225.770004],[219.570007,219.679993,221,221.699997,224.600006,225.149994,226.509995,226.25,227.759995,225.880005,226.809998,225.039993,225.529999,226.399994,225.770004]],"plugins":{"Ribbon":{"data":null,"parser":"function(rawData) {\n  var openIdx = 1;\n  var closeIdx = 4;\n  var ribbonData = [];\n\n  for (var i = 0; i < rawData.length; i++) {\n    var row = rawData[i];\n    var open = row[openIdx];\n    var close = row[closeIdx];\n\n    if (open < close) {\n        ribbonData.push(0.5);\n    } else if (open > close) {\n        ribbonData.push(1);\n    } else {\n        ribbonData.push(0);\n    }\n  }\n  return ribbonData;\n}","options":{"palette":["#efefef","#ffe6e6","#ccebd6"],"top":1,"bottom":0}}}},"evals":["plugins.Ribbon.parser"],"jsHooks":[]}</script>
 
 
 </div>  
