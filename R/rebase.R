@@ -9,6 +9,7 @@
 #' @return Dygraph with specified straw broom chart
 #'
 #' @examples
+#' \dontrun{
 #' library(quantmod)
 #' tickers <- c("AAPL", "MSFT")
 #' getSymbols(tickers)
@@ -22,6 +23,7 @@
 #'   dyRangeSelector(dateWindow = dateWindow)
 #' dygraph(closePrices, main = "None", group = "stock") %>%
 #'   dyRangeSelector(dateWindow = dateWindow)
+#' }
 #'
 #' @export
 dyRebase <- function(dygraph, value = 100, percent = FALSE) {

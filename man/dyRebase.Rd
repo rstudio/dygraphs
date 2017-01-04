@@ -20,6 +20,7 @@ Dygraph with specified straw broom chart
 Draw a straw broom chart.
 }
 \examples{
+\dontrun{
 library(quantmod)
 tickers <- c("AAPL", "MSFT")
 getSymbols(tickers)
@@ -33,6 +34,7 @@ dygraph(closePrices, main = "Percent", group = "stock") \%>\%
   dyRangeSelector(dateWindow = dateWindow)
 dygraph(closePrices, main = "None", group = "stock") \%>\%
   dyRangeSelector(dateWindow = dateWindow)
+}
 
 }
 

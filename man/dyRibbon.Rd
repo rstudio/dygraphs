@@ -31,6 +31,7 @@ can be useful to visualize categorical variables
 the x-axis).
 }
 \examples{
+\dontrun{
 library(quantmod)
 
 getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
@@ -47,6 +48,7 @@ ribbonData[increasing] <- 1
 
 dygraph(dyData) \%>\%
     dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
+}
 
 }
 

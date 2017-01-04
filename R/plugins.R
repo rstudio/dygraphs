@@ -62,6 +62,7 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
 #' @param bottom Vertical position of the bottom edge of ribbon relative to chart height.
 #'
 #' @examples
+#' \dontrun{
 #' library(quantmod)
 #'
 #' getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
@@ -78,7 +79,8 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
 #'
 #' dygraph(dyData) %>%
 #'     dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
-#'
+#' }
+#' 
 #' @export
 dyRibbon <- function(dygraph, data = NULL, palette = NULL, parser = NULL, top = 1, bottom = 0) {
   dyPlugin(
