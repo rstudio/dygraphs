@@ -35,8 +35,8 @@ dyDependency <- function(dygraph, dependency) {
 #' documentation.
 #
 #' Once you've created a dygraphs plugins you can use the dyPlugin function to
-#' create an R wrapper for it. See the
-#' \href{https://github.com/rstudio/dygraphs/tree/master/inst/examples/plugins/plugins.R}{example plugins}
+#' create an R wrapper for it. See
+#' \href{https://rstudio.github.io/dygraphs/gallery-plugins.html}{https://rstudio.github.io/dygraphs/gallery-plugins.html}
 #' for details on how to do this.
 #'
 #' @export
