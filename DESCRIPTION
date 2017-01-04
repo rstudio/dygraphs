@@ -37,5 +37,5 @@ Imports:
     xts (>= 0.9-7)
 Suggests:
     testthat
-Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)
+Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1), quantmod
 RoxygenNote: 5.0.1
