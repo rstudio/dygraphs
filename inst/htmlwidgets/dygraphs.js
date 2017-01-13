@@ -141,6 +141,21 @@ HTMLWidgets.widget({
         if (x.dataHandler) {
           attrs.dataHandler = Dygraph.DataHandlers[x.dataHandler];
         }
+
+        // custom circles
+        if (x.pointShape) {
+          if (typeof x.pointShape === 'string') {
+            attrs.drawPointCallback = Dygraph.Circles[x.pointShape.toUpperCase()];
+            attrs.drawHighlightPointCallback = Dygraph.Circles[x.pointShape.toUpperCase()];
+          } else {
+            for (var s in x.pointShape) {
+              if (x.pointShape.hasOwnProperty(s)) {
+                attrs.series[s].drawPointCallback = Dygraph.Circles[x.pointShape[s].toUpperCase()];
+                attrs.series[s].drawHighlightPointCallback = Dygraph.Circles[x.pointShape[s].toUpperCase()];
+              }
+            }
+          }
+        }
     
         // if there is no existing dygraph perform initialization
         if (!dygraph) {

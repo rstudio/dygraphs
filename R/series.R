@@ -33,6 +33,9 @@
 #' @param pointSize The size of the dot to draw on each point in pixels. A dot 
 #'   is always drawn when a point is "isolated", i.e. there is a missing point 
 #'   on either side of it. This also controls the size of those dots.
+#' @param pointShape The shape of the dot to draw. Can be one of the following:
+#'   "dot" (default), "triangle", "square", "diamond", "pentagon", "hexagon",
+#'   "circle", "star", "plus" or "ex".
 #' @param strokeWidth The width of the lines connecting data points. This can be
 #'   used to increase the contrast or some graphs.
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed", or
@@ -75,6 +78,16 @@ dySeries <- function(dygraph,
                      fillGraph = NULL,
                      drawPoints = NULL,
                      pointSize = NULL,
+                     pointShape = c("dot",
+                                    "triangle",
+                                    "square",
+                                    "diamond",
+                                    "pentagon",
+                                    "hexagon",
+                                    "circle",
+                                    "star",
+                                    "plus",
+                                    "ex"),
                      strokeWidth = NULL,
                      strokePattern = NULL,
                      strokeBorderWidth = NULL,
@@ -129,6 +142,7 @@ dySeries <- function(dygraph,
   series$options$strokeBorderWidth <- strokeBorderWidth
   series$options$strokeBorderColor <- strokeBorderColor
   series$options$plotter <- JS(plotter)
+
  
   # copy attrs for modification
   attrs <- dygraph$x$attrs
@@ -177,6 +191,13 @@ dySeries <- function(dygraph,
   
   # set attrs
   dygraph$x$attrs <- attrs
+
+  # set point shape
+  pointShape <- match.arg(pointShape)
+  if (pointShape != "dot") {
+    dygraph$x$pointShape <- list()
+    dygraph$x$pointShape[[series$label]] <- pointShape
+  }
   
   # add data
   dygraph$x$data[[length(dygraph$x$data) + 1]] <- seriesData
