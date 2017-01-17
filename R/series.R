@@ -78,16 +78,7 @@ dySeries <- function(dygraph,
                      fillGraph = NULL,
                      drawPoints = NULL,
                      pointSize = NULL,
-                     pointShape = c("dot",
-                                    "triangle",
-                                    "square",
-                                    "diamond",
-                                    "pentagon",
-                                    "hexagon",
-                                    "circle",
-                                    "star",
-                                    "plus",
-                                    "ex"),
+                     pointShape = NULL,
                      strokeWidth = NULL,
                      strokePattern = NULL,
                      strokeBorderWidth = NULL,
@@ -193,10 +184,20 @@ dySeries <- function(dygraph,
   dygraph$x$attrs <- attrs
 
   # set point shape
-  pointShape <- match.arg(pointShape)
-  if (pointShape != "dot") {
-    dygraph$x$pointShape <- list()
-    dygraph$x$pointShape[[series$label]] <- pointShape
+  if (!is.null(pointShape)) {
+    shapes <- c("dot", "triangle", "square", "diamond", "pentagon",
+                "hexagon", "circle", "star", "plus", "ex")
+    if (!is.element(pointShape, shapes)) {
+      stop("Invalid value for pointShape parameter. ",
+           "Should be one of the following: ",
+           "'dot', 'triangle', 'square', 'diamond', 'pentagon', ",
+           "'hexagon', 'circle', 'star', 'plus' or 'ex'")
+    }
+
+    if (pointShape != "dot") {
+      dygraph$x$pointShape <- list()
+      dygraph$x$pointShape[[series$label]] <- pointShape
+    }
   }
   
   # add data

@@ -6,8 +6,7 @@
 \usage{
 dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, stemPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, pointShape = c("dot", "triangle", "square", "diamond",
-  "pentagon", "hexagon", "circle", "star", "plus", "ex"), strokeWidth = NULL,
+  pointSize = NULL, pointShape = NULL, strokeWidth = NULL,
   strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = NULL, plotter = NULL)
 }
