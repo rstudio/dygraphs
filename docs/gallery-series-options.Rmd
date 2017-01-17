@@ -53,45 +53,7 @@ dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
   dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "triangle")
 ```
 
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "square")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "diamond")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "pentagon")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "hexagon")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "circle")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "star")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "plus")
-```
-
-```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "ex")
-```
+The possible parameters for `pointShape` are: `triangle`, `square`, `diamond`, `pentagon`, `hexagon`, `circle`, `star`, `plus` or `ex`.
 
 #### Per-Series Options
 
