@@ -6,8 +6,9 @@
 \usage{
 dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
   stepPlot = NULL, stemPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, strokeWidth = NULL, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = NULL, plotter = NULL)
+  pointSize = NULL, pointShape = NULL, strokeWidth = NULL,
+  strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = NULL, plotter = NULL)
 }
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}
@@ -45,6 +46,10 @@ can increase visual clutter in the chart.}
 \item{pointSize}{The size of the dot to draw on each point in pixels. A dot 
 is always drawn when a point is "isolated", i.e. there is a missing point 
 on either side of it. This also controls the size of those dots.}
+
+\item{pointShape}{The shape of the dot to draw. Can be one of the following:
+"dot" (default), "triangle", "square", "diamond", "pentagon", "hexagon",
+"circle", "star", "plus" or "ex".}
 
 \item{strokeWidth}{The width of the lines connecting data points. This can be
 used to increase the contrast or some graphs.}

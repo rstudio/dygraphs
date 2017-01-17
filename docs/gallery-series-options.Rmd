@@ -46,13 +46,22 @@ dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
   dyOptions(drawPoints = TRUE, pointSize = 2)
 ```
 
+Different point shapes are available as well:
+
+```{r}
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "triangle")
+```
+
+The possible parameters for `pointShape` are: `triangle`, `square`, `diamond`, `pentagon`, `hexagon`, `circle`, `star`, `plus` or `ex`.
+
 #### Per-Series Options
 
 All of the options above can also be set on a per-series basis using the `dySeries` function. For example:
 
 ```{r}
 dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dySeries("mdeaths", drawPoints = TRUE, color = "blue") %>%
+  dySeries("mdeaths", drawPoints = TRUE, pointShape = "square", color = "blue") %>%
   dySeries("fdeaths", stepPlot = TRUE, fillGraph = TRUE, color = "red")
 ```
 

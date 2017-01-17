@@ -6,18 +6,20 @@
 \usage{
 dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   fillAlpha = 0.15, stepPlot = FALSE, stemPlot = FALSE,
-  drawPoints = FALSE, pointSize = 1, drawGapEdgePoints = FALSE,
-  connectSeparatedPoints = FALSE, strokeWidth = 1, strokePattern = NULL,
-  strokeBorderWidth = NULL, strokeBorderColor = "white", plotter = NULL,
-  colors = NULL, colorValue = 0.5, colorSaturation = 1,
-  drawXAxis = TRUE, drawYAxis = TRUE, includeZero = FALSE,
-  drawAxesAtZero = FALSE, logscale = FALSE, axisTickSize = 3,
-  axisLineColor = "black", axisLineWidth = 0.3, axisLabelColor = "black",
-  axisLabelFontSize = 14, axisLabelWidth = 60, drawGrid = TRUE,
-  gridLineColor = NULL, gridLineWidth = 0.3, titleHeight = NULL,
-  rightGap = 5, digitsAfterDecimal = 2, labelsKMB = FALSE,
-  labelsKMG2 = FALSE, labelsUTC = FALSE, maxNumberWidth = 6,
-  sigFigs = NULL, panEdgeFraction = NULL, animatedZooms = FALSE,
+  drawPoints = FALSE, pointSize = 1, pointShape = c("dot", "triangle",
+  "square", "diamond", "pentagon", "hexagon", "circle", "star", "plus", "ex"),
+  drawGapEdgePoints = FALSE, connectSeparatedPoints = FALSE,
+  strokeWidth = 1, strokePattern = NULL, strokeBorderWidth = NULL,
+  strokeBorderColor = "white", plotter = NULL, colors = NULL,
+  colorValue = 0.5, colorSaturation = 1, drawXAxis = TRUE,
+  drawYAxis = TRUE, includeZero = FALSE, drawAxesAtZero = FALSE,
+  logscale = FALSE, axisTickSize = 3, axisLineColor = "black",
+  axisLineWidth = 0.3, axisLabelColor = "black", axisLabelFontSize = 14,
+  axisLabelWidth = 60, drawGrid = TRUE, gridLineColor = NULL,
+  gridLineWidth = 0.3, titleHeight = NULL, rightGap = 5,
+  digitsAfterDecimal = 2, labelsKMB = FALSE, labelsKMG2 = FALSE,
+  labelsUTC = FALSE, maxNumberWidth = 6, sigFigs = NULL,
+  panEdgeFraction = NULL, animatedZooms = FALSE,
   mobileDisableYTouch = TRUE, timingName = NULL, useDataTimezone = FALSE,
   retainDateWindow = FALSE)
 }
@@ -51,6 +53,11 @@ per-series basis.}
 is always drawn when a point is "isolated", i.e. there is a missing point 
 on either side of it. This also controls the size of those dots. This 
 option can also be set on a per-series basis.}
+
+\item{pointShape}{The shape of the dot to draw. Can be one of the following:
+"dot" (default), "triangle", "square", "diamond", "pentagon", "hexagon",
+"circle", "star", "plus" or "ex". This option can also be set on a per-series
+basis.}
 
 \item{drawGapEdgePoints}{Draw points at the edges of gaps in the data. This 
 improves visibility of small data segments or other data irregularities.}
