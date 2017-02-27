@@ -62,6 +62,58 @@ dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
   dygraph
 }
 
+#' Check if plugin was included
+#'
+#' @param dygraph Dygraph to check plugin existance in
+#' @param name Name of plugin
+#'
+#' @return TRUE if plugin was included in dygraph, FALSE otherwise.
+#'
+#' @export
+dyHasPlugin <- function(dygraph, name) {
+  name %in% names(dygraph$x$plugins)
+}
+
+#' Get options of included plugin
+#'
+#' @param dygraph Dygraph with plugin to get options of
+#' @param name Name of plugin
+#'
+#' @return A list with plugin options.
+#'
+#' @export
+dyGetPluginOptions <- function(dygraph, name) {
+  if (!dyHasPlugin(dygraph, name)) {
+    stop(paste0("Can't get options of not loaded plugin: ", name))
+  }
+
+  # return options list
+  dygraph$x$plugins[[name]]
+}
+
+#' Set options to included plugin
+#'
+#' @param dygraph Dygraph with plugin to set options to
+#' @param name Name of plugin
+#' @param options New options to set
+#'
+#' @return A dygraph with plugin with updated options.
+#'
+#' @export
+dySetPluginOptions <- function(dygraph, name, options = list()) {
+  if (!dyHasPlugin(dygraph, name)) {
+    stop(paste0("Can't set options for not loaded plugin: ", name))
+  }
+
+  if (length(options) == 0) {
+    options <- JS("{}")
+  }
+  dygraph$x$plugins[[name]] <- options
+
+  # return dygraph
+  dygraph
+}
+
 #' Include a dygraph plotter
 #'
 #' @param dygraph Dygraph to add plotter to
