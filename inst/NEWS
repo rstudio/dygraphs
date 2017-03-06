@@ -4,6 +4,9 @@ dygraphs 1.1.1.5 (unreleased)
 * Added pointShape parameter to dyOptions and dySeries function to set point shapes
   other than dots
 
+* Updated dyPlugin behavior to merge same plugin's options for every repeated
+  function call
+
 dygraphs 1.1.1.4
 --------------------------------------------------------------------------------
 
