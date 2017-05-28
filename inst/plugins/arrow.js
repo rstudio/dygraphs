@@ -58,7 +58,6 @@ Dygraph.Plugins.Arrow = (function() {
           .getTime();
         canvasx = this.dygraph.toDomXCoord(canvasx);
       }
-      console.log(canvasx);
     }
   };
 
@@ -89,7 +88,6 @@ Dygraph.Plugins.Arrow = (function() {
         a.xval : normalizeDateValue(a.scale, a.xval, a.fixedtz).getTime();
       arrows[xval + ',' + a.series] = a;
     }
-    console.log(arrows);
 
     this.arrowPoints = [];
 
@@ -98,7 +96,6 @@ Dygraph.Plugins.Arrow = (function() {
       for (var j = 0; j < points.length; j++) {
         var p = points[j];
         var k = p.xval + ',' + p.name;
-        console.log(k);
         if (k in arrows) {
           p.arrow = arrows[k];
           this.arrowPoints.push(p);
