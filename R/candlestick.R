@@ -17,7 +17,7 @@
 #'
 #' @export
 dyCandlestick <- function(dygraph, compress = FALSE) {
-  path <- system.file("plugins/candlestick.js", package = "dygraphs")
+  path <- system.file("plotters/candlestick.js", package = "dygraphs")
   path <- normalizePath(path)
   dygraph <- dyPlotter(dygraph = dygraph,
                        name = "CandlestickPlotter",
