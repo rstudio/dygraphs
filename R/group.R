@@ -7,6 +7,9 @@
 #' length than the number of serie named, then the argument vector will be 
 #' cycled across the named series.
 #' 
+#' NOTE: dyGroup will turn off \code{stackedGraph}, as the option will calculated cumulatives using
+#' all series in the underlying dygraph, not just a subset.
+#' 
 #' The dyGroup function can also replicated similar arguments across multiple series, or 
 #' be used to apply a grouped custom plotter - i.e., multi-column plotter - to a subset of the
 #' dygraph data series.
@@ -128,7 +131,15 @@ dyGroup <- function(dygraph,
   cols <- which(dygraph$x$attrs$labels %in% name)
   dygraph$x$data <- dygraph$x$data[-c(cols)]
   dygraph$x$attrs$labels <- dygraph$x$attrs$labels[-c(cols)]
-  
+
+   
+  # MUST turn off native stacking option, as underlying dygraph will include custom-plotted
+  # points in the stacked calculation
+  if (dygraph$x$attrs$stackedGraph) {
+    warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
+    dygraph$x$attrs$stackedGraph <- FALSE;
+  }
+   
   # Resolve stemPlot into a custom plotter if necessary
   plotter <- resolveStemPlot(stemPlot, plotter)
   
