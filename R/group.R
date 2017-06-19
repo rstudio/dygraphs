@@ -135,8 +135,8 @@ dyGroup <- function(dygraph,
    
   # MUST turn off native stacking option, as underlying dygraph will include custom-plotted
   # points in the stacked calculation
-  if (dygraph$x$attrs$stackedGraph) {
-    warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
+  if (length(dygraph$x$attrs$stackedGraph)>0) {
+    if (dygraph$x$attrs$stackedgraph) warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
     dygraph$x$attrs$stackedGraph <- FALSE;
   }
    
