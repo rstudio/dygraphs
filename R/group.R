@@ -133,10 +133,11 @@ dyGroup <- function(dygraph,
   dygraph$x$attrs$labels <- dygraph$x$attrs$labels[-c(cols)]
 
    
-  # MUST turn off native stacking option, as underlying dygraph will include custom-plotted
-  # points in the stacked calculation
+  # MUST turn off native stacking option, as underlying dygraph 
+  # will include custom-plotted points in the stacked calculation
   if (length(dygraph$x$attrs$stackedGraph)>0) {
-    if (dygraph$x$attrs$stackedgraph) warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
+    if (dygraph$x$attrs$stackedGraph) warning(
+      "dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
     dygraph$x$attrs$stackedGraph <- FALSE;
   }
    
@@ -160,13 +161,15 @@ dyGroup <- function(dygraph,
     # take the passed options and extend to the length of the name vector; it's
     # up to the User to make sure the vectors are of the desired length
     suppressWarnings({
-      series$options$axis               <- rep(match.arg(axis, c("y", "y2")), length.out = l)[i]
+      series$options$axis               <- rep(match.arg(axis, c("y", "y2")), 
+                                               length.out = l)[i]
       series$options$stepPlot           <- rep(stepPlot, length.out = l)[i]
       series$options$fillGraph          <- rep(fillGraph, length.out = l)[i]
       series$options$drawPoints         <- rep(drawPoints, length.out = l)[i]
       series$options$pointSize          <- rep(pointSize, length.out = l)[i]
       series$options$strokeWidth        <- rep(strokeWidth, length.out = l)[i]
-      series$options$strokePattern      <- rep(resolveStrokePattern(strokePattern), length.out = l)[i]
+      series$options$strokePattern      <- rep(resolveStrokePattern(strokePattern), 
+                                               length.out = l)[i]
       series$options$strokeBorderWidth  <- rep(strokeBorderWidth, length.out = l)[i]
       series$options$strokeBorderColor  <- rep(strokeBorderColor, length.out = l)[i]
      

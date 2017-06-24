@@ -1,20 +1,5 @@
-#' Candlestick plotter for dygraph chart
-#'
-#' Draw a candlestick chart.
-#'
-#' @param dygraph Dygraph to draw chart on
-#' @param compress If true, compress data yearly, quarterly, monthly, weekly or daily
-#' according to overall amount of bars and/or current zoom level.
-#'
-#' @return Dygraph with specified candlestick plotter
-#'
-#' @examples
-#' library(xts)
-#' data(sample_matrix)
-#' library(dygraphs)
-#' dygraph(sample_matrix) %>%
-#'   dyCandlestick()
-#'
+
+#' @rdname Plotters
 #' @export
 dyCandlestick <- function(dygraph, compress = FALSE) {
   path <- system.file("plotters/candlestick.js", package = "dygraphs")

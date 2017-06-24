@@ -82,6 +82,9 @@ length than the number of serie named, then the argument vector will be
 cycled across the named series.
 }
 \details{
+NOTE: dyGroup will turn off \code{stackedGraph}, as the option will calculated cumulatives using
+all series in the underlying dygraph, not just a subset.
+
 The dyGroup function can also replicated similar arguments across multiple series, or 
 be used to apply a grouped custom plotter - i.e., multi-column plotter - to a subset of the
 dygraph data series.
