@@ -13,6 +13,7 @@ Authors@R: c(
     person("Daniel", "Gromer", role = c("aut", "cph")),
     person("Petr", "Shevtsov", role = c("aut", "cph")),
     person("Benoit", "Thieurmel", role = c("aut", "cph")),
+    person("Kent", "Laukhuf", role = "ctb"),
     person(family = "jQuery Foundation", role = "cph",
            comment = "jQuery library"),
     person(family = "jQuery contributors", role = c("ctb", "cph"),

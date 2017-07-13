@@ -4,6 +4,7 @@
 \alias{dyCandlestick}
 \alias{Plotters}
 \alias{dyBarChart}
+\alias{dyStackedBarChart}
 \alias{dyMultiColumn}
 \alias{dyBarSeries}
 \alias{dyStemSeries}
@@ -13,11 +14,15 @@
 \alias{dyMultiColumnGroup}
 \alias{dyCandlestickGroup}
 \alias{dyStackedBarGroup}
+\alias{dyStackedLineGroup}
+\alias{dyStackedRibbonGroup}
 \title{Employ a dygraph plotter on a series, a group of series, or the whole dygraph}
 \usage{
 dyCandlestick(dygraph, compress = FALSE)
 
 dyBarChart(dygraph)
+
+dyStackedBarChart(dygraph)
 
 dyMultiColumn(dygraph)
 
@@ -36,6 +41,10 @@ dyMultiColumnGroup(dygraph, name, ...)
 dyCandlestickGroup(dygraph, name, ...)
 
 dyStackedBarGroup(dygraph, name, ...)
+
+dyStackedLineGroup(dygraph, name, ...)
+
+dyStackedRibbonGroup(dygraph, name, ...)
 }
 \arguments{
 \item{dygraph}{Dygraph to add plotter to}
@@ -65,6 +74,8 @@ Currently the dygraphs package provides the following plotters:
    \item{dyBarChart()}{Draws a bar plot rather than a line plot. If the provided dygraph
 features more than one series, dyBarChart will call dyMultiColumn instead.}
 
+   \item{dyStackedBarChart()}{Draws a bar chart stacking all the underlying series.}
+
    \item{dyMultiColumn()}{Draws multiple column bar chart.} 
    \item{dyBarSeries()}{Draws a single set of bars for just the provided series.}
 
@@ -83,46 +94,49 @@ features more than one series, dyBarChart will call dyMultiColumn instead.}
 
    \item{dyCandleStickGroup()}{Employed on the provided series, 
    but still plotting the others.}
+   
+   \item{dyStackerBarGroup()}{Return the data group as stacked bars}
+
+   \item{dyStackerRibbonGroup()}{Return the data group as stacked ribbons}
 
 }
 }
 
 \examples{
 ## The following two examples will results in the same dygraph:
+
+dygraph(mdeaths) \%>\% 
+  dyBarChart()
  
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
   dyMultiColumn()
   
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
-  dyBarChart()
+  dyStackedBarChart()
+
   
 ## Per-series plotters:
 
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
   dyBarSeries('fdeaths')
 
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
   dyStemSeries('fdeaths')
   
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
   dyShadow('fdeaths')
 
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) \%>\%
-  dyRangeSelector() \%>\%
   dyFilledLine('fdeaths')
+
   
-## A bunch of different plotters together
+## A bunch of different plotters together:
 
 lungDeaths <- cbind(fdeaths, mdeaths, ldeaths, foo = fdeaths/2, bar = fdeaths/3)
 dygraph(lungDeaths) \%>\%
@@ -131,12 +145,11 @@ dygraph(lungDeaths) \%>\%
   dyStemSeries('mdeaths') \%>\% 
   dyShadow('foo') \%>\% 
   dyFilledLine('fdeaths')
+
   
 ## Group-based plotters:
   
-lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
-dygraph(lungDeaths) \%>\% 
-  dyMultiColumnGroup(c('fdeaths', 'mdeaths'))
+
 
 ## Candlestick plotters:
   
@@ -154,4 +167,21 @@ dygraph(sample) \%>\%
   dyOptions(stackedGraph = TRUE) \%>\% 
   dyCandlestickGroup(c('Open', 'High', 'Low', 'Close')) \%>\% 
   dyCandlestickGroup(c('O', 'H', 'L', 'C'))
+
+
+## Stacked Bar and Ribbon Graphs:  
+
+dygraph(lungDeaths) \%>\% 
+  dySeries('mdeaths', axis = 'y2') \%>\%
+  dyAxis('y', valueRange = c(-100, 1000)) \%>\% 
+  dyStackedBarGroup(c('ldeaths', 'fdeaths'))
+  
+lungDeaths <- cbind(ldeaths, fdeaths, mdeaths, 
+                    additive = rep.int(200, length(ldeaths)),
+                    line = rep.int(3000, length(ldeaths)))
+dygraph(lungDeaths) \%>\% 
+  dySeries('line', strokePattern = 'dashed') \%>\% 
+  dySeries('ldeaths', stepPlot = TRUE) \%>\% 
+  dyStackedBarGroup(c('additive', 'mdeaths')) \%>\% 
+  dyStackedRibbonGroup(c('fdeaths', 'ldeaths'))
 }
