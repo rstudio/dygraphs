@@ -22,7 +22,7 @@ Here's how you'd create an R function to wrap the Bar Chart plotter:
 dyBarChart <- function(dygraph) {
   dyPlotter(dygraph = dygraph,
             name = "BarChart",
-            path = system.file("examples/plotters/barchart.js",
+            path = system.file("plotters/barchart.js",
                                package = "dygraphs"))
 }
 ```
@@ -46,7 +46,7 @@ Here's how you'd create an R function to wrap the Bar Chart plotter:
 dyMultiColumn <- function(dygraph) {
   dyPlotter(dygraph = dygraph,
             name = "MultiColumn",
-            path = system.file("examples/plotters/multicolumn.js",
+            path = system.file("plotters/multicolumn.js",
                                package = "dygraphs"))
 }
 ```
