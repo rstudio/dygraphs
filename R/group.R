@@ -3,8 +3,8 @@
 #' Add a data series group to a dygraph plot. Note that options will use the default 
 #' global setting (as determined by \code{\link{dyOptions}}) when not specified 
 #' explicitly. Importantly, any dySeries options passed can be passed as a vector of values 
-#' and will be replicated across all series named as part of the group. If arguments different in
-#' length than the number of serie named, then the argument vector will be 
+#' and will be replicated across all series named as part of the group. If arguments differ in
+#' length than the number of series named, then the argument vector will be 
 #' cycled across the named series.
 #' 
 #' NOTE: dyGroup will turn off \code{stackedGraph}, as the option will calculated cumulatives using
@@ -65,13 +65,13 @@
 #' @return Dygraph with additional series
 #'   
 #' @examples
-#' library(dygraphs)
-#' 
-#' lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-#' 
-#' dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-#'   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, colors = c("blue", "green")) %>%
-#'   dySeries("fdeaths", stepPlot = TRUE, color = "red")   
+# library(dygraphs)
+# 
+# lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+# 
+# dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+#   dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
+#   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
 #'   
 #' @note See the 
 #'   \href{https://rstudio.github.io/dygraphs/gallery-series-options.html}{online
@@ -147,6 +147,31 @@ dyGroup <- function(dygraph,
    
   l<-length(name)
   
+  # add color if specified 
+  if (!is.null(color)) {
+    #grab the names of all named series 
+    names_ <- names(dygraph$x$attrs$series)
+   
+    #grab any colors already set
+    colors_ <- dygraph$x$attrs$colors
+    
+    # if no colors passed thus far, set up the color vector for
+    # the series defined previously
+    if(is.null(colors_)) {
+      colors_ <- vector('character', length(names_))
+    }
+    names(colors_) <- names_
+    
+    for(i in 1:l) colors_[[name[i]]] <- rep(color, length.out = l)[i]
+    
+    # all options must be unnamed vectors
+    names(colors_) <- NULL
+    
+    # attrs$colors <- as.list(c(attrs$colors, color))
+    dygraph$x$attrs$colors <- colors_
+    
+  }
+  
   # repeat (most of) the steps from dySeries, just in a loop 
   for (i in 1:l) {
     # copy attrs for modification
@@ -208,10 +233,6 @@ dyGroup <- function(dygraph,
     # set options
     attrs$series[[series$label]] <- series$options
     
-    # add color if specified 
-    if (!is.null(color))
-      attrs$colors <- as.list(c(attrs$colors, 
-                          rep(color, length.out = l)))
     # set attrs
     dygraph$x$attrs <- attrs
     

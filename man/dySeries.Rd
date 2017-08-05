@@ -95,4 +95,3 @@ dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
   dySeries("fdeaths", stepPlot = TRUE, color = "red")   
   
 }
-
