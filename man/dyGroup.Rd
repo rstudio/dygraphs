@@ -77,8 +77,8 @@ Dygraph with additional series
 Add a data series group to a dygraph plot. Note that options will use the default 
 global setting (as determined by \code{\link{dyOptions}}) when not specified 
 explicitly. Importantly, any dySeries options passed can be passed as a vector of values 
-and will be replicated across all series named as part of the group. If arguments different in
-length than the number of serie named, then the argument vector will be 
+and will be replicated across all series named as part of the group. If arguments differ in
+length than the number of series named, then the argument vector will be 
 cycled across the named series.
 }
 \details{
@@ -95,12 +95,5 @@ See the
   documentation} for additional details and examples.
 }
 \examples{
-library(dygraphs)
-
-lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
-  dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, colors = c("blue", "green")) \%>\%
-  dySeries("fdeaths", stepPlot = TRUE, color = "red")   
   
 }

@@ -76,6 +76,19 @@ dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
   dySeries("V1", strokeWidth = 2, strokePattern = "dashed")
 ```
 
+#### `dyGroup`
+
+With `dyGroup` you can replicate options across multiple series or pass a vector of values and have it replicate across the series.  If arguments differ in length than the number of series named, then the argument will be cycled across the named series.
+
+```{r}
+lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
+
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
+  dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
+
+```
+
 
 
 
