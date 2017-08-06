@@ -31,4 +31,3 @@ dygraph(ldeaths) \%>\%
   dyCrosshair(direction = "vertical")
 
 }
-

@@ -30,4 +30,3 @@ See the
   to specify styles for the first one (alternatively you can just add them
   directly to the page by other means).
 }
-

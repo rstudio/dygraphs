@@ -76,4 +76,3 @@ dygraph(presidents, main = "Presidential Approval") \%>\%
   dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")   
   
 }
-

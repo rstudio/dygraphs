@@ -62,4 +62,3 @@ dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
   dyRangeSelector(height = 20, strokeColor = "")     
 
 }
-

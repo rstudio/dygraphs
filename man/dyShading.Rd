@@ -45,4 +45,3 @@ dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
   dyShading(from = "50", to = "50.1", axis = "y", color = "black")
     
 }
-

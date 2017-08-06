@@ -51,4 +51,3 @@ dygraph(dyData) \%>\%
 }
 
 }
-

@@ -230,4 +230,3 @@ Add options to a dygraph plot.
 See the \href{https://rstudio.github.io/dygraphs/}{online documentation}
   for additional details and examples.
 }
-

@@ -26,4 +26,3 @@ dygraph(ldeaths) \%>\%
   dyUnzoom()
 
 }
-

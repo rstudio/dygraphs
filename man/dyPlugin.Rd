@@ -34,4 +34,3 @@ create an R wrapper for it. See
 \href{https://rstudio.github.io/dygraphs/gallery-plugins.html}{https://rstudio.github.io/dygraphs/gallery-plugins.html}
 for details on how to do this.
 }
-

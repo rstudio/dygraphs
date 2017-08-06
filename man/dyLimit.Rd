@@ -42,4 +42,3 @@ dygraph(presidents, main = "Presidential Approval") \%>\%
           strokePattern = "solid", color = "blue")
  
 }
-

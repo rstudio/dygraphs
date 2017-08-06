@@ -50,4 +50,3 @@ dygraph(presidents, main = "Presidential Approval") \%>\%
   dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom") 
  
 }
-
