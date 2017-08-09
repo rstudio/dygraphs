@@ -21,7 +21,7 @@ dyOptions(dygraph, stackedGraph = FALSE, fillGraph = FALSE,
   labelsUTC = FALSE, maxNumberWidth = 6, sigFigs = NULL,
   panEdgeFraction = NULL, animatedZooms = FALSE,
   mobileDisableYTouch = TRUE, timingName = NULL, useDataTimezone = FALSE,
-  retainDateWindow = FALSE)
+  retainDateWindow = FALSE, disableZoom = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add options to}
@@ -219,6 +219,9 @@ the client workstation. Note that this option is incompatible with
 \item{retainDateWindow}{Whether to retain the user's current date window 
 (zoom level) when updating an existing dygraph with new data and/or 
 options.}
+}
+
+\item{disableZoom}{Set this option to disable click and drag zooming.}
 }
 \value{
 dygraph with additional options

@@ -48,6 +48,11 @@ HTMLWidgets.widget({
         // get dygraph attrs and populate file field
         var attrs = x.attrs;
         attrs.file = x.data;
+	      
+	// disable zoom interaction except for clicks
+        if (attrs.disableZoom !== false) {
+          attrs.interactionModel = Dygraph.Interaction.nonInteractiveModel_;
+        }
         
         // convert non-arrays to arrays
         for (var index = 0; index < attrs.file.length; index++) {
