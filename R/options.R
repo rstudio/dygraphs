@@ -215,7 +215,7 @@ dyOptions <- function(dygraph,
                       timingName = NULL,
                       useDataTimezone = FALSE,
                       retainDateWindow = FALSE,
-                      disableZoom = TRUE) {
+                      disableZoom = FALSE) {
   
   # validate that labelsUTC and useDataTimezone aren't specified together
   if (!missing(labelsUTC) && !missing(useDataTimezone))
