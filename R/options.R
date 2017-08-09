@@ -151,6 +151,7 @@
 #' @param retainDateWindow Whether to retain the user's current date window 
 #'   (zoom level) when updating an existing dygraph with new data and/or 
 #'   options.
+#' @param disableZoom Set this option to disable click and drag zooming.
 #'   
 #' @return dygraph with additional options
 #'   
@@ -213,7 +214,8 @@ dyOptions <- function(dygraph,
                       mobileDisableYTouch = TRUE,
                       timingName = NULL,
                       useDataTimezone = FALSE,
-                      retainDateWindow = FALSE) {
+                      retainDateWindow = FALSE,
+                      disableZoom = TRUE) {
   
   # validate that labelsUTC and useDataTimezone aren't specified together
   if (!missing(labelsUTC) && !missing(useDataTimezone))
@@ -268,6 +270,7 @@ dyOptions <- function(dygraph,
   options$timingName <- timingName
   if (!missing(retainDateWindow))
     options$retainDateWindow <- retainDateWindow
+  options$disableZoom <- disableZoom
   
   # merge options into attrs
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, options)
