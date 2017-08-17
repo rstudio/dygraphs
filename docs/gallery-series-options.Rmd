@@ -65,8 +65,6 @@ dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
   dySeries("fdeaths", stepPlot = TRUE, fillGraph = TRUE, color = "red")
 ```
 
-Note that you can specify colors globally (as demonstrated above) or per-series, but you cannot mix both styles of assigning colors.
-
 #### Line Strokes
 
 You can also customize the way that series lines are drawn. Here we draw a wider line with a custom stroke pattern (dashed line):

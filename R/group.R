@@ -24,12 +24,9 @@
 #'   3 that specifies a set of input column names to use as the lower, value,
 #'   and upper for a series with a shaded bar drawn around it.
 #' @param label Labels to display for series (uses name if no label defined)
-#' @param color Colors for series. These can be of the form "#AABBCC" or 
-#'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
-#'   color for one series then you must specify one for all series. If not 
-#'   specified then the global colors option (typically based on equally-spaced 
-#'   points around a color wheel). Note also that global and per-series color 
-#'   specification cannot be mixed.
+#' @param color Color for series. These can be of the form "#AABBCC" or 
+#'   "rgb(255,100,200)" or "yellow", etc. If not specified then the global 
+#'   colors option (typically based on equally-spaced points around a color wheel). 
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot.
@@ -113,6 +110,18 @@ dyGroup <- function(dygraph,
                       plotter = plotter)
     return(dygraph)
   }
+  
+  # when setting up the first color, we start handling colors here 
+  if(!is.null(color) && is.null(dygraph$x$attrs$colors)){
+      colors <- dygraphColors(dygraph, length(labels)-1)
+      dygraph$x$attrs$colors <- colors
+  }
+
+  # prepare the colors list for processing 
+  if(!is.null(dygraph$x$attrs$colors)) {
+     colors <- dygraph$x$attrs$colors
+     names(colors) <- dygraph$x$attrs$labels[-1]
+  }
     
   # Plotter-mod!  Added the plotter != NULL test to keep base capability while
   # expanding to include group plotters
@@ -147,35 +156,13 @@ dyGroup <- function(dygraph,
    
   l<-length(name)
   
-  # add color if specified 
-  if (!is.null(color)) {
-    #grab the names of all named series 
-    names_ <- names(dygraph$x$attrs$series)
-   
-    #grab any colors already set
-    colors_ <- dygraph$x$attrs$colors
-    
-    # if no colors passed thus far, set up the color vector for
-    # the series defined previously
-    if(is.null(colors_)) {
-      colors_ <- vector('character', length(names_))
-    }
-    names(colors_) <- names_
-    
-    for(i in 1:l) colors_[[name[i]]] <- rep(color, length.out = l)[i]
-    
-    # all options must be unnamed vectors
-    names(colors_) <- NULL
-    
-    # attrs$colors <- as.list(c(attrs$colors, color))
-    dygraph$x$attrs$colors <- colors_
-    
-  }
+  # copy attrs for modification
+  attrs <- dygraph$x$attrs
+  
+  
   
   # repeat (most of) the steps from dySeries, just in a loop 
   for (i in 1:l) {
-    # copy attrs for modification
-    attrs <- dygraph$x$attrs
     
     # create series object
     series <- list()
@@ -218,6 +205,18 @@ dyGroup <- function(dygraph,
     series$options$group <- paste0(name, collapse = "")
   
     seriesData <- data[[series$name]]
+    
+    # grab the colors for the series being processed
+  if (!is.null(dygraph$x$attrs$colors)) {
+      currColors <- colors[names(colors) %in% name[i]]
+      if(!is.null(color)) currColors[[series$name]] <- color[i]
+      
+      colors <- colors[!names(colors) %in% name[i]]
+      colors[[series$name]] <- currColors[[series$name]]
+      
+      attrs$colors <- colors
+      names(attrs$colors) <- NULL
+    }
     
     # default the label if we need to
     if (is.null(series$label))

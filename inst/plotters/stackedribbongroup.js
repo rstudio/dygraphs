@@ -257,7 +257,7 @@ function linePlotter(e) {
 					//
 		//BEGIN THE FILL
     var stepPlot = g.getBooleanOption('stepPlot', setName);
-		var color = fillColors[j];
+		var color = e.color;
 		var axis = g.axisPropertiesForSeries(setName);
     var axisY = 1.0 + axis.minyval * axis.yscale;
     if (axisY < 0.0) axisY = 0.0;
