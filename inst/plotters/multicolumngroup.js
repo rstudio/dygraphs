@@ -42,7 +42,8 @@ function multiColumnGroupPlotter(e) {
   // END HEADER BLOCK
  
   var ctx = e.drawingContext;
-  var y_bottom = e.dygraph.toDomYCoord(0);
+  var axis = g.attr_("axis", e.setName);
+  var y_bottom = g.toDomYCoord(0, axis == "y2" ? 1 : 0);
 
   // Find the minimum separation between x-values.
   // This determines the bar width.
@@ -64,7 +65,7 @@ function multiColumnGroupPlotter(e) {
 
   for (var j = 0; j < sets.length; j++) {
     ctx.fillStyle = fillColors[j];
-    ctx.strokeStyle = strokeColors[j];
+    ctx.strokeStyle = fillColors[j];
     for (var i = 0; i < sets[j].length; i++) {
       var p = sets[j][i];
       var center_x = p.canvasx;

@@ -1,12 +1,15 @@
 /**
  * Bar Chart plotter is adapted from http://dygraphs.com/tests/plotters.html
  */
-function barChartPlotter(e) {
+function barSeriesPlotter(e) {
+  var g = e.dygraph;
   var ctx = e.drawingContext;
   var points = e.points;
-  var y_bottom = e.dygraph.toDomYCoord(0);
+  var axis = g.attr_("axis", e.setName);
+  var y_bottom = g.toDomYCoord(0, axis == "y2" ? 1 : 0);
 
   ctx.fillStyle = e.color;
+  ctx.strokeStyle = e.color;
 
   // Find the minimum separation between x-values.
   // This determines the bar width.
