@@ -3,14 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-
-
-
-
 <title>Plotters</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -20,8 +15,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="docs.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
 <link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
 <script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
@@ -33,59 +27,6 @@
 <script src="site_libs/Dygraph.Plotters.BarChart-1.0/barchart.js"></script>
 <script src="site_libs/Dygraph.Plotters.MultiColumn-1.0/multicolumn.js"></script>
 
-<style type = "text/css">
-body {
-  padding-top: 30px;
-  padding-bottom: 50px;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-div .dygraphs {
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-
-pre {
-  margin-bottom: 15px;
-}
-
-
-
-.sidebar-nav-fixed {
-  position:fixed;
-  top: 30px;
-  width: 190px;
-}
-
-.sidebar-nav h4 {
-  margin-bottom: 15px;
-}
-
-@media (max-width: 767px) {
-  .sidebar-nav-fixed {
-    position:static;
-    width:auto;
-  }
-}
-
-@media (max-width: 980px) {
-  .sidebar-nav-fixed {
-    width: 190px;
-  }
-}
-
-</style>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs && document.readyState && document.readyState === "complete") {
    window.setTimeout(function() {
@@ -93,65 +34,9 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
    }, 0);
 }
 </script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-
 </head>
 
 <body>
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-</style>
-
-
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
@@ -162,12 +47,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-
-
-
-
-
-
 <div class="row-fluid">
 
 <div class="col-md-3">
@@ -320,35 +199,6 @@ $(document).ready(function () {
 <!-- Fork me on Github Button -->
 
 <a id="github-link" href="https://github.com/rstudio/dygraphs"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-
-
-<style type="text/css">
-.nav>li>a {
-  padding: 3px 3px;
-}
-
-.nav>li.nav-header {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  color: #b4bcc2;
-  font-weight: bold;
-  font-size: 11px;
-  text-transform: uppercase;
-}
-
-.nav>li.active>a {
-  color: #fff;
-  background-color: #1abc9c;
-}
-
-.nav>h4 {
-  font-size: 20px;
-  font-weight: 500;
-}
-</style>
-
-
-
 </div>
 
 <script>
@@ -360,10 +210,6 @@ function bootstrapStylePandocTables() {
 $(document).ready(function () {
   bootstrapStylePandocTables();
 });
-
-
 </script>
-
-
 </body>
 </html>
