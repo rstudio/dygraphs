@@ -1,0 +1,114 @@
+body {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div .dygraphs {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+pre {
+  margin-bottom: 15px;
+}
+
+
+
+.sidebar-nav-fixed {
+  position:fixed;
+  top: 30px;
+  width: 190px;
+}
+
+.sidebar-nav h4 {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 767px) {
+  .sidebar-nav-fixed {
+    position:static;
+    width:auto;
+  }
+}
+
+@media (max-width: 980px) {
+  .sidebar-nav-fixed {
+    width: 190px;
+  }
+}
+
+code{white-space: pre;}
+pre:not([class]) {
+    background-color: white;
+  }
+  h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+
+.nav>li>a {
+  padding: 3px 3px;
+}
+
+.nav>li.nav-header {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  color: #b4bcc2;
+  font-weight: bold;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.nav>li.active>a {
+  color: #fff;
+  background-color: #1abc9c;
+}
+
+.nav>h4 {
+  font-size: 20px;
+  font-weight: 500;
+}
