@@ -11,6 +11,7 @@ h1 {
 }
 
 div .dygraphs {
+  max-width: 100%;
   margin-top: 25px;
   margin-bottom: 25px;
 }
@@ -19,7 +20,9 @@ pre {
   margin-bottom: 15px;
 }
 
-
+canvas {
+  max-width: 100%;
+}
 
 .sidebar-nav-fixed {
   position:fixed;
@@ -38,9 +41,10 @@ pre {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 992px) {
   .sidebar-nav-fixed {
-    width: 190px;
+    position:initial;
+    width:100%;
   }
 }
 
