@@ -309,7 +309,6 @@ resolveStemPlot <- function(stemPlot, plotter) {
 }
 
 dygraphColors <- function(dygraph, num) {
-  series <- length(dygraph$x$attrs$series)
 
   # These are used for when no custom colors are specified.
   sat <- dygraph$x$attrs$colorSaturation %||% 1.0
@@ -318,7 +317,7 @@ dygraphColors <- function(dygraph, num) {
   
   colors<-c()
   
-  for (i in 1:num){
+  for (i in 0:(num-1)){
     # alternate colors for high contrast.
     idx <- ifelse(i %% 2, (half + (i + 1)/ 2), ceiling((i + 1) / 2))
     hue <- (1.0 * idx / (1 + num))
@@ -339,9 +338,8 @@ hsvToRGB <- function (hue, saturation, value) {
     p <- value * (1 - saturation)
     q <- value * (1 - (saturation * f))
     t <- value * (1 - (saturation * (1 - f)))
-    # red <- switch(i, 1 = q, 2 = p, 3 = p, 4 = t, 5 = value, 6 = value, 0 = value)
-    # green <- switch(i, 1 = value, 2 = value, 3 = q, 4 = p, 5 = p, 6 = t, 0 = t)
-    # blue <- switch(i, 1 = p, 2 = t, 3 = value, 4 = value, 5 = q, 6 = p, 0 = p)
+
+    # converting the switch from the JS library to a vector selection    
     red <- c(value, q, p, p, t, value, value)
     green <- c(t, value, value, q, p, p, t)
     blue <- c(p, p, t, value, value, q, p)
@@ -350,9 +348,9 @@ hsvToRGB <- function (hue, saturation, value) {
     g <- green[i+1]
     b <- blue[i+1]
   }
-  red <- floor(255 * r + 0.5);
-  green <- floor(255 * g + 0.5);
-  blue <- floor(255 * b + 0.5);
+  red <- floor(255 * r + 0.5)
+  green <- floor(255 * g + 0.5)
+  blue <- floor(255 * b + 0.5)
   return (rgb(red, green, blue, maxColorValue = 255))
 }
 
