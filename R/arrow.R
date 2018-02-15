@@ -32,7 +32,6 @@
 dyArrow <- function(dygraph,
                     x,
                     text = NULL,
-                    tooltip = NULL,
                     direction = c("up", "down", "left", "right", "ne", "se", "sw", "nw"),
                     fillColor = "white",
                     strokeColor = "black",
@@ -41,9 +40,6 @@ dyArrow <- function(dygraph,
   # create arrows
   if (!is.null(text) && length(x) != length(text)) {
     stop("Length of 'x' and 'text' does not match")
-  }
-  if (!is.null(tooltip) && length(x) != length(tooltip)) {
-    stop("Length of 'x' and 'tooltip' does not match")
   }
 
   # validate series if specified
@@ -62,18 +58,9 @@ dyArrow <- function(dygraph,
   direction <- match.arg(direction)
   arrows <- lapply(seq_along(x),
                    function(i) {
-                     if (is.null(text))
-                       arrowText <- NULL
-                     else
-                       arrowText <- text[i]
-                     if (is.null(tooltip))
-                       arrowTooltip <- NULL
-                     else
-                       arrowTooltip <- tooltip[i]
                      list(xval = ifelse(dygraph$x$format == "date",
                                         asISO8601Time(x[i]), x[i]),
-                          text = arrowText,
-                          tooltip = arrowTooltip,
+                          text = ifelse(is.null(text), NULL, text[i]),
                           direction = direction,
                           fillColor = fillColor,
                           strokeColor = strokeColor,
