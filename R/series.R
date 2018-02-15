@@ -166,6 +166,36 @@ dySeries <- function(dygraph,
     seriesData <- data[[series$name]]
   }
   
+  # add color if specified 
+  # This area could be supplemented to set all colors for all data series by extracting
+  # the method for how dygraphs sets the underlying colors.  This would eliminate the
+  # need to set all colors if only one is explicitly set
+  # 
+  # Also, moved this area up to grab all the colors already set before the series 
+  # processed during this run through dySeries is added
+  if (!is.null(color)) {
+    #grab the names of all named series 
+    names_ <- names(attrs$series)
+   
+    #grab any colors already set
+    colors_ <- attrs$colors
+   
+    # if no colors passed thus far, set up the color vector for
+    # the series defined previously
+    if(is.null(colors_)) {
+      colors_ <- vector('character', length(names_))
+    }
+    names(colors_) <- names_
+    
+    colors_[[name]] <- color
+    
+    # all options must be unnamed vectors
+    names(colors_) <- NULL
+    
+    # attrs$colors <- as.list(c(attrs$colors, color))
+    attrs$colors <- colors_
+  }
+  
   # default the label if we need to
   if (is.null(series$label))
     series$label <- series$name  
@@ -175,11 +205,7 @@ dySeries <- function(dygraph,
    
   # set options
   attrs$series[[series$label]] <- series$options
-  
-  # add color if specified 
-  if (!is.null(color))
-    attrs$colors <- as.list(c(attrs$colors, color))
-  
+ 
   # set attrs
   dygraph$x$attrs <- attrs
 

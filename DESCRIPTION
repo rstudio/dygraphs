@@ -6,13 +6,14 @@ Date: 2017-01-04
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
        comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
-    person("JJ", "Allaire", role = c("aut", "cre"),
-       comment = "R interface", email = "jj@rstudio.com"),
+    person("Petr", "Shevtsov", role = c("cre", "cph"),
+       email = "petr.shevtsov@gmail.com"),
+    person("JJ", "Allaire", role = c("aut")),
     person(family = "RStudio", role = "cph"),
     person("Jonathan", "Owen", role = c("aut", "cph")),
     person("Daniel", "Gromer", role = c("aut", "cph")),
-    person("Petr", "Shevtsov", role = c("aut", "cph")),
     person("Benoit", "Thieurmel", role = c("aut", "cph")),
+    person("Kent", "Laukhuf", role = "ctb"),
     person(family = "jQuery Foundation", role = "cph",
            comment = "jQuery library"),
     person(family = "jQuery contributors", role = c("ctb", "cph"),
@@ -38,4 +39,4 @@ Imports:
 Suggests:
     testthat
 Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

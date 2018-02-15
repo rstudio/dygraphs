@@ -21,4 +21,3 @@ Add an additional column of series data to a dygraph. This
 is typically used in the construction of custom series types
 (e.g. log scaled, smoothed, etc.)
 }
-

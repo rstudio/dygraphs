@@ -17,4 +17,3 @@ A dygraph with the specified dependency added.
 \description{
 Add external assets as a dygraph dependency
 }
-

@@ -54,4 +54,3 @@ indoConc <- Indometh[Indometh$Subject == 1, c("time", "conc")]
 dygraph(indoConc)
 
 }
-

@@ -52,4 +52,3 @@ dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
   dyLegend(show = "always", hideOnMouseOut = FALSE)   
     
 }
-

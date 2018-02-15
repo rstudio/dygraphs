@@ -33,4 +33,3 @@ dygraph(discoveries, main = "Important Discoveries") \%>\%
   dyRoller(rollPeriod = 5)
 
 }
-

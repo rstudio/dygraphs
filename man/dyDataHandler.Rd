@@ -22,4 +22,3 @@ A dygraph with the specified data handler enabled.
 \description{
 Include a dygraph data handler
 }
-

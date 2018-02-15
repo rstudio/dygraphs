@@ -49,4 +49,3 @@ dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
               hideOnMouseOut = FALSE)   
  
 }
-

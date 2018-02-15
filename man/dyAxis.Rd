@@ -120,4 +120,3 @@ dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)
     
 }
-

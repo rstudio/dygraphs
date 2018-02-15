@@ -37,4 +37,3 @@ dygraph(closePrices, main = "None", group = "stock") \%>\%
 }
 
 }
-

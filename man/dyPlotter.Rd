@@ -21,4 +21,3 @@ A dygraph with the specified plotter enabled.
 \description{
 Include a dygraph plotter
 }
-
