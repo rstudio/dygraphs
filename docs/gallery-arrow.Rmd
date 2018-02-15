@@ -21,7 +21,7 @@ dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
 ```{r}
 library(quantmod)
 
-getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
+getSymbols("SPY", from = "2018-01-01", to = "2018-02-01", auto.assign=TRUE)
 
 difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
 decreasing <- which(difference < 0)
