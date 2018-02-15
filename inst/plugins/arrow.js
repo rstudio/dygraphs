@@ -9,6 +9,7 @@ Dygraph.Plugins.Arrow = (function() {
     this.arrows = []; // Arrows DOM elements attached to chart
     this.data = data; // Raw arrow data
     this.dygraph = null; // Dygraph reference
+    this.popup = null; // Popup div
   };
 
   var isNumeric = function(v) {
@@ -36,9 +37,16 @@ Dygraph.Plugins.Arrow = (function() {
   arrow.prototype.activate = function(g) {
     this.dygraph = g;
 
+    var div = document.createElement('div');
+    div.className = 'dygraphs__arrow-popup';
+    g.graphDiv.appendChild(div);
+    this.popup = div;
+
     return {
       didDrawChart: this.didDrawChart,
-      clearChart: this.clearChart
+      clearChart: this.clearChart,
+      select: this.select,
+      deselect: this.deselect,
     };
   };
 
@@ -81,8 +89,9 @@ Dygraph.Plugins.Arrow = (function() {
 
   arrow.prototype.evaluateArrows = function() {
     var arrows = {};
+    var i;
 
-    for (var i = 0; i < this.data.length; i++) {
+    for (i = 0; i < this.data.length; i++) {
       var a = this.data[i];
       var xval = isNumeric(a.xval) ?
         a.xval : normalizeDateValue(a.scale, a.xval, a.fixedtz).getTime();
@@ -91,7 +100,7 @@ Dygraph.Plugins.Arrow = (function() {
 
     this.arrowPoints = [];
 
-    for (var i = 0; i < this.dygraph.layout_.points.length; i++) {
+    for (i = 0; i < this.dygraph.layout_.points.length; i++) {
       var points = this.dygraph.layout_.points[i];
       for (var j = 0; j < points.length; j++) {
         var p = points[j];
@@ -126,13 +135,8 @@ Dygraph.Plugins.Arrow = (function() {
                           tickHeight);
     this.setCanvasPosition(canvas, position);
 
-    var div = this.makeDiv(canvas, 'test');
-    this.setDivPosition(div, position);
-
     this.dygraph.graphDiv.appendChild(canvas);
-    this.dygraph.graphDiv.appendChild(div);
     this.arrows.push(canvas);
-    this.arrows.push(div);
   };
 
   arrow.prototype.makeCanvas = function(arrow, tickHeight) {
@@ -188,61 +192,6 @@ Dygraph.Plugins.Arrow = (function() {
     ctx.rotate(Math.PI / 180 * rotation);
   };
 
-  arrow.prototype.getBoundingBox = function(ctx, alpha) {
-    alpha = alpha || 15;
-
-    var minX = Infinity;
-    var minY = Infinity;
-    var maxX = -Infinity;
-    var maxY = -Infinity;
-
-    var w = ctx.canvas.width;
-    var h = ctx.canvas.height;
-
-    var data = ctx.getImageData(0, 0, w, h).data;
-
-    for (var x = 0; x < w; ++x) {
-      for (var y = 0; y < h; ++y) {
-        var a = data[(w * y + x) * 4 + 3];
-
-        if (a > alpha) {
-          if (x > maxX) maxX = x;
-          if (x < minX) minX = x;
-          if (y > maxY) maxY = y;
-          if (y < minY) minY = y;
-        }
-      }
-    }
-    return {
-      x: minX,
-      y: minY,
-      w: maxX - minX,
-      h: maxY - minY
-    };
-  };
-
-  arrow.prototype.makeDiv = function(canvas, tooltip) {
-    var ctx = canvas.getContext('2d');
-    var bbox = this.getBoundingBox(ctx);
-    var div = document.createElement('div');
-
-    div.style.position = 'absolute';
-    div.style.width = bbox.w + 'px';
-    div.style.height = bbox.h + 'px';
-    div.style.left = bbox.x + 'px';
-    div.style.top = bbox.y + 'px';
-    div.title = tooltip;
-
-    return div;
-  };
-
-  arrow.prototype.setDivPosition = function(div, position) {
-    var currentLeft = parseInt(div.style.left, 10);
-    var currentTop = parseInt(div.style.top, 10);
-    div.style.left = currentLeft + position.left + 'px';
-    div.style.top = currentTop + position.top + 'px';
-  };
-
   arrow.prototype.shape = function(ctx, size, stroke, fill) {
     var cx = ctx.canvas.width / 2;
     var cy = cx;
@@ -274,6 +223,43 @@ Dygraph.Plugins.Arrow = (function() {
       this.arrows[i] = null;
     }
     this.arrows = [];
+  };
+
+  arrow.prototype.select = function(e) {
+    for (var i = 0; i < e.selectedPoints.length; i++) {
+      var p = e.selectedPoints[i];
+      if (!p.hasOwnProperty('arrow')) {
+        this.hidePopup();
+        continue;
+      }
+      this.showPopup(p);
+    }
+  };
+
+  arrow.prototype.showPopup = function(p) {
+    this.popup.innerText = p.arrow.text;
+    var area = this.dygraph.plotter_.area;
+    var popupWidth = this.popup.offsetWidth;
+    var yAxisLabelWidth = this.dygraph.getOptionForAxis('axisLabelWidth', 'y');
+    var offset = 10;
+    var leftPopup = p.canvasx + offset;
+    var topPopup = p.canvasy - offset;
+    if ((leftPopup + popupWidth + 1) > area.w) {
+      leftPopup = leftPopup - 2 * offset - popupWidth - (yAxisLabelWidth - area.x);
+    }
+    this.popup.classList.remove("dygraphs__arrow-popup--hidden");
+    this.popup.style.left = leftPopup + "px";
+    this.popup.style.top = topPopup + "px";
+  };
+
+  arrow.prototype.hidePopup = function() {
+    this.popup.style.left = "";
+    this.popup.style.top = "";
+    this.popup.classList.add("dygraphs__arrow-popup--hidden");
+  };
+
+  arrow.prototype.deselect = function(e) {
+    this.hidePopup();
   };
 
   return arrow;
