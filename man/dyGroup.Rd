@@ -92,5 +92,12 @@ See the
   documentation} for additional details and examples.
 }
 \examples{
+library(dygraphs)
+
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
+  dySeries("fdeaths", stepPlot = TRUE, color = "red") \%>\% 
+  dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
   
 }

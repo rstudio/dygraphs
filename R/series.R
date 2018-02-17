@@ -87,13 +87,13 @@ dySeries <- function(dygraph,
   labels <- names(data)
   
   # when setting up the first color, we start handling colors here 
-  if(!is.null(color) && is.null(dygraph$x$attrs$colors)){
-      colors <- dygraphColors(dygraph, length(labels)-1)
+  if (!is.null(color) && is.null(dygraph$x$attrs$colors)) {
+      colors <- dygraphColors(dygraph, length(labels) - 1)
       dygraph$x$attrs$colors <- colors
   }
 
   # prepare the colors list for processing 
-  if(!is.null(dygraph$x$attrs$colors)) {
+  if (!is.null(dygraph$x$attrs$colors)) {
      colors <- dygraph$x$attrs$colors
      names(colors) <- dygraph$x$attrs$labels[-1]
   }
@@ -157,6 +157,7 @@ dySeries <- function(dygraph,
       col <- which(labels == series$name[[i]])
       if (length(col) != 1)
         stop("Series name '", series$name[[i]], "' not found in input data")
+
       cols[[i]] <- col
     }
     
@@ -179,10 +180,16 @@ dySeries <- function(dygraph,
   # grab the colors for the series being processed
   if (!is.null(dygraph$x$attrs$colors)) {
     currColors <- colors[names(colors) %in% name]
-    if(!is.null(color)) currColors[[series$name]] <- color
+
+    if (!is.null(color)) 
+			currColors[[series$name]] <- color
     
     colors <- colors[!names(colors) %in% name]
     colors[[series$name]] <- currColors[[series$name]]
+    
+    # compensating for the bug whereas a single series dygraph with specified color
+    # shows up as black since the DateTime series tries to take the first color
+    if (length(colors) == 1) colors <- c(colors, colors)
     
     attrs$colors <- colors
     names(attrs$colors) <- NULL
@@ -206,6 +213,7 @@ dySeries <- function(dygraph,
   if (!is.null(pointShape)) {
     shapes <- c("dot", "triangle", "square", "diamond", "pentagon",
                 "hexagon", "circle", "star", "plus", "ex")
+
     if (!is.element(pointShape, shapes)) {
       stop("Invalid value for pointShape parameter. ",
            "Should be one of the following: ",
@@ -268,6 +276,7 @@ toMultiSeries <- function(lower, value, upper) {
   series <- vector(mode = "list", length = length(value))
   for (i in 1:length(series))
     series[[i]] <- c(lower[[i]], value[[i]], upper[[i]])
+
   series
 }
 
@@ -317,21 +326,25 @@ dygraphColors <- function(dygraph, num) {
   
   colors<-c()
   
-  for (i in 0:(num-1)){
+  for (i in 0:(num-1)) {
     # alternate colors for high contrast.
-    idx <- ifelse(i %% 2, (half + (i + 1)/ 2), ceiling((i + 1) / 2))
+    idx <- ifelse(i %% 2, (half + (i + 1) / 2), ceiling((i + 1) / 2))
     hue <- (1.0 * idx / (1 + num))
     color <- hsvToRGB(hue, sat, val)
     colors <- c(colors, color)
+
   }
+
   return(colors)
 }
 
+#' @importFrom grDevices rgb
 hsvToRGB <- function (hue, saturation, value) {
   if (saturation == 0) {
     red = value
     green = value
     blue = value
+
   } else {
     i <- floor(hue * 6)
     f <- (hue * 6) - i
@@ -344,17 +357,19 @@ hsvToRGB <- function (hue, saturation, value) {
     green <- c(t, value, value, q, p, p, t)
     blue <- c(p, p, t, value, value, q, p)
     
-    r <- red[i+1]
-    g <- green[i+1]
-    b <- blue[i+1]
+    r <- red[i + 1]
+    g <- green[i + 1]
+    b <- blue[i + 1]
   }
+
   red <- floor(255 * r + 0.5)
   green <- floor(255 * g + 0.5)
   blue <- floor(255 * b + 0.5)
   return (rgb(red, green, blue, maxColorValue = 255))
 }
 
-`%||%` <- function(a,b){
+`%||%` <- function(a, b){
   if(!is.null(a)) return(a)
-  else return(b)
+  return(b)
 }
+

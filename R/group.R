@@ -62,14 +62,14 @@
 #' @return Dygraph with additional series
 #'   
 #' @examples
-# library(dygraphs)
-# 
-# lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-# 
-# dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-#   dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
-#   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
-#'   
+#' library(dygraphs)
+#' 
+#' lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+#' 
+#' dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+#'   dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
+#'   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
+#'
 #' @note See the 
 #'   \href{https://rstudio.github.io/dygraphs/gallery-series-options.html}{online
 #'   documentation} for additional details and examples.
@@ -97,7 +97,7 @@ dyGroup <- function(dygraph,
   data <- attr(dygraph$x, "data")
   labels <- names(data)
 
-  if (length(plotter)>1) message('dyGroup: pass only a single plotter option')
+  if (length(plotter) > 1) message('dyGroup: pass only a single plotter option')
   
   
   # auto-bind name if necessary
@@ -112,13 +112,13 @@ dyGroup <- function(dygraph,
   }
   
   # when setting up the first color, we start handling colors here 
-  if(!is.null(color) && is.null(dygraph$x$attrs$colors)){
-      colors <- dygraphColors(dygraph, length(labels)-1)
+  if (!is.null(color) && is.null(dygraph$x$attrs$colors)) {
+      colors <- dygraphColors(dygraph, length(labels) - 1)
       dygraph$x$attrs$colors <- colors
   }
 
   # prepare the colors list for processing 
-  if(!is.null(dygraph$x$attrs$colors)) {
+  if (!is.null(dygraph$x$attrs$colors)) {
      colors <- dygraph$x$attrs$colors
      names(colors) <- dygraph$x$attrs$labels[-1]
   }
@@ -142,9 +142,10 @@ dyGroup <- function(dygraph,
    
   # MUST turn off native stacking option, as underlying dygraph 
   # will include custom-plotted points in the stacked calculation
-  if (length(dygraph$x$attrs$stackedGraph)>0) {
-    if (dygraph$x$attrs$stackedGraph) warning(
-      "dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
+  if (length(dygraph$x$attrs$stackedGraph) > 0) {
+    if (dygraph$x$attrs$stackedGraph) 
+						warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
+
     dygraph$x$attrs$stackedGraph <- FALSE;
   }
    
@@ -154,12 +155,10 @@ dyGroup <- function(dygraph,
   if (!is.null(pointShape))
     dygraph$x$pointShape <- list()
    
-  l<-length(name)
+  l <- length(name)
   
   # copy attrs for modification
   attrs <- dygraph$x$attrs
-  
-  
   
   # repeat (most of) the steps from dySeries, just in a loop 
   for (i in 1:l) {
@@ -176,22 +175,29 @@ dyGroup <- function(dygraph,
       # series later, but at least we can control for some mistakes here
       series$options$axis <- rep(match.arg(axis, c("y", "y2")), 
                       			 			length.out = l)[1]
-      if(!is.null(stepPlot)) series$options$stepPlot <- rep(
-																	stepPlot, length.out = l)[i]
-      if(!is.null(fillGraph)) series$options$fillGraph <- rep(
-																	fillGraph, length.out = l)[i]
-      if(!is.null(drawPoints)) series$options$drawPoints <- rep(
-																	drawPoints, length.out = l)[i]
-      if(!is.null(pointSize)) series$options$pointSize <- rep(
-																	pointSize, length.out = l)[i]
-      if(!is.null(strokeWidth)) series$options$strokeWidth <- rep(
-																	strokeWidth, length.out = l)[i]
-      if(!is.null(strokePattern)) series$options$strokePattern <- rep(
-																	resolveStrokePattern(strokePattern), length.out = l)[i]
-      if(!is.null(strokeBorderWidth)) series$options$strokeBorderWidth <- rep(
-																	strokeBorderWidth, length.out = l)[i]
-      if(!is.null(strokeBorderColor)) series$options$strokeBorderColor <- rep(
-																	strokeBorderColor, length.out = l)[i]
+      if (!is.null(stepPlot)) 
+				series$options$stepPlot <- rep(stepPlot, length.out = l)[i]
+
+      if (!is.null(fillGraph)) 
+				series$options$fillGraph <- rep(fillGraph, length.out = l)[i]
+      
+			if (!is.null(drawPoints)) 
+				series$options$drawPoints <- rep(drawPoints, length.out = l)[i]
+
+      if (!is.null(pointSize)) 
+				series$options$pointSize <- rep(pointSize, length.out = l)[i]
+      
+			if (!is.null(strokeWidth)) 
+				series$options$strokeWidth <- rep(strokeWidth, length.out = l)[i]
+      
+			if (!is.null(strokePattern)) 
+				series$options$strokePattern <- rep(resolveStrokePattern(strokePattern), length.out = l)[i]
+      
+			if (!is.null(strokeBorderWidth)) 
+				series$options$strokeBorderWidth <- rep(strokeBorderWidth, length.out = l)[i]
+      
+			if (!is.null(strokeBorderColor)) 
+				series$options$strokeBorderColor <- rep(strokeBorderColor, length.out = l)[i]
      
       # one can use this to pass a group plotter or any combination of individual series plotters 
       series$options$plotter <- JS(plotter)
@@ -209,10 +215,16 @@ dyGroup <- function(dygraph,
     # grab the colors for the series being processed
   if (!is.null(dygraph$x$attrs$colors)) {
       currColors <- colors[names(colors) %in% name[i]]
-      if(!is.null(color)) currColors[[series$name]] <- color[i]
+      
+			if (!is.null(color)) 
+				currColors[[series$name]] <- color[i]
       
       colors <- colors[!names(colors) %in% name[i]]
       colors[[series$name]] <- currColors[[series$name]]
+
+    # compensating for the bug whereas a single series dygraph with specified color
+    # shows up as black since the DateTime series tries to take the first color
+    	if (length(colors) == 1) colors <- c(colors, colors)
       
       attrs$colors <- colors
       names(attrs$colors) <- NULL
@@ -239,6 +251,7 @@ dyGroup <- function(dygraph,
     if (!is.null(pointShape[i])) {
       shapes <- c("dot", "triangle", "square", "diamond", "pentagon",
                   "hexagon", "circle", "star", "plus", "ex")
+
       if (!is.element(pointShape[i], shapes)) {
         stop("Invalid value for pointShape parameter. ",
              "Should be one of the following: ",
@@ -246,9 +259,9 @@ dyGroup <- function(dygraph,
              "'hexagon', 'circle', 'star', 'plus' or 'ex'")
       }
   
-      if (pointShape[i] != "dot") {
+      if (pointShape[i] != "dot")
         dygraph$x$pointShape[[series$label]] <- rep(pointShape, length.out = l)
-      }
+      
     }
     
     # add data
