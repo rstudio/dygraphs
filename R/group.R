@@ -62,6 +62,7 @@
 #' @return Dygraph with additional series
 #'   
 #' @examples
+#' \dontrun{
 #' library(dygraphs)
 #' 
 #' lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
@@ -69,6 +70,7 @@
 #' dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
 #'   dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
 #'   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
+#' }   
 #'
 #' @note See the 
 #'   \href{https://rstudio.github.io/dygraphs/gallery-series-options.html}{online
