@@ -255,7 +255,7 @@ Dygraph.Plugins.Arrow = (function() {
   arrow.prototype.hidePopup = function() {
     this.popup.style.left = "";
     this.popup.style.top = "";
-    this.popup.classList.add("dygraphs__arrow-popup--hidden");
+    this.popup.classList.add("arrow-popup--hidden");
   };
 
   arrow.prototype.deselect = function(e) {
