@@ -1,0 +1,41 @@
+---
+title: (Trade) Arrows with Optional Annotations
+---
+
+```{r setup, include=FALSE}
+library(dygraphs)
+```
+
+```{r}
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
+  dyArrow("1950-7-1",
+          "Korea",
+          direction = "se",
+          fillColor = "#d9534f") %>%
+  dyArrow("1965-1-1",
+          "Vietnam",
+          direction = "sw",
+          fillColor = "#5cb85c")
+```
+
+```{r}
+library(quantmod)
+
+getSymbols("SPY", from = "2018-01-01", to = "2018-02-01", auto.assign=TRUE)
+
+difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
+decreasing <- which(difference < 0)
+increasing <- which(difference > 0)
+
+dyData <- SPY[, "SPY.Close"]
+
+dygraph(dyData) %>%
+    dyArrow(index(dyData[increasing]),
+            as.vector(dyData[increasing]),
+            direction = "up",
+            fillColor = "green") %>%
+    dyArrow(index(dyData[decreasing]),
+            as.vector(dyData[decreasing]),
+            direction = "down",
+            fillColor = "red")
+```

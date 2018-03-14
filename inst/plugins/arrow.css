@@ -1,0 +1,12 @@
+.arrow-popup {
+  position: absolute;
+  z-index: 10;
+  border: 1px solid black;
+  background: white;
+  pointer-events: none;
+}
+
+.arrow-popup--hidden {
+  top: -9999px;
+  left: -9999px;
+}
