@@ -37,10 +37,7 @@ Dygraph.Plugins.Arrow = (function() {
   arrow.prototype.activate = function(g) {
     this.dygraph = g;
 
-    var div = document.createElement('div');
-    div.className = 'dygraphs__arrow-popup';
-    g.graphDiv.appendChild(div);
-    this.popup = div;
+    this.popup = this.initPopup();
 
     return {
       didDrawChart: this.didDrawChart,
@@ -48,6 +45,13 @@ Dygraph.Plugins.Arrow = (function() {
       select: this.select,
       deselect: this.deselect,
     };
+  };
+
+  arrow.prototype.initPopup = function() {
+    var div = document.createElement('div');
+    div.className = 'arrow-popup arrow-popup--hidden';
+    this.dygraph.graphDiv.appendChild(div);
+    return div;
   };
 
   arrow.prototype.didDrawChart = function() {
