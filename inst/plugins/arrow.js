@@ -20,9 +20,9 @@ Dygraph.Plugins.Arrow = (function() {
 
   var normalizeDateValue = function(scale, value, fixedtz) {
     var date = new Date(value);
-    if (scale != 'minute' &&
-      scale != 'hourly' &&
-      scale != 'seconds' &&
+    if (scale !== 'minute' &&
+      scale !== 'hourly' &&
+      scale !== 'seconds' &&
       !fixedtz) {
       var localAsUTC = date.getTime() + (date.getTimezoneOffset() * 60000);
       date = new Date(localAsUTC);
@@ -128,8 +128,7 @@ Dygraph.Plugins.Arrow = (function() {
 
     var canvas = this.makeCanvas(point.arrow, tickHeight);
     var position =
-        this.calcPosition(
-                          canvas,
+        this.calcPosition(canvas,
                           point.canvasx,
                           point.canvasy,
                           tickHeight);
