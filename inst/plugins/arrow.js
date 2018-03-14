@@ -241,16 +241,71 @@ Dygraph.Plugins.Arrow = (function() {
 
   arrow.prototype.showPopup = function(p) {
     this.popup.innerText = p.arrow.text;
-    var area = this.dygraph.plotter_.area;
-    var popupWidth = this.popup.offsetWidth;
-    var yAxisLabelWidth = this.dygraph.getOptionForAxis('axisLabelWidth', 'y');
-    var offset = 10;
-    var leftPopup = p.canvasx + offset;
-    var topPopup = p.canvasy - offset;
-    if ((leftPopup + popupWidth + 1) > area.w) {
-      leftPopup = leftPopup - 2 * offset - popupWidth - (yAxisLabelWidth - area.x);
+    this.setPopupPosition(p);
+
+    this.popup.classList.remove("arrow-popup--hidden");
+    for (var i = 0; i < this.popup.classList.length; i++) {
+      var oldClass = this.popup.classList.item(i);
+      var newClass = "arrow-popup--direction-" + p.arrow.direction;
+      if (oldClass === newClass) {
+        break;
+      }
+      if (oldClass.startsWith("arrow-popup--direction-")) {
+        this.popup.classList.replace(oldClass, newClass);
+        break;
+      }
+      this.popup.classList.add(newClass);
     }
-    this.popup.classList.remove("dygraphs__arrow-popup--hidden");
+  };
+
+  arrow.prototype.setPopupPosition = function(p) {
+    var popupWidth = this.popup.offsetWidth;
+    var popupHeight = this.popup.offsetHeight;
+    var offset = 10;
+    var leftPopup, topPopup;
+
+    if (p.arrow.direction === "up") {
+      leftPopup = p.canvasx - popupWidth / 2;
+      topPopup = p.canvasy - popupHeight - offset;
+    } else if (p.arrow.direction === "down") {
+      leftPopup = p.canvasx - popupWidth / 2;
+      topPopup = p.canvasy + offset;
+    } else if (p.arrow.direction === "left") {
+      leftPopup = p.canvasx - popupWidth - offset;
+      topPopup = p.canvasy - popupHeight / 2;
+    } else if (p.arrow.direction === "right") {
+      leftPopup = p.canvasx + offset;
+      topPopup = p.canvasy - popupHeight / 2;
+    } else if (p.arrow.direction === "se") {
+      leftPopup = p.canvasx + offset;
+      topPopup = p.canvasy + offset;
+    } else if (p.arrow.direction === "sw") {
+      leftPopup = p.canvasx - popupWidth - offset;
+      topPopup = p.canvasy + offset;
+    } else if (p.arrow.direction === "ne") {
+      leftPopup = p.canvasx + offset;
+      topPopup = p.canvasy - popupHeight - offset;
+    } else if (p.arrow.direction === "nw") {
+      leftPopup = p.canvasx - popupWidth - offset;
+      topPopup = p.canvasy - popupHeight - offset;
+    }
+
+    // Strip redundant CSS classes
+    this.popup.classList.remove("arrow-popup--left-bound", "arrow-popup--right-bound");
+
+    var xLabelWidth = this.dygraph.getOptionForAxis('axisLabelWidth', 'y');
+    if (leftPopup < xLabelWidth) {
+      leftPopup = xLabelWidth;
+      this.popup.classList.add("arrow-popup--left-bound");
+    }
+
+    var area = this.dygraph.plotter_.area;
+    var diff = (leftPopup + popupWidth) - area.w - xLabelWidth - offset;
+    if (diff > 0) {
+      leftPopup = leftPopup - diff;
+      this.popup.classList.add("arrow-popup--right-bound");
+    }
+
     this.popup.style.left = leftPopup + "px";
     this.popup.style.top = topPopup + "px";
   };
