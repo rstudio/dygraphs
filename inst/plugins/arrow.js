@@ -181,8 +181,8 @@ Dygraph.Plugins.Arrow = (function() {
     var directions = {
       'up': 0,
       'down': 180,
-      'left': 90,
-      'right': 270,
+      'left': 270,
+      'right': 90,
       'ne': 45,
       'se': 135,
       'sw': 225,
