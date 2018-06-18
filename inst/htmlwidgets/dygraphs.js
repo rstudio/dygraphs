@@ -50,7 +50,7 @@ HTMLWidgets.widget({
         attrs.file = x.data;
 	      
 	// disable zoom interaction except for clicks
-        if (attrs.disableZoom !== false) {
+        if (!!attrs.disableZoom) {
           attrs.interactionModel = Dygraph.Interaction.nonInteractiveModel_;
         }
         
