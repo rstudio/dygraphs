@@ -15,11 +15,8 @@
 #'   and upper for a series with a shaded bar drawn around it.
 #' @param label Label to display for series (uses name if no label defined)
 #' @param color Color for series. These can be of the form "#AABBCC" or 
-#'   "rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
-#'   color for one series then you must specify one for all series. If not 
-#'   specified then the global colors option (typically based on equally-spaced 
-#'   points around a color wheel). Note also that global and per-series color 
-#'   specification cannot be mixed.
+#'   "rgb(255,100,200)" or "yellow", etc. If not specified then the global 
+#'   colors option (typically based on equally-spaced points around a color wheel). 
 #' @param axis Y-axis to associate the series with ("y" or "y2")
 #' @param stepPlot When set, display the graph as a step plot instead of a line 
 #'   plot.
@@ -89,6 +86,18 @@ dySeries <- function(dygraph,
   data <- attr(dygraph$x, "data")
   labels <- names(data)
   
+  # when setting up the first color, we start handling colors here 
+  if (!is.null(color) && is.null(dygraph$x$attrs$colors)) {
+      colors <- dygraphColors(dygraph, length(labels) - 1)
+      dygraph$x$attrs$colors <- colors
+  }
+
+  # prepare the colors list for processing 
+  if (!is.null(dygraph$x$attrs$colors)) {
+     colors <- dygraph$x$attrs$colors
+     names(colors) <- dygraph$x$attrs$labels[-1]
+  }
+   
   # auto-bind name if necessary
   autobind <- attr(dygraph$x, "autoSeries")
   if (is.null(name))
@@ -108,6 +117,7 @@ dySeries <- function(dygraph,
     stop("One or more of the specified series were not found. ",
          "Valid series names are: ", paste(labels[-1], collapse = ", "))
   }
+  
   
   # Data series named here are "consumed" from the automatically generated
   # list of series (they'll be added back in below)
@@ -147,6 +157,7 @@ dySeries <- function(dygraph,
       col <- which(labels == series$name[[i]])
       if (length(col) != 1)
         stop("Series name '", series$name[[i]], "' not found in input data")
+
       cols[[i]] <- col
     }
     
@@ -166,35 +177,24 @@ dySeries <- function(dygraph,
     seriesData <- data[[series$name]]
   }
   
-  # add color if specified 
-  # This area could be supplemented to set all colors for all data series by extracting
-  # the method for how dygraphs sets the underlying colors.  This would eliminate the
-  # need to set all colors if only one is explicitly set
-  # 
-  # Also, moved this area up to grab all the colors already set before the series 
-  # processed during this run through dySeries is added
-  if (!is.null(color)) {
-    #grab the names of all named series 
-    names_ <- names(attrs$series)
-   
-    #grab any colors already set
-    colors_ <- attrs$colors
-   
-    # if no colors passed thus far, set up the color vector for
-    # the series defined previously
-    if(is.null(colors_)) {
-      colors_ <- vector('character', length(names_))
-    }
-    names(colors_) <- names_
+  # grab the colors for the series being processed
+  if (!is.null(dygraph$x$attrs$colors)) {
+    currColors <- colors[names(colors) %in% name]
+
+    if (!is.null(color)) 
+			currColors[[series$name]] <- color
     
-    colors_[[name]] <- color
+    colors <- colors[!names(colors) %in% name]
+    colors[[series$name]] <- currColors[[series$name]]
     
-    # all options must be unnamed vectors
-    names(colors_) <- NULL
+    # compensating for the bug whereas a single series dygraph with specified color
+    # shows up as black since the DateTime series tries to take the first color
+    if (length(colors) == 1) colors <- c(colors, colors)
     
-    # attrs$colors <- as.list(c(attrs$colors, color))
-    attrs$colors <- colors_
+    attrs$colors <- colors
+    names(attrs$colors) <- NULL
   }
+  
   
   # default the label if we need to
   if (is.null(series$label))
@@ -213,6 +213,7 @@ dySeries <- function(dygraph,
   if (!is.null(pointShape)) {
     shapes <- c("dot", "triangle", "square", "diamond", "pentagon",
                 "hexagon", "circle", "star", "plus", "ex")
+
     if (!is.element(pointShape, shapes)) {
       stop("Invalid value for pointShape parameter. ",
            "Should be one of the following: ",
@@ -275,6 +276,7 @@ toMultiSeries <- function(lower, value, upper) {
   series <- vector(mode = "list", length = length(value))
   for (i in 1:length(series))
     series[[i]] <- c(lower[[i]], value[[i]], upper[[i]])
+
   series
 }
 
@@ -315,10 +317,59 @@ resolveStemPlot <- function(stemPlot, plotter) {
   }
 }
 
+dygraphColors <- function(dygraph, num) {
 
+  # These are used for when no custom colors are specified.
+  sat <- dygraph$x$attrs$colorSaturation %||% 1.0
+  val <- dygraph$x$attrs$colorValue %||% 0.5
+  half <- ceiling(num / 2)
+  
+  colors<-c()
+  
+  for (i in 0:(num-1)) {
+    # alternate colors for high contrast.
+    idx <- ifelse(i %% 2, (half + (i + 1) / 2), ceiling((i + 1) / 2))
+    hue <- (1.0 * idx / (1 + num))
+    color <- hsvToRGB(hue, sat, val)
+    colors <- c(colors, color)
 
+  }
 
+  return(colors)
+}
 
+#' @importFrom grDevices rgb
+hsvToRGB <- function (hue, saturation, value) {
+  if (saturation == 0) {
+    red = value
+    green = value
+    blue = value
 
+  } else {
+    i <- floor(hue * 6)
+    f <- (hue * 6) - i
+    p <- value * (1 - saturation)
+    q <- value * (1 - (saturation * f))
+    t <- value * (1 - (saturation * (1 - f)))
 
+    # converting the switch from the JS library to a vector selection    
+    red <- c(value, q, p, p, t, value, value)
+    green <- c(t, value, value, q, p, p, t)
+    blue <- c(p, p, t, value, value, q, p)
+    
+    r <- red[i + 1]
+    g <- green[i + 1]
+    b <- blue[i + 1]
+  }
+
+  red <- floor(255 * r + 0.5)
+  green <- floor(255 * g + 0.5)
+  blue <- floor(255 * b + 0.5)
+  return (rgb(red, green, blue, maxColorValue = 255))
+}
+
+`%||%` <- function(a, b){
+  if(!is.null(a)) return(a)
+  return(b)
+}
 

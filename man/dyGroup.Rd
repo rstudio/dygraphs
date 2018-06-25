@@ -21,12 +21,9 @@ and upper for a series with a shaded bar drawn around it.}
 
 \item{label}{Labels to display for series (uses name if no label defined)}
 
-\item{color}{Colors for series. These can be of the form "#AABBCC" or 
-"rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
-color for one series then you must specify one for all series. If not 
-specified then the global colors option (typically based on equally-spaced 
-points around a color wheel). Note also that global and per-series color 
-specification cannot be mixed.}
+\item{color}{Color for series. These can be of the form "#AABBCC" or 
+"rgb(255,100,200)" or "yellow", etc. If not specified then the global 
+colors option (typically based on equally-spaced points around a color wheel).}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
@@ -103,6 +100,6 @@ lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
 dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") \%>\%
   dySeries("fdeaths", stepPlot = TRUE, color = "red") \%>\% 
   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
-}
+}   
 
 }

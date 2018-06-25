@@ -22,11 +22,8 @@ and upper for a series with a shaded bar drawn around it.}
 \item{label}{Label to display for series (uses name if no label defined)}
 
 \item{color}{Color for series. These can be of the form "#AABBCC" or 
-"rgb(255,100,200)" or "yellow", etc. Note that if you specify a custom 
-color for one series then you must specify one for all series. If not 
-specified then the global colors option (typically based on equally-spaced 
-points around a color wheel). Note also that global and per-series color 
-specification cannot be mixed.}
+"rgb(255,100,200)" or "yellow", etc. If not specified then the global 
+colors option (typically based on equally-spaced points around a color wheel).}
 
 \item{axis}{Y-axis to associate the series with ("y" or "y2")}
 
