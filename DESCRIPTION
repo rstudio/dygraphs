@@ -18,7 +18,6 @@ Authors@R: c(
     person(family = "jQuery contributors", role = c("ctb", "cph"),
            comment = "jQuery library; authors listed in inst/htmlwidgets/lib/jquery/AUTHORS.txt")
     )
-Maintainer: JJ Allaire <jj@rstudio.com>
 URL: https://github.com/rstudio/dygraphs
 BugReports: https://github.com/rstudio/dygraphs/issues
 Description: An R interface to the 'dygraphs' JavaScript charting library
