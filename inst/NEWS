@@ -1,4 +1,4 @@
-dygraphs 1.1.1.5 (unreleased)
+dygraphs 1.1.1.5
 --------------------------------------------------------------------------------
 
 * Added pointShape parameter to dyOptions and dySeries function to set point shapes
