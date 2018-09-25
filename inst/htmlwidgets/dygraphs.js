@@ -51,7 +51,7 @@ HTMLWidgets.widget({
 	      
 	// disable zoom interaction except for clicks
         if (attrs.disableZoom) {
-          attrs.interactionModel = Dygraph.Interaction.nonInteractiveModel_;
+          attrs.interactionModel = Dygraph.nonInteractiveModel_;
         }
         
         // convert non-arrays to arrays
@@ -101,9 +101,12 @@ HTMLWidgets.widget({
         attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
         
         // add drawCallback for group
-        if (x.group != null)
-          this.addGroupDrawCallback(x);  
-          
+        if (x.group !== null) {
+          this.addGroupDrawCallback(x);
+          this.addGroupHighlightCallback(x);
+          this.addGroupUnhighlightCallback(x);
+        }
+        
         // add shading and event callback if necessary
         this.addShadingCallback(x);
         this.addEventCallback(x);
@@ -113,7 +116,7 @@ HTMLWidgets.widget({
         if (attrs.mobileDisableYTouch !== false && this.isMobilePhone()) {
           // create default interaction model if necessary
           if (!attrs.interactionModel)
-            attrs.interactionModel = Dygraph.Interaction.defaultModel;
+            attrs.interactionModel = Dygraph.defaultInteractionModel;
           // disable y touch direction
           attrs.interactionModel.touchstart = function(event, dygraph, context) {
             Dygraph.defaultInteractionModel.touchstart(event, dygraph, context);
@@ -471,11 +474,21 @@ HTMLWidgets.widget({
              dygraph.userDateWindow = null;
           }
           
+          // record user valueRange (or lack thereof)
+          if (dygraph.yAxisRange()[0] != yRanges[0][0] ||
+              dygraph.yAxisRange()[1] != yRanges[0][1]) {
+             dygraph.valueRange = yRanges[0];
+          } else {
+             dygraph.valueRange = null;
+          }
+          
           // record in group if necessary
           if (x.group != null && groups[x.group] != null) {
             var group = groups[x.group];
-            for(var i = 0; i<group.length; i++)
+            for(var i = 0; i<group.length; i++) {
               group[i].userDateWindow = dygraph.userDateWindow;
+              group[i].valueRange = dygraph.valueRange;
+            }
           }
         };
       },
@@ -500,17 +513,85 @@ HTMLWidgets.widget({
           // sync peers in group
           if (blockRedraw || initial) return;
           blockRedraw = true;
-          var range = dygraph.xAxisRange();
+          var rangeX = dygraph.xAxisRange();
+          var rangeY = dygraph.yAxisRange();
           for (var j = 0; j < group.length; j++) {
             if (group[j] == me) continue;
             // update group range only if it's different (prevents
             // infinite recursion in updateOptions)
-            var peerRange = group[j].xAxisRange();
-            if (peerRange[0] != range[0] || peerRange[1] != range[1]) {
-              group[j].updateOptions({
-                dateWindow: range
-              });
+            var peerXRange = group[j].xAxisRange();
+            var syncopts = {};
+            if (peerXRange[0] != rangeX[0] || peerXRange[1] != rangeX[1]) {
+              syncopts.dateWindow = rangeX;
             }
+            var peerYRange = group[j].yAxisRange();
+            if (peerYRange[0] != rangeY[0] || peerYRange[1] != rangeY[1]) {
+              syncopts.valueRange = rangeY;
+            }
+            group[j].updateOptions(syncopts);
+          }
+          blockRedraw = false;
+        };
+      },
+      
+      addGroupHighlightCallback: function(x) {
+        
+        // get attrs
+        var attrs = x.attrs;
+        
+        // check for an existing highlightCallback
+        var prevHighlightCallback = attrs["highlightCallback"] || null;
+        
+        groups[x.group] = groups[x.group] || [];
+        var group = groups[x.group];
+        var blockRedraw = false;
+        attrs.highlightCallback = function(event, x, points, row, seriesName) {
+          var me = this;
+          // call existing
+          if (prevHighlightCallback)
+            prevHighlightCallback.apply(me, arguments);
+          
+          // sync peers in group
+          if (blockRedraw) return;
+          blockRedraw = true;
+
+          for (var j = 0; j < group.length; j++) {
+            if (group[j] == me) continue;
+            
+            var idx = group[j].getRowForX(x);
+            if (idx !== null) {
+              group[j].setSelection(idx, seriesName);
+            }
+          }
+          blockRedraw = false;
+        };
+      },
+
+      addGroupUnhighlightCallback: function(x) {
+        
+        // get attrs
+        var attrs = x.attrs;
+        
+        // check for an existing highlightCallback
+        var prevUnhighlightCallback = attrs["unhighlightCallback"] || null;
+        
+        groups[x.group] = groups[x.group] || [];
+        var group = groups[x.group];
+        var blockRedraw = false;
+        attrs.unhighlightCallback = function(event) {
+          var me = this;
+          // call existing
+          if (prevUnhighlightCallback)
+            prevUnighlightCallback.apply(me, arguments);
+          
+          // sync peers in group
+          if (blockRedraw) return;
+          blockRedraw = true;
+
+          for (var j = 0; j < group.length; j++) {
+            if (group[j] == me) continue;
+            
+            group[j].clearSelection();
           }
           blockRedraw = false;
         };
