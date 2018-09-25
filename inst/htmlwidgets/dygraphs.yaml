@@ -4,7 +4,7 @@ dependencies:
     src: "htmlwidgets/lib/jquery"
     script: jquery.min.js
   - name: dygraphs
-    version: 1.1.1
+    version: 2.1.0
     src: "htmlwidgets/lib/dygraphs"
     script:
       - dygraph-combined.js
