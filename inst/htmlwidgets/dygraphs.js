@@ -561,6 +561,9 @@ HTMLWidgets.widget({
             var idx = group[j].getRowForX(x);
             if (idx !== null) {
               group[j].setSelection(idx, seriesName);
+              if(group[j].getFunctionOption("highlightCallback")) {
+                group[j].getFunctionOption("highlightCallback").apply(group[j], arguments)
+              }
             }
           }
           blockRedraw = false;
@@ -592,6 +595,9 @@ HTMLWidgets.widget({
             if (group[j] == me) continue;
             
             group[j].clearSelection();
+            if(group[j].getFunctionOption("unhighlightCallback")) {
+              group[j].getFunctionOption("unhighlightCallback").apply(group[j], arguments)
+            }
           }
           blockRedraw = false;
         };
