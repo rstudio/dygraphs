@@ -1,7 +1,7 @@
 Package: dygraphs
 Type: Package
 Title: Interface to 'Dygraphs' Interactive Time Series Charting Library
-Version: 1.1.1.6
+Version: 1.2
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
        comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
