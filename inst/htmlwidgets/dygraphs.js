@@ -101,7 +101,7 @@ HTMLWidgets.widget({
         attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
         
         // add drawCallback for group
-        if (x.group !== null) {
+        if (typeof(x.group) !== "undefined" && x.group !== null) {
           this.addGroupDrawCallback(x);
           this.addGroupHighlightCallback(x);
           this.addGroupUnhighlightCallback(x);
