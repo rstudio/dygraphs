@@ -10,6 +10,10 @@ dependencies:
       - dygraph-combined.js
       - shapes.js
     stylesheet: dygraph.css
+  - name: synchronizer
+    version: 2.1.0
+    src: "plugins"
+    script: synchronizer.js
   - name: moment
     version: 2.8.4
     src: "htmlwidgets/lib/timezone"

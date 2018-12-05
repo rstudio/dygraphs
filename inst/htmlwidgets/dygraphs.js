@@ -100,12 +100,14 @@ HTMLWidgets.widget({
         // transpose array
         attrs.file = HTMLWidgets.transposeArray2D(attrs.file);
         
+        /*
         // add drawCallback for group
         if (typeof(x.group) !== "undefined" && x.group !== null) {
           this.addGroupDrawCallback(x);
           this.addGroupHighlightCallback(x);
           this.addGroupUnhighlightCallback(x);
         }
+        */
         
         // add shading and event callback if necessary
         this.addShadingCallback(x);
@@ -233,8 +235,18 @@ HTMLWidgets.widget({
         // create the dygraph and add it to it's group (if any)
         dygraph = thiz.dygraph = new Dygraph(el, attrs.file, attrs);
         dygraph.userDateWindow = attrs.dateWindow;
-        if (x.group != null)
+        if (x.group !== null && typeof(x.group) !== "undefined") {
+          if(typeof(groups[x.group]) === "undefined") {
+            groups[x.group] = [];
+          }
           groups[x.group].push(dygraph);
+          if(typeof(groups[x.group].sync) !== "undefined") {
+            groups[x.group].sync.detach();
+          }
+          if(groups[x.group].length > 1) {
+            groups[x.group].sync = Dygraph.synchronize.apply(null, groups[x.group]);
+          }
+        }
    	
         // add shiny inputs for date window and click
         if (HTMLWidgets.shinyMode) {
@@ -254,6 +266,22 @@ HTMLWidgets.widget({
             }
             dygraph.setAnnotations(x.annotations);
           }); 
+        }
+        
+        // set up a container for tasks to perform after completion
+        //  one example would be add callbacks for event handling
+        //  styling
+        if (!(typeof x.tasks === "undefined") ){
+          if ( (typeof x.tasks.length === "undefined") ||
+           (typeof x.tasks === "function" ) ) {
+             // handle a function not enclosed in array
+             // should be able to remove once using jsonlite
+             x.tasks = [x.tasks];
+          }
+          x.tasks.map(function(t){
+            // for each tasks call the task with el supplied as `this`
+            t.call({el:el,x:x,dygraph:dygraph});
+          });
         }
           
       },
@@ -490,119 +518,6 @@ HTMLWidgets.widget({
               group[i].valueRange = dygraph.valueRange;
             }
           }
-        };
-      },
-      
-      addGroupDrawCallback: function(x) {
-        
-        // get attrs
-        var attrs = x.attrs;
-        
-        // check for an existing drawCallback
-        var prevDrawCallback = attrs["drawCallback"];
-        
-        groups[x.group] = groups[x.group] || [];
-        var group = groups[x.group];
-        var blockRedraw = false;
-        attrs.drawCallback = function(me, initial) {
-          // sync peers in group
-          if (blockRedraw || initial) return;
-          blockRedraw = true;
-          var rangeX = dygraph.xAxisRange();
-          var rangeY = dygraph.yAxisRange();
-          for (var j = 0; j < group.length; j++) {
-            if (group[j] == me) {
-              // call existing
-              if (prevDrawCallback) prevDrawCallback(me, initial);
-              continue;
-            }
-            // update group range only if it's different (prevents
-            // infinite recursion in updateOptions)
-            var rangeChanged = false;
-            var peerXRange = group[j].xAxisRange();
-            var syncopts = {};
-            if (peerXRange[0] != rangeX[0] || peerXRange[1] != rangeX[1]) {
-              syncopts.dateWindow = rangeX;
-              rangeChanged = true;
-            }
-            var peerYRange = group[j].yAxisRange();
-            if (peerYRange[0] != rangeY[0] || peerYRange[1] != rangeY[1]) {
-              syncopts.valueRange = rangeY;
-              rangeChanged = true;
-            }
-            if (rangeChanged) group[j].updateOptions(syncopts);
-          }
-          blockRedraw = false;
-        };
-      },
-      
-      addGroupHighlightCallback: function(x) {
-        
-        // get attrs
-        var attrs = x.attrs;
-        
-        // check for an existing highlightCallback
-        var prevHighlightCallback = attrs["highlightCallback"] || null;
-        
-        groups[x.group] = groups[x.group] || [];
-        var group = groups[x.group];
-        var blockRedraw = false;
-        attrs.highlightCallback = function(event, x, points, row, seriesName) {
-          var me = this;
-
-          // sync peers in group
-          if (blockRedraw) return;
-          blockRedraw = true;
-
-          for (var j = 0; j < group.length; j++) {
-            if (group[j] == me) {
-              // call existing
-              if (prevHighlightCallback) prevHighlightCallback.apply(me, arguments);
-              continue;
-            }
-            
-            var idx = group[j].getRowForX(x);
-            if (idx !== null) {
-              group[j].setSelection(idx, seriesName);
-              if(group[j].getFunctionOption("highlightCallback")) {
-                group[j].getFunctionOption("highlightCallback").apply(group[j], arguments)
-              }
-            }
-          }
-          blockRedraw = false;
-        };
-      },
-
-      addGroupUnhighlightCallback: function(x) {
-        
-        // get attrs
-        var attrs = x.attrs;
-        
-        // check for an existing highlightCallback
-        var prevUnhighlightCallback = attrs["unhighlightCallback"] || null;
-        
-        groups[x.group] = groups[x.group] || [];
-        var group = groups[x.group];
-        var blockRedraw = false;
-        attrs.unhighlightCallback = function(event) {
-          var me = this;
-          // sync peers in group
-          if (blockRedraw) return;
-          blockRedraw = true;
-
-          for (var j = 0; j < group.length; j++) {
-            if (group[j] == me) {
-              // call existing
-              if (prevUnhighlightCallback) prevUnighlightCallback.apply(me, arguments);
-              continue;
-            }
-            
-            group[j].clearSelection();
-            if(group[j].getFunctionOption("unhighlightCallback")) {
-              group[j].getFunctionOption("unhighlightCallback").apply(group[j], arguments)
-            }
-          }
-          blockRedraw = false;
         };
       },
       
