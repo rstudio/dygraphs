@@ -30,6 +30,5 @@ the "options" argument to dyPlugin.
 library(dygraphs)
 dygraph(ldeaths) \%>\%
   dyRangeSelector() \%>\%
-  dyCrosshair(direction = "vertical", 
-  color=rgb(1.0,0,0,0.5))
+  dyCrosshair(direction = "vertical", color=rgb(1.0,0,0,0.5))
 }
