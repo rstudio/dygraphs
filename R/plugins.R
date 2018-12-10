@@ -29,6 +29,7 @@ dyUnzoom <-function(dygraph) {
 #' @param dygraph Dygraph to add plugin to
 #' @param direction Crosshair direction. Valid options are: "both", "horizontal",
 #' "vertical"
+#' @param color Crosshair color in RGB form ("#ff0088" or rgb(255,0,136)), default black and 0.3 alpha.
 #'
 #' @return Dygraph with Crosshair plugin enabled
 #'
@@ -39,12 +40,12 @@ dyUnzoom <-function(dygraph) {
 #'   dyCrosshair(direction = "vertical")
 #'
 #' @export
-dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")) {
+dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical"), color=rgb(0,0,0,0.3)) {
   dyPlugin(
     dygraph = dygraph,
     name = "Crosshair",
     path = system.file("plugins/crosshair.js", package = "dygraphs"),
-    options = list(direction = match.arg(direction))
+    options = list(direction = match.arg(direction), color=color)
   )
 }
 
