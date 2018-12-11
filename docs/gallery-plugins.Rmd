@@ -61,7 +61,7 @@ The plugin can now be used just like any other dygraphs function and can even be
 dygraph(ldeaths) %>% 
   dyRangeSelector() %>% 
   dyUnzoom() %>% 
-  dyCrosshair(direction = "vertical", color='#ff00004d')
+  dyCrosshair(direction = "vertical", color="#ff00004d")
 ```
 
 If you hover over the graph you'll see a vertical crosshair drawn at the current position of the mouse.
