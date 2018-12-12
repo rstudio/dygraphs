@@ -20,6 +20,30 @@ if (!Array.prototype.indexOf) {
   };
 }
 
+// Add Shiny hook for data update if shiny running
+if (HTMLWidgets.shinyMode) {
+    Shiny.addCustomMessageHandler("dygraph:newdata", function(msg) {
+        var id = msg.id;
+        var data = msg.data;
+        var container = document.getElementById(id);
+        var widget = container.htmlwidget_data_init_result.dygraph;
+
+	var existingdata = widget.file_;
+	var isDate = existingdata.length > 0 && (existingdata[0][0] instanceof Date);
+
+	if (isDate) {
+	    // convert epoch time in seconds (from R) into javascript Date for each row
+            for (var i = 0; i < data.length ; i++) {
+		var seconds = data[i][0]
+		var date = new Date(seconds * 1000);
+		data[i][0] = date;
+            }
+	}
+
+        widget.updateOptions( { 'file': data } );
+    });
+}
+
 HTMLWidgets.widget({
 
   name: "dygraphs",
