@@ -7,15 +7,16 @@ mouse when the user hovers over the graph. It has a "direction" option which
 is provided in the R wrapper function and then forwarded to the plugin using
 the "options" argument to dyPlugin.}
 \usage{
-dyCrosshair(dygraph, direction = c("both", "horizontal", "vertical"), color=rgb(0,0,0,0.3))
+dyCrosshair(dygraph, direction = c("both", "horizontal", "vertical"),
+  color = rgb(0, 0, 0, 0.3))
 }
 \arguments{
 \item{dygraph}{Dygraph to add plugin to}
 
 \item{direction}{Crosshair direction. Valid options are: "both", "horizontal",
 "vertical"}
-  
-\item{color}{Color and alpha (transparency) of crosshair}
+
+\item{color}{Crosshair color in RGB form ("#ff0088" or rgb(255,0,136)), default black and 0.3 alpha.}
 }
 \value{
 Dygraph with Crosshair plugin enabled
@@ -30,5 +31,6 @@ the "options" argument to dyPlugin.
 library(dygraphs)
 dygraph(ldeaths) \%>\%
   dyRangeSelector() \%>\%
-  dyCrosshair(direction = "vertical", color=rgb(1.0,0,0,0.5))
+  dyCrosshair(direction = "vertical")
+
 }

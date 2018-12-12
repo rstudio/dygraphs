@@ -7,8 +7,8 @@ can be useful to visualize categorical variables
 (http://en.wikipedia.org/wiki/Categorical_variable) that change over time (along
 the x-axis).}
 \usage{
-dyRibbon(dygraph, data = NULL, palette = NULL, parser = NULL, top = 1,
-  bottom = 0)
+dyRibbon(dygraph, data = NULL, palette = NULL, parser = NULL,
+  top = 1, bottom = 0)
 }
 \arguments{
 \item{dygraph}{Dygraph to add plugin to}

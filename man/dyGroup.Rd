@@ -4,10 +4,10 @@
 \alias{dyGroup}
 \title{dygraph series group}
 \usage{
-dyGroup(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
-  stepPlot = NULL, stemPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, pointShape = NULL, strokeWidth = NULL,
-  strokePattern = NULL, strokeBorderWidth = NULL,
+dyGroup(dygraph, name = NULL, label = NULL, color = NULL,
+  axis = "y", stepPlot = NULL, stemPlot = NULL, fillGraph = NULL,
+  drawPoints = NULL, pointSize = NULL, pointShape = NULL,
+  strokeWidth = NULL, strokePattern = NULL, strokeBorderWidth = NULL,
   strokeBorderColor = NULL, plotter = NULL)
 }
 \arguments{
