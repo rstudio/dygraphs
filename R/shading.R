@@ -21,6 +21,10 @@
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
 #'   dyShading(from = "1920-1-1", to = "1930-1-1") %>%
 #'   dyShading(from = "1940-1-1", to = "1950-1-1")
+#' # Same as above
+#' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+#'   dyShading(from = c("1920-1-1", "1940-1-1"), 
+#'             to = c("1930-1-1", "1950-1-1")) 
 #'   
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
 #'   dyShading(from = "48", to = "52", axis = "y") %>%
