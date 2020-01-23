@@ -34,7 +34,8 @@
 #'   value in a data series, it interprets this as a gap and draws it as such. 
 #'   If, instead, the missing values represents an x-value for which only a 
 #'   different series has data, then you'll want to connect the dots by setting 
-#'   this to true.
+#'   this to true. To explicitly include a gap with this option set, use a value 
+#'   of NaN.
 #' @param strokeWidth The width of the lines connecting data points. This can be
 #'   used to increase the contrast or some graphs. This option can also be set 
 #'   on a per-series basis.
