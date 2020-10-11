@@ -110,11 +110,12 @@ dygraph <- function(data, main = NULL, xlab = NULL, ylab = NULL,
   attr(x, "time") <- if (format == "date") time else NULL
   attr(x, "data") <- data
   attr(x, "autoSeries") <- 2
+  attr(x, "TOJSON_FUNC") <- toJSON_NaN
   
   # add data (strip names first so we marshall as a 2d array)
   names(data) <- NULL
   x$data <- data
-    
+  
   # create widget
   htmlwidgets::createWidget(
     name = "dygraphs",
