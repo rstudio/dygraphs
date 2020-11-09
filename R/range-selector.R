@@ -68,7 +68,7 @@ dyRangeSelector <- function(dygraph,
     selector$retainDateWindow <- retainDateWindow
   
   if(keepMouseZoom)
-    selector$interactionModel= JS("Dygraph.Interaction.defaultModel")
+    selector$interactionModel= JS("Dygraph.defaultInteractionModel")
   
   # merge selector
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, selector)
