@@ -222,7 +222,9 @@ dySeries <- function(dygraph,
     }
 
     if (pointShape != "dot") {
-      dygraph$x$pointShape <- list()
+      if (is.null(dygraph$x$pointShape)) {
+        dygraph$x$pointShape <- list()
+      }
       dygraph$x$pointShape[[series$label]] <- pointShape
     }
   }
