@@ -21,6 +21,10 @@
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
 #'   dyShading(from = "1920-1-1", to = "1930-1-1") %>%
 #'   dyShading(from = "1940-1-1", to = "1950-1-1")
+#' # Same as above
+#' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
+#'   dyShading(from = c("1920-1-1", "1940-1-1"), 
+#'             to = c("1930-1-1", "1950-1-1")) 
 #'   
 #' dygraph(nhtemp, main = "New Haven Temperatures") %>% 
 #'   dyShading(from = "48", to = "52", axis = "y") %>%
@@ -32,18 +36,34 @@
 #'   
 #' @export
 dyShading <- function(dygraph, from, to, color = "#EFEFEF", axis = "x") {
+  l_from <- length(from)
+  l_to <- length(to)
+  l_color <- length(color)
+  n <- min(l_from, l_to)
+  # parameters check
+  if (l_from != l_to) warning(paste("'from' and 'to' vectors don't have the same length:",
+                                    l_from , "and", l_to,
+                                    ". Only keeping the", n, "first value(s)"))
+  if (l_color == 1) color <- rep(color, n)
+  if (l_color < n) color <- c(color, rep("#EFEFEF", n - l_color))
+  if (l_color > n) color <- head(color, n)
   
-  # create shading
-  shading <- list()
-  shading$from <- ifelse(axis == "x" && dygraph$x$format == "date",
-                         asISO8601Time(from), from)
-  shading$to <- ifelse(axis == "x" && dygraph$x$format == "date",
-                       asISO8601Time(to), to)
-  shading$color <- color
-  shading$axis <- axis
+  if (axis == "x" && dygraph$x$format == "date") {
+    from <- asISO8601Time(from)
+    to <- asISO8601Time(to)
+  }
+
+  # create shading list
+  shading <- vector(mode = "list", length = n)
+  for (i in seq_along(shading)) {
+    shading[[i]] <- list(from = from[i],
+                         to = to[i],
+                         color = color[i],
+                         axis = axis)
+  }
  
   # add it to list of shadings
-  dygraph$x$shadings[[length(dygraph$x$shadings) + 1]] <- shading
+  dygraph$x$shadings <- c(dygraph$x$shadings, shading)
   
   # return modified dygraph
   dygraph
