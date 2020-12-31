@@ -17,8 +17,13 @@ Dygraph.Plugins.Crosshair = (function() {
 
   var crosshair = function(opt_options) {
     this.canvas_ = document.createElement("canvas");
+    this.canvas_.style.zIndex = 1;
+    this.canvas_.style.position = "absolute";
+    this.canvas_.style.pointerEvents = "none";
+    
     opt_options = opt_options || {};
     this.direction_ = opt_options.direction || null;
+    this.color_ = opt_options.color || "rgba(0, 0, 0,0.3)"
   };
 
   crosshair.prototype.toString = function() {
@@ -52,7 +57,7 @@ Dygraph.Plugins.Crosshair = (function() {
 
     var ctx = this.canvas_.getContext("2d");
     ctx.clearRect(0, 0, width, height);
-    ctx.strokeStyle = "rgba(0, 0, 0,0.3)";
+    ctx.strokeStyle = this.color_;
     ctx.beginPath();
 
     var canvasx = Math.floor(e.dygraph.selPoints_[0].canvasx) + 0.5; // crisper rendering

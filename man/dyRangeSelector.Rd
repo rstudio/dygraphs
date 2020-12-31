@@ -5,8 +5,8 @@
 \title{dygraph interactive range selection and zooming}
 \usage{
 dyRangeSelector(dygraph, dateWindow = NULL, height = 40,
-  fillColor = " #A7B1C4", strokeColor = "#808FAB", keepMouseZoom = TRUE,
-  retainDateWindow = FALSE)
+  fillColor = " #A7B1C4", strokeColor = "#808FAB",
+  keepMouseZoom = TRUE, retainDateWindow = FALSE)
 }
 \arguments{
 \item{dygraph}{Dygraph to add range selector to}
