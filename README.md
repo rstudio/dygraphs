@@ -1,4 +1,12 @@
-### dygraphs for R
+# dygraphs for R
+
+<!-- badges: start -->
+
+[![CRAN status](https://www.r-pkg.org/badges/version/dygraphs)](https://cran.r-project.org/package=dygraphs)
+[![R-CMD-check](https://github.com/rstudio/dygraphs/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/dygraphs/actions)
+[![codecov](https://codecov.io/gh/rstudio/dygraphs/branch/master/graph/badge.svg?token=1z2BOSMfZe)](https://codecov.io/gh/rstudio/dygraphs)
+
+<!-- badges: end -->
 
 The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilites for charting time-series data in R, including:
 
@@ -10,7 +18,7 @@ The dygraphs package is an R interface to the [dygraphs](http://dygraphs.com) Ja
 - Use at the R console just like conventional R plots (via RStudio Viewer).
 - Seamless embedding within [R Markdown](https://rstudio.github.io/dygraphs/r-markdown.html) documents and [Shiny](https://rstudio.github.io/dygraphs/shiny.html) web applications.
 
-#### Installation
+## Installation
 
 The dygraphs package depends on the development version of the [htmlwidgets](https://github.com/ramnathv/htmlwidgets) package so you need to install both packages. You can do this using the **devtools** package as follows:
 
@@ -18,7 +26,7 @@ The dygraphs package depends on the development version of the [htmlwidgets](htt
 devtools::install_github(c("ramnathv/htmlwidgets", "rstudio/dygraphs"))
 ```
 
-#### Usage
+## Usage
 
 If you have an xts-compatible time-series object creating an interactive plot of it is as simple as this:
 
@@ -36,12 +44,3 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 ```
 
 See the [online documentation](http://rstudio.github.io/dygraphs) for the dygraphs package for additional details and examples.
-
-
-
-
-
-
-
-
-
