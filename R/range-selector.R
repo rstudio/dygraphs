@@ -52,7 +52,7 @@ dyRangeSelector <- function(dygraph,
                             retainDateWindow = FALSE) {
   
   selector <- list()
-  selector$showRangeSelector = TRUE
+  selector$showRangeSelector <- TRUE
   if (!is.null(dateWindow)) {
     if (length(dateWindow) != 2)
       stop("dateWindow must be vector of length 2 that is convertible to POSIXct")
@@ -68,7 +68,7 @@ dyRangeSelector <- function(dygraph,
     selector$retainDateWindow <- retainDateWindow
   
   if(keepMouseZoom)
-    selector$interactionModel= JS("Dygraph.Interaction.defaultModel")
+    selector$interactionModel <- JS("Dygraph.Interaction.defaultModel")
   
   # merge selector
   dygraph$x$attrs <- mergeLists(dygraph$x$attrs, selector)

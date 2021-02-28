@@ -343,9 +343,9 @@ dygraphColors <- function(dygraph, num) {
 #' @importFrom grDevices rgb
 hsvToRGB <- function (hue, saturation, value) {
   if (saturation == 0) {
-    red = value
-    green = value
-    blue = value
+    red <- value
+    green <- value
+    blue <- value
 
   } else {
     i <- floor(hue * 6)

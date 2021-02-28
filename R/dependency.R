@@ -62,7 +62,7 @@ dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
     i <- match(names(current.options), names(options))
     i <- is.na(i)
     if (any(i)) {
-      options[names(current.options)[which(i)]] = current.options[which(i)]
+      options[names(current.options)[which(i)]] <- current.options[which(i)]
     }
   }
   dygraph$x$plugins[[name]] <- options

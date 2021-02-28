@@ -227,7 +227,7 @@ dyOptions <- function(dygraph,
   options <- list()
   options$stackedGraph <- stackedGraph
   options$fillGraph <- fillGraph
-  options$fillAlpha = fillAlpha
+  options$fillAlpha <- fillAlpha
   options$stepPlot <- stepPlot
   options$drawPoints <- drawPoints
   options$pointSize <- pointSize
