@@ -1,7 +1,14 @@
+dygraphs 1.1.1.7
+--------------------------------------------------------------------------------
+
+* Added the ability for multiple series have different point shapes 
+
+
 dygraphs 1.1.1.6
 --------------------------------------------------------------------------------
 
 * Fix bug which prevented accessing dygraph object in HTMLWidget (#196)
+
 
 dygraphs 1.1.1.5
 --------------------------------------------------------------------------------
@@ -11,6 +18,7 @@ dygraphs 1.1.1.5
 
 * Updated dyPlugin behavior to merge same plugin's options for every repeated
   function call
+
 
 dygraphs 1.1.1.4
 --------------------------------------------------------------------------------
