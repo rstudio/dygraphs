@@ -148,7 +148,7 @@ dyGroup <- function(dygraph,
     if (dygraph$x$attrs$stackedGraph) 
 						warning("dyGroup is incompatible with stackedGraph... stackedGraph now FALSE")
 
-    dygraph$x$attrs$stackedGraph <- FALSE;
+    dygraph$x$attrs$stackedGraph <- FALSE
   }
    
   # Resolve stemPlot into a custom plotter if necessary
