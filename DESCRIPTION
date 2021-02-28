@@ -4,7 +4,7 @@ Title: Interface to 'Dygraphs' Interactive Time Series Charting Library
 Version: 1.1.1.7
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
-       comment = "dygraphs library in htmlwidgets/lib, http://dygraphs.com/"),
+       comment = "dygraphs library in htmlwidgets/lib, https://dygraphs.com/"),
     person("Petr", "Shevtsov", role = c("cre", "cph"),
        email = "petr.shevtsov@gmail.com"),
     person("JJ", "Allaire", role = c("aut")),

@@ -24,7 +24,7 @@
 #'   label) pairs. The built-in functions go to great lengths to choose good 
 #'   tick marks so, if you set this option, you'll most likely want to call one 
 #'   of them and modify the result. See dygraph-tickers.js and the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   \href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #' @param rangePad Add the specified amount of extra space (in pixels) around 
 #'   the value range to ensure points at the edges remain visible.
@@ -49,11 +49,11 @@
 #' @param axisLabelWidth Width, in pixels, of the axis labels
 #' @param axisLabelFormatter JavaScript function to call to format the tick 
 #'   values that appear along an axis (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   \href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #' @param valueFormatter JavaScript function to call to provide a custom display
 #'   format for the values displayed on mouseover (see the 
-#'   \href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+#'   \href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 #'   additional details).
 #' @param pixelsPerLabel Number of pixels to require between each x- and 
 #'   y-label. Larger values will yield a sparser axis with fewer ticks. Defaults

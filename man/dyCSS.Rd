@@ -17,7 +17,7 @@ dygraph with additional CSS styles
 }
 \description{
 Apply custom CSS to the text drawn within a dygraph. See the 
-\href{http://dygraphs.com/css.html}{CSS documentation} on the dygraphs 
+\href{https://dygraphs.com/css.html}{CSS documentation} on the dygraphs 
 website for additional details on which styles are available.
 }
 \note{

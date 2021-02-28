@@ -1,7 +1,7 @@
 #' Callbacks for dygraph events
 #' 
 #' Set JavaScript callbacks for various dygraph events. See the 
-#' \href{http://dygraphs.com/options.html}{dygraph options} reference for 
+#' \href{https://dygraphs.com/options.html}{dygraph options} reference for 
 #' additional details on the signature of each callback.
 #' 
 #' @param dygraph Dygraph to add callbacks to

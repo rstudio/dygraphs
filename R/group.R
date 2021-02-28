@@ -56,7 +56,7 @@
 #'   \code{strokeBorderWidth} is set.
 #' 
 #' @param plotter A function which plots the series group. See the 
-#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
+#'   \href{https://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
 #'   additional details on plotting functions.
 #'   
 #' @return Dygraph with additional series

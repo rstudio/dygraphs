@@ -53,7 +53,7 @@ generate tick marks on an axis. The tick marks are an array of (value,
 label) pairs. The built-in functions go to great lengths to choose good 
 tick marks so, if you set this option, you'll most likely want to call one 
 of them and modify the result. See dygraph-tickers.js and the 
-\href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+\href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 additional details).}
 
 \item{rangePad}{Add the specified amount of extra space (in pixels) around 
@@ -92,12 +92,12 @@ labels, both x- and y-axis. This may also be set globally using
 
 \item{axisLabelFormatter}{JavaScript function to call to format the tick 
 values that appear along an axis (see the 
-\href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+\href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 additional details).}
 
 \item{valueFormatter}{JavaScript function to call to provide a custom display
 format for the values displayed on mouseover (see the 
-\href{http://dygraphs.com/options.html}{dygraphs documentation} for 
+\href{https://dygraphs.com/options.html}{dygraphs documentation} for 
 additional details).}
 
 \item{drawGrid}{Whether to display grid lines in the chart.}

@@ -51,7 +51,7 @@
 #'   per-series basis.
 #' @param plotter A function (or array of functions) which plot each data series
 #'   on the chart. May also be set on a per-series basis. See the 
-#'   \href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
+#'   \href{https://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
 #'   additional details on plotting functions.
 #' @param colors Character vector of colors for the data series. These can be of
 #'   the form "#AABBCC" or "rgb(255,100,200)" or "yellow", etc. If not 

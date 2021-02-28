@@ -48,7 +48,7 @@ Interactive dygraph plot
 }
 \description{
 R interface to interactive time series plotting using the 
-\href{http://dygraphs.com}{dygraphs} JavaScript library.
+\href{https://dygraphs.com}{dygraphs} JavaScript library.
 }
 \note{
 See the \href{https://rstudio.github.io/dygraphs/}{online documentation} for

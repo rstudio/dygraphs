@@ -77,7 +77,7 @@ lines more easily distinguishable. Useful for graphs with many lines.}
 \code{strokeBorderWidth} is set.}
 
 \item{plotter}{A function which plots the series group. See the 
-\href{http://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
+\href{https://dygraphs.com/tests/plotters.html}{dygraphs documentation} for 
 additional details on plotting functions.}
 }
 \value{

@@ -1,7 +1,7 @@
 #' dygraph interactive plot for time series data
 #' 
 #' R interface to interactive time series plotting using the 
-#' \href{http://dygraphs.com}{dygraphs} JavaScript library.
+#' \href{https://dygraphs.com}{dygraphs} JavaScript library.
 #' 
 #' @inheritParams htmlwidgets::createWidget
 #' 
