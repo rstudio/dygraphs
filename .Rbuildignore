@@ -4,3 +4,4 @@ README.md
 examples/.*_files
 docs/
 
+^\.github$
