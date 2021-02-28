@@ -4,9 +4,15 @@
 \alias{dyLegend}
 \title{dygraph legend}
 \usage{
-dyLegend(dygraph, show = c("auto", "always", "onmouseover", "follow",
-  "never"), width = 250, showZeroValues = TRUE, labelsDiv = NULL,
-  labelsSeparateLines = FALSE, hideOnMouseOut = TRUE)
+dyLegend(
+  dygraph,
+  show = c("auto", "always", "onmouseover", "follow", "never"),
+  width = 250,
+  showZeroValues = TRUE,
+  labelsDiv = NULL,
+  labelsSeparateLines = FALSE,
+  hideOnMouseOut = TRUE
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to configure legend options for.}

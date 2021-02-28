@@ -4,10 +4,22 @@
 \alias{dyAnnotation}
 \title{Annotation for dygraph chart}
 \usage{
-dyAnnotation(dygraph, x, text, tooltip = NULL, width = NULL,
-  height = NULL, cssClass = NULL, tickHeight = NULL,
-  attachAtBottom = FALSE, clickHandler = NULL, mouseOverHandler = NULL,
-  mouseOutHandler = NULL, dblClickHandler = NULL, series = NULL)
+dyAnnotation(
+  dygraph,
+  x,
+  text,
+  tooltip = NULL,
+  width = NULL,
+  height = NULL,
+  cssClass = NULL,
+  tickHeight = NULL,
+  attachAtBottom = FALSE,
+  clickHandler = NULL,
+  mouseOverHandler = NULL,
+  mouseOutHandler = NULL,
+  dblClickHandler = NULL,
+  series = NULL
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an annotation to}

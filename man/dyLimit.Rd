@@ -4,8 +4,14 @@
 \alias{dyLimit}
 \title{dygraph limit line}
 \usage{
-dyLimit(dygraph, limit, label = NULL, labelLoc = c("left", "right"),
-  color = "black", strokePattern = "dashed")
+dyLimit(
+  dygraph,
+  limit,
+  label = NULL,
+  labelLoc = c("left", "right"),
+  color = "black",
+  strokePattern = "dashed"
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add limit line to}

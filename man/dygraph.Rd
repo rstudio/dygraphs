@@ -4,8 +4,17 @@
 \alias{dygraph}
 \title{dygraph interactive plot for time series data}
 \usage{
-dygraph(data, main = NULL, xlab = NULL, ylab = NULL, periodicity = NULL,
-  group = NULL, elementId = NULL, width = NULL, height = NULL)
+dygraph(
+  data,
+  main = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  periodicity = NULL,
+  group = NULL,
+  elementId = NULL,
+  width = NULL,
+  height = NULL
+)
 }
 \arguments{
 \item{data}{Either time series data or numeric data. For time series, this 

@@ -4,8 +4,15 @@
 \alias{dyEvent}
 \title{dygraph event line}
 \usage{
-dyEvent(dygraph, x, label = NULL, labelLoc = c("top", "bottom"),
-  color = "black", strokePattern = "dashed", date)
+dyEvent(
+  dygraph,
+  x,
+  label = NULL,
+  labelLoc = c("top", "bottom"),
+  color = "black",
+  strokePattern = "dashed",
+  date
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add event line to}

@@ -4,11 +4,24 @@
 \alias{dySeries}
 \title{dygraph data series}
 \usage{
-dySeries(dygraph, name = NULL, label = NULL, color = NULL, axis = "y",
-  stepPlot = NULL, stemPlot = NULL, fillGraph = NULL, drawPoints = NULL,
-  pointSize = NULL, pointShape = NULL, strokeWidth = NULL,
-  strokePattern = NULL, strokeBorderWidth = NULL,
-  strokeBorderColor = NULL, plotter = NULL)
+dySeries(
+  dygraph,
+  name = NULL,
+  label = NULL,
+  color = NULL,
+  axis = "y",
+  stepPlot = NULL,
+  stemPlot = NULL,
+  fillGraph = NULL,
+  drawPoints = NULL,
+  pointSize = NULL,
+  pointShape = NULL,
+  strokeWidth = NULL,
+  strokePattern = NULL,
+  strokeBorderWidth = NULL,
+  strokeBorderColor = NULL,
+  plotter = NULL
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add a series definition to}

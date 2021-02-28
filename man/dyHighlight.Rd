@@ -4,9 +4,13 @@
 \alias{dyHighlight}
 \title{dygraph series mouse-over highlighting}
 \usage{
-dyHighlight(dygraph, highlightCircleSize = 3,
-  highlightSeriesBackgroundAlpha = 0.5, highlightSeriesOpts = list(),
-  hideOnMouseOut = TRUE)
+dyHighlight(
+  dygraph,
+  highlightCircleSize = 3,
+  highlightSeriesBackgroundAlpha = 0.5,
+  highlightSeriesOpts = list(),
+  hideOnMouseOut = TRUE
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to configure highlighting behavior for.}

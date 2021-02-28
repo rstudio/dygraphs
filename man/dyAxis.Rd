@@ -4,13 +4,30 @@
 \alias{dyAxis}
 \title{dygraph axis}
 \usage{
-dyAxis(dygraph, name, label = NULL, valueRange = NULL, logscale = NULL,
-  ticker = NULL, rangePad = NULL, labelWidth = NULL, labelHeight = NULL,
-  axisHeight = NULL, axisLineColor = NULL, axisLineWidth = NULL,
-  pixelsPerLabel = NULL, axisLabelColor = NULL, axisLabelFontSize = NULL,
-  axisLabelWidth = NULL, axisLabelFormatter = NULL, valueFormatter = NULL,
-  drawGrid = NULL, gridLineColor = NULL, gridLineWidth = NULL,
-  independentTicks = NULL)
+dyAxis(
+  dygraph,
+  name,
+  label = NULL,
+  valueRange = NULL,
+  logscale = NULL,
+  ticker = NULL,
+  rangePad = NULL,
+  labelWidth = NULL,
+  labelHeight = NULL,
+  axisHeight = NULL,
+  axisLineColor = NULL,
+  axisLineWidth = NULL,
+  pixelsPerLabel = NULL,
+  axisLabelColor = NULL,
+  axisLabelFontSize = NULL,
+  axisLabelWidth = NULL,
+  axisLabelFormatter = NULL,
+  valueFormatter = NULL,
+  drawGrid = NULL,
+  gridLineColor = NULL,
+  gridLineWidth = NULL,
+  independentTicks = NULL
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add an axis definition to}

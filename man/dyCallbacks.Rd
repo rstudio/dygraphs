@@ -4,13 +4,22 @@
 \alias{dyCallbacks}
 \title{Callbacks for dygraph events}
 \usage{
-dyCallbacks(dygraph, clickCallback = NULL, drawCallback = NULL,
-  highlightCallback = NULL, pointClickCallback = NULL,
-  underlayCallback = NULL, unhighlightCallback = NULL,
-  zoomCallback = NULL, drawHighlightPointCallback = NULL,
-  drawPointCallback = NULL, annotationClickHandler = NULL,
-  annotationMouseOverHandler = NULL, annotationMouseOutHandler = NULL,
-  annotationDblClickHandler = NULL)
+dyCallbacks(
+  dygraph,
+  clickCallback = NULL,
+  drawCallback = NULL,
+  highlightCallback = NULL,
+  pointClickCallback = NULL,
+  underlayCallback = NULL,
+  unhighlightCallback = NULL,
+  zoomCallback = NULL,
+  drawHighlightPointCallback = NULL,
+  drawPointCallback = NULL,
+  annotationClickHandler = NULL,
+  annotationMouseOverHandler = NULL,
+  annotationMouseOutHandler = NULL,
+  annotationDblClickHandler = NULL
+)
 }
 \arguments{
 \item{dygraph}{Dygraph to add callbacks to}
