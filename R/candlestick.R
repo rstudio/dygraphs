@@ -4,18 +4,22 @@
 dyCandlestick <- function(dygraph, compress = FALSE) {
   path <- system.file("plotters/candlestick.js", package = "dygraphs")
   path <- normalizePath(path)
-  dygraph <- dyPlotter(dygraph = dygraph,
-                       name = "CandlestickPlotter",
-                       path = path,
-                       version = "1.0")
+  dygraph <- dyPlotter(
+    dygraph = dygraph,
+    name = "CandlestickPlotter",
+    path = path,
+    version = "1.0"
+  )
 
   if (compress) {
     path <- system.file("plugins/compress.js", package = "dygraphs")
     path <- normalizePath(path)
-    dygraph <- dyDataHandler(dygraph = dygraph,
-                             name = "CompressHandler",
-                             path = path,
-                             version = "1.0")
+    dygraph <- dyDataHandler(
+      dygraph = dygraph,
+      name = "CompressHandler",
+      path = path,
+      version = "1.0"
+    )
     dygraph <- dyAxis(dygraph, "x", valueFormatter = "
     function(millis) {
       var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',

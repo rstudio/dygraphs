@@ -35,8 +35,10 @@ dyRebase <- function(dygraph, value = 100, percent = FALSE) {
     stop("value must be of numeric type", call. = FALSE)
   }
 
-  dyPlugin(dygraph = dygraph,
-           name = "Rebase",
-           path = system.file("plugins/rebase.js", package = "dygraphs"),
-           options = base)
+  dyPlugin(
+    dygraph = dygraph,
+    name = "Rebase",
+    path = system.file("plugins/rebase.js", package = "dygraphs"),
+    options = base
+  )
 }

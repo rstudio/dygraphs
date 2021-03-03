@@ -6,4 +6,3 @@ test_that("series creation", {
   expect_identical(d$x$attrs$labels[[2]], "series")
   expect_identical(d$x$attrs$series[[1]]$fillGraph, FALSE)
 })
-

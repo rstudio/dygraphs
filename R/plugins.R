@@ -11,9 +11,8 @@
 #' dygraph(ldeaths) %>%
 #'   dyRangeSelector() %>%
 #'   dyUnzoom()
-#'
 #' @export
-dyUnzoom <-function(dygraph) {
+dyUnzoom <- function(dygraph) {
   dyPlugin(
     dygraph = dygraph,
     name = "Unzoom",
@@ -37,7 +36,6 @@ dyUnzoom <-function(dygraph) {
 #' dygraph(ldeaths) %>%
 #'   dyRangeSelector() %>%
 #'   dyCrosshair(direction = "vertical")
-#'
 #' @export
 dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")) {
   dyPlugin(
@@ -65,7 +63,7 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
 #' \dontrun{
 #' library(quantmod)
 #'
-#' getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
+#' getSymbols("SPY", from = "2016-12-01", auto.assign = TRUE)
 #'
 #' difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
 #' decreasing <- which(difference < 0)
@@ -78,19 +76,23 @@ dyCrosshair <- function(dygraph, direction = c("both", "horizontal", "vertical")
 #' ribbonData[increasing] <- 1
 #'
 #' dygraph(dyData) %>%
-#'     dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
+#'   dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
 #' }
-#' 
+#'
 #' @export
 dyRibbon <- function(dygraph, data = NULL, palette = NULL, parser = NULL, top = 1, bottom = 0) {
   dyPlugin(
     dygraph = dygraph,
     name = "Ribbon",
     path = system.file("plugins/ribbon.js", package = "dygraphs"),
-    options = list(data = data,
-                   parser = JS(parser),
-                   options = list(palette = palette,
-                                  top = top,
-                                  bottom = bottom))
+    options = list(
+      data = data,
+      parser = JS(parser),
+      options = list(
+        palette = palette,
+        top = top,
+        bottom = bottom
+      )
+    )
   )
 }

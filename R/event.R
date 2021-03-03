@@ -1,7 +1,7 @@
 #' dygraph event line
-#' 
+#'
 #' Add a vertical event line to a dygraph
-#' 
+#'
 #' @param dygraph Dygraph to add event line to
 #' @param x Either numeric or date/time for the event, depending on the format
 #'   of the x-axis of the dygraph. (For date/time must be a \code{POSIXct}
@@ -9,109 +9,109 @@
 #'   \code{as.POSIXct})
 #' @param label Label for event. Defaults to blank.
 #' @param labelLoc Location for label (top or bottom)
-#' @param color Color of event line. This can be of the form "#AABBCC" or 
+#' @param color Color of event line. This can be of the form "#AABBCC" or
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed",
-#'   "dotdash", or "solid") or a custom pattern array where the even index is 
+#'   "dotdash", or "solid") or a custom pattern array where the even index is
 #'   a draw and odd is a space in pixels. Defaults to dashed.
 #' @param date (deprecated) See argument \code{x}.
-#'   
+#'
 #' @return A dygraph with the specified event line.
-#'   
-#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+#'
+#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online
 #'   documentation} for additional details and examples.
-#'   
-#' @examples 
+#'
+#' @examples
 #' library(dygraphs)
-#' 
+#'
 #' dygraph(presidents, main = "Presidential Approval") %>%
 #'   dyAxis("y", valueRange = c(0, 100)) %>%
 #'   dyEvent("1950-6-30", "Korea", labelLoc = "bottom") %>%
 #'   dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom")
-
+#'
 #' dygraph(presidents, main = "Presidential Approval") %>%
 #'   dyAxis("y", valueRange = c(0, 100)) %>%
-#'   dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom") 
-#'  
+#'   dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom")
 #' @export
-dyEvent <- function(dygraph, 
+dyEvent <- function(dygraph,
                     x,
-                    label = NULL, 
+                    label = NULL,
                     labelLoc = c("top", "bottom"),
-                    color = "black", 
+                    color = "black",
                     strokePattern = "dashed",
                     date) {
-  
+
   # Check usage of deprecated argument 'date'
   if (!missing(date)) {
     x <- date
     warning("Argument 'date' is deprecated, please use argument 'x' instead")
   }
-  
+
   # create events
-  if (!is.null(label) && length(x) != length(label))
+  if (!is.null(label) && length(x) != length(label)) {
     stop("Length of 'x' and 'label' does not match")
+  }
   events <-
     lapply(
-      seq_along(x), function(i)
-      {
-        if (is.null(label))
+      seq_along(x), function(i) {
+        if (is.null(label)) {
           eventLabel <- NULL
-        else
+        } else {
           eventLabel <- label[i]
+        }
         list(
-          pos = ifelse(dygraph$x$format == "date", asISO8601Time(x[i]), x[i])
-         ,label = eventLabel
-         ,labelLoc = match.arg(labelLoc, c("top", "bottom"))
-         ,color = color
-         ,strokePattern = resolveStrokePattern(strokePattern)
-         ,axis = "x"
+          pos = ifelse(dygraph$x$format == "date", asISO8601Time(x[i]), x[i]),
+          label = eventLabel,
+          labelLoc = match.arg(labelLoc, c("top", "bottom")),
+          color = color,
+          strokePattern = resolveStrokePattern(strokePattern),
+          axis = "x"
         )
       }
     )
- 
+
   # add it to list of events
   dygraph$x$events <- c(dygraph$x$events, events)
-  
+
   # return modified dygraph
   dygraph
 }
 
 #' dygraph limit line
-#' 
+#'
 #' Add a horizontal limit line to a dygraph
-#' 
+#'
 #' @param dygraph Dygraph to add limit line to
 #' @param limit Numeric position of limit.
 #' @param label Label for limit. Defaults to blank.
 #' @param labelLoc Location for label (left or right).
-#' @param color Color of limit line. This can be of the form "#AABBCC" or 
+#' @param color Color of limit line. This can be of the form "#AABBCC" or
 #'   "rgb(255,100,200)" or "yellow". Defaults to black.
 #' @param strokePattern A predefined stroke pattern type ("dotted", "dashed",
-#'   "dotdash", or "solid") or a custom pattern array where the even index is 
+#'   "dotdash", or "solid") or a custom pattern array where the even index is
 #'   a draw and odd is a space in pixels. Defaults to dashed.
-#'   
+#'
 #' @return A dygraph with the specified limit line.
-#'   
-#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+#'
+#' @note See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online
 #'   documentation} for additional details and examples.
-#'   
-#' @examples 
+#'
+#' @examples
 #' library(dygraphs)
-#' 
+#'
 #' dygraph(presidents, main = "Presidential Approval") %>%
-#'   dyAxis("y", valueRange = c(0, 100)) %>% 
+#'   dyAxis("y", valueRange = c(0, 100)) %>%
 #'   dyLimit(max(presidents, na.rm = TRUE), "Max",
-#'           strokePattern = "solid", color = "blue")
-#'  
+#'     strokePattern = "solid", color = "blue"
+#'   )
 #' @export
-dyLimit <- function(dygraph, 
+dyLimit <- function(dygraph,
                     limit,
-                    label = NULL, 
+                    label = NULL,
                     labelLoc = c("left", "right"),
-                    color = "black", 
+                    color = "black",
                     strokePattern = "dashed") {
-  
+
   # create event
   event <- list()
   event$pos <- limit
@@ -120,10 +120,10 @@ dyLimit <- function(dygraph,
   event$color <- color
   event$strokePattern <- resolveStrokePattern(strokePattern)
   event$axis <- "y"
-  
+
   # add it to list of events
   dygraph$x$events[[length(dygraph$x$events) + 1]] <- event
-  
+
   # return modified dygraph
   dygraph
 }

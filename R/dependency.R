@@ -43,10 +43,11 @@ dyDependency <- function(dygraph, dependency) {
 dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
   path <- normalizePath(path)
   pluginDependency <- htmlDependency(paste0("Dygraph.Plugins.", name),
-                                     version,
-                                     src = dirname(path),
-                                     script = basename(path),
-                                     all_files = FALSE)
+    version,
+    src = dirname(path),
+    script = basename(path),
+    all_files = FALSE
+  )
   dygraph <- dyDependency(dygraph, pluginDependency)
 
   # add the plugin and it's options (will be evaluated by renderValue)
@@ -85,10 +86,11 @@ dyPlugin <- function(dygraph, name, path, options = list(), version = "1.0") {
 dyPlotter <- function(dygraph, name, path, version = "1.0") {
   path <- normalizePath(path)
   plotterDependency <- htmlDependency(paste0("Dygraph.Plotters.", name),
-                                      version,
-                                      src = dirname(path),
-                                      script = basename(path),
-                                      all_files = FALSE)
+    version,
+    src = dirname(path),
+    script = basename(path),
+    all_files = FALSE
+  )
   dygraph <- dyDependency(dygraph, plotterDependency)
 
   dygraph$x$plotter <- name
@@ -112,10 +114,11 @@ dyPlotter <- function(dygraph, name, path, version = "1.0") {
 dyDataHandler <- function(dygraph, name, path, version = "1.0") {
   path <- normalizePath(path)
   dataHandlerDependency <- htmlDependency(paste0("Dygraph.DataHandlers.", name),
-                                          version,
-                                          src = dirname(path),
-                                          script = basename(path),
-                                          all_files = FALSE)
+    version,
+    src = dirname(path),
+    script = basename(path),
+    all_files = FALSE
+  )
   dygraph <- dyDependency(dygraph, dataHandlerDependency)
 
   dygraph$x$dataHandler <- name

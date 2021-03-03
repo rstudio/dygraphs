@@ -5,4 +5,3 @@ test_that("dygraph creation", {
   expect_identical(dygraph(ldeaths, xlab = "x")$x$attrs$xlabel, "x")
   expect_identical(dygraph(ldeaths, ylab = "y")$x$attrs$ylabel, "y")
 })
-

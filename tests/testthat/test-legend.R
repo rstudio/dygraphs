@@ -6,4 +6,3 @@ test_that("legend creation", {
   expect_identical(d$x$attrs$legend, "always")
   expect_identical(d$x$attrs$hideOverlayOnMouseOut, TRUE)
 })
-
