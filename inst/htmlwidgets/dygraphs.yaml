@@ -11,7 +11,7 @@ dependencies:
       - shapes.js
     stylesheet: dygraph.css
   - name: moment
-    version: 2.8.4
+    version: 2.29.4
     src: "htmlwidgets/lib/timezone"
     script: moment.js
   - name: moment-timezone
