@@ -1,3 +1,7 @@
+# dygraphs (development version)
+
+* Start of development for dygraphs 2.0
+
 dygraphs 1.1.1.7
 --------------------------------------------------------------------------------
 
