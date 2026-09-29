@@ -327,7 +327,8 @@ resolveStemPlot <- function(stemPlot, plotter) {
           ctx.arc(center_x, center_y, 3, 0, 2*Math.PI); 
           ctx.stroke();
        }
-    }"
+    }
+    Dygraph.Plotters.StemPlotter = stemPlotter;"
   } else {
     # specified plotter
     plotter
