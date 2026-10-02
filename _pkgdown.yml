@@ -13,15 +13,8 @@ footer:
     left: [developed_by]
 
 articles:
-- title: Get started
-  navbar: ~
-  contents:
-  - articles/r-console
-  - articles/r-markdown
-  - articles/shiny
-
 - title: Gallery
-  navbar: Gallery
+  navbar: ~
   contents:
   - articles/gallery-series-options
   - articles/gallery-series-highlighting
@@ -42,9 +35,9 @@ articles:
   - articles/gallery-ribbon
 
 redirects:
-  - ["r-console.html", "articles/r-console.html"]
-  - ["r-markdown.html", "articles/r-markdown.html"]
-  - ["shiny.html", "articles/shiny.html"]
+  - ["r-console.html", "articles/dygraphs.html"]
+  - ["r-markdown.html", "articles/dygraphs.html"]
+  - ["shiny.html", "articles/dygraphs.html"]
   - ["gallery-series-options.html", "articles/gallery-series-options.html"]
   - ["gallery-series-highlighting.html", "articles/gallery-series-highlighting.html"]
   - ["gallery-axis-options.html", "articles/gallery-axis-options.html"]
