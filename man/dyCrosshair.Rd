@@ -29,5 +29,4 @@ library(dygraphs)
 dygraph(ldeaths) \%>\%
   dyRangeSelector() \%>\%
   dyCrosshair(direction = "vertical")
-
 }

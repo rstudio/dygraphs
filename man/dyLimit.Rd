@@ -22,11 +22,11 @@ dyLimit(
 
 \item{labelLoc}{Location for label (left or right).}
 
-\item{color}{Color of limit line. This can be of the form "#AABBCC" or 
+\item{color}{Color of limit line. This can be of the form "#AABBCC" or
 "rgb(255,100,200)" or "yellow". Defaults to black.}
 
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed",
-"dotdash", or "solid") or a custom pattern array where the even index is 
+"dotdash", or "solid") or a custom pattern array where the even index is
 a draw and odd is a space in pixels. Defaults to dashed.}
 }
 \value{
@@ -36,15 +36,15 @@ A dygraph with the specified limit line.
 Add a horizontal limit line to a dygraph
 }
 \note{
-See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online
   documentation} for additional details and examples.
 }
 \examples{
 library(dygraphs)
 
 dygraph(presidents, main = "Presidential Approval") \%>\%
-  dyAxis("y", valueRange = c(0, 100)) \%>\% 
+  dyAxis("y", valueRange = c(0, 100)) \%>\%
   dyLimit(max(presidents, na.rm = TRUE), "Max",
-          strokePattern = "solid", color = "blue")
- 
+    strokePattern = "solid", color = "blue"
+  )
 }

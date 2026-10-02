@@ -47,7 +47,11 @@ importFrom(grDevices,rgb)
 importFrom(htmltools,htmlDependency)
 importFrom(htmlwidgets,JS)
 importFrom(magrittr,"%>%")
-importFrom(stats,end)
-importFrom(stats,start)
-importFrom(zoo,as.yearmon)
-importFrom(zoo,as.yearqtr)
+importFrom(stats,
+  end,
+  start
+)
+importFrom(zoo,
+  as.yearmon,
+  as.yearqtr
+)
