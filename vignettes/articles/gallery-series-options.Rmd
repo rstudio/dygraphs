@@ -82,9 +82,8 @@ With `dyGroup` you can replicate options across multiple series or pass a vector
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
 
 dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dySeries("fdeaths", stepPlot = TRUE, color = "red") %>% 
+  dySeries("fdeaths", stepPlot = TRUE, color = "red") %>%
   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
-
 ```
 
 

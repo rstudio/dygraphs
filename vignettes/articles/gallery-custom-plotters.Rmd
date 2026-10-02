@@ -20,10 +20,13 @@ Here's how you'd create an R function to wrap the Bar Chart plotter:
 
 ```{r}
 dyBarChart <- function(dygraph) {
-  dyPlotter(dygraph = dygraph,
-            name = "BarChart",
-            path = system.file("plotters/barchart.js",
-                               package = "dygraphs"))
+  dyPlotter(
+    dygraph = dygraph,
+    name = "BarChart",
+    path = system.file("plotters/barchart.js",
+      package = "dygraphs"
+    )
+  )
 }
 ```
 
@@ -44,10 +47,13 @@ Here's how you'd create an R function to wrap the Bar Chart plotter:
 
 ```{r}
 dyMultiColumn <- function(dygraph) {
-  dyPlotter(dygraph = dygraph,
-            name = "MultiColumn",
-            path = system.file("plotters/multicolumn.js",
-                               package = "dygraphs"))
+  dyPlotter(
+    dygraph = dygraph,
+    name = "MultiColumn",
+    path = system.file("plotters/multicolumn.js",
+      package = "dygraphs"
+    )
+  )
 }
 ```
 
@@ -59,7 +65,6 @@ lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) %>%
   dyRangeSelector() %>%
   dyMultiColumn()
-
 ```
 
 #### Series Plotters
@@ -72,9 +77,8 @@ come with the `dygraphs` package.
 lungDeaths <- cbind(mdeaths, fdeaths)
 dygraph(lungDeaths) %>%
   dyRangeSelector() %>%
-  dyBarSeries('fdeaths') %>% 
-  dyFilledLine('mdeaths')
-
+  dyBarSeries("fdeaths") %>%
+  dyFilledLine("mdeaths")
 ```
 
 #### Grouped Series Plotters
@@ -86,16 +90,15 @@ Similar to working with just a single series, you can also use custom plotters o
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
 dygraph(lungDeaths) %>%
-  dyStackedBarGroup(c('ldeaths', 'mdeaths'))
+  dyStackedBarGroup(c("ldeaths", "mdeaths"))
 
 dygraph(lungDeaths) %>%
-  dyMultiColumnGroup(c('mdeaths', 'fdeaths'))
+  dyMultiColumnGroup(c("mdeaths", "fdeaths"))
 
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths, adjustment = 100)
 dygraph(lungDeaths) %>%
-  dyStackedRibbonGroup(c('fdeaths', 'ldeaths')) %>% 
-  dyStackedBarGroup(c('adjustment', 'mdeaths'))
-
+  dyStackedRibbonGroup(c("fdeaths", "ldeaths")) %>%
+  dyStackedBarGroup(c("adjustment", "mdeaths"))
 ```
 
 #### Mix-and-match
@@ -104,12 +107,12 @@ Use the plotters to highlight different series, stack only related groups, or wh
 
 ```{r}
 lungDeaths <- cbind(ldeaths, fdeaths, mdeaths,
-                    additive = rep.int(200, length(ldeaths)),
-                    line = rep.int(3000, length(ldeaths)))
+  additive = rep.int(200, length(ldeaths)),
+  line = rep.int(3000, length(ldeaths))
+)
 dygraph(lungDeaths) %>%
-  dySeries('line', strokePattern = 'dashed') %>%
-  dySeries('ldeaths', stepPlot = TRUE) %>%
-  dyStackedBarGroup(c('additive', 'mdeaths')) %>%
-  dyStackedRibbonGroup(c('fdeaths', 'ldeaths'))
-
+  dySeries("line", strokePattern = "dashed") %>%
+  dySeries("ldeaths", stepPlot = TRUE) %>%
+  dyStackedBarGroup(c("additive", "mdeaths")) %>%
+  dyStackedRibbonGroup(c("fdeaths", "ldeaths"))
 ```

@@ -27,14 +27,14 @@ levels. For example, one could use limit lines to highlight the initial value of
 a stock price series.
 
 ```{r, echo=FALSE, include=FALSE}
-options("getSymbols.warning4.0"=FALSE)
+options("getSymbols.warning4.0" = FALSE)
 library(quantmod, quietly = TRUE)
 ```
 
 
 ```{r}
-quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign=TRUE)
-dygraph(MSFT[, 4], main = "Microsoft Share Price") %>% 
+quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign = TRUE)
+dygraph(MSFT[, 4], main = "Microsoft Share Price") %>%
   dySeries("MSFT.Close", label = "MSFT") %>%
   dyLimit(as.numeric(MSFT[1, 4]), color = "red")
 ```

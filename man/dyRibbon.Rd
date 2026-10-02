@@ -40,7 +40,7 @@ the x-axis).
 \dontrun{
 library(quantmod)
 
-getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
+getSymbols("SPY", from = "2016-12-01", auto.assign = TRUE)
 
 difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
 decreasing <- which(difference < 0)
@@ -53,7 +53,7 @@ ribbonData[decreasing] <- 0.5
 ribbonData[increasing] <- 1
 
 dygraph(dyData) \%>\%
-    dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
+  dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
 }
 
 }

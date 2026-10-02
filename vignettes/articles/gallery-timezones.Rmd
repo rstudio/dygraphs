@@ -13,10 +13,12 @@ For example, consider the following time-series than includes randomly generated
 
 ```{r}
 library(xts)
-datetimes <- seq.POSIXt(as.POSIXct("2015-01-01", tz="GMT"),
-                        as.POSIXct("2015-01-02", tz="GMT"), by="3 hours")
+datetimes <- seq.POSIXt(as.POSIXct("2015-01-01", tz = "GMT"),
+  as.POSIXct("2015-01-02", tz = "GMT"),
+  by = "3 hours"
+)
 values <- rnorm(length(datetimes))
-series <- xts(values, order.by = datetimes, tz="GMT")
+series <- xts(values, order.by = datetimes, tz = "GMT")
 ```
 
 If we plots this using the default dygraph behavior you'll notice that the series doesn't adhere to the day boundaries exactly because it's plotted using your web browser's current time zone:
@@ -28,7 +30,7 @@ dygraph(series)
 However, by specifying the `labelsUTC` option the series will be displayed in UTC time rather than in the local timezone of the client:
 
 ```{r}
-dygraph(series) %>% 
+dygraph(series) %>%
   dyOptions(labelsUTC = TRUE)
 ```
 
@@ -37,7 +39,7 @@ If you'd like to force the series to be rendered using an arbitrary time zone yo
 In this example we specify `useDataTimezone` and the units are displayed in GMT because that was the time zone used when constructuring the time series:
 
 ```{r}
-dygraph(series) %>% 
+dygraph(series) %>%
   dyOptions(useDataTimezone = TRUE)
 ```
 

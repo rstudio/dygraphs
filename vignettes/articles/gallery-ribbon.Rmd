@@ -20,7 +20,7 @@ library(dygraphs)
 ```{r}
 library(quantmod)
 
-getSymbols("SPY", from = "2016-12-01", auto.assign=TRUE)
+getSymbols("SPY", from = "2016-12-01", auto.assign = TRUE)
 
 difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
 decreasing <- which(difference < 0)
@@ -33,7 +33,7 @@ ribbonData[decreasing] <- 0.5
 ribbonData[increasing] <- 1
 
 dygraph(dyData) %>%
-    dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
+  dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
 ```
 
 It is also possible to feed ribbon with data using a parser written in JavaScript.
@@ -64,6 +64,8 @@ parser <- "function(rawData) {
 }"
 
 dygraph(SPY[, c("SPY.Open", "SPY.High", "SPY.Low", "SPY.Close")]) %>%
-    dyRibbon(parser = parser,
-             palette = c("#efefef", "#ffe6e6", "#ccebd6"))
+  dyRibbon(
+    parser = parser,
+    palette = c("#efefef", "#ffe6e6", "#ccebd6")
+  )
 ```

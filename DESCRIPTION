@@ -41,4 +41,4 @@ Enhances:
     shiny (>= 0.10.2.1)
 Config/Needs/website: rmarkdown
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+Config/roxygen2/version: 8.1.0

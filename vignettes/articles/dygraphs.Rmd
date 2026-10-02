@@ -19,7 +19,7 @@ You can use `dygraph` at the R console just like any other plotting function. Fo
 
 ```{r run, eval=FALSE}
 plot(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
-dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
 ```
 
 In the default R console the dygraph will appear in an external browser window.
@@ -56,7 +56,7 @@ dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
 </code></pre>
 
 ```{r markdown, echo=FALSE, fig.width=6, fig.height=2.5}
-dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
 ```
 
 ## Shiny

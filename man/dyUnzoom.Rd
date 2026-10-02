@@ -24,5 +24,4 @@ library(dygraphs)
 dygraph(ldeaths) \%>\%
   dyRangeSelector() \%>\%
   dyUnzoom()
-
 }

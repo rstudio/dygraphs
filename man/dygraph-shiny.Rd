@@ -21,10 +21,10 @@ string and have \code{"px"} appended.}
 
 \item{env}{The environment in which to evaluate \code{expr}.}
 
-\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This 
+\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
 }
 \description{
-Output and render functions for using dygraph within Shiny 
+Output and render functions for using dygraph within Shiny
 applications and interactive Rmd documents.
 }
