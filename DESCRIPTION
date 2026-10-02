@@ -39,6 +39,6 @@ Suggests:
 Enhances: 
     rmarkdown (>= 0.3.3),
     shiny (>= 0.10.2.1)
-Config/Needs/website: rmarkdown
-Encoding: UTF-8
+Config/Needs/website: rmarkdown, tidyverse/tidytemplate
 Config/roxygen2/version: 8.1.0
+Encoding: UTF-8
