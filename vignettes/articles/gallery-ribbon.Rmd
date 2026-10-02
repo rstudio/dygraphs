@@ -10,7 +10,7 @@ x-axis). For example multiple states of economy like "bust", "recession", "recov
 1]`) and assigned colors `["red", "orange", "green", "purple"]`.
 
 The following chart contains a colored ribon at the bottom. The position of ribbon is
-set with `top` and `bottom` parameters of `dyRibbon` function, `0` means the very
+set with `top` and `bottom` parameters of `dyRibbon()` function, `0` means the very
 bottom of chart while `1` represents a very top.
 
 ```{r setup, include=FALSE}

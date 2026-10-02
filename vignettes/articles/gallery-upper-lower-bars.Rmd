@@ -8,7 +8,7 @@ library(quantmod)
 options(getSymbols.warning4.0 = FALSE)
 ```
 
-You can plot error bars (or any other high/low oriented data) along with a series by simply specifying the lower, value, and upper series together in the `dySeries` name parameter. For example:
+You can plot error bars (or any other high/low oriented data) along with a series by simply specifying the lower, value, and upper series together in the `dySeries()` name parameter. For example:
 
 ```{r}
 hw <- HoltWinters(ldeaths)

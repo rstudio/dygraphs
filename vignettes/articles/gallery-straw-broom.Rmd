@@ -6,7 +6,7 @@ title: "Straw Broom Charts"
 library(dygraphs)
 ```
 
-You can create straw broom charts with `dyRebase` function. For example:
+You can create straw broom charts with `dyRebase()` function. For example:
 
 ```{r, eval=FALSE}
 library(quantmod)

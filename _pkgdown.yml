@@ -13,26 +13,41 @@ footer:
     left: [developed_by]
 
 articles:
-- title: Gallery
-  navbar: ~
-  contents:
-  - articles/gallery-series-options
-  - articles/gallery-series-highlighting
-  - articles/gallery-axis-options
-  - articles/gallery-plot-labels
-  - articles/gallery-timezones
-  - articles/gallery-css-styling
-  - articles/gallery-range-selector
-  - articles/gallery-candlestick
-  - articles/gallery-synchronization
-  - articles/gallery-straw-broom
-  - articles/gallery-roll-periods
-  - articles/gallery-annotations
-  - articles/gallery-event-lines
-  - articles/gallery-upper-lower-bars
-  - articles/gallery-plugins
-  - articles/gallery-custom-plotters
-  - articles/gallery-ribbon
+  - title: Getting Started
+    navbar: ~
+    contents:
+      - articles/gallery-axis-options
+      - articles/gallery-series-options
+      - articles/gallery-plot-labels
+  - title: Interaction and Exploration
+    navbar: Interaction and Exploration
+    contents:
+      - articles/gallery-range-selector
+      - articles/gallery-series-highlighting
+      - articles/gallery-roll-periods
+      - articles/gallery-synchronization
+  - title: Annotations and Context
+    navbar: Annotations and Context
+    contents:
+      - articles/gallery-annotations
+      - articles/gallery-event-lines
+      - articles/gallery-ribbon
+  - title: Advanced Visualisations
+    navbar: Advanced Visualisations
+    contents:
+      - articles/gallery-candlestick
+      - articles/gallery-straw-broom
+      - articles/gallery-upper-lower-bars
+      - articles/gallery-custom-plotters
+  - title: Styling and Extensions
+    navbar: Styling and Extensions
+    contents:
+      - articles/gallery-css-styling
+      - articles/gallery-plugins
+  - title: Data and Time Handling
+    navbar: Data and Time Handling
+    contents:
+      - articles/gallery-timezones
 
 redirects:
   - ["r-console.html", "articles/dygraphs.html"]

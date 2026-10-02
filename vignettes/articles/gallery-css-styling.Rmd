@@ -2,12 +2,13 @@
 title: "CSS Styling"
 ---
 
+## CSS Classes
+
 ```{r, include=FALSE}
 library(dygraphs)
 ```
 
-
-You can use CSS to customize the typefaces used in dygraph labels. In this example we'll use CSS to make the main label bold and to reduce the size of the typefaces used on the axes:
+You can use CSS to customize the typefaces used in `dygraph` labels. In this example we'll use CSS to make the main label bold and to reduce the size of the typefaces used on the axes:
 
 ```css
 .dygraph-title {
@@ -24,9 +25,6 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
   dyCSS("dygraph.css")
 ```
 
-
-#### CSS Classes
-
 The CSS classes for the chart labels are:
 
 - Title: `.dygraph-label .dygraph-title`
@@ -40,13 +38,13 @@ The axis labels also get CSS classes:
 - y-axis: `.dygraph-axis-label .dygraph-axis-label-y`
 - y2-axis: `.dygraph-axis-label .dygraph-axis-label-y .dygraph-axis-label-y2`
 
-The legend has the .dygraph-legend class. When using `highlightSeriesOpts`, the selected series' &lt;span&gt; gets a `.highlight` class. This can be used to show only a single series in the legend.
+The legend has the `.dygraph-legend` class. When using `highlightSeriesOpts`, the selected series' &lt;span&gt; gets a `.highlight` class. This can be used to show only a single series in the legend.
 
 The full reference to the various CSS classes used throughout a dygraph is here: <http://dygraphs.com/css.html>.
 
-#### Applying Styles Globally
+## Applying Styles Globally
 
-If you are creating an R Markdown document or Shiny application, you may want to apply your dygraphs CSS globally to the page or application rather than attaching it to each plot. See these links for documentation on how to do this:
+If you are creating an R Markdown document or Shiny application, you may want to apply your `dygraphs` CSS globally to the page or application rather than attaching it to each plot. See these links for documentation on how to do this:
 
 - R Markdown: <http://rmarkdown.rstudio.com/html_document_format.html#custom-css>
 

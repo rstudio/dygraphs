@@ -7,7 +7,7 @@ knitr::opts_chunk$set(warning = FALSE)
 library(dygraphs)
 ```
 
-#### Annotations
+## Annotations
 
 You can add annotations to individual points within a plot. To minimize their visual footprint annotations are typically short abbreviations (e.g. "A", "B", "C") which are elaborated upon in a tooltip or with adjacent explanatory text.
 
@@ -36,15 +36,13 @@ dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
   presAnnotation("1965-1-1", text = "Vietnam")
 ```
 
-This example also demonstrates another concept: writing a helper function to define common graph element options in a single place. The `presAnnotation` function takes a dygraph and then modifies it to include an annotation with the requisite layout behavior.
+This example also demonstrates another concept: writing a helper function to define common graph element options in a single place. The `presAnnotation()` function takes a `dygraph()` and then modifies it to include an annotation with the requisite layout behavior.
 
-#### Shading
-
+## Shading
 
 You can add a shading effect to the graph background for one or more time ranges. This is useful for highlighting periods of time with special properties (e.g. holding periods for securities).
 
 For example, the following code adds a shading effect to the 1920's and 1940's for the New Haven Temperatures graph:
-
 
 ```{r}
 dygraph(nhtemp, main = "New Haven Temperatures") %>%
@@ -65,11 +63,7 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 Note that we also changed the color of the series to black so that it contrast well with the custom background colors.
 
-##### Horizontal Shading
-
-It is also possible to add horizontal shading to a chart. In the example below,
-shading is used to show the one standard deviation range for a stock return 
-series.
+It is also possible to add horizontal shading to a chart. In the example below, shading is used to show the one standard deviation range for a stock return series.
 
 ```{r, echo=FALSE, include=FALSE}
 options("getSymbols.warning4.0" = FALSE)

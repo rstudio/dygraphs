@@ -6,7 +6,7 @@ title: "Labels & Legends"
 library(dygraphs)
 ```
 
-#### Labels
+## Labels
 
 You can add labels to a dygraph using the `main`, `ylab` and `xlab` arguments. For example:
 
@@ -17,7 +17,7 @@ dygraph(discoveries,
 )
 ```
 
-It's also possible to specify labels as part of a `dyAxis` definition. For example:
+It's also possible to specify labels as part of a `dyAxis()` definition. For example:
 
 ```{r, results='hide'}
 dygraph(discoveries, main = "Important Discoveries") %>%
@@ -26,7 +26,7 @@ dygraph(discoveries, main = "Important Discoveries") %>%
 
 The appearance of labels can be customized extensively using CSS. See the [CSS Label Styling](gallery-css-styling.html) article for additional details.
 
-#### Legends
+## Legends
 
 There are several options available for customizing the appearance and behavior of the plot legend. By default the legend always appears when there are multiple series and only appears on mouseover when there is a single series. By default the legend shows point values when the mouse is over the graph but not when the mouse leaves. 
 

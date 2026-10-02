@@ -2,11 +2,13 @@
 title: "Axis Options"
 ---
 
+## Introduction
+
 ```{r, include=FALSE}
 library(dygraphs)
 ```
 
-You can customize the display of axes using the `dyOptions` function (for global options) and `dyAxis` function (for per-axis options). Here's an example that uses both:
+You can customize the display of axes using the `dyOptions()` function (for global options) and `dyAxis()` function (for per-axis options). Here's an example that uses both:
 
 ```{r}
 dygraph(nhtemp, main = "New Haven Temperatures") %>%
@@ -45,10 +47,9 @@ Here we use a number of options to customize axis display:
 
 There are many more options available that affect axis display. See the documentation on `dyAxis` and `dyOptions` for more details.
 
-#### Second Y Axis
+## Second Y Axis
 
 If you are plotting multiple series that have distinct value types you can add a second Y-axis to show a distinct value scale. This is done by setting the `independentTicks` option for the y2 axis and then assigning one or more series to the y2 axis. For example:
-
 
 ```{r}
 # define mts with distinct y-axis scales
@@ -73,15 +74,13 @@ dygraph(weather) %>%
   dySeries("rainfall", axis = "y2")
 ```
 
-##### Independent Ticks
+The `independentTicks` option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to display the secondary axis scale at least one of the two axes must specify `independentTicks = TRUE`. Possible combinations include: 
 
-The `independentTicks` option can be used to determine which axis is primary (and therefore which axis grid lines are aligned with). In order to display the secondary axis scale at least one of the two axes must specify independentTicks = TRUE. Possible combinations include: 
+1) `y = TRUE`, `y2 = FALSE`: (default) y is the primary axis and the y2 ticks are aligned to the the ones of y. (only 1 grid) 
 
-1) y=TRUE, y2=FALSE (default): y is the primary axis and the y2 ticks are aligned to the the ones of y. (only 1 grid) 
+2) `y = FALSE`, `y2 = TRUE`: y2 is the primary axis and the y ticks are aligned to the the ones of y2. (only 1 grid) 
 
-2) y=FALSE, y2=TRUE: y2 is the primary axis and the y ticks are aligned to the the ones of y2. (only 1 grid) 
-
-3) y=TRUE, y2=TRUE: Both axis are independent and have their own ticks. (2 grids) 
+3) `y = TRUE`, `y2 = TRUE`: Both axis are independent and have their own ticks. (2 grids) 
 
 In this example we specify that the y2 axis has independent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.
 

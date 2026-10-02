@@ -7,7 +7,7 @@ library(dygraphs)
 library(xts)
 ```
 
-By default **dygraphs** displays time-series using the time zone of the client workstation. However, you can also choose to use the time zone defined within the underlying **xts** object using the `useDataTimezone` option.
+By default `{dygraphs}` displays time-series using the time zone of the client workstation. However, you can also choose to use the time zone defined within the underlying **xts** object using the `useDataTimezone` option.
 
 For example, consider the following time-series than includes randomly generated values for each 3 hour period of the first day of 2015 (the series is defined using the GMT time zone):
 
@@ -21,7 +21,7 @@ values <- rnorm(length(datetimes))
 series <- xts(values, order.by = datetimes, tz = "GMT")
 ```
 
-If we plots this using the default dygraph behavior you'll notice that the series doesn't adhere to the day boundaries exactly because it's plotted using your web browser's current time zone:
+If we plots this using the default `dygraph()` behavior you'll notice that the series doesn't adhere to the day boundaries exactly because it's plotted using your web browser's current time zone:
 
 ```{r}
 dygraph(series)

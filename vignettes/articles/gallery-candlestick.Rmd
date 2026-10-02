@@ -6,7 +6,7 @@ title: "Candlestick Charts"
 library(dygraphs)
 ```
 
-You can create candlestick/OHLC charts with `dyCandlestick` function. For example:
+You can create candlestick/OHLC charts with `dyCandlestick()` function. For example:
 
 ```{r message=FALSE}
 library(xts)

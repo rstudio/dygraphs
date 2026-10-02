@@ -7,7 +7,7 @@ knitr::opts_chunk$set(warning = FALSE)
 library(dygraphs)
 ```
 
-#### Event Lines
+## Event Lines
 
 Event lines are a useful way to note points within a time series where noteworthy events occurred. For example, in the following graph we overlay the dates which saw the first deployment of US combat troops to Korea and Vietnam over a plot of US presidential approval ratings: 
 
@@ -20,7 +20,7 @@ dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
 
 Note that we specify that our event labels go at the bottom of the graph so they don't interfere with the legend, and set the y-axis `valueRange` to ensure that there is adequate room at the bottom for the labels.
 
-#### Limit Lines
+## Limit Lines
 
 Related to event lines are limit lines, which can be used to highlight data 
 levels. For example, one could use limit lines to highlight the initial value of
@@ -30,7 +30,6 @@ a stock price series.
 options("getSymbols.warning4.0" = FALSE)
 library(quantmod, quietly = TRUE)
 ```
-
 
 ```{r}
 quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign = TRUE)
