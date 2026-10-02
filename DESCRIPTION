@@ -23,7 +23,8 @@ Description: An R interface to the 'dygraphs' JavaScript charting library
     series- and axis-display and interactive features like zoom/pan and
     series/point highlighting.
 License: MIT + file LICENSE
-URL: https://github.com/rstudio/dygraphs
+URL: https://rstudio.github.io/dygraphs/,
+    https://github.com/rstudio/dygraphs
 BugReports: https://github.com/rstudio/dygraphs/issues
 Depends:
     R (>= 3.0)
