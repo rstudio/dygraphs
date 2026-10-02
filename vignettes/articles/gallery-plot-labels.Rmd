@@ -20,7 +20,7 @@ dygraph(discoveries,
 It's also possible to specify labels as part of a `dyAxis()` definition. For example:
 
 ```{r, results='hide'}
-dygraph(discoveries, main = "Important Discoveries") %>%
+dygraph(discoveries, main = "Important Discoveries") |>
   dyAxis("y", label = "Discoveries / Year")
 ```
 
@@ -33,16 +33,16 @@ There are several options available for customizing the appearance and behavior 
 Here we override both of these defaults ensuring that the legend is always visible and that point values are still displayed even after the mouse leaves the plot:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dySeries("V1", label = "Temperature (F)") %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
+  dySeries("V1", label = "Temperature (F)") |>
   dyLegend(show = "always", hideOnMouseOut = FALSE)
 ```
 
 Here we enable "follow" mode which will show the legend overlaid on the plot (near the mouse) only when the mouse is over a point:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dySeries("V1", label = "Temperature (F)") %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
+  dySeries("V1", label = "Temperature (F)") |>
   dyLegend(show = "follow")
 ```
 
@@ -50,7 +50,7 @@ When you have several data series sometime the legend mouse-over wraps to a seco
 
 ```{r}
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") |>
   dyLegend(width = 400)
 ```
 

@@ -46,16 +46,16 @@ Note that this graph is fully interactive: as your mouse moves over the series i
 You can customize dygraphs by piping additional commands onto the original `dygraph()` object. Here we pipe a `dyRangeSelector()` onto our original graph:
 
 ```{r}
-dygraph(lungDeaths) %>% dyRangeSelector()
+dygraph(lungDeaths) |> dyRangeSelector()
 ```
 
-Note that this example uses the `%>%` (or "pipe") operator from the [magrittr](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html) package to compose the `dygraph()` with the range selector. You use a similar syntax to customize axes, series, and other options. For example:
+Note that this example uses the `|>` (or "pipe") operator to compose the `dygraph()` with the range selector. You use a similar syntax to customize axes, series, and other options. For example:
 
 ```{r}
-dygraph(lungDeaths) %>%
-  dySeries("mdeaths", label = "Male") %>%
-  dySeries("fdeaths", label = "Female") %>%
-  dyOptions(stackedGraph = TRUE) %>%
+dygraph(lungDeaths) |>
+  dySeries("mdeaths", label = "Male") |>
+  dySeries("fdeaths", label = "Female") |>
+  dyOptions(stackedGraph = TRUE) |>
   dyRangeSelector(height = 20)
 ```
 
@@ -65,9 +65,9 @@ Many options for customizing series and axis display are available. It's even po
 hw <- HoltWinters(ldeaths)
 predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
-dygraph(predicted, main = "Predicted Lung Deaths (UK)") %>%
-  dyAxis("x", drawGrid = FALSE) %>%
-  dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+dygraph(predicted, main = "Predicted Lung Deaths (UK)") |>
+  dyAxis("x", drawGrid = FALSE) |>
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
 ```
 
@@ -156,8 +156,8 @@ server <- function(input, output) {
     )
   })
   output$dygraph <- renderDygraph({
-    dygraph(predicted(), main = "Predicted Deaths/Month") %>%
-      dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+    dygraph(predicted(), main = "Predicted Deaths/Month") |>
+      dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
       dyOptions(drawGrid = input$showgrid)
   })
 }
@@ -230,8 +230,8 @@ server <- function(input, output) {
   })
 
   output$dygraph <- renderDygraph({
-    dygraph(predicted(), main = "Predicted Deaths/Month") %>%
-      dySeries(c("lwr", "fit", "upr"), label = "Deaths") %>%
+    dygraph(predicted(), main = "Predicted Deaths/Month") |>
+      dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
       dyOptions(drawGrid = input$showgrid)
   })
 

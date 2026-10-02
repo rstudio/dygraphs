@@ -21,7 +21,7 @@ You can use CSS to customize the typefaces used in `dygraph` labels. In this exa
 ```
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
   dyCSS("dygraph.css")
 ```
 

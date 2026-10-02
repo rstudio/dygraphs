@@ -36,8 +36,8 @@ The plotter can now be used directly within a `dygraph()` pipeline along with ot
 `{dygraphs}` functions:
 
 ```{r}
-dygraph(ldeaths) %>%
-  dyRangeSelector() %>%
+dygraph(ldeaths) |>
+  dyRangeSelector() |>
   dyBarChart()
 ```
 
@@ -64,8 +64,8 @@ The plotter can now be used directly within a `dygraph()` pipeline along with ot
 
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths)
-dygraph(lungDeaths) %>%
-  dyRangeSelector() %>%
+dygraph(lungDeaths) |>
+  dyRangeSelector() |>
   dyMultiColumn()
 ```
 
@@ -77,9 +77,9 @@ come with the `dygraphs` package.
 
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths)
-dygraph(lungDeaths) %>%
-  dyRangeSelector() %>%
-  dyBarSeries("fdeaths") %>%
+dygraph(lungDeaths) |>
+  dyRangeSelector() |>
+  dyBarSeries("fdeaths") |>
   dyFilledLine("mdeaths")
 ```
 
@@ -91,15 +91,15 @@ Similar to working with just a single series, you can also use custom plotters o
 
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
-dygraph(lungDeaths) %>%
+dygraph(lungDeaths) |>
   dyStackedBarGroup(c("ldeaths", "mdeaths"))
 
-dygraph(lungDeaths) %>%
+dygraph(lungDeaths) |>
   dyMultiColumnGroup(c("mdeaths", "fdeaths"))
 
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths, adjustment = 100)
-dygraph(lungDeaths) %>%
-  dyStackedRibbonGroup(c("fdeaths", "ldeaths")) %>%
+dygraph(lungDeaths) |>
+  dyStackedRibbonGroup(c("fdeaths", "ldeaths")) |>
   dyStackedBarGroup(c("adjustment", "mdeaths"))
 ```
 
@@ -112,9 +112,9 @@ lungDeaths <- cbind(ldeaths, fdeaths, mdeaths,
   additive = rep.int(200, length(ldeaths)),
   line = rep.int(3000, length(ldeaths))
 )
-dygraph(lungDeaths) %>%
-  dySeries("line", strokePattern = "dashed") %>%
-  dySeries("ldeaths", stepPlot = TRUE) %>%
-  dyStackedBarGroup(c("additive", "mdeaths")) %>%
+dygraph(lungDeaths) |>
+  dySeries("line", strokePattern = "dashed") |>
+  dySeries("ldeaths", stepPlot = TRUE) |>
+  dyStackedBarGroup(c("additive", "mdeaths")) |>
   dyStackedRibbonGroup(c("fdeaths", "ldeaths"))
 ```

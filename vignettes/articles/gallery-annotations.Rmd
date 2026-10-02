@@ -14,9 +14,9 @@ You can add annotations to individual points within a plot. To minimize their vi
 For example, in the following graph we annotate the dates which saw the first deployment of US combat troops to Korea and Vietnam:
 
 ```{r}
-dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
-  dyAxis("y", valueRange = c(0, 100)) %>%
-  dyAnnotation("1950-7-1", text = "A", tooltip = "Korea") %>%
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") |>
+  dyAxis("y", valueRange = c(0, 100)) |>
+  dyAnnotation("1950-7-1", text = "A", tooltip = "Korea") |>
   dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")
 ```
 
@@ -26,13 +26,13 @@ Note that if you want to print a larger annotation and attach it to the x-axis r
 
 ```{r}
 presAnnotation <- function(dygraph, x, text) {
-  dygraph %>%
+  dygraph |>
     dyAnnotation(x, text, attachAtBottom = TRUE, width = 60)
 }
 
-dygraph(presidents, main = "Quarterly Presidential Approval Ratings") %>%
-  dyAxis("y", valueRange = c(0, 100)) %>%
-  presAnnotation("1950-7-1", text = "Korea") %>%
+dygraph(presidents, main = "Quarterly Presidential Approval Ratings") |>
+  dyAxis("y", valueRange = c(0, 100)) |>
+  presAnnotation("1950-7-1", text = "Korea") |>
   presAnnotation("1965-1-1", text = "Vietnam")
 ```
 
@@ -45,8 +45,8 @@ You can add a shading effect to the graph background for one or more time ranges
 For example, the following code adds a shading effect to the 1920's and 1940's for the New Haven Temperatures graph:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dyShading(from = "1920-1-1", to = "1930-1-1") %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
+  dyShading(from = "1920-1-1", to = "1930-1-1") |>
   dyShading(from = "1940-1-1", to = "1950-1-1")
 ```
 
@@ -55,9 +55,9 @@ Note that the `from` and `to` parameters must be of type `POSIXct` (or objects t
 You may want to modify the color of the shading to make it more or less subtle. Here's a version of the previous graph with custom colors for each shading:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dySeries(label = "Temp (F)", color = "black") %>%
-  dyShading(from = "1920-1-1", to = "1930-1-1", color = "#FFE6E6") %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
+  dySeries(label = "Temp (F)", color = "black") |>
+  dyShading(from = "1920-1-1", to = "1930-1-1", color = "#FFE6E6") |>
   dyShading(from = "1940-1-1", to = "1950-1-1", color = "#CCEBD6")
 ```
 
@@ -75,8 +75,8 @@ quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign = TRUE)
 ret <- ROC(MSFT[, 4])
 mn <- mean(ret, na.rm = TRUE)
 std <- sd(ret, na.rm = TRUE)
-dygraph(ret, main = "Microsoft Share Price") %>%
-  dySeries("MSFT.Close", label = "MSFT") %>%
+dygraph(ret, main = "Microsoft Share Price") |>
+  dySeries("MSFT.Close", label = "MSFT") |>
   dyShading(from = mn - std, to = mn + std, axis = "y")
 ```
 

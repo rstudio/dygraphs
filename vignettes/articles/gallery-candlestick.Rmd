@@ -12,7 +12,7 @@ You can create candlestick/OHLC charts with `dyCandlestick()` function. For exam
 library(xts)
 data(sample_matrix)
 m <- tail(sample_matrix, n = 32)
-dygraph(m) %>%
+dygraph(m) |>
   dyCandlestick()
 ```
 
@@ -22,7 +22,7 @@ any) are rendered with line plotter:
 ```{r message=FALSE}
 m <- cbind(m, apply(m[, 1:3], 1, mean))
 colnames(m)[5] <- "Mean"
-dygraph(m) %>%
+dygraph(m) |>
   dyCandlestick()
 ```
 
@@ -33,6 +33,6 @@ prevent chart bars overflow:
 ```{r message=FALSE}
 library(xts)
 data(sample_matrix)
-dygraph(sample_matrix) %>%
+dygraph(sample_matrix) |>
   dyCandlestick(compress = TRUE)
 ```

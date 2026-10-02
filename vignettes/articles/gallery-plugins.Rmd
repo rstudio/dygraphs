@@ -32,8 +32,8 @@ dyUnzoom <- function(dygraph) {
 The plugin can now be used directly within a `dygraph()` pipeline along with other `{dygraphs}` functions:
 
 ```{r}
-dygraph(ldeaths) %>%
-  dyRangeSelector() %>%
+dygraph(ldeaths) |>
+  dyRangeSelector() |>
   dyUnzoom()
 ```
 
@@ -60,9 +60,9 @@ dyCrosshair <- function(
 The plugin can now be used just like any other `{dygraphs}` function and can even be composed with other plugins:
 
 ```{r}
-dygraph(ldeaths) %>%
-  dyRangeSelector() %>%
-  dyUnzoom() %>%
+dygraph(ldeaths) |>
+  dyRangeSelector() |>
+  dyUnzoom() |>
   dyCrosshair(direction = "vertical")
 ```
 

@@ -32,7 +32,7 @@ ribbonData <- rep(0, nrow(dyData))
 ribbonData[decreasing] <- 0.5
 ribbonData[increasing] <- 1
 
-dygraph(dyData) %>%
+dygraph(dyData) |>
   dyRibbon(data = ribbonData, top = 0.1, bottom = 0.02)
 ```
 
@@ -63,7 +63,7 @@ parser <- "function(rawData) {
   return ribbonData;
 }"
 
-dygraph(SPY[, c("SPY.Open", "SPY.High", "SPY.Low", "SPY.Close")]) %>%
+dygraph(SPY[, c("SPY.Open", "SPY.High", "SPY.Low", "SPY.Close")]) |>
   dyRibbon(
     parser = parser,
     palette = c("#efefef", "#ffe6e6", "#ccebd6")

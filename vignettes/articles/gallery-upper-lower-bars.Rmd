@@ -14,7 +14,7 @@ You can plot error bars (or any other high/low oriented data) along with a serie
 hw <- HoltWinters(ldeaths)
 p <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
 
-dygraph(p, main = "Predicted Lung Deaths (UK)") %>%
+dygraph(p, main = "Predicted Lung Deaths (UK)") |>
   dySeries(c("lwr", "fit", "upr"), label = "Deaths")
 ```
 
@@ -25,8 +25,8 @@ hw <- HoltWinters(ldeaths)
 p <- predict(hw, n.ahead = 36, prediction.interval = TRUE)
 all <- cbind(ldeaths, p)
 
-dygraph(all, "Deaths from Lung Disease (UK)") %>%
-  dySeries("ldeaths", label = "Actual") %>%
+dygraph(all, "Deaths from Lung Disease (UK)") |>
+  dySeries("ldeaths", label = "Actual") |>
   dySeries(c("p.lwr", "p.fit", "p.upr"), label = "Predicted")
 ```
 
@@ -36,8 +36,8 @@ Finally, here's an example that plots multiple series each of which have upper a
 library(quantmod)
 getSymbols(c("MSFT", "HPQ"), from = "2014-06-01", auto.assign = TRUE)
 stocks <- cbind(MSFT[, 2:4], HPQ[, 2:4])
-dygraph(stocks, main = "Microsoft and HP Share Prices") %>%
-  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") %>%
+dygraph(stocks, main = "Microsoft and HP Share Prices") |>
+  dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") |>
   dySeries(c("HPQ.Low", "HPQ.Close", "HPQ.High"), label = "HPQ")
 ```
 

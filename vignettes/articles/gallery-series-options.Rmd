@@ -12,7 +12,7 @@ You can specify an alternate color palette for series lines using the `colors` o
 
 ```{r}
 lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") |>
   dyOptions(colors = RColorBrewer::brewer.pal(3, "Set2"))
 ```
 
@@ -22,7 +22,7 @@ By default `dygraphs()` displays series as a line, you can however plot series a
 
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths)
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") |>
   dyOptions(stepPlot = TRUE)
 ```
 
@@ -31,7 +31,7 @@ dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
 You can also fill in the area underneath the series as well as customize the alpha value for the filling:
 
 ```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") |>
   dyOptions(fillGraph = TRUE, fillAlpha = 0.4)
 ```
 
@@ -40,14 +40,14 @@ dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
 You can include display of the individual points in a series as well as customize the size of the points:
 
 ```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") |>
   dyOptions(drawPoints = TRUE, pointSize = 2)
 ```
 
 Different point shapes are available as well:
 
 ```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") |>
   dyOptions(drawPoints = TRUE, pointSize = 5, pointShape = "triangle")
 ```
 
@@ -58,8 +58,8 @@ The possible parameters for `pointShape` are: `triangle`, `square`, `diamond`, `
 All of the options above can also be set on a per-series basis using the `dySeries()` function. For example:
 
 ```{r}
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dySeries("mdeaths", drawPoints = TRUE, pointShape = "square", color = "blue") %>%
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") |>
+  dySeries("mdeaths", drawPoints = TRUE, pointShape = "square", color = "blue") |>
   dySeries("fdeaths", stepPlot = TRUE, fillGraph = TRUE, color = "red")
 ```
 
@@ -68,7 +68,7 @@ dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
 You can also customize the way that series lines are drawn. Here we draw a wider line with a custom stroke pattern (dashed line):
 
 ```{r}
-dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") %>%
+dygraph(ldeaths, main = "Deaths from Lung Disease (UK)") |>
   dySeries("V1", strokeWidth = 2, strokePattern = "dashed")
 ```
 
@@ -79,8 +79,8 @@ With `dyGroup()` you can replicate options across multiple series or pass a vect
 ```{r}
 lungDeaths <- cbind(mdeaths, fdeaths, ldeaths)
 
-dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
-  dySeries("fdeaths", stepPlot = TRUE, color = "red") %>%
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") |>
+  dySeries("fdeaths", stepPlot = TRUE, color = "red") |>
   dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
 ```
 

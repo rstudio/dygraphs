@@ -11,8 +11,8 @@ library(dygraphs)
 You can customize the display of axes using the `dyOptions()` function (for global options) and `dyAxis()` function (for per-axis options). Here's an example that uses both:
 
 ```{r}
-dygraph(nhtemp, main = "New Haven Temperatures") %>%
-  dyAxis("y", label = "Temp (F)", valueRange = c(40, 60)) %>%
+dygraph(nhtemp, main = "New Haven Temperatures") |>
+  dyAxis("y", label = "Temp (F)", valueRange = c(40, 60)) |>
   dyOptions(axisLineWidth = 1.5, fillGraph = TRUE, drawGrid = FALSE)
 ```
 
@@ -27,9 +27,9 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 Here's another example that customizes some other axes properties:
 
 ```{r}
-dygraph(AirPassengers, main = "Airline Passengers / Month") %>%
-  dyAxis("x", drawGrid = FALSE) %>%
-  dyAxis("y", label = "Passengers (Thousands)") %>%
+dygraph(AirPassengers, main = "Airline Passengers / Month") |>
+  dyAxis("x", drawGrid = FALSE) |>
+  dyAxis("y", label = "Passengers (Thousands)") |>
   dyOptions(
     includeZero = TRUE,
     axisLineColor = "navy",
@@ -70,7 +70,7 @@ rainfall <- ts(
 weather <- cbind(rainfall, temperature)
 
 # assign the "rainfall" series to the y2 axis
-dygraph(weather) %>%
+dygraph(weather) |>
   dySeries("rainfall", axis = "y2")
 ```
 
@@ -85,9 +85,9 @@ The `independentTicks` option can be used to determine which axis is primary (an
 In this example we specify that the y2 axis has independent ticks (resulting in a more natural value scale for the axis labels). We also add a label to each Y axis.
 
 ```{r}
-dygraph(weather) %>%
-  dyAxis("y", label = "Temperature (C)") %>%
-  dyAxis("y2", label = "Rainfall", independentTicks = TRUE) %>%
+dygraph(weather) |>
+  dyAxis("y", label = "Temperature (C)") |>
+  dyAxis("y2", label = "Rainfall", independentTicks = TRUE) |>
   dySeries("rainfall", axis = "y2")
 ```
 
