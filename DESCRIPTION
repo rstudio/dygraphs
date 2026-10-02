@@ -1,40 +1,43 @@
-Package: dygraphs
 Type: Package
+Package: dygraphs
 Title: Interface to 'Dygraphs' Interactive Time Series Charting Library
 Version: 1.1.1.9000
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
-       comment = "dygraphs library in htmlwidgets/lib, https://dygraphs.com/"),
-    person("Petr", "Razumov", role = c("cre", "cph"),
-       email = "ptr@rzmv.su"),
-    person("JJ", "Allaire", role = c("aut")),
-    person(family = "RStudio", role = "cph"),
+           comment = "dygraphs library in htmlwidgets/lib, https://dygraphs.com/"),
+    person("Petr", "Razumov", , "ptr@rzmv.su", role = c("cre", "cph")),
+    person("JJ", "Allaire", role = "aut"),
+    person(, "RStudio", role = "cph"),
     person("Jonathan", "Owen", role = c("aut", "cph")),
     person("Daniel", "Gromer", role = c("aut", "cph")),
     person("Benoit", "Thieurmel", role = c("aut", "cph")),
     person("Kent", "Laukhuf", role = "ctb"),
-    person(family = "jQuery Foundation", role = "cph",
+    person(, "jQuery Foundation", role = "cph",
            comment = "jQuery library"),
-    person(family = "jQuery contributors", role = c("ctb", "cph"),
+    person(, "jQuery contributors", role = c("ctb", "cph"),
            comment = "jQuery library; authors listed in inst/htmlwidgets/lib/jquery/AUTHORS.txt")
-    )
-URL: https://github.com/rstudio/dygraphs
-BugReports: https://github.com/rstudio/dygraphs/issues
+  )
 Description: An R interface to the 'dygraphs' JavaScript charting library
     (a copy of which is included in the package). Provides rich facilities
     for charting time-series data in R, including highly configurable
     series- and axis-display and interactive features like zoom/pan and
     series/point highlighting.
 License: MIT + file LICENSE
+URL: https://github.com/rstudio/dygraphs
+BugReports: https://github.com/rstudio/dygraphs/issues
 Depends:
     R (>= 3.0)
 Imports:
-    magrittr,
-    htmlwidgets (>= 0.6),
     htmltools (>= 0.3.5),
-    zoo (>= 1.7-10),
-    xts (>= 0.9-7)
+    htmlwidgets (>= 0.6),
+    magrittr,
+    xts (>= 0.9-7),
+    zoo (>= 1.7-10)
 Suggests:
     testthat
-Enhances: rmarkdown (>= 0.3.3), shiny (>= 0.10.2.1)
+Enhances: 
+    rmarkdown (>= 0.3.3),
+    shiny (>= 0.10.2.1)
+Config/Needs/website: rmarkdown
+Encoding: UTF-8
 RoxygenNote: 7.1.1
