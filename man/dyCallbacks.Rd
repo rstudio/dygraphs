@@ -26,31 +26,31 @@ dyCallbacks(
 
 \item{clickCallback}{A function to call when the canvas is clicked.}
 
-\item{drawCallback}{When set, this callback gets called every time the 
-dygraph is drawn. This includes the initial draw, after zooming and 
+\item{drawCallback}{When set, this callback gets called every time the
+dygraph is drawn. This includes the initial draw, after zooming and
 repeatedly while panning.}
 
 \item{highlightCallback}{When set, this callback gets called every time a new
 point is highlighted.}
 
-\item{pointClickCallback}{A function to call when a data point is clicked. 
+\item{pointClickCallback}{A function to call when a data point is clicked.
 and the point that was clicked.}
 
-\item{underlayCallback}{When set, this callback gets called before the chart 
+\item{underlayCallback}{When set, this callback gets called before the chart
 is drawn.}
 
 \item{unhighlightCallback}{When set, this callback gets called every time the
 user stops highlighting any point by mousing out of the graph.}
 
-\item{zoomCallback}{A function to call when the zoom window is changed 
+\item{zoomCallback}{A function to call when the zoom window is changed
 (either by zooming in or out).}
 
-\item{drawHighlightPointCallback}{Draw a custom item when a point is 
-highlighted. Default is a small dot matching the series color. This method 
+\item{drawHighlightPointCallback}{Draw a custom item when a point is
+highlighted. Default is a small dot matching the series color. This method
 should constrain drawing to within pointSize pixels from (cx, cy)}
 
-\item{drawPointCallback}{Draw a custom item when drawPoints is enabled. 
-Default is a small dot matching the series color. This method should 
+\item{drawPointCallback}{Draw a custom item when drawPoints is enabled.
+Default is a small dot matching the series color. This method should
 constrain drawing to within pointSize pixels from (cx, cy).}
 
 \item{annotationClickHandler}{JavaScript function to call when an annotation
@@ -71,7 +71,7 @@ per-annotation basis.}
 Dygraph with callbacks
 }
 \description{
-Set JavaScript callbacks for various dygraph events. See the 
-\href{https://dygraphs.com/options.html}{dygraph options} reference for 
+Set JavaScript callbacks for various dygraph events. See the
+\href{https://dygraphs.com/options.html}{dygraph options} reference for
 additional details on the signature of each callback.
 }

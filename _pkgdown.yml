@@ -1,0 +1,148 @@
+url: https://rstudio.github.io/dygraphs/
+
+template:
+  package: tidytemplate
+  bootstrap: 5
+  trailing_slash_redirect: true
+  includes:
+    in_header: |
+      <script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script>
+
+footer:
+  structure:
+    left: [developed_by]
+
+articles:
+  - title: Getting Started
+    navbar: ~
+    contents:
+      - articles/gallery-axis-options
+      - articles/gallery-series-options
+      - articles/gallery-plot-labels
+  - title: Interaction and Exploration
+    navbar: Interaction and Exploration
+    contents:
+      - articles/gallery-range-selector
+      - articles/gallery-series-highlighting
+      - articles/gallery-roll-periods
+      - articles/gallery-synchronization
+  - title: Annotations and Context
+    navbar: Annotations and Context
+    contents:
+      - articles/gallery-annotations
+      - articles/gallery-event-lines
+      - articles/gallery-ribbon
+  - title: Advanced Visualisations
+    navbar: Advanced Visualisations
+    contents:
+      - articles/gallery-candlestick
+      - articles/gallery-straw-broom
+      - articles/gallery-upper-lower-bars
+      - articles/gallery-custom-plotters
+  - title: Styling and Extensions
+    navbar: Styling and Extensions
+    contents:
+      - articles/gallery-css-styling
+      - articles/gallery-plugins
+  - title: Data and Time Handling
+    navbar: Data and Time Handling
+    contents:
+      - articles/gallery-timezones
+
+redirects:
+  - ["r-console.html", "articles/dygraphs.html"]
+  - ["r-markdown.html", "articles/dygraphs.html"]
+  - ["shiny.html", "articles/dygraphs.html"]
+  - ["gallery-series-options.html", "articles/gallery-series-options.html"]
+  - ["gallery-series-highlighting.html", "articles/gallery-series-highlighting.html"]
+  - ["gallery-axis-options.html", "articles/gallery-axis-options.html"]
+  - ["gallery-plot-labels.html", "articles/gallery-plot-labels.html"]
+  - ["gallery-timezones.html", "articles/gallery-timezones.html"]
+  - ["gallery-css-styling.html", "articles/gallery-css-styling.html"]
+  - ["gallery-range-selector.html", "articles/gallery-range-selector.html"]
+  - ["gallery-candlestick.html", "articles/gallery-candlestick.html"]
+  - ["gallery-synchronization.html", "articles/gallery-synchronization.html"]
+  - ["gallery-straw-broom.html", "articles/gallery-straw-broom.html"]
+  - ["gallery-roll-periods.html", "articles/gallery-roll-periods.html"]
+  - ["gallery-annotations.html", "articles/gallery-annotations.html"]
+  - ["gallery-event-lines.html", "articles/gallery-event-lines.html"]
+  - ["gallery-upper-lower-bars.html", "articles/gallery-upper-lower-bars.html"]
+  - ["gallery-plugins.html", "articles/gallery-plugins.html"]
+  - ["gallery-custom-plotters.html", "articles/gallery-custom-plotters.html"]
+  - ["gallery-ribbon.html", "articles/gallery-ribbon.html"]
+
+reference:
+
+  - title: Getting Started
+    desc: Create interactive time series visualizations with dygraphs.
+    contents:
+      - dygraph
+      - matches("dygraphs-exports")
+      - "%>%"
+
+  - title: Axes, Series and Display
+    desc: Control axes, labels, legends and series appearance.
+    contents:
+      - dyAxis
+      - dySeries
+      - dyGroup
+      - dyLegend
+      - dyOptions
+      - dyCSS
+
+  - title: Interactivity
+    desc: Add zooming, highlighting, crosshairs and other interactive features.
+    contents:
+      - dyRangeSelector
+      - dyHighlight
+      - dyCrosshair
+      - dyRoller
+      - dyUnzoom
+
+  - title: Annotations and Overlays
+    desc: Add contextual information to charts.
+    contents:
+      - dyAnnotation
+      - dyEvent
+      - dyLimit
+      - dyShading
+      - dyRibbon
+
+  - title: Plot Types and Plotters
+    desc: Alternative visual representations and custom plotters.
+    contents:
+      - dyPlotter
+      - dyCandlestick
+      - dyBarChart
+      - dyStackedBarChart
+      - dyMultiColumn
+      - dyBarSeries
+      - dyStemSeries
+      - dyShadow
+      - dyFilledLine
+      - dyErrorFill
+      - dyMultiColumnGroup
+      - dyCandlestickGroup
+      - dyStackedBarGroup
+      - dyStackedLineGroup
+      - dyStackedRibbonGroup
+
+  - title: Plugins and Extensions
+    desc: Extend dygraphs with plugins, callbacks and dependencies.
+    contents:
+      - dyPlugin
+      - dyCallbacks
+      - dyDependency
+
+  - title: Data and Transformations
+    desc: Utilities for supplying and transforming data.
+    contents:
+      - dySeriesData
+      - dyDataHandler
+      - dyRebase
+
+  - title: Shiny Integration
+    desc: Use dygraphs within Shiny applications.
+    contents:
+      - dygraphOutput
+      - renderDygraph

@@ -17,8 +17,8 @@ dygraph(
 )
 }
 \arguments{
-\item{data}{Either time series data or numeric data. For time series, this 
-must be an \link[xts]{xts} object or an object which is convertible to 
+\item{data}{Either time series data or numeric data. For time series, this
+must be an \link[xts]{xts} object or an object which is convertible to
 \code{xts}. For numeric data, this must be a named list or data frame,
 where the first element/column provides x-axis values and all subsequent
 elements/columns provide one or more series of y-values.}
@@ -32,7 +32,7 @@ elements/columns provide one or more series of y-values.}
 \item{periodicity}{Periodicity of time series data (automatically detected
 via \link[xts:periodicity]{xts::periodicity} if not specified).}
 
-\item{group}{Group to associate this plot with. The x-axis zoom level of 
+\item{group}{Group to associate this plot with. The x-axis zoom level of
 plots within a group is automatically synchronized.}
 
 \item{elementId}{Use an explicit element ID for the widget (rather than an
@@ -47,7 +47,7 @@ needs to explicitly discover and interact with a specific widget instance.}
 Interactive dygraph plot
 }
 \description{
-R interface to interactive time series plotting using the 
+R interface to interactive time series plotting using the
 \href{https://dygraphs.com}{dygraphs} JavaScript library.
 }
 \note{
@@ -61,5 +61,4 @@ dygraph(lungDeaths)
 
 indoConc <- Indometh[Indometh$Subject == 1, c("time", "conc")]
 dygraph(indoConc)
-
 }

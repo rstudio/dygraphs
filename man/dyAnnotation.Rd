@@ -41,19 +41,19 @@ convertible to \code{POSIXct}.}
 \item{tickHeight}{Height of the tick mark (in pixels) connecting the point to
 its flag or icon.}
 
-\item{attachAtBottom}{If true, attach annotations to the x-axis, rather than 
+\item{attachAtBottom}{If true, attach annotations to the x-axis, rather than
 to actual points.}
 
-\item{clickHandler}{JavaScript function to call when an annotation is 
+\item{clickHandler}{JavaScript function to call when an annotation is
 clicked.}
 
-\item{mouseOverHandler}{JavaScript function to call when the mouse hovers 
+\item{mouseOverHandler}{JavaScript function to call when the mouse hovers
 over an annotation.}
 
-\item{mouseOutHandler}{JavaScript function to call when the mouse exits an 
+\item{mouseOutHandler}{JavaScript function to call when the mouse exits an
 annotation.}
 
-\item{dblClickHandler}{JavaScript function to call when an annotation is 
+\item{dblClickHandler}{JavaScript function to call when an annotation is
 double clicked.}
 
 \item{series}{Series to attach the annotation to. By default, the last series
@@ -67,12 +67,12 @@ Define a text annotation for a data-point on a dygraph chart.
 }
 \note{
 Annotations are bound to specific series in the input data. If you have
-  only one series or if you define annotations immediately after a call to 
-  \code{\link{dySeries}} then you need not specify the series explicitly. 
+  only one series or if you define annotations immediately after a call to
+  \code{\link{dySeries}} then you need not specify the series explicitly.
   Otherwise, you should use the \code{series} parameter to indicate which
   series the annotation should be bound to.
-  
-  Annotation event handlers can also specified globally (see 
+
+  Annotation event handlers can also specified globally (see
   \code{\link{dyCallbacks}}).
 
 See the
@@ -81,10 +81,9 @@ See the
 }
 \examples{
 library(dygraphs)
-  
+
 dygraph(presidents, main = "Presidential Approval") \%>\%
   dyAxis("y", valueRange = c(0, 100)) \%>\%
   dyAnnotation("1950-7-1", text = "A", tooltip = "Korea") \%>\%
-  dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")   
-  
+  dyAnnotation("1965-1-1", text = "B", tooltip = "Vietnam")
 }

@@ -1,50 +1,39 @@
 # dygraphs (development version)
 
-* Start of development for dygraphs 2.0
-
-dygraphs 1.1.1.7
---------------------------------------------------------------------------------
+# dygraphs 1.1.1.7
 
 * Added the ability for multiple series have different point shapes 
 
-
-dygraphs 1.1.1.6
---------------------------------------------------------------------------------
+# dygraphs 1.1.1.6
 
 * Fix bug which prevented accessing dygraph object in HTMLWidget (#196)
 
+# dygraphs 1.1.1.5
 
-dygraphs 1.1.1.5
---------------------------------------------------------------------------------
-
-* Added pointShape parameter to dyOptions and dySeries function to set point shapes
+* Added pointShape parameter to `dyOptions()` and `dySeries()` function to set point shapes
   other than dots
 
-* Updated dyPlugin behavior to merge same plugin's options for every repeated
+* Updated `dyPlugin()` behavior to merge same plugin's options for every repeated
   function call
 
+# dygraphs 1.1.1.4
 
-dygraphs 1.1.1.4
---------------------------------------------------------------------------------
-
-* Added dyRibbon for creating horizontal band of colors to visualize categorical
+* Added `dyRibbon()` for creating horizontal band of colors to visualize categorical
   variables
 
-* Added dyRebase for creating straw broom charts
+* Added `dyRebase()` for creating straw broom charts
 
-* Updated dyCandlestick with parameter to compress data by time periods
+* Updated `dyCandlestick()` with parameter to compress data by time periods
 
 * Handle display of quarterly scales via moment-quarter plugin
 
-* Make dyUnzoom and dyCrosshair available as package functions
+* Make `dyUnzoom()` and `dyCrosshair()` available as package functions
 
+# dygraphs 1.1.1.3
 
-dygraphs 1.1.1.3
---------------------------------------------------------------------------------
+* Added `dyCandlestick()` for creating candlestick/OHLC style charts 
 
-* Added dyCandlestick for creating candlestick/OHLC style charts 
-
-* Added dyPlotter for defining custom plotters
+* Added `dyPlotter()` for defining custom plotters
 
 * Added Shiny callbacks that react when the user clicks on the graph
 
@@ -52,28 +41,22 @@ dygraphs 1.1.1.3
 
 * Don't call shiny input bindings if they aren't yet available 
 
-
-dygraphs 1.1.1.2 
---------------------------------------------------------------------------------
+# dygraphs 1.1.1.2 
 
 * Fix for shiny input binding regression introduced in move to instance
   bound widgets (#123)
 
-
-dygraphs 1.1.1-1
---------------------------------------------------------------------------------
+# dygraphs 1.1.1-1
 
 * Create shiny input binding after dygraph is created (#121)
 
-* Reflect color in dyEvent text label (#122)
+* Reflect color in `dyEvent()` text label (#122)
 
+# dygraphs 1.1.1.0
 
-dygraphs 1.1.1.0
---------------------------------------------------------------------------------
+* New `dyPlugin()` function for including dygraphs plugins
 
-* New dyPlugin function for including dygraphs plugins
-
-* Properly handle NULL dyEvent label (#112)
+* Properly handle NULL `dyEvent()` label (#112)
 
 * Handle milliseconds in time events (#85)
 
@@ -82,67 +65,55 @@ dygraphs 1.1.1.0
 * Implement factory method so dygraph is addressable from widget instance:
   e.g. HTMLWidgets.getInstance(document.getElementById('mywidget')).dygraph
 
+# dygraphs 0.9
 
-dygraphs 0.9
---------------------------------------------------------------------------------
-
-* Handle vector data in dyEvent
+* Handle vector data in `dyEvent()`
 
 * Don't do sizeChanged polling (no longer required)
 
 * Option to disable y-axis touch events on mobile devices
 
-
-dygraphs 0.8
---------------------------------------------------------------------------------
+# dygraphs 0.8
 
 * Manage visibility of dygraphs in all types of boostrap tab panes
 
 * Call widget.resize whenever parent size changes
 
-
-dygraphs 0.7
---------------------------------------------------------------------------------
+# dygraphs 0.7
 
 * Ensure that dygraphs are shown properly in R Markdown tabsets 
 
 * Ensure that dygraphs are shown properly in reveal.js presentations
 
-* Fix bug which prevented custom plotters from working in dySeries
+* Fix bug which prevented custom plotters from working in `dySeries()`
 
-
-dygraphs 0.6
---------------------------------------------------------------------------------
+# dygraphs 0.6
 
 * Add support for plotting data with a numeric x-axis (previously only time series
   data was accepted).
 
 * Add new logscale option for numeric x-axis.
 
-* Add stemPlot option to dyOptions and dySeries.
+* Add stemPlot option to `dyOptions()` and `dySeries()`.
 
-
-dygraphs 0.5
---------------------------------------------------------------------------------
+# dygraphs 0.5
 
 * Update embedded dygraphs to version 1.1
 
-* Add support for show='follow' to dyLegend
+* Add support for show='follow' to `dyLegend()`
 
-* Add labelsUTC option to dyOptions
+* Add labelsUTC option to `dyOptions()`
 
 * Change default x axis label width to 60 (necessitated by changes to default
   dygraphs 1.1 x-axis year formatting)
 
 * Allow explicit specification of series periodicity when creating a dygraph 
 
-
-dygraphs 0.4.5
---------------------------------------------------------------------------------
+# dygraphs 0.4.5
 
 * Correct serialization of dates with year < 1000
 
-* Add axis argument to dyShading for horizontal shading
+* Add axis argument to `dyShading()` for horizontal shading
 
 * Add dyLimit function for drawing horizontal limit lines
 
@@ -156,9 +127,7 @@ dygraphs 0.4.5
 * Fix failure to update shiny date range input after graph is 
   re-rendered based on new data or options.
 
-
-dygraphs 0.4.3
---------------------------------------------------------------------------------
+# dygraphs 0.4.3
 
 * Support dynamic updating (i.e. for Shiny reactive outputs) for all dygraphs
   properties (destroy and rebuild the entire dygraph on renderValue)
@@ -167,15 +136,11 @@ dygraphs 0.4.3
 
 * Fix issue where dygraph in ioslides didn't display on slide entry
 
-
-dygraphs 0.4.2
---------------------------------------------------------------------------------
+# dygraphs 0.4.2
 
 * Fix bug with specification of multiple series colors
 
-
-dygraphs 0.4.1
---------------------------------------------------------------------------------
+# dygraphs 0.4.1
 
 * Add useDataTimezone option to enable time display using the underlying
   xts timezone rather than the timezone of the client workstation.
@@ -186,11 +151,9 @@ dygraphs 0.4.1
 
 * Fix bug which caused specification of only a single custom color to fail
 
-* Add explicit showRoller option to dyRoller function
+* Add explicit showRoller option to `dyRoller()` function
 
-
-dygraphs 0.3.3
---------------------------------------------------------------------------------
+# dygraphs 0.3.3
 
 Initial release to CRAN
 

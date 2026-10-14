@@ -1,0 +1,259 @@
+---
+title: "Using dygraphs"
+---
+
+```{r loadpkg, include=FALSE}
+library(dygraphs)
+```
+
+```{r chunkopts, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Getting Started
+
+The `{dygraphs}` package is an R interface to the [dygraphs](http://dygraphs.com) JavaScript charting library. It provides rich facilities for charting time-series data in R, including:
+
+- Automatically plots [xts](https://cran.rstudio.com/web/packages/xts/index.html) time series objects (or any object convertible to xts).
+
+- Highly configurable axis and series display (including optional second Y-axis).
+
+- Rich interactive features including [zoom/pan](gallery-range-selector.Rmd) and series/point [highlighting](gallery-series-highlighting.Rmd).
+
+- Display [upper/lower bars](gallery-upper-lower-bars.Rmd) (e.g. prediction intervals) around series.
+
+- Various graph overlays including [shaded regions](gallery-shaded-regions.Rmd), [event lines](gallery-event-lines.Rmd), and point [annotations](gallery-annotations.Rmd).
+
+- Use at the R console just like conventional R plots (via RStudio Viewer).
+
+- Seamless embedding within Quarto/R Markdown documents and Shiny web applications.
+
+You can use `{dygraphs}` at the R console, within R Markdown documents, and within Shiny applications. There are a few demos of `{dygraphs}` below as well as quite a few others in the articles section of this website.
+
+Here's a simple `dygraph()` created from a multiple time series object:
+
+```{r}
+library(dygraphs)
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)
+```
+
+Note that this graph is fully interactive: as your mouse moves over the series individual values are displayed. You can also select regions of the graph to zoom into (double-click zooms out).
+
+You can customize dygraphs by piping additional commands onto the original `dygraph()` object. Here we pipe a `dyRangeSelector()` onto our original graph:
+
+```{r}
+dygraph(lungDeaths) |> dyRangeSelector()
+```
+
+Note that this example uses the `|>` (or "pipe") operator to compose the `dygraph()` with the range selector. You use a similar syntax to customize axes, series, and other options. For example:
+
+```{r}
+dygraph(lungDeaths) |>
+  dySeries("mdeaths", label = "Male") |>
+  dySeries("fdeaths", label = "Female") |>
+  dyOptions(stackedGraph = TRUE) |>
+  dyRangeSelector(height = 20)
+```
+
+Many options for customizing series and axis display are available. It's even possible to combine multiple lower/value/upper style series into a single display with shaded bars. Here's an example that illustrates shaded bars, specifying a plot title, suppressing the drawing of the grid for the x axis, and the use of a custom palette for series colors:
+
+```{r}
+hw <- HoltWinters(ldeaths)
+predicted <- predict(hw, n.ahead = 72, prediction.interval = TRUE)
+
+dygraph(predicted, main = "Predicted Lung Deaths (UK)") |>
+  dyAxis("x", drawGrid = FALSE) |>
+  dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
+  dyOptions(colors = RColorBrewer::brewer.pal(3, "Set1"))
+```
+
+## RMarkdown
+
+You can use `{dygraphs}` within [R Markdown](http://rmarkdown.rstudio.com) documents just like any other R plotting function. However, rather than a PNG file being included in your document, the JavaScript required to render your `dygraph()` is included. 
+
+Note that since `{dygraphs}` are web-based (they use HTML, CSS, and JavaScript) they can only be included in HTML based R Markdown formats (i.e. they can't be used in PDF or Word documents).
+
+By default, `{dygraphs}` that appear within R Markdown documents respect the default figure size of the document. This means that their size will be the same as that of other standard plots.
+
+Figure sizes are specified in inches and can be included as a global option of the document output format. For example:
+
+```
+---
+title: "My Document"
+output:
+  html_document:
+    fig_width: 6
+    fig_height: 4
+---
+```
+
+You can also specify figure sizes on a per-chunk basis. For example, to create a `dygraph()` that is smaller than the default (7x5) you could do this:
+
+<pre class="r"><code>&#96;&#96;&#96;{r, fig.width=6, fig.height=2.5}
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+&#96;&#96;&#96;
+</code></pre>
+
+```{r markdown, echo=FALSE, fig.width=6, fig.height=2.5}
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)")
+```
+
+## Shiny
+
+The `{dygraphs}` package provides the `dygraphOutput()` and `renderDygraph()` functions to enable use of `dygraph()` within [Shiny](http://shiny.rstudio.com) applications. These functions work exactly like the `shiny::plotOutput()` and `shiny::renderPlot()` functions. For example, here's a simple Shiny application that uses these functions:
+
+**ui.R**
+
+```r
+library(shiny)
+library(bslib)
+library(dygraphs)
+
+ui <- page_sidebar(
+  title = "Predicted Deaths from Lung Disease (UK)",
+  sidebar = sidebar(
+    numericInput(
+      "months",
+      label = "Months to Predict",
+      value = 72,
+      min = 12,
+      max = 144,
+      step = 12
+    ),
+    sliderInput(
+      "interval",
+      label = "Prediction Interval",
+      min = 0.8,
+      max = 0.99,
+      value = 0.95,
+      step = 0.01
+    ),
+    checkboxInput("showgrid", label = "Show Grid", value = TRUE)
+  ),
+  dygraphOutput("dygraph")
+)
+```
+
+**server.R**
+
+```r
+library(shiny)
+library(dygraphs)
+library(datasets)
+
+server <- function(input, output) {
+  predicted <- reactive({
+    hw <- HoltWinters(ldeaths)
+    predict(
+      hw,
+      n.ahead = input$months,
+      prediction.interval = TRUE,
+      level = input$interval
+    )
+  })
+  output$dygraph <- renderDygraph({
+    dygraph(predicted(), main = "Predicted Deaths/Month") |>
+      dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
+      dyOptions(drawGrid = input$showgrid)
+  })
+}
+```
+
+Two Shiny input bindings are made available by dygraphs to allow dynamic responses to user actions:
+
+1. A `date_window` input binding which responds to changes in the selected/zoomed `dateWindow`.
+
+2. A `click` input binding which responds to mouse clicks and makes available the value on the x-axis that the click corresponds to as well as the closest x,y point to the click.
+
+The names of the input bindings are the shiny ID combined with the name of the input (e.g. `mydygraph_data_window` or `mydygraph_click`). For example, here's another variation of the simple application from above that displays the current from/to range as well as responds to click events:
+
+**ui.R**
+
+```r
+library(shiny)
+library(bslib)
+library(dygraphs)
+
+ui <- page_sidebar(
+  title = "Predicted Deaths from Lung Disease (UK)",
+
+  sidebar = sidebar(
+    numericInput(
+      "months",
+      label = "Months to Predict",
+      value = 72,
+      min = 12,
+      max = 144,
+      step = 12
+    ),
+    sliderInput(
+      "interval",
+      label = "Prediction Interval",
+      min = 0.8,
+      max = 0.99,
+      value = 0.95,
+      step = 0.01
+    ),
+    checkboxInput("showgrid", label = "Show Grid", value = TRUE),
+    hr(),
+    div(strong("From: "), textOutput("from", inline = TRUE)),
+    div(strong("To: "), textOutput("to", inline = TRUE)),
+    div(strong("Date clicked: "), textOutput("clicked", inline = TRUE)),
+    div(strong("Nearest point clicked: "), textOutput("point", inline = TRUE)),
+    br(),
+    helpText("Click and drag to zoom in (double click to zoom back out).")
+  ),
+  dygraphOutput("dygraph")
+)
+```
+
+**server.R**
+
+```r
+library(shiny)
+library(dygraphs)
+library(datasets)
+
+server <- function(input, output) {
+  predicted <- reactive({
+    hw <- HoltWinters(ldeaths)
+    predict(
+      hw,
+      n.ahead = input$months,
+      prediction.interval = TRUE,
+      level = input$interval
+    )
+  })
+
+  output$dygraph <- renderDygraph({
+    dygraph(predicted(), main = "Predicted Deaths/Month") |>
+      dySeries(c("lwr", "fit", "upr"), label = "Deaths") |>
+      dyOptions(drawGrid = input$showgrid)
+  })
+
+  output$from <- renderText({
+    strftime(req(input$dygraph_date_window[[1]]), "%d %b %Y")
+  })
+
+  output$to <- renderText({
+    strftime(req(input$dygraph_date_window[[2]]), "%d %b %Y")
+  })
+
+  output$clicked <- renderText({
+    strftime(req(input$dygraph_click$x), "%d %b %Y")
+  })
+
+  output$point <- renderText({
+    paste0(
+      'X = ',
+      strftime(req(input$dygraph_click$x_closest_point), "%d %b %Y"),
+      '; Y = ',
+      req(input$dygraph_click$y_closest_point)
+    )
+  })
+}
+```

@@ -11,14 +11,14 @@ dyRoller(dygraph, showRoller = TRUE, rollPeriod = 1)
 
 \item{showRoller}{Whether to show the roller}
 
-\item{rollPeriod}{Number of time scale units (e.g. days, months, years) to 
+\item{rollPeriod}{Number of time scale units (e.g. days, months, years) to
 average values over.}
 }
 \value{
 A dygraph that displays a range selector
 }
 \description{
-Add a rolling average period text box to the bottom left of the plot. Y 
+Add a rolling average period text box to the bottom left of the plot. Y
 values are averaged over the specified number of time scale units.
 }
 \note{
@@ -29,7 +29,6 @@ documentation} for additional details and examples.
 \examples{
 library(dygraphs)
 
-dygraph(discoveries, main = "Important Discoveries") \%>\% 
+dygraph(discoveries, main = "Important Discoveries") \%>\%
   dyRoller(rollPeriod = 5)
-
 }

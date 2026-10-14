@@ -26,11 +26,11 @@ object or another object convertible to \code{POSIXct} via
 
 \item{labelLoc}{Location for label (top or bottom)}
 
-\item{color}{Color of event line. This can be of the form "#AABBCC" or 
+\item{color}{Color of event line. This can be of the form "#AABBCC" or
 "rgb(255,100,200)" or "yellow". Defaults to black.}
 
 \item{strokePattern}{A predefined stroke pattern type ("dotted", "dashed",
-"dotdash", or "solid") or a custom pattern array where the even index is 
+"dotdash", or "solid") or a custom pattern array where the even index is
 a draw and odd is a space in pixels. Defaults to dashed.}
 
 \item{date}{(deprecated) See argument \code{x}.}
@@ -42,7 +42,7 @@ A dygraph with the specified event line.
 Add a vertical event line to a dygraph
 }
 \note{
-See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online 
+See the \href{https://rstudio.github.io/dygraphs/gallery-event-lines.html}{online
   documentation} for additional details and examples.
 }
 \examples{
@@ -52,8 +52,8 @@ dygraph(presidents, main = "Presidential Approval") \%>\%
   dyAxis("y", valueRange = c(0, 100)) \%>\%
   dyEvent("1950-6-30", "Korea", labelLoc = "bottom") \%>\%
   dyEvent("1965-2-09", "Vietnam", labelLoc = "bottom")
+
 dygraph(presidents, main = "Presidential Approval") \%>\%
   dyAxis("y", valueRange = c(0, 100)) \%>\%
-  dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom") 
- 
+  dyEvent(c("1950-6-30", "1965-2-09"), c("Korea", "Vietnam"), labelLoc = "bottom")
 }

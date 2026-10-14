@@ -17,8 +17,8 @@ dyLegend(
 \arguments{
 \item{dygraph}{Dygraph to configure legend options for.}
 
-\item{show}{When to display the legend. Specify "always" to always show the 
-legend. Specify "onmouseover" to only display it when a user mouses over 
+\item{show}{When to display the legend. Specify "always" to always show the
+legend. Specify "onmouseover" to only display it when a user mouses over
 the chart. Specify "follow" to have the legend show as overlay to the chart
 which follows the mouse. The default behavior is "auto", which results in
 "always" when more than one series is plotted and "onmouseover" when only a
@@ -28,15 +28,15 @@ single series is plotted.}
 
 \item{showZeroValues}{Show zero value labels in the legend.}
 
-\item{labelsDiv}{Show data labels in an external div, rather than on the 
+\item{labelsDiv}{Show data labels in an external div, rather than on the
 graph. This value should be a div element id.}
 
-\item{labelsSeparateLines}{Put a <br/> between lines in the label string. 
+\item{labelsSeparateLines}{Put a <br/> between lines in the label string.
 Often used in conjunction with \code{labelsDiv}.}
 
-\item{hideOnMouseOut}{Whether to hide the legend when the mouse leaves the 
-chart area. This option applies when \code{show} is set to "onmouseover". 
-Note that this also affects the hiding of the \code{\link{dyHighlight}} on 
+\item{hideOnMouseOut}{Whether to hide the legend when the mouse leaves the
+chart area. This option applies when \code{show} is set to "onmouseover".
+Note that this also affects the hiding of the \code{\link{dyHighlight}} on
 mouse out.}
 }
 \value{
@@ -46,15 +46,14 @@ A dygraph with customized legend options
 Configure options for the dygraph series legend.
 }
 \note{
-See the 
+See the
   \href{https://rstudio.github.io/dygraphs/gallery-plot-labels.html}{online
   documentation} for additional details and examples.
 }
 \examples{
 library(dygraphs)
 
-dygraph(nhtemp, main = "New Haven Temperatures") \%>\% 
+dygraph(nhtemp, main = "New Haven Temperatures") \%>\%
   dySeries("V1", label = "Temperature (F)") \%>\%
-  dyLegend(show = "always", hideOnMouseOut = FALSE)   
-    
+  dyLegend(show = "always", hideOnMouseOut = FALSE)
 }
