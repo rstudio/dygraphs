@@ -1,0 +1,26 @@
+pandoc: '3.9'
+pkgdown: 2.2.1
+pkgdown_sha: ~
+articles:
+  articles/dygraphs: dygraphs.html
+  articles/gallery-annotations: gallery-annotations.html
+  articles/gallery-axis-options: gallery-axis-options.html
+  articles/gallery-candlestick: gallery-candlestick.html
+  articles/gallery-css-styling: gallery-css-styling.html
+  articles/gallery-custom-plotters: gallery-custom-plotters.html
+  articles/gallery-event-lines: gallery-event-lines.html
+  articles/gallery-plot-labels: gallery-plot-labels.html
+  articles/gallery-plugins: gallery-plugins.html
+  articles/gallery-range-selector: gallery-range-selector.html
+  articles/gallery-ribbon: gallery-ribbon.html
+  articles/gallery-roll-periods: gallery-roll-periods.html
+  articles/gallery-series-highlighting: gallery-series-highlighting.html
+  articles/gallery-series-options: gallery-series-options.html
+  articles/gallery-straw-broom: gallery-straw-broom.html
+  articles/gallery-synchronization: gallery-synchronization.html
+  articles/gallery-timezones: gallery-timezones.html
+  articles/gallery-upper-lower-bars: gallery-upper-lower-bars.html
+last_built: 2026-10-14T11:00Z
+urls:
+  reference: https://rstudio.github.io/dygraphs/reference
+  article: https://rstudio.github.io/dygraphs/articles

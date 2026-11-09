@@ -1,0 +1,13 @@
+# Synchronization
+
+You can link the zoom behavior of multiple dygraphs by specifying a
+`group` when creating the graph. For example, the following code links
+the three graphs below. Try zooming one chart (done by mouse-selection)
+and note that the zoom range of the other graphs is also updated.
+
+``` r
+
+dygraph(ldeaths, main = "All", group = "lung-deaths")
+dygraph(mdeaths, main = "Male", group = "lung-deaths")
+dygraph(fdeaths, main = "Female", group = "lung-deaths")
+```

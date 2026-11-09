@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2015-2016
+    COPYRIGHT HOLDER: Dan Vanderkam; RStudio, Inc.

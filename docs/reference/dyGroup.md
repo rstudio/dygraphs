@@ -1,0 +1,156 @@
+# dygraph series group
+
+Add a data series group to a dygraph plot. Note that options will use
+the default global setting (as determined by
+[`dyOptions`](https://rstudio.github.io/dygraphs/reference/dyOptions.md))
+when not specified explicitly. Importantly, any dySeries options passed
+can be passed as a vector of values and will be replicated across all
+series named as part of the group. If arguments differ in length than
+the number of series named, then the argument vector will be cycled
+across the named series.
+
+## Usage
+
+``` r
+dyGroup(
+  dygraph,
+  name = NULL,
+  label = NULL,
+  color = NULL,
+  axis = "y",
+  stepPlot = NULL,
+  stemPlot = NULL,
+  fillGraph = NULL,
+  drawPoints = NULL,
+  pointSize = NULL,
+  pointShape = NULL,
+  strokeWidth = NULL,
+  strokePattern = NULL,
+  strokeBorderWidth = NULL,
+  strokeBorderColor = NULL,
+  plotter = NULL
+)
+```
+
+## Arguments
+
+- dygraph:
+
+  Dygraph to add a series definition to
+
+- name:
+
+  character vector of the series within data set. If no name is
+  specified then series are bound to implicitly based on their order
+  within the underlying time series object. This parameter can also be a
+  character vector of length 3 that specifies a set of input column
+  names to use as the lower, value, and upper for a series with a shaded
+  bar drawn around it.
+
+- label:
+
+  Labels to display for series (uses name if no label defined)
+
+- color:
+
+  Color for series. These can be of the form "#AABBCC" or
+  "rgb(255,100,200)" or "yellow", etc. If not specified then the global
+  colors option (typically based on equally-spaced points around a color
+  wheel).
+
+- axis:
+
+  Y-axis to associate the series with ("y" or "y2")
+
+- stepPlot:
+
+  When set, display the graph as a step plot instead of a line plot.
+
+- stemPlot:
+
+  When set, display the graph as a stem plot instead of a line plot.
+
+- fillGraph:
+
+  Should the area underneath the graph be filled? This option is not
+  compatible with error bars.
+
+- drawPoints:
+
+  Draw a small dot at each point, in addition to a line going through
+  the point. This makes the individual data points easier to see, but
+  can increase visual clutter in the chart.
+
+- pointSize:
+
+  The size of the dot to draw on each point in pixels. A dot is always
+  drawn when a point is "isolated", i.e. there is a missing point on
+  either side of it. This also controls the size of those dots.
+
+- pointShape:
+
+  The shape of the dot to draw. Can be one of the following: "dot"
+  (default), "triangle", "square", "diamond", "pentagon", "hexagon",
+  "circle", "star", "plus" or "ex".
+
+- strokeWidth:
+
+  The width of the lines connecting data points. This can be used to
+  increase the contrast or some graphs.
+
+- strokePattern:
+
+  A predefined stroke pattern type ("dotted", "dashed", or "dotdash") or
+  a custom pattern array where the even index is a draw and odd is a
+  space in pixels. If `NULL` then it draws a solid line. The array
+  should have an even length as any odd length array could be expressed
+  as a smaller even length array.
+
+- strokeBorderWidth:
+
+  Draw a border around graph lines to make crossing lines more easily
+  distinguishable. Useful for graphs with many lines.
+
+- strokeBorderColor:
+
+  Color for the line border used if `strokeBorderWidth` is set.
+
+- plotter:
+
+  A function which plots the series group. See the [dygraphs
+  documentation](https://dygraphs.com/tests/plotters.html) for
+  additional details on plotting functions.
+
+## Value
+
+Dygraph with additional series
+
+## Details
+
+NOTE: dyGroup will turn off `stackedGraph`, as the option will
+calculated cumulatives using all series in the underlying dygraph, not
+just a subset.
+
+The dyGroup function can also replicated similar arguments across
+multiple series, or be used to apply a grouped custom plotter - i.e.,
+multi-column plotter - to a subset of the dygraph data series.
+
+## Note
+
+See the [online
+documentation](https://rstudio.github.io/dygraphs/gallery-series-options.html)
+for additional details and examples.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+library(dygraphs)
+
+lungDeaths <- cbind(ldeaths, mdeaths, fdeaths)
+
+dygraph(lungDeaths, main = "Deaths from Lung Disease (UK)") %>%
+  dySeries("fdeaths", stepPlot = TRUE, color = "red") %>%
+  dyGroup(c("mdeaths", "ldeaths"), drawPoints = TRUE, color = c("blue", "green"))
+} # }
+```
