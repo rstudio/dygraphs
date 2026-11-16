@@ -5,7 +5,7 @@ Version: 1.1.1.9000
 Authors@R: c(
     person("Dan", "Vanderkam", role = c("aut", "cph"),
            comment = "dygraphs library in htmlwidgets/lib, https://dygraphs.com/"),
-    person("Petr", "Razumov", email="ptr@rzmv.su", role = c("cre", "cph")),
+    person("Petr", "Razumov", , "ptr@rzmv.su", role = c("cre", "cph")),
     person("JJ", "Allaire", role = "aut"),
     person(, "RStudio", role = "cph"),
     person("Jonathan", "Owen", role = c("aut", "cph")),
@@ -35,14 +35,12 @@ Imports:
     xts (>= 0.9-7),
     zoo (>= 1.7-10)
 Suggests:
+    quantmod,
+    RColorBrewer,
     testthat
 Enhances: 
     rmarkdown (>= 0.3.3),
     shiny (>= 0.10.2.1)
-Config/Needs/website:
-    RColorBrewer,
-    pkgdown,
-    quantmod,
-    tidyverse/tidytemplate
+Config/Needs/website:pkgdown, tidyverse/tidytemplate
 Config/roxygen2/version: 8.1.0
 Encoding: UTF-8
