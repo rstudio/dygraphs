@@ -4,8 +4,6 @@ title: "Upper/Lower Bars"
 
 ```{r, include=FALSE}
 library(dygraphs)
-library(quantmod)
-options(getSymbols.warning4.0 = FALSE)
 ```
 
 You can plot error bars (or any other high/low oriented data) along with a series by simply specifying the lower, value, and upper series together in the `dySeries()` name parameter. For example:
@@ -34,10 +32,9 @@ Finally, here's an example that plots multiple series each of which have upper a
 
 ```{r}
 library(quantmod)
-getSymbols(c("MSFT", "HPQ"), from = "2014-06-01", auto.assign = TRUE)
+getSymbols(c("MSFT", "HPQ"), src = "rda")
 stocks <- cbind(MSFT[, 2:4], HPQ[, 2:4])
 dygraph(stocks, main = "Microsoft and HP Share Prices") |>
   dySeries(c("MSFT.Low", "MSFT.Close", "MSFT.High"), label = "MSFT") |>
   dySeries(c("HPQ.Low", "HPQ.Close", "HPQ.High"), label = "HPQ")
 ```
-

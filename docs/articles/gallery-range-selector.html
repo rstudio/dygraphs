@@ -133,7 +133,7 @@ value. For example, if the output id of a <code>dygraph</code> is
 (from and to).</p>
 <p>Note that when using the data window input variable you should always
 check for <code>NULL</code> before accessing it, for example:</p>
-<pre><code><span><span class="va">output</span><span class="op">$</span><span class="va">from</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderPrint.html" class="external-link">renderText</a></span><span class="op">(</span><span class="op">{</span></span>
+<pre><code><span><span class="va">output</span><span class="op">$</span><span class="va">from</span> <span class="op">&lt;-</span> <span class="fu">renderText</span><span class="op">(</span><span class="op">{</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">dygraph_date_window</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/strptime.html" class="external-link">strftime</a></span><span class="op">(</span><span class="va">input</span><span class="op">$</span><span class="va">dygraph_date_window</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="st">"%d %b %Y"</span><span class="op">)</span>      </span>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre>

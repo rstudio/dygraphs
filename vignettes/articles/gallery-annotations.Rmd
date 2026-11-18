@@ -65,13 +65,9 @@ Note that we also changed the color of the series to black so that it contrast w
 
 It is also possible to add horizontal shading to a chart. In the example below, shading is used to show the one standard deviation range for a stock return series.
 
-```{r, echo=FALSE, include=FALSE}
-options("getSymbols.warning4.0" = FALSE)
-library(quantmod, quietly = TRUE)
-```
-
 ```{r}
-quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign = TRUE)
+library(quantmod, quietly = TRUE)
+getSymbols("MSFT", src = "rda")
 ret <- ROC(MSFT[, 4])
 mn <- mean(ret, na.rm = TRUE)
 std <- sd(ret, na.rm = TRUE)
@@ -79,6 +75,3 @@ dygraph(ret, main = "Microsoft Share Price") |>
   dySeries("MSFT.Close", label = "MSFT") |>
   dyShading(from = mn - std, to = mn + std, axis = "y")
 ```
-
-
-

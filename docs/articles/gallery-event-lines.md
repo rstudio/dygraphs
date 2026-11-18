@@ -27,7 +27,23 @@ initial value of a stock price series.
 
 ``` r
 
-quantmod::getSymbols("MSFT", from = "2014-06-01", auto.assign = TRUE)
+library(quantmod, quietly = TRUE)
+```
+
+    ## 
+    ## Attaching package: 'zoo'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     as.Date, as.Date.numeric
+
+    ## Registered S3 method overwritten by 'quantmod':
+    ##   method            from
+    ##   as.zoo.data.frame zoo
+
+``` r
+
+getSymbols("MSFT", src = "rda")
 ```
 
     ## [1] "MSFT"

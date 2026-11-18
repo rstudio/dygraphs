@@ -38,7 +38,7 @@ library(quantmod)
 
 ``` r
 
-getSymbols("SPY", from = "2016-12-01", auto.assign = TRUE)
+getSymbols("SPY", src = "rda")
 ```
 
     ## [1] "SPY"

@@ -20,7 +20,7 @@ library(dygraphs)
 ```{r}
 library(quantmod)
 
-getSymbols("SPY", from = "2016-12-01", auto.assign = TRUE)
+getSymbols("SPY", src = "rda")
 
 difference <- SPY[, "SPY.Open"] - SPY[, "SPY.Close"]
 decreasing <- which(difference < 0)

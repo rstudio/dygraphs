@@ -9,7 +9,7 @@ function. For example:
 library(quantmod)
 
 tickers <- c("AAPL", "MSFT")
-getSymbols(tickers)
+getSymbols(tickers, src = "rda")
 closePrices <- do.call(merge, lapply(tickers, function(x) Cl(get(x))))
 dateWindow <- c("2008-01-01", "2009-01-01")
 

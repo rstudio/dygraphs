@@ -150,10 +150,7 @@ and
 functions to enable use of
 [`dygraph()`](https://rstudio.github.io/dygraphs/reference/dygraph.md)
 within [Shiny](http://shiny.rstudio.com) applications. These functions
-work exactly like the
-[`shiny::plotOutput()`](https://rdrr.io/pkg/shiny/man/plotOutput.html)
-and
-[`shiny::renderPlot()`](https://rdrr.io/pkg/shiny/man/renderPlot.html)
+work exactly like the `shiny::plotOutput()` and `shiny::renderPlot()`
 functions. For example, here’s a simple Shiny application that uses
 these functions:
 

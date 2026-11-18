@@ -35,7 +35,28 @@ upper and lower bars:
 ``` r
 
 library(quantmod)
-getSymbols(c("MSFT", "HPQ"), from = "2014-06-01", auto.assign = TRUE)
+```
+
+    ## Loading required package: xts
+
+    ## Loading required package: zoo
+
+    ## 
+    ## Attaching package: 'zoo'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     as.Date, as.Date.numeric
+
+    ## Loading required package: TTR
+
+    ## Registered S3 method overwritten by 'quantmod':
+    ##   method            from
+    ##   as.zoo.data.frame zoo
+
+``` r
+
+getSymbols(c("MSFT", "HPQ"), src = "rda")
 ```
 
     ## [1] "MSFT" "HPQ"
