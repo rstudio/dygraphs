@@ -1,4 +1,4 @@
-.PHONY: deps docs
+.PHONY: deps docs test
 
 R = Rscript
 
@@ -7,3 +7,6 @@ deps:
 
 docs: deps
 	$(R) -e 'pkgdown::build_site()'
+
+test:
+	$(R) -e 'testthat::test_local()'

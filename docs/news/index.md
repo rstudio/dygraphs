@@ -2,6 +2,9 @@
 
 ## dygraphs (development version)
 
+- Fix bug which incorrectly formatted dates in non-glibc systems
+  (e.g. OpenBSD)
+
 ## dygraphs 1.1.1.7
 
 - Added the ability for multiple series have different point shapes

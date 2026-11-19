@@ -1,5 +1,3 @@
-
-
 mergeLists <- function(base_list, overlay_list, recursive = TRUE) {
   if (length(base_list) == 0) {
     overlay_list
@@ -25,10 +23,22 @@ mergeLists <- function(base_list, overlay_list, recursive = TRUE) {
 }
 
 asISO8601Time <- function(x) {
-  if (!inherits(x, "POSIXct")) {
-    x <- as.POSIXct(x, tz = "GMT")
+  if (!inherits(x, "POSIXt")) {
+    x <- as.POSIXct(x, tz = "UTC")
   }
-  format(x, format = "%04Y-%m-%dT%H:%M:%OS3Z", tz = "GMT")
+  # Every component comes from a single POSIXlt, so no component depends on the
+  # C library. The year is padded with sprintf() instead of the %04Y
+  # conversion: %04Y is a glibc extension, and C libraries that follow POSIX
+  # strictly (e.g. OpenBSD) emit it literally, which produced dates like
+  # "04Y-01-01T00:00:00.000Z".
+  lt <- as.POSIXlt(x, tz = "UTC")
+  res <- sprintf(
+    "%04d-%02d-%02dT%02d:%02d:%06.3fZ",
+    lt$year + 1900L, lt$mon + 1L, lt$mday, lt$hour, lt$min, lt$sec
+  )
+  # sprintf() renders missing components as "NA"; keep them missing.
+  res[is.na(x)] <- NA_character_
+  res
 }
 
 resolveStrokePattern <- function(strokePattern) {
