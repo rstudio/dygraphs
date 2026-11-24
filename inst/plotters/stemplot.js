@@ -19,3 +19,4 @@ function stemPlotter(e) {
       ctx.stroke();
    }
 }
+Dygraph.Plotters.StemPlotter = stemPlotter;
